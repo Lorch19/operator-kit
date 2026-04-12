@@ -20,6 +20,12 @@
 - [ ] **Evaluate Supabase MCP integration** — Direct DB queries and schema inspection for first-bloom-build + lorchprotfoliotracker.
 - [x] **Extract shared CLAUDE.md boilerplate** — Done. Created `meta-tools/operational-discipline/SKILL.md`. Projects still need pointer replacement (separate task).
 
+
+### Assess charter pattern for OpenClaw agents
+Evaluate whether OpenClaw's agent definitions (AGENTS.md, SOUL.md, per-agent behavior) would benefit from adopting a formal "charter" pattern — explicit, versioned Markdown files per agent that define role, scope, boundaries, decision authority, and learning/memory rules. Inspired by the Squad project (github.com/bradygaster/squad) where each agent has a charter file that persists across runs and evolves. Currently OpenClaw agent behavior is partially implicit in code and cron configs rather than declarative charter docs. Compare: Squad charter format vs. current OpenClaw AGENTS.md structure vs. SKILL.md pattern from operator-kit. Also assess whether charters should include inter-agent delegation rules (who can invoke whom, escalation paths) and permission boundaries — directly relevant to Linx agentic identity governance thinking.
+- **Acceptance criteria:** 1. Document current state: how each OpenClaw agent's role/scope/permissions are defined today. 2. Review Squad charter format (bradygaster/squad repo) and extract pattern. 3. Draft charter template for OpenClaw agents with fields: identity, scope, boundaries, tools/permissions, memory rules, delegation authority, escalation triggers. 4. Write sample charter for one agent (e.g. the nightly consolidation agent). 5. Decision doc: adopt/adapt/skip with rationale.
+- **Status:** pending
+
 ## Strategic
 
 - [x] **Add NAVIGATOR.md to analytics-tools and gtm-tools** — Done. Both created with skill tables + cross-pack references.
