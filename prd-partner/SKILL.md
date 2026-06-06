@@ -93,6 +93,8 @@ When the idea involves system design (not just a feature), evaluate alternatives
 
 Don't let Omri jump to building without evaluating alternatives.
 
+*Note: if architecture decisioning grows heavy, consider spinning it into its own skill (ADR generation in MADR format, tradeoff tables, current-practice web search) rather than carrying it inside prd-partner. Tracked as a backlog item.*
+
 ### Build Model Discovery (AI-Build)
 
 When output is AI-Build, also resolve:
@@ -122,6 +124,14 @@ Each addition individually feels justified — the danger is the aggregate.
 - Omri has data, user quotes, or evidence
 - The constraint is organizational — he's made the call
 - He says "I know, shipping anyway" — respect it, note the risk
+
+### User Stories (lightweight)
+
+Once the problem and users are clear, capture short user stories — one line each, mapped to the pain they kill: *"As a [role], I want [capability], so that [outcome]."* A few per persona. They make pains and needs concrete before requirements, and they carry into the PRD. Keep them simple — a thinking and alignment artifact, not a backlog.
+
+### Tentative Roadmap
+
+Produce a tentative, phased roadmap as a standard discovery output (not only in the PRD): v1 / v1.1 / later phases, each with *what* and a one-line *why*. It gives out-of-scope items a home, frames the v1 cut, and is presentable to stakeholders. Refine it as scope decisions land.
 
 ### Synthesis Checkpoint
 
@@ -273,6 +283,8 @@ Everything from Dev-Team mode, plus:
 
 #### UI Description
 
+> Carry the UI/UX flow agreed during discovery into this section as-is — the screen-by-screen flow is a PRD deliverable, not a throwaway. If wireframes or a Claude Design output exist, reference them here.
+
 Per screen/view:
 - What's on the page (components, data, actions)
 - What happens on key interactions
@@ -409,6 +421,18 @@ Don't invent metrics, market sizes, or compliance requirements.
 Offer both:
 1. **Markdown** — for quick review and handoff to Claude Code
 2. **Word document (.docx)** — use the docx skill
+
+---
+
+## Closing Hook — Continuous Improvement
+
+At the end of every run (after the PRD or major artifact is delivered), surface ways to improve this skill:
+
+1. Review what was awkward, missing, or repeated during the session.
+2. Present the accumulated improvement suggestions to Omri as a short list.
+3. Ask whether to apply them to this SKILL.md now, and log larger initiatives to Backlog Manager.
+
+Accumulate suggestions across the session rather than waiting until the end to think of them. The goal is a skill that compounds — each use makes the next one sharper.
 
 ---
 
