@@ -9,6 +9,8 @@ Tools for building, shipping, and running products. PM frameworks, multi-agent w
 | Task | Skill | Pack |
 |------|-------|------|
 | Write a PRD | `prd-partner` (personalized) or `pm-frameworks/prd-development` (generic) | Root / PM Frameworks |
+| **Stress-test any plan or decision** | `thinking-tools/grill-me` | Thinking Tools |
+| **Hand off a full context window** | `thinking-tools/handoff` | Thinking Tools |
 | Competitive analysis | `domain-tools/competitive-teardown` | Domain Tools |
 | Strategy session | `/pm:strategy` | PM Agents |
 | Market sizing | `pm-frameworks/tam-sam-som-calculator` | PM Frameworks |
@@ -122,6 +124,7 @@ Skills for building and optimizing your toolkit itself.
 - `internal-comms` — Status reports, 3P updates, newsletters, FAQs
 - `webapp-testing` — Playwright-based web app testing with screenshots
 - `security-guidance` — PreToolUse hook monitoring 9 security patterns (XSS, injection, eval)
+- `writing-great-skills` — The *editorial* half of skill authoring: invocation choice, information hierarchy, progressive disclosure, leading words, and the six failure modes (premature completion, duplication, sediment, sprawl, no-op, negation). Pair with `skill-creator`, which handles scaffolding and evals.
 
 ### 8. Operations Tools (`operations-tools/`)
 9 operational excellence skills from Anthropic's knowledge-work-plugins. `.claude-plugin` format. See `operations-tools/NAVIGATOR.md`.
@@ -138,9 +141,9 @@ Skills for building and optimizing your toolkit itself.
 - `vendor-review` — Vendor evaluation, TCO analysis, negotiation
 
 ### 9. Engineering Tools (`engineering-tools/`)
-10 engineering workflow skills from Anthropic's knowledge-work-plugins. `.claude-plugin` format. See `engineering-tools/NAVIGATOR.md`.
+21 engineering skills in two families. `.claude-plugin` format. See `engineering-tools/NAVIGATOR.md`.
 
-**Skills:**
+**Advisory skills** (Anthropic knowledge-work-plugins) — produce an artifact:
 - `architecture` — ADRs and system design evaluation
 - `code-review` — Security, performance, correctness review
 - `debug` — Structured debugging (reproduce, isolate, diagnose, fix)
@@ -151,6 +154,19 @@ Skills for building and optimizing your toolkit itself.
 - `system-design` — Requirements, architecture, scalability
 - `tech-debt` — Categorize and prioritize technical debt
 - `testing-strategy` — Test plans with pyramid approach
+
+**Flow skills** (from mattpocock/skills, MIT — see `CREDITS.md`) — drive the work through your issue tracker. Run `/agent-context-setup` once per repo first.
+- `agent-context-setup` — One-time repo config: issue tracker, triage labels, `CONTEXT.md`/ADR layout
+- `to-spec` — Conversation → spec/PRD, published to the tracker
+- `to-tickets` — Spec → tracer-bullet vertical slices with explicit blocking edges
+- `implement` — Build one ticket per fresh context, TDD-driven, review before commit
+- `tdd` — Red → green loop: seams, what a good test is, the four anti-patterns
+- `prototype` — Throwaway code answering one design question (logic branch or UI branch)
+- `diagnosing-bugs` — Hard bugs: build a tight, red-capable feedback loop *before* hypothesising
+- `codebase-design` — Deep-module vocabulary (module, interface, depth, seam, adapter, leverage, locality)
+- `domain-modeling` — Ubiquitous language, `CONTEXT.md` glossary, ADRs written as decisions land
+- `improve-codebase-architecture` — Scan for deepening opportunities, HTML report, grill the pick
+- `triage` — Move incoming issues and external PRs through a triage state machine
 
 ### 10. Sales Tools (`sales-tools/`)
 9 sales workflow skills from Anthropic's knowledge-work-plugins. `.claude-plugin` format. See `sales-tools/NAVIGATOR.md`.
@@ -194,7 +210,18 @@ Context management system for AI coding agents (Claude Code, Cursor, etc.). Main
 - `assets/CONTEXT-PROTOCOL.md` — Context update protocol
 - `references/GUIDE.md` — Human-readable quick guide
 
-### 15. Linx Advisor (standalone at `~/linx-advisor/`)
+### 15. Thinking Tools (`thinking-tools/`)
+6 domain-agnostic reasoning primitives, from mattpocock/skills (MIT — see `CREDITS.md`). Not frameworks with templates — small composable moves you apply to any subject. See `thinking-tools/NAVIGATOR.md`.
+
+**Skills:**
+- `grilling` — Relentless one-question-at-a-time interview. **A primitive** — model-invoked, so any other skill can call it mid-session. Looks up facts itself; puts only *decisions* to you.
+- `grill-me` — User-facing wrapper: run a grilling session on anything.
+- `wayfinder` — Plan an effort too big for one session as a shared map of **decision tickets** on your issue tracker. Fog of war, frontier, out-of-scope; produces decisions, not deliverables, then hands off to `to-spec`.
+- `handoff` — Compact the current conversation into a handoff doc so a fresh session can pick up. Forks the context; `/compact` continues it.
+- `research` — Delegate reading legwork to a background agent, cited to primary sources only.
+- `teach` — Learn a topic across sessions in a stateful workspace (mission, lessons, learning records, reference docs).
+
+### 16. Linx Advisor (standalone at `~/linx-advisor/`)
 
 Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch/linx-advisor/`. It is no longer part of the operator-kit repo. See the linx-advisor directory directly for its SKILL.md, knowledge files, and rhythm files. 8 scheduled tasks maintain its daily/weekly cadence.
 
@@ -204,6 +231,13 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 
 | Task | Use this skill |
 |------|---------------|
+| **Thinking Primitives** | |
+| Stress-test a plan, decision, or idea | `thinking-tools/grill-me` |
+| Interrogate the user mid-session (callable primitive) | `thinking-tools/grilling` |
+| Plan an effort too big for one session | `thinking-tools/wayfinder` |
+| Hand a full context window to a fresh session | `thinking-tools/handoff` |
+| Delegate research to a background agent | `thinking-tools/research` |
+| Learn a topic across multiple sessions | `thinking-tools/teach` |
 | **Documents & Files** | |
 | Write a Word doc | `document-tools/docx` |
 | Create a slide deck | `document-tools/pptx` |
@@ -267,6 +301,17 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | System design | `engineering-tools/system-design` |
 | Tech debt audit | `engineering-tools/tech-debt` |
 | Test strategy | `engineering-tools/testing-strategy` |
+| Configure a repo for the flow skills (run once) | `engineering-tools/agent-context-setup` |
+| Conversation → spec on the tracker | `engineering-tools/to-spec` |
+| Spec → tracer-bullet tickets | `engineering-tools/to-tickets` |
+| Build one ticket end to end | `engineering-tools/implement` |
+| Write a behaviour test-first | `engineering-tools/tdd` |
+| Throwaway prototype to settle a design question | `engineering-tools/prototype` |
+| Hard bug, flake, or perf regression | `engineering-tools/diagnosing-bugs` |
+| Shape a module's interface (deep modules) | `engineering-tools/codebase-design` |
+| Ubiquitous language + ADRs | `engineering-tools/domain-modeling` |
+| Find refactors that deepen the codebase | `engineering-tools/improve-codebase-architecture` |
+| Triage incoming issues and external PRs | `engineering-tools/triage` |
 | **Sales** | |
 | Account/prospect research | `sales-tools/account-research` |
 | Sales call prep | `sales-tools/call-prep` |
@@ -287,6 +332,7 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | UX copy writing | `design-tools/ux-copy` |
 | **Meta / Tooling** | |
 | Create/optimize a skill | `meta-tools/skill-creator` |
+| Edit a skill for predictability (vocabulary + failure modes) | `meta-tools/writing-great-skills` |
 | Build interactive artifact | `meta-tools/web-artifacts-builder` |
 | Document a decision | `meta-tools/adr-writer` |
 | Plan an automation | `meta-tools/automation-planner` |
