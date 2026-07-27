@@ -1,8 +1,18 @@
 {
   "name": "sales-tools",
   "version": "1.0.0",
-  "description": "Prospect, craft outreach, and build deal strategy faster. Prep for calls, manage your pipeline, and write personalized messaging that moves deals forward.",
+  "description": "Prospect, craft outreach, and build deal strategy faster. Call prep, pipeline review, forecasting, and personalized messaging that moves deals forward.",
   "author": {
-    "name": "Anthropic (adapted for Operator Kit)"
-  }
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "sales",
+    "pipeline",
+    "outreach",
+    "forecast"
+  ]
 }

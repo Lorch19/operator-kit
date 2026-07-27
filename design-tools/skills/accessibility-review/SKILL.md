@@ -1,5 +1,6 @@
 ---
 name: accessibility-review
+disable-model-invocation: true
 description: Run a WCAG 2.1 AA accessibility audit on a design or page. TRIGGER with "audit accessibility", "check a11y", "is this accessible?", or when reviewing for color contrast, keyboard navigation, touch targets, or screen reader behavior.
 argument-hint: "<Figma URL, URL, or description>"
 ---

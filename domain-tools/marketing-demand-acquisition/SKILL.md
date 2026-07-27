@@ -1,5 +1,6 @@
 ---
 name: marketing-demand-acquisition
+disable-model-invocation: true
 description: >-
   Multi-channel demand generation, paid media optimization, SEO strategy, and partnership programs for Series A+ startups.
   Use when planning paid media, SEO, partnerships, or attribution for Series A+ growth.

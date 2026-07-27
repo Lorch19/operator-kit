@@ -1,5 +1,6 @@
 ---
 name: process-optimization
+disable-model-invocation: true
 description: Analyze and improve business processes. TRIGGER when user says "this process is slow", "how can we improve", "streamline this workflow", "too many steps", "bottleneck", or describes an inefficient process they want to fix.
 ---
 

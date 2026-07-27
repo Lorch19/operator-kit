@@ -1,5 +1,6 @@
 ---
 name: call-summary
+disable-model-invocation: true
 description: Process call notes or transcript — extract action items, draft follow-up email, generate internal summary. Use when pasting notes after a discovery/demo/negotiation call, drafting a customer follow-up, or capturing objections and next steps.
 argument-hint: "<call notes or transcript>"
 ---

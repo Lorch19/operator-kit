@@ -1,5 +1,6 @@
 ---
 name: create-an-asset
+disable-model-invocation: true
 description: Generate tailored sales assets (landing pages, decks, one-pagers, workflow demos) from deal context. Describe your prospect, audience, and goal — get a polished asset ready to share.
 ---
 

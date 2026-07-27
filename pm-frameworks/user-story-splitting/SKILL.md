@@ -1,5 +1,6 @@
 ---
 name: user-story-splitting
+disable-model-invocation: true
 description: >-
   Break down large user stories, epics, or features into smaller, independently deliverable stories using systematic splitting patterns.
   Use when you have an existing story that is too large for a single sprint and needs to be decomposed into smaller vertical slices.

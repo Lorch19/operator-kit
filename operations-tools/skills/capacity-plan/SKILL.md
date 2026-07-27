@@ -1,5 +1,6 @@
 ---
 name: capacity-plan
+disable-model-invocation: true
 description: Plan resource capacity — workload analysis and utilization forecasting. Use when heading into quarterly planning, the team feels overallocated and you need the numbers, deciding whether to hire or deprioritize, or stress-testing whether upcoming projects fit the people you have.
 argument-hint: "<team or project scope>"
 ---

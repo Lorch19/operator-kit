@@ -1,5 +1,6 @@
 ---
 name: prd-development
+disable-model-invocation: true
 description: >-
   Guide product managers through structured PRD (Product Requirements Document) creation by orchestrating problem framing, user research synthesis, solution definition, and success criteria into a cohesive document.
   Use when writing a complete PRD from scratch or structuring product requirements for an engineering handoff.

@@ -1,8 +1,19 @@
 {
   "name": "engineering-tools",
   "version": "1.0.0",
-  "description": "Streamline engineering workflows — standups, code review, architecture decisions, incident response, and technical documentation. Works with your existing tools or standalone.",
+  "description": "Engineering workflows in two families: advisory skills that produce an artifact (ADRs, test plans, postmortems) and flow skills that drive work through your issue tracker (spec, tickets, TDD, implement, triage).",
   "author": {
-    "name": "Anthropic (adapted for Operator Kit)"
-  }
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "tdd",
+    "code-review",
+    "spec",
+    "triage"
+  ]
 }

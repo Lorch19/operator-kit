@@ -1,0 +1,23 @@
+{
+  "name": "analytics-tools",
+  "version": "1.0.0",
+  "description": "Quantitative analysis for data-driven product work \u2014 A/B test statistics, natural-language SQL generation, and cohort/retention analysis.",
+  "author": {
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "analytics",
+    "ab-testing",
+    "sql",
+    "cohort"
+  ],
+  "skills": [
+    "./ab-test-analysis",
+    "./cohort-analysis",
+    "./sql-queries"
+  ]
+}

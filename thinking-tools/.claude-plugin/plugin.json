@@ -1,0 +1,27 @@
+{
+  "name": "thinking-tools",
+  "version": "1.0.0",
+  "description": "Domain-agnostic reasoning primitives \u2014 relentless grilling, session handoff, background research, multi-session teaching, and wayfinding a foggy effort into decision tickets.",
+  "author": {
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "grilling",
+    "thinking",
+    "handoff",
+    "research",
+    "planning"
+  ],
+  "skills": [
+    "./grill-me",
+    "./grilling",
+    "./handoff",
+    "./research",
+    "./teach",
+    "./wayfinder"
+  ]
+}

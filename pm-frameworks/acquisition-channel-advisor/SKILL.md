@@ -1,5 +1,6 @@
 ---
 name: acquisition-channel-advisor
+disable-model-invocation: true
 description: >-
   Evaluate acquisition channels using unit economics, customer quality, and scalability. Recommends scale/test/kill decisions.
   Use when deciding how to allocate marketing budget across channels or evaluating whether to scale, test, or kill a specific acquisition channel.

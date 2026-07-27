@@ -1,5 +1,6 @@
 ---
 name: forecast
+disable-model-invocation: true
 description: Generate a weighted sales forecast with best/likely/worst scenarios, commit vs. upside breakdown, and gap analysis. Use when preparing a quarterly forecast call, assessing gap-to-quota, deciding which deals to commit vs. call upside, or checking pipeline coverage.
 argument-hint: "<period>"
 ---

@@ -1,5 +1,6 @@
 ---
 name: user-research
+disable-model-invocation: true
 description: Plan, conduct, and synthesize user research. TRIGGER with "user research plan", "interview guide", "usability test", "survey design", "research questions", or when user needs help understanding their users through research.
 ---
 

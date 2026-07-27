@@ -1,5 +1,6 @@
 ---
 name: pipeline-review
+disable-model-invocation: true
 description: Analyze pipeline health — prioritize deals, flag risks, get weekly action plan. Use when running a weekly pipeline review, deciding which deals to focus on, spotting stale opportunities, or auditing pipeline hygiene.
 argument-hint: "<segment or rep>"
 ---

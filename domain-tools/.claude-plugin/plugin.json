@@ -1,0 +1,26 @@
+{
+  "name": "domain-tools",
+  "version": "1.0.0",
+  "description": "Specialist founder/consultant workflows with executable Python \u2014 competitive teardowns, financial modeling, revenue operations, product marketing, and demand generation.",
+  "author": {
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "competitive-analysis",
+    "finance",
+    "revops",
+    "marketing"
+  ],
+  "skills": [
+    "./competitive-teardown",
+    "./financial-analyst",
+    "./marketing-demand-acquisition",
+    "./marketing-strategy-pmm",
+    "./product-manager-toolkit",
+    "./revenue-operations"
+  ]
+}

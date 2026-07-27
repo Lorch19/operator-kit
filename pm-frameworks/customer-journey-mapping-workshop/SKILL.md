@@ -1,5 +1,6 @@
 ---
 name: customer-journey-mapping-workshop
+disable-model-invocation: true
 description: >-
   Guide product managers through creating a customer journey map by asking adaptive questions about the actor (persona), scenario/goal, journey phases, actions/emotions, and opportunities for improvement.
   Use when you need a facilitated, interactive session to discover and build a journey map from scratch with guided questions.

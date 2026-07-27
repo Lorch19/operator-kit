@@ -1,5 +1,6 @@
 ---
 name: system-design
+disable-model-invocation: true
 description: Design systems, services, and architectures. TRIGGER with "design a system for", "how should we architect", "system design for", or when user needs help with API design, data modeling, or service boundaries.
 ---
 

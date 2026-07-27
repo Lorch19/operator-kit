@@ -1,5 +1,6 @@
 ---
 name: business-health-diagnostic
+disable-model-invocation: true
 description: >-
   Diagnose SaaS business health using key metrics, identify red flags, and prioritize actions. Analyzes growth, retention, efficiency, and capital health.
   Use when you need a comprehensive health scorecard across all business dimensions, preparing for board meetings, or identifying which metrics are red flags.

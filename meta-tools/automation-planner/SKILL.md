@@ -1,5 +1,6 @@
 ---
 name: automation-planner
+disable-model-invocation: true
 description: >-
   Plan and configure background automations, scheduled tasks, and cron jobs with
   production-grade safety patterns. Use when setting up recurring agents, scheduled

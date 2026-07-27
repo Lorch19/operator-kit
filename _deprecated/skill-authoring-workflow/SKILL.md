@@ -1,11 +1,17 @@
 ---
 name: skill-authoring-workflow
+disable-model-invocation: true
 description: >-
   Turn raw PM content into a compliant, publish-ready skill by choosing build/add paths, running conformance checks, and updating docs before commit.
   Use when creating a new skill or updating an existing one and you need the full authoring workflow with validation.
   DO NOT use when you need to use an existing PM skill — this is for skill authors, not skill consumers.
 type: workflow
 ---
+
+> **DEPRECATED** — retired from the active kit; kept for reference only.
+> **Use instead:** `meta-tools/skill-creator + meta-tools/writing-great-skills`
+> **Why:** Referenced a repo-root `scripts/` directory (`add-a-skill.sh`, `build-a-skill.sh`, `check-skill-metadata.py`) that does not exist, so its workflow could not run. Scaffolding and evals live in `skill-creator`; editorial judgement lives in `writing-great-skills`.
+
 
 ## Purpose
 

@@ -1,5 +1,6 @@
 ---
 name: prioritization-advisor
+disable-model-invocation: true
 description: >-
   Guide product managers in choosing the right prioritization framework by asking adaptive questions about product stage, team context, decision-making needs, and stakeholder dynamics.
   Use when you need to prioritize individual features or initiatives and want help choosing the right framework (RICE, ICE, value vs. effort, etc.).

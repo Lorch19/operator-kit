@@ -1,5 +1,6 @@
 ---
 name: deploy-rsync
+disable-model-invocation: true
 description: >
   Generate and execute rsync+SSH deployments to a VPS. Handles file sync with smart excludes,
   remote environment verification, post-deploy setup, health checks, and optional Telegram notification.

@@ -1,5 +1,6 @@
 ---
 name: proto-persona
+disable-model-invocation: true
 description: >-
   Create an initial, assumption-based persona profile that synthesizes available user research, market data, and stakeholder knowledge into a working hypothesis about your target user.
   Use when you need to align teams early in product development with a lightweight persona before conducting extensive research.

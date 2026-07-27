@@ -1,5 +1,6 @@
 ---
 name: risk-assessment
+disable-model-invocation: true
 description: Identify, assess, and mitigate operational risks. TRIGGER when user asks "what are the risks", "risk assessment", "risk register", "what could go wrong", or is evaluating risks for a project, vendor, process, or decision.
 ---
 

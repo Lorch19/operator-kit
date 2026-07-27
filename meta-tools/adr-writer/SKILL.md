@@ -1,5 +1,6 @@
 ---
 name: adr-writer
+disable-model-invocation: true
 description: >-
   Write Architecture Decision Records (ADRs) that document technical and product decisions
   with structured rationale, alternatives, and consequences. Use when making significant

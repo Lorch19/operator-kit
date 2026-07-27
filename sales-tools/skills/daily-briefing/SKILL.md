@@ -1,5 +1,6 @@
 ---
 name: daily-briefing
+disable-model-invocation: true
 description: Start your day with a prioritized sales briefing. Works standalone when you tell me your meetings and priorities, supercharged with calendar, CRM, and email. TRIGGER with "morning briefing", "daily brief", "what's on my plate today", "prep my day", or "start my day".
 ---
 

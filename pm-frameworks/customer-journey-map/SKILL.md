@@ -1,5 +1,6 @@
 ---
 name: customer-journey-map
+disable-model-invocation: true
 description: >-
   Create a comprehensive customer journey map that visualizes how customers interact with your brand across all stages—from awareness to loyalty—documenting their actions, touchpoints, emotions, KPIs, and business goals.
   Use when you have journey data and need to create the journey map artifact with stages, touchpoints, emotions, and KPIs.

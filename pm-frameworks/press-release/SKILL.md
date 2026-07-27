@@ -1,5 +1,6 @@
 ---
 name: press-release
+disable-model-invocation: true
 description: >-
   Create a visionary press release following Amazon's "Working Backwards" methodology to define and communicate a product or feature before building it.
   Use when defining a new product or feature vision and you want to test if the customer value proposition is compelling before writing code.

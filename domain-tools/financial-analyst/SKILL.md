@@ -1,5 +1,6 @@
 ---
 name: financial-analyst
+disable-model-invocation: true
 description: >-
   Performs financial ratio analysis, DCF valuation, budget variance analysis, and rolling forecast construction for strategic decision-making.
   Use when you need financial modeling (DCF, ratio analysis, variance, forecasting). Includes Python scripts.

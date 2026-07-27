@@ -1,5 +1,6 @@
 ---
 name: epic-breakdown-advisor
+disable-model-invocation: true
 description: >-
   Break down epics into user stories using Richard Lawrence's Humanizing Work methodology—a flowchart-driven approach that applies 9 splitting patterns sequentially.
   Use when you have a large epic that needs systematic decomposition into vertical-slice user stories using proven splitting patterns.

@@ -1,5 +1,6 @@
 ---
 name: problem-statement
+disable-model-invocation: true
 description: >-
   Articulate a problem from the user's perspective using an empathy-driven framework that captures who they are, what they're trying to do, what's blocking them, why, and how it makes them feel.
   Use when you need to write a single, concise problem statement to align stakeholders before jumping to solutions.

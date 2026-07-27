@@ -12,6 +12,26 @@ Strategy is a function of segmentation and differentiation. This command produce
 
 Uses Shreyas Doshi's strategy template: segments, market context, strategic pillars, non-priorities, and roadmap with metrics.
 
+## How to run Steps 1–5
+
+**Drive them as a `/grilling` session.** The steps below are the *agenda*; `grilling` is
+the *engine*. Strategy is a tree of dependent choices — a segment call constrains the
+pillars, which constrain the non-priorities — and that is exactly the shape grilling
+walks. Invoke it and hold to its rules:
+
+1. **One question at a time**, waiting for the answer before the next. Dumping a step's
+   whole question list at once produces a block of shallow answers and a strategy that
+   reads like a template someone filled in.
+2. **Recommend an answer with every question.** Give your pick and your reasoning, then
+   ask for agreement. Reacting is faster and sharper than generating from blank.
+3. **Look up facts, ask only decisions.** Segment sizes, competitor pricing, market
+   trends, what's already in `docs/` — go find those. Spend the human's attention only on
+   the calls that are genuinely theirs.
+
+Do not draft the strategy document until they confirm you've reached shared
+understanding. Steps 1 and 5 (the one-sentence strategy and the non-priorities) are where
+grilling earns the most — they're the two places a strategy is usually vague.
+
 ## Input
 
 <strategy_input> #$ARGUMENTS </strategy_input>
