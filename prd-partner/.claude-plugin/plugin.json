@@ -1,7 +1,7 @@
 {
-  "name": "design-tools",
+  "name": "prd-partner",
   "version": "1.0.0",
-  "description": "Accelerate product design \u2014 critique, design system management, UX writing, accessibility audits, research synthesis, and developer handoff.",
+  "description": "Turn raw ideas into actionable PRDs. Discovery Mode sharpens thinking through a grilling session; PRD Mode generates AI-Build, Dev-Team, or Stakeholder documents.",
   "author": {
     "name": "Omri Lorch",
     "url": "https://github.com/Lorch19/operator-kit"
@@ -10,9 +10,8 @@
   "repository": "https://github.com/Lorch19/operator-kit",
   "license": "MIT",
   "keywords": [
-    "design",
-    "ux",
-    "accessibility",
-    "research"
+    "prd",
+    "product-management",
+    "spec"
   ]
 }

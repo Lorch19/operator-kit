@@ -1,7 +1,7 @@
 {
-  "name": "design-tools",
+  "name": "context-management",
   "version": "1.0.0",
-  "description": "Accelerate product design \u2014 critique, design system management, UX writing, accessibility audits, research synthesis, and developer handoff.",
+  "description": "Keep project context alive across AI coding sessions with two lean files plus on-demand docs.",
   "author": {
     "name": "Omri Lorch",
     "url": "https://github.com/Lorch19/operator-kit"
@@ -10,9 +10,8 @@
   "repository": "https://github.com/Lorch19/operator-kit",
   "license": "MIT",
   "keywords": [
-    "design",
-    "ux",
-    "accessibility",
-    "research"
+    "context",
+    "state",
+    "memory"
   ]
 }

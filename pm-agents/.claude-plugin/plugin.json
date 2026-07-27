@@ -1,7 +1,7 @@
 {
-  "name": "design-tools",
+  "name": "pm-agents",
   "version": "1.0.0",
-  "description": "Accelerate product design \u2014 critique, design system management, UX writing, accessibility audits, research synthesis, and developer handoff.",
+  "description": "Multi-agent PM system. /pm: commands for specs, strategy, opportunity discovery, simulation, and parallel six-agent review, over a compounding set of PM components.",
   "author": {
     "name": "Omri Lorch",
     "url": "https://github.com/Lorch19/operator-kit"
@@ -10,9 +10,9 @@
   "repository": "https://github.com/Lorch19/operator-kit",
   "license": "MIT",
   "keywords": [
-    "design",
-    "ux",
-    "accessibility",
-    "research"
+    "pm",
+    "multi-agent",
+    "strategy",
+    "spec-review"
   ]
 }

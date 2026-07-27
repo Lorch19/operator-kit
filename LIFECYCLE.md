@@ -1,6 +1,6 @@
 # Operator Kit — Skill Lifecycle
 
-Two policies keep a 140-skill kit usable: **invocation** (who can fire a skill) and
+Two policies keep a 141-skill kit usable: **invocation** (who can fire a skill) and
 **buckets** (whether a skill is shipped at all). Both are enforced by
 `scripts/validate-kit.py`, which runs clean on every commit.
 
@@ -39,7 +39,7 @@ A skill stays **model-invoked** only if at least one of these holds:
 scoring, a pipeline review — is a deliberate act. Making it model-invoked buys nothing
 and costs context every turn.
 
-Current split: **37 model-invoked / 103 user-invoked**, ~3.0K tokens of description in
+Current split: **37 model-invoked / 104 user-invoked**, ~3.1K tokens of description in
 context, down from ~11.5K.
 
 ### The cost, stated plainly
@@ -106,3 +106,33 @@ invocation by the rule, add the routing row.
 `engineering-tools/skills/code-review` shadows the bundled `/code-review`. Left in place
 deliberately — the kit's version is richer — but rename it if the bundled one is
 preferred.
+
+---
+
+## 3. Packaging
+
+Every pack ships as a Claude Code plugin; the repo root is the marketplace
+(`.claude-plugin/marketplace.json`, 15 plugins). Three pack layouts, three treatments:
+
+| Layout | Example | `plugin.json` |
+|---|---|---|
+| `<pack>/skills/<skill>/` | `engineering-tools` | nothing — default scan finds them |
+| `<pack>/<skill>/` (flat) | `pm-frameworks` | explicit `skills` array, one path per skill |
+| `<pack>/SKILL.md` | `prd-partner` | nothing — auto single-skill plugin |
+
+Flat packs list every skill path explicitly rather than relying on `"skills": ["./"]`,
+which is ambiguous between "a directory of skills" and "a single skill at the root".
+
+After adding, renaming, or moving a skill in a **flat** pack, regenerate that pack's
+`skills` array and run:
+
+```bash
+claude plugin validate . --strict          # the marketplace
+claude plugin validate <pack> --strict     # the pack
+python3 scripts/validate-kit.py            # lifecycle rules
+```
+
+A `CLAUDE.md` at a plugin root is **never loaded as context** when the plugin is
+installed. `pm-agents/CLAUDE.md` was renamed to `README.md` for exactly this reason —
+keeping it would have looked like it was doing something it wasn't. Ship standing
+instructions as a skill, not as a stray `CLAUDE.md`.

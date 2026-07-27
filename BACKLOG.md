@@ -25,7 +25,7 @@
 - [x] **Add NAVIGATOR.md to analytics-tools and gtm-tools** — Done. Both created with skill tables + cross-pack references.
 - [x] **Reduce doc-coauthoring to under 250 lines** — Done. 326→231 lines. Consolidated Stage 2 loop, condensed Tips and What NOT to Do.
 - [ ] **Evaluate Telegram MCP integration** — Custom bot code per-project could be replaced with unified MCP. Would simplify notification layer across portfolio-system and scheduled tasks.
-- [ ] **Migrate existing packs to .claude-plugin format** — New packs (operations, engineering, sales, design) use `.claude-plugin/plugin.json`. Older packs (pm-frameworks, domain-tools, analytics-tools, gtm-tools, meta-tools) still use SKILL.md only. Migration enables marketplace publishing and claude.ai compatibility. Start with meta-tools (most active).
+- [x] **Migrate existing packs to .claude-plugin format** — Done. All 15 packs have `plugin.json`; repo root is a marketplace (`.claude-plugin/marketplace.json`). Regenerate with `scripts/gen-plugin-manifests.py`; validate with `claude plugin validate . --strict`.
 - [ ] **Add CONNECTORS.md to existing packs** — New packs use the `~~category` connector pattern for tool-agnostic integration. Add CONNECTORS.md to domain-tools, analytics-tools, and gtm-tools.
 - [ ] **Port financial-services-plugins deep models** — Anthropic's financial-services-plugins repo has 3-statement-model, DCF, LBO, comps-analysis, PE due diligence skills. Significantly deeper than current financial-analyst. Port as extension to domain-tools or new finance-tools pack.
 - [ ] **Evaluate claude-md-management plugin** — Anthropic's official plugin that audits/improves CLAUDE.md files and captures session learnings. Could enhance context-management skill.

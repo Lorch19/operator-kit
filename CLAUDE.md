@@ -4,10 +4,28 @@ Tools for building, shipping, and running products. PM frameworks, multi-agent w
 
 ---
 
+## Install
+
+This repo is its own Claude Code plugin marketplace — 15 plugins, one per pack:
+
+```
+/plugin marketplace add Lorch19/operator-kit
+/plugin install thinking-tools@operator-kit
+```
+
+`git pull` plus a plugin update refreshes everything. For a fresh machine, other Claude
+surfaces (claude.ai, Cowork), or a skill that isn't showing up, run
+**`/install-operator-kit`** — it walks each surface and verifies rather than assumes.
+
+**There is no account-level sync.** Claude Code reads skills from disk; claude.ai stores
+them per-account as zip uploads. Installing on one does nothing for the other.
+
+---
+
 ## How skills are invoked
 
-140 active skills. Only **37** are model-invoked — Claude fires those on its own. The
-other **103 are user-invoked**: type `/<skill-name>` to run them. Their descriptions are
+141 active skills. Only **37** are model-invoked — Claude fires those on its own. The
+other **104 are user-invoked**: type `/<skill-name>` to run them. Their descriptions are
 kept out of context entirely, which is why the routing table below must stay complete —
 **it is the only index Claude has for them.** Claude can still *recommend* a user-invoked
 skill by reading this file; it just can't fire one unasked.
@@ -146,6 +164,7 @@ Skills for building and optimizing your toolkit itself.
 - `webapp-testing` — Playwright-based web app testing with screenshots
 - `security-guidance` — PreToolUse hook monitoring 9 security patterns (XSS, injection, eval)
 - `writing-great-skills` — The *editorial* half of skill authoring: invocation choice, information hierarchy, progressive disclosure, leading words, and the six failure modes (premature completion, duplication, sediment, sprawl, no-op, negation). Pair with `skill-creator`, which handles scaffolding and evals.
+- `install-operator-kit` — Install/update the kit across Claude Code, claude.ai, and Cowork; verifies each surface rather than assuming
 
 ### 8. Operations Tools (`operations-tools/`)
 9 operational excellence skills from Anthropic's knowledge-work-plugins. `.claude-plugin` format. See `operations-tools/NAVIGATOR.md`.
@@ -395,6 +414,7 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | Deploy to a VPS over rsync+SSH | `meta-tools/deploy-rsync` |
 | Cross-project health digest | `meta-tools/health-check-monitor` |
 | Shared session rituals and discipline | `meta-tools/operational-discipline` |
+| Install/update the kit on a machine or surface | `meta-tools/install-operator-kit` |
 | Build interactive artifact | `meta-tools/web-artifacts-builder` |
 | Document a decision | `meta-tools/adr-writer` |
 | Plan an automation | `meta-tools/automation-planner` |

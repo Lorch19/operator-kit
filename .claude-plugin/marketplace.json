@@ -1,0 +1,194 @@
+{
+  "name": "operator-kit",
+  "owner": {
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "metadata": {
+    "description": "Tools for building, shipping, and running products \u2014 PM frameworks, multi-agent workflows, thinking primitives, engineering flows, and document generation.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "analytics-tools",
+      "source": "./analytics-tools",
+      "description": "Quantitative analysis for data-driven product work \u2014 A/B test statistics, natural-language SQL generation, and cohort/retention analysis.",
+      "category": "data",
+      "keywords": [
+        "analytics",
+        "ab-testing",
+        "sql",
+        "cohort"
+      ]
+    },
+    {
+      "name": "context-management",
+      "source": "./context-management",
+      "description": "Keep project context alive across AI coding sessions with two lean files plus on-demand docs.",
+      "category": "development",
+      "keywords": [
+        "context",
+        "state",
+        "memory"
+      ]
+    },
+    {
+      "name": "design-tools",
+      "source": "./design-tools",
+      "description": "Accelerate product design \u2014 critique, design system management, UX writing, accessibility audits, research synthesis, and developer handoff.",
+      "category": "design",
+      "keywords": [
+        "design",
+        "ux",
+        "accessibility",
+        "research"
+      ]
+    },
+    {
+      "name": "doc-coauthoring",
+      "source": "./doc-coauthoring",
+      "description": "Structured document co-authoring: context gathering, section-by-section refinement, then fresh-eyes reader testing.",
+      "category": "productivity",
+      "keywords": [
+        "writing",
+        "documentation",
+        "collaboration"
+      ]
+    },
+    {
+      "name": "document-tools",
+      "source": "./document-tools",
+      "description": "Create real document files \u2014 Word, PowerPoint, Excel, and PDF \u2014 with formatting, formulas, charts, and production-grade templates.",
+      "category": "productivity",
+      "keywords": [
+        "docx",
+        "pptx",
+        "xlsx",
+        "pdf",
+        "documents"
+      ]
+    },
+    {
+      "name": "domain-tools",
+      "source": "./domain-tools",
+      "description": "Specialist founder/consultant workflows with executable Python \u2014 competitive teardowns, financial modeling, revenue operations, product marketing, and demand generation.",
+      "category": "business",
+      "keywords": [
+        "competitive-analysis",
+        "finance",
+        "revops",
+        "marketing"
+      ]
+    },
+    {
+      "name": "engineering-tools",
+      "source": "./engineering-tools",
+      "description": "Engineering workflows in two families: advisory skills that produce an artifact (ADRs, test plans, postmortems) and flow skills that drive work through your issue tracker (spec, tickets, TDD, implement, triage).",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "tdd",
+        "code-review",
+        "spec",
+        "triage"
+      ]
+    },
+    {
+      "name": "gtm-tools",
+      "source": "./gtm-tools",
+      "description": "Go-to-market execution \u2014 beachhead segment scoring, sales-ready competitive battlecards, and growth loop design.",
+      "category": "marketing",
+      "keywords": [
+        "gtm",
+        "growth",
+        "battlecard",
+        "market-entry"
+      ]
+    },
+    {
+      "name": "meta-tools",
+      "source": "./meta-tools",
+      "description": "Build and maintain your own toolkit \u2014 skill creation and editorial craft, ADRs, automation planning, frontend design, artifact building, and project bootstrapping.",
+      "category": "development",
+      "keywords": [
+        "meta",
+        "skills",
+        "automation",
+        "tooling"
+      ]
+    },
+    {
+      "name": "operations-tools",
+      "source": "./operations-tools",
+      "description": "Optimize business operations \u2014 vendor management, process documentation, change management, capacity planning, risk assessment, and compliance tracking.",
+      "category": "business",
+      "keywords": [
+        "operations",
+        "process",
+        "compliance",
+        "risk"
+      ]
+    },
+    {
+      "name": "pm-agents",
+      "source": "./pm-agents",
+      "description": "Multi-agent PM system. /pm: commands for specs, strategy, opportunity discovery, simulation, and parallel six-agent review, over a compounding set of PM components.",
+      "category": "product-management",
+      "keywords": [
+        "pm",
+        "multi-agent",
+        "strategy",
+        "spec-review"
+      ]
+    },
+    {
+      "name": "pm-frameworks",
+      "source": "./pm-frameworks",
+      "description": "43 battle-tested product management frameworks \u2014 PRDs, discovery, JTBD, opportunity solution trees, prioritization, roadmaps, story mapping, positioning, and SaaS metrics.",
+      "category": "product-management",
+      "keywords": [
+        "pm",
+        "product-management",
+        "prd",
+        "discovery",
+        "prioritization"
+      ]
+    },
+    {
+      "name": "prd-partner",
+      "source": "./prd-partner",
+      "description": "Turn raw ideas into actionable PRDs. Discovery Mode sharpens thinking through a grilling session; PRD Mode generates AI-Build, Dev-Team, or Stakeholder documents.",
+      "category": "product-management",
+      "keywords": [
+        "prd",
+        "product-management",
+        "spec"
+      ]
+    },
+    {
+      "name": "sales-tools",
+      "source": "./sales-tools",
+      "description": "Prospect, craft outreach, and build deal strategy faster. Call prep, pipeline review, forecasting, and personalized messaging that moves deals forward.",
+      "category": "business",
+      "keywords": [
+        "sales",
+        "pipeline",
+        "outreach",
+        "forecast"
+      ]
+    },
+    {
+      "name": "thinking-tools",
+      "source": "./thinking-tools",
+      "description": "Domain-agnostic reasoning primitives \u2014 relentless grilling, session handoff, background research, multi-session teaching, and wayfinding a foggy effort into decision tickets.",
+      "category": "productivity",
+      "keywords": [
+        "grilling",
+        "thinking",
+        "handoff",
+        "research",
+        "planning"
+      ]
+    }
+  ]
+}
