@@ -18,9 +18,21 @@ Adapted from [mattpocock/skills](https://github.com/mattpocock/skills) (MIT). Se
 ## How they compose
 
 `grilling` is a **primitive** other skills call — it's model-invoked so anything can reach
-it. `grill-me` is the user-facing wrapper. Reach for `grilling` inside a PRD session, a
-strategy session, a triage pass; it is the "one question at a time, you decide, I look up
-facts" discipline, not a framework.
+it. It is the "one question at a time, you decide, I look up facts" discipline, not a
+framework: the caller supplies the agenda, grilling supplies the rules.
+
+**Three ways in:**
+
+- `/grill-me` — the user-facing wrapper, for anything that isn't in a repo.
+- `/grilling` — the primitive directly (model-invoked skills stay user-invocable too).
+- **Say it in plain English** — "stress-test this", "poke holes in this", "what am I
+  missing?", "talk me out of this". Claude fires it on its own; that's what its
+  model-invoked description is for.
+
+**Who calls it today:** `prd-partner` (Discovery Mode), `/pm:strategy` (Steps 1–5),
+`wayfinder` (naming the destination, and every grilling-type ticket),
+`engineering-tools/triage` (fleshing out a request), and
+`engineering-tools/improve-codebase-architecture` (walking a chosen refactor).
 
 ```
 loose idea

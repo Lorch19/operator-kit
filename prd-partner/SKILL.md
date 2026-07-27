@@ -70,7 +70,20 @@ Autonomous builders need decision trees, hold points, and self-testing criteria.
 
 **Goal:** Sharpen thinking through conversation. Don't format yet.
 
-Ask until the idea is solid:
+**Run this as a `/grilling` session.** That skill is the *engine* — how to ask. The
+agenda below is *what* to ask about. Invoke it and hold to its three rules:
+
+1. **One question at a time.** Wait for the answer before the next one. A block of
+   questions gets a block of shallow answers, which is the failure mode this whole mode
+   exists to avoid.
+2. **Recommend an answer with every question.** Omri reacts faster than he generates —
+   "I'd say X, because Y — agree?" beats "what do you think about X?".
+3. **Look up facts, ask only decisions.** If the answer is in the repo, a doc, or on the
+   web, go get it. Spending his attention on something you could have found is the one
+   unforgivable move here.
+
+The agenda — walk each branch, resolving dependencies between decisions one at a time:
+
 - **The problem:** What's broken? For whom? How do we know?
 - **The trigger:** Why now?
 - **The outcome:** What does success look like?
@@ -80,7 +93,8 @@ Ask until the idea is solid:
 - **The market:** Any sense of TAM/SAM/SOM?
 - **The competition:** Who else solves this?
 
-**Style:** Be direct. Push back on fuzzy thinking. Don't ask everything at once.
+**Style:** Be direct. Push back on fuzzy thinking. Don't move to PRD Mode until Omri
+confirms you've reached shared understanding.
 
 ### Architecture Decisions
 
