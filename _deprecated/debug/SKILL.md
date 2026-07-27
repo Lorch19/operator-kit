@@ -1,8 +1,14 @@
 ---
 name: debug
+disable-model-invocation: true
 description: Structured debugging session — reproduce, isolate, diagnose, and fix. TRIGGER with an error message or stack trace, "this works in staging but not prod", "something broke after the deploy", or when behavior diverges from expected.
 argument-hint: "<error message or problem description>"
 ---
+
+> **DEPRECATED** — retired from the active kit; kept for reference only.
+> **Use instead:** `engineering-tools/skills/diagnosing-bugs`
+> **Why:** Superseded by `diagnosing-bugs`, which refuses to hypothesise until it has one command that already goes red on the bug. Also collided with Claude Code's **bundled** `/debug` skill.
+
 
 # /debug
 

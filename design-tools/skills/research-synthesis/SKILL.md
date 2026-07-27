@@ -1,5 +1,6 @@
 ---
 name: research-synthesis
+disable-model-invocation: true
 description: Synthesize user research into themes, insights, and recommendations. Use when you have interview transcripts, survey results, usability test notes, or support tickets that need distilling into patterns and prioritized next steps.
 argument-hint: "<research data, transcripts, or survey results>"
 ---

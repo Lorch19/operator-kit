@@ -1,5 +1,6 @@
 ---
 name: discovery-interview-prep
+disable-model-invocation: true
 description: >-
   Guide product managers through preparing for customer discovery interviews by asking adaptive questions about research goals, customer segments, constraints, and methodologies.
   Use when preparing for upcoming customer interviews and you need an interview plan, question framework, and methodology recommendation.

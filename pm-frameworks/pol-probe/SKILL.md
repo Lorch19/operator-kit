@@ -1,5 +1,6 @@
 ---
 name: pol-probe
+disable-model-invocation: true
 description: >-
   Define a Proof of Life (PoL) probe—a lightweight validation artifact that surfaces harsh truths before expensive development.
   Use when you already know which probe type you need and want to define and document it.
@@ -192,10 +193,10 @@ Mini example excerpt:
 ## References
 
 ### Related Skills
-- **[pol-probe-advisor](skills/pol-probe-advisor/SKILL.md)** (Interactive) — Decision framework for choosing which prototype type to use
-- **[discovery-process](skills/discovery-process/SKILL.md)** (Workflow) — Use PoL probes in validation phase
-- **[problem-statement](skills/problem-statement/SKILL.md)** (Component) — Define problem before creating PoL probe
-- **[epic-hypothesis](skills/epic-hypothesis/SKILL.md)** (Component) — Frame hypothesis before testing with PoL probe
+- **[pol-probe-advisor](../pol-probe-advisor/SKILL.md)** (Interactive) — Decision framework for choosing which prototype type to use
+- **[discovery-process](../discovery-process/SKILL.md)** (Workflow) — Use PoL probes in validation phase
+- **[problem-statement](../problem-statement/SKILL.md)** (Component) — Define problem before creating PoL probe
+- **[epic-hypothesis](../epic-hypothesis/SKILL.md)** (Component) — Frame hypothesis before testing with PoL probe
 
 ### External Frameworks
 - **Jeff Patton** — *User Story Mapping* (lean validation principles)

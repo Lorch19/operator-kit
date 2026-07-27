@@ -1,5 +1,6 @@
 ---
 name: ux-copy
+disable-model-invocation: true
 description: Write or review UX copy — microcopy, error messages, empty states, CTAs. TRIGGER with "write copy for", "what should this button say?", "review this error message", or when naming CTAs, wording dialogs, filling empty states, or writing onboarding text.
 argument-hint: "<context or copy to review>"
 ---

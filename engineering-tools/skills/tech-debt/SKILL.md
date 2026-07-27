@@ -1,5 +1,6 @@
 ---
 name: tech-debt
+disable-model-invocation: true
 description: Identify, categorize, and prioritize technical debt. TRIGGER with "tech debt", "technical debt audit", "what should we refactor", "code health", or when evaluating refactoring priorities or maintenance backlog.
 ---
 

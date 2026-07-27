@@ -1,5 +1,6 @@
 ---
 name: user-story-mapping
+disable-model-invocation: true
 description: >-
   Visualize the user journey by creating a hierarchical map that breaks down high-level activities into steps and tasks, organized left-to-right as a narrative flow.
   Use when you need to create a story map artifact from existing knowledge about user workflows and priorities.

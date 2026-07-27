@@ -1,5 +1,6 @@
 ---
 name: deploy-checklist
+disable-model-invocation: true
 description: Pre-deployment verification checklist. Use when about to ship a release, deploying with database migrations or feature flags, verifying CI status and approvals before production, or documenting rollback triggers.
 argument-hint: "[service or release name]"
 ---

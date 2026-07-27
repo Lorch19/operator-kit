@@ -1,5 +1,6 @@
 ---
 name: tam-sam-som-calculator
+disable-model-invocation: true
 description: >-
   Guide product managers through calculating Total Addressable Market (TAM), Serviceable Available Market (SAM), and Serviceable Obtainable Market (SOM) for a product idea by asking adaptive, contextually relevant questions.
   Use when you need defensible market size estimates for investor pitches, budget requests, or product-market fit validation.

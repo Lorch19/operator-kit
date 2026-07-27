@@ -1,5 +1,6 @@
 ---
 name: user-story
+disable-model-invocation: true
 description: >-
   Create clear, concise user stories that combine Mike Cohn's user story format with Gherkin-style acceptance criteria.
   Use when writing user stories from scratch with proper acceptance criteria, or converting requirements into development-ready stories.

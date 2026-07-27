@@ -1,5 +1,6 @@
 ---
 name: documentation
+disable-model-invocation: true
 description: Write and maintain technical documentation. TRIGGER with "write docs for", "document this", "create a README", "onboarding guide", or when user needs help with API docs, architecture docs, or operational runbooks.
 ---
 

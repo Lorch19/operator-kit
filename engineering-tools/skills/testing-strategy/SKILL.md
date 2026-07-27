@@ -1,5 +1,6 @@
 ---
 name: testing-strategy
+disable-model-invocation: true
 description: Design test strategies and test plans. TRIGGER with "how should we test", "test strategy for", "test plan", "what tests do we need", or when user needs help with testing approaches, coverage, or test architecture.
 ---
 

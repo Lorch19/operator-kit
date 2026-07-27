@@ -1,5 +1,6 @@
 ---
 name: finance-based-pricing-advisor
+disable-model-invocation: true
 description: >-
   Evaluate pricing changes using financial impact analysis — ARPU/ARPA, conversion, churn risk, NRR, and payback. Recommends go/no-go on pricing decisions.
   Use when you have a specific pricing change in mind (price increase, new tier, add-on, discount) and need to evaluate its financial viability.

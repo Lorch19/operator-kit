@@ -1,5 +1,6 @@
 ---
 name: career-growth-advisor
+disable-model-invocation: true
 description: >-
   Coaches product leaders through career transitions across three phases:
   PM→Director, Director→VP/CPO, and first-90-days onboarding.

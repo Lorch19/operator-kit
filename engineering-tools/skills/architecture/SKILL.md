@@ -1,5 +1,6 @@
 ---
 name: architecture
+disable-model-invocation: true
 description: Create or evaluate an architecture decision record (ADR). Use when choosing between technologies (e.g., Kafka vs SQS), documenting a design decision with trade-offs, reviewing a system design proposal, or designing a new component from requirements and constraints.
 argument-hint: "<decision or system to design>"
 ---

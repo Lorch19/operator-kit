@@ -1,5 +1,6 @@
 ---
 name: runbook
+disable-model-invocation: true
 description: Create or update an operational runbook for a recurring task or procedure. Use when documenting a task that on-call or ops needs to run repeatably, turning tribal knowledge into exact step-by-step commands, adding troubleshooting and rollback steps, or writing escalation paths.
 argument-hint: "<process or task name>"
 ---

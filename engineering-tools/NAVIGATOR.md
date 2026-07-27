@@ -49,8 +49,7 @@ of decision tickets and hands off to `/to-spec` once the fog clears.
 - Identifying and prioritizing tech debt → `tech-debt`
 
 ### Debug & Respond
-- A hard bug, flake, or perf regression → `diagnosing-bugs` *(build the feedback loop first)*
-- A quick, obvious bug → `debug`
+- Any bug, flake, or perf regression → `diagnosing-bugs` *(build the feedback loop first)*
 - Production incident → `incident-response`
 
 ### Vocabulary & Upkeep
@@ -67,7 +66,6 @@ of decision tickets and hands off to `/to-spec` once the fog clears.
 | `architecture` | ADRs, technology choices, design evaluation | advisory |
 | `code-review` | PR review for security, performance, correctness | advisory |
 | `codebase-design` | Deep-module vocabulary: module, interface, depth, seam, adapter | flow |
-| `debug` | Structured debugging (reproduce, isolate, diagnose, fix) | advisory |
 | `deploy-checklist` | Pre/during/post deployment verification | advisory |
 | `diagnosing-bugs` | Hard bugs — builds a tight red-capable feedback loop before theorising | flow |
 | `documentation` | READMEs, API docs, runbooks, onboarding guides | advisory |
@@ -89,6 +87,5 @@ of decision tickets and hands off to `/to-spec` once the fog clears.
 
 | Pair | Take the flow skill when… |
 |---|---|
-| `debug` vs `diagnosing-bugs` | The bug resisted a first glance, is intermittent, or is a perf regression |
 | `architecture` vs `codebase-design` | You're shaping one module's interface, not choosing a technology |
 | `testing-strategy` vs `tdd` | You're writing the tests now, not planning coverage |

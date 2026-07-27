@@ -1,5 +1,6 @@
 ---
 name: product-manager-toolkit
+disable-model-invocation: true
 description: >-
   Comprehensive toolkit for product managers including RICE prioritization, customer interview analysis, PRD templates, discovery frameworks, and go-to-market strategies.
   Use when you need RICE prioritization or customer interview analysis with Python scripts.

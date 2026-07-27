@@ -1,5 +1,6 @@
 ---
 name: health-check-monitor
+disable-model-invocation: true
 description: >
   Unified cross-project health monitoring. Checks all deployed services and sends a single
   Telegram digest with green/red status per project.

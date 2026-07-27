@@ -1,5 +1,6 @@
 ---
 name: design-handoff
+disable-model-invocation: true
 description: Generate developer handoff specs from a design. Use when a design is ready for engineering and needs specs covering layout, design tokens, component props, interaction states, responsive breakpoints, and edge cases.
 argument-hint: "<Figma URL or design description>"
 ---

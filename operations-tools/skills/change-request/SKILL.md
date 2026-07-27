@@ -1,5 +1,6 @@
 ---
 name: change-request
+disable-model-invocation: true
 description: Create a change management request with impact analysis and rollback plan. Use when proposing a system or process change that needs approval, preparing a change record for CAB review, documenting risk and rollback steps before a deployment, or planning stakeholder communications for a rollout.
 argument-hint: "<change description>"
 ---

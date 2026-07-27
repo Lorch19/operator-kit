@@ -1,5 +1,6 @@
 ---
 name: feature-investment-advisor
+disable-model-invocation: true
 description: >-
   Guide PMs through evaluating feature investments using revenue impact, cost structure, ROI, and strategic value. Delivers build/don't build recommendations.
   Use when you need a financial lens for a specific feature build/don't-build decision with supporting ROI math.

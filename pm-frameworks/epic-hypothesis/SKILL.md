@@ -1,5 +1,6 @@
 ---
 name: epic-hypothesis
+disable-model-invocation: true
 description: >-
   Frame epics as testable hypotheses using an if/then structure that articulates the action or solution, the target beneficiary, the expected outcome, and how you'll validate success.
   Use when you need to frame product work as a testable hypothesis with explicit assumptions and validation criteria before committing to full build-out.

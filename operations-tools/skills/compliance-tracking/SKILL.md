@@ -1,5 +1,6 @@
 ---
 name: compliance-tracking
+disable-model-invocation: true
 description: Track compliance requirements and audit readiness. TRIGGER when user mentions "compliance", "audit prep", "SOC 2", "ISO 27001", "GDPR", "regulatory requirement", or needs help tracking, preparing for, or documenting compliance activities.
 ---
 

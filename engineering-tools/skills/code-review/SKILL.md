@@ -1,5 +1,6 @@
 ---
 name: code-review
+disable-model-invocation: true
 description: Review code changes for security, performance, and correctness. TRIGGER with a PR URL or diff, "review this before I merge", "is this code safe?", or when checking for injection risks, N+1 queries, missing edge cases, or error handling gaps.
 argument-hint: "<PR URL, diff, or file path>"
 ---

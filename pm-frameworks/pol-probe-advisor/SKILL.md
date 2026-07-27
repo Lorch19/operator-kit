@@ -1,5 +1,6 @@
 ---
 name: pol-probe-advisor
+disable-model-invocation: true
 description: >-
   Select the right Proof of Life (PoL) probe based on hypothesis, risk, and resources. Match the validation method to the real learning goal, not tooling comfort.
   Use when you need to validate a hypothesis but aren't sure which probe type (of 5 flavors) to use.

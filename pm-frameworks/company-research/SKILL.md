@@ -1,5 +1,6 @@
 ---
 name: company-research
+disable-model-invocation: true
 description: >-
   Create a comprehensive company profile that extracts executive insights, product strategy, transformation initiatives, and organizational dynamics from publicly available sources.
   Use when researching a company for competitive analysis, partnership evaluation, interview preparation, or market entry decisions.

@@ -6,8 +6,8 @@
 
 ## High
 
-- [ ] **Build `project-bootstrap` skill** — Scaffold CLAUDE.md + STATE.md + BACKLOG.md + docs/ + launch.json + context-sync for any project. Handles greenfield and retrofit. Mission: `missions/project-bootstrap-skill.md`
-- [ ] **Build `context-sync-setup` skill** — Parameterized generator for context-sync scheduled tasks. Mission: `missions/context-sync-setup-skill.md`
+- [x] **Build `project-bootstrap` skill** — Done; shipped at `meta-tools/project-bootstrap` (185 lines).
+- [x] **Build `context-sync-setup` skill** — Done; shipped at `meta-tools/context-sync-setup` (139 lines).
 - [ ] **Evaluate GitHub MCP integration** — Check claude.ai integrations page for GitHub MCP. Would unlock PR management, issue tracking from Claude directly. All 7 repos on GitHub (Lorch19).
 
 ## Priority
@@ -15,8 +15,8 @@
 - [x] **Split skill-creator into SKILL.md + references** — Done. 486→246 lines. Extracted eval-workflow, description-optimization, and environment-guides into `references/`.
 - [ ] **Add worked examples to pm-frameworks skills** — Several pm-frameworks skills (strategy-craft, prioritization-advisor, pestel-analysis, opportunity-solution-tree) reference templates without showing concrete output. Add a short "Example Output" section to the 5-10 most-used skills showing what good output looks like.
 - [x] **Extract shared CLAUDE.md boilerplate** — Done. Created `meta-tools/operational-discipline/SKILL.md` (88 lines). Projects can replace duplicated sections with a one-line pointer.
-- [ ] **Build `deploy-rsync` skill** — Codify the rsync+SSH deploy pattern from portfolio-system/scripts/deploy.sh into a reusable meta-tool. Mission: `missions/deploy-rsync-skill.md`
-- [ ] **Build `health-check-monitor` skill** — Unified cross-project health digest (VPS, Railway, scheduled tasks) → single Telegram message. Mission: `missions/health-check-monitor-skill.md`
+- [x] **Build `deploy-rsync` skill** — Done; shipped at `meta-tools/deploy-rsync` (188 lines).
+- [x] **Build `health-check-monitor` skill** — Done; shipped at `meta-tools/health-check-monitor` (154 lines).
 - [ ] **Evaluate Supabase MCP integration** — Direct DB queries and schema inspection for first-bloom-build + lorchprotfoliotracker.
 - [x] **Extract shared CLAUDE.md boilerplate** — Done. Created `meta-tools/operational-discipline/SKILL.md`. Projects still need pointer replacement (separate task).
 
@@ -36,3 +36,11 @@
 - [x] **Add `type`/`best_for` to remaining pm-agents skills** — Done. All 12 skills now have `type: component` and 4 `best_for` entries each.
 - [x] **Verify pdf skill references exist** — Verified. `reference.md` (611 lines) and `forms.md` (294 lines) both exist and are populated.
 - [ ] **Build `fastapi-scaffold` skill** — Template for FastAPI+Uvicorn+Pydantic+Docker+health-check backend. Only justified when a 3rd project needs this pattern (currently 2: WatchTogether, IL-ecommerce).
+
+## From the mattpocock/skills review
+
+- [ ] **Prune pm-frameworks descriptions** — 43 skills average 447 chars of description each. Now that most are user-invoked the context cost is gone, but the `DO NOT use` disambiguation clauses were doing a router's job. Collapse them into the `CLAUDE.md` routing table and shorten each description to one human-facing line. See `meta-tools/writing-great-skills` → "Writing the description".
+- [ ] **Hunt for sediment across the kit** — 150K words over 140 skills (~1,070 each) vs. mattpocock/skills' ~640. Run the pruning discipline from `writing-great-skills` (relevance check, then the no-op test sentence by sentence) over the 20 longest skills.
+- [ ] **Decide on `code-review` name collision** — `engineering-tools/skills/code-review` shadows Claude Code's bundled `/code-review`. Keep and rename, or drop ours. Noted in `LIFECYCLE.md`.
+- [ ] **Consider adopting `to-spec`/`to-tickets` for PM work** — they publish to an issue tracker and assume a codebase. A PM-flavoured variant (spec → epics → stories on Linear/Jira) would connect `prd-partner` to execution.
+- [ ] **Wire `grilling` into existing PM skills** — it's model-invoked precisely so `prd-partner`, `product-strategy-session`, and `/pm:strategy` can call it. None of them do yet.

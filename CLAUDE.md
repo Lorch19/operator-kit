@@ -4,6 +4,27 @@ Tools for building, shipping, and running products. PM frameworks, multi-agent w
 
 ---
 
+## How skills are invoked
+
+140 active skills. Only **37** are model-invoked — Claude fires those on its own. The
+other **103 are user-invoked**: type `/<skill-name>` to run them. Their descriptions are
+kept out of context entirely, which is why the routing table below must stay complete —
+**it is the only index Claude has for them.** Claude can still *recommend* a user-invoked
+skill by reading this file; it just can't fire one unasked.
+
+The 37 Claude fires by itself:
+
+| Why | Skills |
+|---|---|
+| **You name an output, not a skill** | `docx` `pptx` `xlsx` `pdf` `ab-test-analysis` `sql-queries` `cohort-analysis` `doc-coauthoring` `web-artifacts-builder` |
+| **Another skill calls it** | `grilling` `research` `tdd` `prototype` `domain-modeling` `codebase-design` `workshop-facilitation` `finance-metrics-quickref` `webapp-testing` · all 13 `pm-agents/` components |
+| **Claude notices before you do** | `diagnosing-bugs` `incident-response` `security-guidance` `frontend-design` `skill-creator` `prd-partner` |
+
+Rules, buckets (`_incubator/`, `_deprecated/`), and the retirement log: **`LIFECYCLE.md`**.
+Enforced by `python3 scripts/validate-kit.py` — run it after adding or moving any skill.
+
+---
+
 ## Quick Start — Top 15 Daily Drivers
 
 | Task | Skill | Pack |
@@ -39,7 +60,7 @@ Tools for building, shipping, and running products. PM frameworks, multi-agent w
 ## Installed Packs
 
 ### 1. PM Frameworks (`pm-frameworks/`)
-44 battle-tested product management frameworks. See `pm-frameworks/NAVIGATOR.md` for the full decision tree.
+43 battle-tested product management frameworks. See `pm-frameworks/NAVIGATOR.md` for the full decision tree.
 
 **Key skills:**
 - `prd-development` — Write PRDs using best-practice templates
@@ -141,12 +162,11 @@ Skills for building and optimizing your toolkit itself.
 - `vendor-review` — Vendor evaluation, TCO analysis, negotiation
 
 ### 9. Engineering Tools (`engineering-tools/`)
-21 engineering skills in two families. `.claude-plugin` format. See `engineering-tools/NAVIGATOR.md`.
+20 engineering skills in two families. `.claude-plugin` format. See `engineering-tools/NAVIGATOR.md`.
 
 **Advisory skills** (Anthropic knowledge-work-plugins) — produce an artifact:
 - `architecture` — ADRs and system design evaluation
 - `code-review` — Security, performance, correctness review
-- `debug` — Structured debugging (reproduce, isolate, diagnose, fix)
 - `deploy-checklist` — Pre/during/post deployment verification
 - `documentation` — READMEs, API docs, onboarding guides
 - `incident-response` — Triage, communicate, mitigate, postmortem
@@ -252,6 +272,24 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | Prioritization | `pm-frameworks/prioritization-advisor` |
 | Roadmap | `pm-frameworks/roadmap-planning` |
 | User stories | `pm-frameworks/user-story` |
+| Split a too-large story | `pm-frameworks/user-story-splitting` |
+| Split an epic (9 patterns, flowchart-driven) | `pm-frameworks/epic-breakdown-advisor` |
+| Frame an epic as a testable hypothesis | `pm-frameworks/epic-hypothesis` |
+| Write one concise problem statement | `pm-frameworks/problem-statement` |
+| Bias-resistant problem exploration | `pm-frameworks/problem-framing-canvas` |
+| Prep for discovery interviews | `pm-frameworks/discovery-interview-prep` |
+| Lightweight assumption-based persona | `pm-frameworks/proto-persona` |
+| Align a team on assumptions (Lean UX Canvas) | `pm-frameworks/lean-ux-canvas` |
+| Story map from what you already know | `pm-frameworks/user-story-mapping` |
+| Facilitated story-mapping session | `pm-frameworks/user-story-mapping-workshop` |
+| Journey map from data you already have | `pm-frameworks/customer-journey-map` |
+| Facilitated journey-mapping session | `pm-frameworks/customer-journey-mapping-workshop` |
+| Pick a validation probe type | `pm-frameworks/pol-probe-advisor` |
+| Define a probe you've already chosen | `pm-frameworks/pol-probe` |
+| 6-frame visual narrative | `pm-frameworks/storyboard` |
+| Propose an AI feature defensibly | `pm-frameworks/recommendation-canvas` |
+| Sunset a product or feature | `pm-frameworks/eol-message` |
+| Add facilitation to any workshop | `pm-frameworks/workshop-facilitation` |
 | **Strategy & Research** | |
 | Strategy session | `pm-agents` → `/pm:strategy` |
 | Competitive analysis | `domain-tools/competitive-teardown` |
@@ -260,26 +298,45 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | PESTEL analysis | `pm-frameworks/pestel-analysis` |
 | Company research | `pm-frameworks/company-research` |
 | Press release (Working Backwards) | `pm-frameworks/press-release` |
+| Positioning statement (context already known) | `pm-frameworks/positioning-statement` |
+| PM→Director / VP→CPO transition | `pm-frameworks/career-growth-advisor` |
+| Altitude & horizon mental model | `pm-frameworks/altitude-horizon-framework` |
+| Is our product org AI-shaped? | `pm-frameworks/ai-shaped-readiness-advisor` |
+| Diagnose context stuffing vs. engineering | `pm-frameworks/context-engineering-advisor` |
 | **Analytics & Data** | |
 | A/B test analysis | `analytics-tools/ab-test-analysis` |
 | SQL query generation | `analytics-tools/sql-queries` |
 | Cohort/retention analysis | `analytics-tools/cohort-analysis` |
-| SaaS metrics | `pm-frameworks/saas-revenue-growth-metrics` |
+| SaaS metrics (revenue, retention, NRR) | `pm-frameworks/saas-revenue-growth-metrics` |
+| SaaS unit economics (CAC, LTV, Rule of 40) | `pm-frameworks/saas-economics-efficiency-metrics` |
+| Quick metric formula or benchmark lookup | `pm-frameworks/finance-metrics-quickref` |
+| Full business health scorecard | `pm-frameworks/business-health-diagnostic` |
 | **Go-to-Market** | |
 | Market entry (beachhead) | `gtm-tools/beachhead-segment` |
 | Sales battlecard | `gtm-tools/competitive-battlecard` |
 | Growth loops | `gtm-tools/growth-loops` |
 | GTM strategy | `domain-tools/marketing-strategy-pmm` |
 | Demand gen | `domain-tools/marketing-demand-acquisition` |
+| Scale/test/kill an acquisition channel | `pm-frameworks/acquisition-channel-advisor` |
 | **Financial** | |
 | Financial modeling | `domain-tools/financial-analyst` |
 | Revenue operations | `domain-tools/revenue-operations` |
 | RICE prioritization | `domain-tools/product-manager-toolkit` |
+| Build/don't-build ROI on one feature | `pm-frameworks/feature-investment-advisor` |
+| Evaluate a specific pricing change | `pm-frameworks/finance-based-pricing-advisor` |
 | **Multi-Agent Workflows** | |
 | Write + review spec | `/pm:spec` then `/pm:review` |
 | Full pipeline | `/pm:lfg` |
 | Brainstorm | `/pm:riff` |
 | Simulate/stress-test | `/pm:simulate` |
+| Configure your PM operating system | `pm-agents/pm-operating-system` |
+| Review a spec for completeness | `pm-agents/spec-review` |
+| Riff on a launch or competitive move | `pm-agents/product-riff` |
+| Stress-test a decision by scenario | `pm-agents/simulation` |
+| North Star metrics, goals, tradeoffs | `pm-agents/analytical-thinking` |
+| Engagement loops and onboarding psychology | `pm-agents/behavioral-design` |
+| Growth loops, viral mechanics, retention | `pm-agents/growth-systems` |
+| Generate solution candidates (20 techniques) | `pm-agents/solution-creativity` |
 | **Operations** | |
 | Process documentation / SOP | `operations-tools/process-doc` |
 | Operational runbook | `operations-tools/runbook` |
@@ -293,7 +350,7 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | **Engineering** | |
 | Architecture decision (ADR) | `engineering-tools/architecture` |
 | Code review | `engineering-tools/code-review` |
-| Debugging session | `engineering-tools/debug` |
+| Debugging session | `engineering-tools/diagnosing-bugs` |
 | Deploy checklist | `engineering-tools/deploy-checklist` |
 | Technical documentation | `engineering-tools/documentation` |
 | Incident response | `engineering-tools/incident-response` |
@@ -333,6 +390,11 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | **Meta / Tooling** | |
 | Create/optimize a skill | `meta-tools/skill-creator` |
 | Edit a skill for predictability (vocabulary + failure modes) | `meta-tools/writing-great-skills` |
+| Bootstrap a project's context files | `meta-tools/project-bootstrap` |
+| Schedule a context-sync task | `meta-tools/context-sync-setup` |
+| Deploy to a VPS over rsync+SSH | `meta-tools/deploy-rsync` |
+| Cross-project health digest | `meta-tools/health-check-monitor` |
+| Shared session rituals and discipline | `meta-tools/operational-discipline` |
 | Build interactive artifact | `meta-tools/web-artifacts-builder` |
 | Document a decision | `meta-tools/adr-writer` |
 | Plan an automation | `meta-tools/automation-planner` |

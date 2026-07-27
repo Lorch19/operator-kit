@@ -1,5 +1,6 @@
 ---
 name: context-management
+disable-model-invocation: true
 description: >
   Context management system for vibe coders working with AI coding agents (Claude Code, Cursor, etc.).
   Use when a user wants to set up or improve how they maintain project context across sessions with a coding agent.
