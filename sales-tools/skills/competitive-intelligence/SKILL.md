@@ -1,5 +1,6 @@
 ---
 name: competitive-intelligence
+disable-model-invocation: true
 description: Research competitors and build an interactive battlecard. TRIGGER with "competitive intel", "research competitors", "how do we compare to [competitor]", "battlecard for [competitor]", or "what's new with [competitor]".
 ---
 

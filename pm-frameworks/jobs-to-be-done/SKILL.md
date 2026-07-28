@@ -1,5 +1,6 @@
 ---
 name: jobs-to-be-done
+disable-model-invocation: true
 description: >-
   Systematically explore what customers are trying to accomplish (functional, social, emotional jobs), the pains they experience, and the gains they seek.
   Use when you need to uncover unmet needs, validate product ideas, or understand why customers hire and fire your product.

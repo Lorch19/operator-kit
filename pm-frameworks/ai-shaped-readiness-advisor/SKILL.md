@@ -1,5 +1,6 @@
 ---
 name: ai-shaped-readiness-advisor
+disable-model-invocation: true
 description: >-
   Assess whether your product work is AI-first or AI-shaped. Score 5 competencies and recommend the next capability to build.
   Use when evaluating your product org's AI maturity, assessing whether your team is genuinely AI-shaped, or deciding which AI competency to invest in next.

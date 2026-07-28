@@ -1,0 +1,17 @@
+{
+  "name": "prd-partner",
+  "version": "1.0.0",
+  "description": "Turn raw ideas into actionable PRDs. Discovery Mode sharpens thinking through a grilling session; PRD Mode generates AI-Build, Dev-Team, or Stakeholder documents.",
+  "author": {
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "prd",
+    "product-management",
+    "spec"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "meta-tools",
+  "version": "1.0.0",
+  "description": "Build and maintain your own toolkit \u2014 skill creation and editorial craft, ADRs, automation planning, frontend design, artifact building, and project bootstrapping.",
+  "author": {
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "meta",
+    "skills",
+    "automation",
+    "tooling"
+  ],
+  "skills": [
+    "./adr-writer",
+    "./automation-planner",
+    "./context-sync-setup",
+    "./deploy-rsync",
+    "./frontend-design",
+    "./health-check-monitor",
+    "./install-operator-kit",
+    "./internal-comms",
+    "./operational-discipline",
+    "./project-bootstrap",
+    "./security-guidance",
+    "./skill-creator",
+    "./web-artifacts-builder",
+    "./webapp-testing",
+    "./writing-great-skills"
+  ]
+}

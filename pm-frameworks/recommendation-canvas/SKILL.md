@@ -1,5 +1,6 @@
 ---
 name: recommendation-canvas
+disable-model-invocation: true
 description: >-
   Evaluate and propose AI product solutions using a structured canvas that assesses business outcomes, customer outcomes, problem framing, solution hypotheses, positioning, risks, and value justification.
   Use when proposing AI-powered features or products and you need a comprehensive, defensible recommendation for stakeholders.

@@ -1,0 +1,25 @@
+{
+  "name": "document-tools",
+  "version": "1.0.0",
+  "description": "Create real document files \u2014 Word, PowerPoint, Excel, and PDF \u2014 with formatting, formulas, charts, and production-grade templates.",
+  "author": {
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "docx",
+    "pptx",
+    "xlsx",
+    "pdf",
+    "documents"
+  ],
+  "skills": [
+    "./docx",
+    "./pdf",
+    "./pptx",
+    "./xlsx"
+  ]
+}

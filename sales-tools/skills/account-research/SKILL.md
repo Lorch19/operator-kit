@@ -1,5 +1,6 @@
 ---
 name: account-research
+disable-model-invocation: true
 description: Research a company or person and get actionable sales intel. Works standalone with web search, supercharged with enrichment tools or CRM. TRIGGER with "research [company]", "look up [person]", "intel on [prospect]", "who is [name] at [company]", or "tell me about [company]".
 ---
 

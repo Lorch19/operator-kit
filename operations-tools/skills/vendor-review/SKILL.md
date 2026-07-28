@@ -1,5 +1,6 @@
 ---
 name: vendor-review
+disable-model-invocation: true
 description: Evaluate a vendor — cost analysis, risk assessment, and recommendation. Use when reviewing a new vendor proposal, deciding whether to renew or replace a contract, comparing vendors side-by-side, or building a TCO breakdown before procurement sign-off.
 argument-hint: "<vendor name or proposal>"
 ---

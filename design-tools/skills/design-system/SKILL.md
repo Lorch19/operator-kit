@@ -1,5 +1,6 @@
 ---
 name: design-system
+disable-model-invocation: true
 description: Audit, document, or extend your design system. Use when checking for naming inconsistencies, writing component documentation, or designing new patterns that fit the existing system.
 argument-hint: "[audit | document | extend] <component or system>"
 ---

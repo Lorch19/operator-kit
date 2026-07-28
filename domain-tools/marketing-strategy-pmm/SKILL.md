@@ -1,5 +1,6 @@
 ---
 name: marketing-strategy-pmm
+disable-model-invocation: true
 description: >-
   Product marketing skill for positioning, GTM strategy, competitive intelligence, and product launches. Covers April Dunford positioning, ICP definition, competitive battlecards, launch playbooks, and international market entry.
   Use when building GTM strategy, launch plans, battlecards, or sales enablement.

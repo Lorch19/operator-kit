@@ -1,5 +1,6 @@
 ---
 name: project-bootstrap
+disable-model-invocation: true
 description: >
   Zero-interview project context setup. Auto-detects stack, generates CLAUDE.md + STATE.md + BACKLOG.md + docs/ + launch.json.
   Use when bootstrapping a new project or retrofitting context onto an existing repo.

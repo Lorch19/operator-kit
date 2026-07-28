@@ -2,6 +2,8 @@
 
 13 skills + 32 commands + 13 agents. Start here.
 
+Philosophy, personalization architecture, and the full command list live in [README.md](./README.md). (It was `CLAUDE.md` until the plugin packaging landed — a `CLAUDE.md` at a plugin root is never loaded as context, so it was renamed to stop it looking like it did.)
+
 ## Quick Start: Which Command?
 
 ### Setup (run once)

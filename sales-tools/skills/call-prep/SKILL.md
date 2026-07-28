@@ -1,5 +1,6 @@
 ---
 name: call-prep
+disable-model-invocation: true
 description: Prepare for a sales call with account context, attendee research, and suggested agenda. TRIGGER with "prep me for my call with [company]", "I'm meeting with [company]", "call prep [company]", or "get me ready for [meeting]".
 ---
 

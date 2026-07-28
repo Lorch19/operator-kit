@@ -1,5 +1,6 @@
 ---
 name: roadmap-planning
+disable-model-invocation: true
 description: >-
   Guide product managers through strategic roadmap planning by orchestrating prioritization, epic definition, stakeholder alignment, and release sequencing skills into a structured process.
   Use when building a quarterly or half-year roadmap, sequencing work across teams, or preparing a roadmap for exec review.

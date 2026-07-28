@@ -1,5 +1,6 @@
 ---
 name: operational-discipline
+disable-model-invocation: true
 description: "Shared operational discipline for all Omri's projects. Co-founder mindset, session rituals, problem-solving principles, and context management protocol."
 type: component
 ---

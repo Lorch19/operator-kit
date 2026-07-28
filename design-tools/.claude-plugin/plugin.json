@@ -1,8 +1,18 @@
 {
   "name": "design-tools",
   "version": "1.0.0",
-  "description": "Accelerate product design workflows — critique, design system management, UX writing, accessibility audits, research synthesis, and dev handoff. From exploration to pixel-perfect specs.",
+  "description": "Accelerate product design \u2014 critique, design system management, UX writing, accessibility audits, research synthesis, and developer handoff.",
   "author": {
-    "name": "Anthropic (adapted for Operator Kit)"
-  }
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "ux",
+    "accessibility",
+    "research"
+  ]
 }

@@ -1,5 +1,6 @@
 ---
 name: discovery-process
+disable-model-invocation: true
 description: >-
   Guide product managers through a complete discovery cycle—from initial problem hypothesis to validated solution—by orchestrating problem framing, customer interviews, synthesis, and experimentation into a structured process.
   Use when running a full discovery cycle from hypothesis to validated solution, investigating retention or churn problems, or setting up continuous discovery.

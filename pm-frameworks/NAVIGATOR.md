@@ -80,5 +80,5 @@
 |---|---|
 | Assess AI-readiness of my product work | `ai-shaped-readiness-advisor` |
 | Diagnose context engineering practices | `context-engineering-advisor` |
-| Author a new skill | `skill-authoring-workflow` |
+| Author a new skill | `meta-tools/skill-creator`, then `meta-tools/writing-great-skills` |
 | Facilitate any workshop | `workshop-facilitation` |

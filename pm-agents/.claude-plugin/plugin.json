@@ -1,0 +1,18 @@
+{
+  "name": "pm-agents",
+  "version": "1.0.0",
+  "description": "Multi-agent PM system. /pm: commands for specs, strategy, opportunity discovery, simulation, and parallel six-agent review, over a compounding set of PM components.",
+  "author": {
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "pm",
+    "multi-agent",
+    "strategy",
+    "spec-review"
+  ]
+}

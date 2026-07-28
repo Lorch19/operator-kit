@@ -1,8 +1,18 @@
 {
   "name": "operations-tools",
   "version": "1.0.0",
-  "description": "Optimize business operations — vendor management, process documentation, change management, capacity planning, and compliance tracking. Keep your organization running efficiently.",
+  "description": "Optimize business operations \u2014 vendor management, process documentation, change management, capacity planning, risk assessment, and compliance tracking.",
   "author": {
-    "name": "Anthropic (adapted for Operator Kit)"
-  }
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "operations",
+    "process",
+    "compliance",
+    "risk"
+  ]
 }

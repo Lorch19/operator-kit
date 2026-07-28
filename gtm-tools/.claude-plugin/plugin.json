@@ -1,0 +1,23 @@
+{
+  "name": "gtm-tools",
+  "version": "1.0.0",
+  "description": "Go-to-market execution \u2014 beachhead segment scoring, sales-ready competitive battlecards, and growth loop design.",
+  "author": {
+    "name": "Omri Lorch",
+    "url": "https://github.com/Lorch19/operator-kit"
+  },
+  "homepage": "https://github.com/Lorch19/operator-kit",
+  "repository": "https://github.com/Lorch19/operator-kit",
+  "license": "MIT",
+  "keywords": [
+    "gtm",
+    "growth",
+    "battlecard",
+    "market-entry"
+  ],
+  "skills": [
+    "./beachhead-segment",
+    "./competitive-battlecard",
+    "./growth-loops"
+  ]
+}

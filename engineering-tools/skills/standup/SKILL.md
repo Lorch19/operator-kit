@@ -1,5 +1,6 @@
 ---
 name: standup
+disable-model-invocation: true
 description: Generate a standup update from recent activity. Use when preparing for daily standup, summarizing yesterday's commits/PRs/tickets, formatting into yesterday/today/blockers, or structuring rough notes into a shareable update.
 argument-hint: "[yesterday | today | blockers]"
 ---

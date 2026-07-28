@@ -1,5 +1,6 @@
 ---
 name: context-sync-setup
+disable-model-invocation: true
 description: >
   Generate a scheduled context-sync task for any project. Creates a bi-daily task that keeps
   STATE.md and BACKLOG.md fresh by comparing with git log and optional health checks.
