@@ -426,3 +426,13 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | Career transition | `pm-frameworks/career-growth-advisor` |
 | **Linx-Specific** | |
 | Any Linx product work | `~/linx-advisor/` (standalone, not in operator-kit) |
+
+---
+
+## Skill Usage Rules
+
+1. **Read before executing.** Always read the relevant SKILL.md top-to-bottom before producing any output. Never improvise a framework when an installed skill exists for the task.
+2. **Name the skill you're using.** State which skill you're running at the start of your response so I can verify routing.
+3. **Skills are structure, not substitute for thinking.** Fill every section of the skill's framework with real analysis — never produce placeholder or generic content. If a section doesn't apply, say why and skip it.
+4. **Challenge the output.** After completing a skill's framework, add a "Stress Test" section: what's weakest in this analysis? What assumptions could be wrong? What would a smart competitor say in response?
+5. **Source hierarchy still applies.** Skills define structure. Repo knowledge files, project files, and web research supply substance. Never let a template override real data.
