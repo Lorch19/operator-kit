@@ -1,6 +1,8 @@
-<!-- This file must stay under 80 lines. If it grows, prune or move content to docs/. -->
+<!-- BUDGET: under 6,000 bytes. Check with `wc -c`, not line count. -->
+<!-- Long lines defeat the budget — if over, CUT content, don't compress. -->
+<!-- History does NOT belong here. Shipped changes → docs/ or the git log. -->
 # [Project Name] — Current State
-Last updated: [DATE]
+Last verified: [DATE] (against git HEAD [SHA])
 
 ## Project Summary
 [What it is, who it's for, how it makes money. 2-3 lines max.]

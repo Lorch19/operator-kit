@@ -30,8 +30,8 @@ A system for maintaining project context across sessions. Two files + on-demand 
 
 ```
 project-root/
-├── CLAUDE.md          # HOW to work (stable, ~100 lines)
-├── STATE.md           # WHERE we are (volatile, ~50-80 lines)
+├── CLAUDE.md          # HOW to work (stable, under 8 KB)
+├── STATE.md           # WHERE we are (volatile, under 6 KB)
 ├── BACKLOG.md         # WHAT to do next (shared task backlog)
 ├── missions/          # Detailed specs for complex backlog items
 └── docs/              # Deep context (on-demand)
@@ -41,7 +41,13 @@ project-root/
     └── [DOMAIN].md
 ```
 
-**Always loaded:** CLAUDE.md + STATE.md (together < 150 lines)
+**Always loaded:** CLAUDE.md + STATE.md (together under 14 KB)
+
+**Budget in bytes, never lines.** A line limit is trivially satisfied by writing longer
+lines, and that is exactly what happens under pressure. Measured case: a STATE.md sitting
+at exactly the "80 line" limit was 11.4 KB at 142 chars/line — passing the rule while
+carrying ~4x the intended payload. Check with `wc -c`, and when over budget **cut
+content**; never compress by lengthening lines.
 **Scanned at session start:** BACKLOG.md (priority tiers only)
 **On-demand:** docs/ files and missions/, loaded only when working on that domain
 
@@ -74,7 +80,16 @@ Contains:
 Does NOT contain: behavioral instructions, architecture details, lessons learned.
 
 **Critical:** STATE.md must include a size constraint that the agent sees every time:
-`<!-- This file must stay under 80 lines. If it grows, prune or move content to docs/. -->`
+`<!-- BUDGET: under 6,000 bytes. Check with wc -c, not line count. If over, CUT content. -->`
+
+**Freshness is not optional, and cannot be enforced by prose.** A STATE.md that has gone
+stale is worse than none — sessions read it, trust it, and plan on top of a false picture.
+Reminders like "nudge the user to update context" do not work; this has been observed
+failing twice on the same project while the file drifted 28 days / 38 commits behind HEAD.
+Give the file a `Last verified: [DATE]` line and back it with a mechanical check (a Stop
+hook comparing the file's mtime against the latest commit timestamp is cheap and enough).
+If a scheduled task owns the refresh, never write "the task handles staleness" anywhere —
+that sentence turns a silent failure into an enforced blind spot.
 
 ### BACKLOG.md — Shared Task Backlog (scanned at session start)
 
@@ -130,18 +145,35 @@ Good: `Payment (Stripe webhooks, LemonSqueezy checkout) → /src/payments/`
 
 The extra few words save a file read to determine relevance.
 
-## MEMORY.md — Agent's Notebook (Optional)
+## Agent memory — complementary, not part of this system
 
-Claude Code has an auto-memory feature (MEMORY.md) that persists notes the agent accumulates during work: debugging gotchas, library quirks, patterns discovered.
+Claude Code's memory is **a directory of one-fact-per-file markdown**, not a single
+notebook. Each file carries frontmatter (`name`, `description`, `metadata.type` of
+`user` | `feedback` | `project` | `reference`), and `MEMORY.md` is a pure **index** —
+one pointer line per memory, never content.
 
-**This is complementary to our system, not part of it.**
+- CLAUDE.md + STATE.md = user-curated, per-project, in the repo (you control)
+- memory/ = agent-accumulated, cross-project, outside the repo (agent controls)
 
-- CLAUDE.md + STATE.md = user-curated context (you control)
-- MEMORY.md = agent-accumulated knowledge (agent controls)
+**The boundary that actually matters.** Memory's `project` and `feedback` types overlap
+STATE.md and CLAUDE.md, so state the split explicitly or the same fact lands in both and
+they drift apart:
 
-**Rule:** Periodically review MEMORY.md. Move anything system-critical to docs/LESSONS.md. Let the rest stay as the agent's working notes.
+| Fact | Home | Why |
+|---|---|---|
+| Where this project stands right now | **STATE.md** | Volatile, repo-scoped, versioned with the code |
+| How to work in this repo | **CLAUDE.md** | Applies only inside the project |
+| How to work with this user, anywhere | **memory (`feedback`)** | Follows them across every project |
+| Cross-project goals and context | **memory (`project`)** | Not derivable from any one repo |
 
-Do not reference MEMORY.md in CLAUDE.md or STATE.md. It lives alongside them but operates independently.
+**Rules.**
+- Never duplicate a fact across a memory and a context file. If it belongs in the repo,
+  it belongs in the repo — memories go stale invisibly because nothing versions them.
+- Never keep in memory what the harness already injects each session (the skill list, the
+  file tree, the git history). It rots and then actively misleads.
+- Periodically re-read memories: they are point-in-time observations, so verify any
+  file path, flag, or command still exists before acting on one.
+- Do not reference the memory directory from CLAUDE.md or STATE.md.
 
 ## Session Workflow
 
