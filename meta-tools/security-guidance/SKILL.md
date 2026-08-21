@@ -46,7 +46,32 @@ Add to your `.claude/settings.json`:
 ## How It Works
 
 - Fires on every Edit, Write, or MultiEdit tool call
-- Checks file content against 9 security patterns
+- Checks the *new* content against 9 security patterns
 - Exit code 0 = allow (no pattern found)
 - Exit code 2 = block and warn Claude (pattern found)
 - Disable with `ENABLE_SECURITY_REMINDER=0` environment variable
+- Fails open on malformed input, and never gates edits to itself
+
+## Matching Is Regex, Not Substring
+
+Every rule is anchored on word boundaries and matches a vulnerability *shape*.
+This is deliberate: an earlier version compared bare substrings and was
+unusable as a gate. Measured across 8 real repos, 4 of 5 benign edits were
+hard-blocked — a bare dot-format call flagged every `str.format` as SQL
+injection, the word "pickle" matched inside a comment, and a bare eval-paren
+matched inside identifiers such as `_supervisor_eval`.
+
+A gate that fires on arrival gets deleted, and a deleted gate protects
+nothing. So the rules distinguish:
+
+| Blocked | Allowed |
+|---------|---------|
+| a `pickle.loads` call | the word pickle in a comment |
+| a bare eval-paren | `cmd_eval`, `_supervisor_eval` |
+| a bare `execSync` call | JavaScript's `regex.exec` |
+| SQL built by f-string, concat, or dot-format | any other `str.format` call |
+| an `.innerHTML` assignment | an `.innerHTML` comparison |
+
+**Known false-positive mode:** prose that *quotes* a pattern — including docs
+about this hook — can trip the rule it describes. Reword, or set
+`ENABLE_SECURITY_REMINDER=0` for that edit.
