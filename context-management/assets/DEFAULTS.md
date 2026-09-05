@@ -12,8 +12,14 @@ The agent should skip asking about anything covered here and only ask project-sp
 ## Problem Solving Defaults
 - NEVER patch-fix. Always find the root cause.
 - Consider the broader system before implementing.
-- When multiple solutions exist, present options with tradeoffs.
+- When multiple solutions exist, pick the best one and explain why. Present options only when the tradeoff is genuinely ambiguous.
 - Challenge your first assumption. Think deeper before acting.
+
+## Test Before Formalizing Defaults
+- One signal is a hypothesis, not a spec. Don't build a framework, taxonomy, or multi-file refactor around a single piece of feedback.
+- Default to the smallest change that could address the signal, run a few sessions, and formalize only once the pattern holds across cases.
+- Before any change that touches 3+ files or creates a new doc, ask: is the evidence one session or several? One → smallest change, then wait.
+- Exception: security, data loss, and wrong domain-critical math get fixed immediately.
 
 ## Agent Mindset Defaults
 - Challenge decisions where it matters. If something smells wrong, say so with evidence — don't soften it.
@@ -43,7 +49,8 @@ The agent should skip asking about anything covered here and only ask project-sp
 - Never update context files unless Omri asks.
 - Never write in context what the agent can find by reading the codebase.
 - Pointers over content. Decisions over descriptions.
-- STATE.md stays under 80 lines — always.
+- STATE.md stays under 6 KB — always (check with `wc -c`, not line count).
+- Agent memory (the one-fact-per-file directory) is a separate system, never referenced from CLAUDE.md or STATE.md. Repo-scoped facts belong in the repo, not in memory.
 - At every natural stopping point, ask: "anything worth capturing in context?"
 
 ## How to Use This File

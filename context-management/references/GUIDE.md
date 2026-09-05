@@ -11,22 +11,23 @@ Keeps your AI coding agent oriented across sessions. Two small files at project 
 ### CLAUDE.md — "How to work with me"
 **What:** Your agent's instructions. Role, rules, coding standards, and a pointer index to deeper docs.
 **When to edit:** Rarely. Only when your working style or project rules change.
-**Size:** ~100 lines max.
+**Size:** under 8 KB. Measured in bytes (`wc -c`), not lines — long lines defeat a line limit.
 
 ### STATE.md — "Where we are right now"
 **What:** Current task, project status, next priorities.
 **When to edit:** Every session (when you ask the agent to update it).
-**Size:** ~50-80 lines max. There's a built-in reminder at the top to keep it lean.
+**Size:** under 6 KB (`wc -c`). There's a built-in reminder at the top to keep it lean.
+**Freshness:** Carries a `Last verified: [DATE] (against git HEAD [SHA])` line, not "Last updated." A stale STATE.md is worse than none — sessions trust it and plan on a false picture. Back it with a mechanical check (a Stop hook comparing the file's age against the latest commit); prose reminders don't hold.
 
 ### docs/CONTEXT-PROTOCOL.md — "How to update context"
 **What:** The rules the agent follows when you ask "should we update context?" at session end.
 **Why separate:** Keeping it outside CLAUDE.md means the agent only loads update logic when it's actually needed, not during the 99% of the session where you're building. This keeps the agent focused and precise.
 **When to edit:** Rarely. The protocol is generic and works across projects.
 
-### MEMORY.md — "Agent's notebook" (optional)
-**What:** Claude Code's auto-memory. Notes the agent accumulates on its own: debugging gotchas, library quirks, patterns it discovered while working.
-**Who controls it:** The agent. This is NOT part of your curated context.
-**Your job:** Review it periodically. If something is system-critical, move it to docs/LESSONS.md. Let the rest stay.
+### Agent memory — the agent's own notes (optional, separate system)
+**What:** Claude Code's memory — a *directory* of one-fact-per-file markdown, outside your repo, with `MEMORY.md` as a pure index (one pointer line per fact, never content). The agent accumulates these across all your projects: how you like to work, cross-project goals, useful references.
+**Who controls it:** The agent. This is NOT part of your curated, repo-scoped context.
+**The boundary that matters:** Where the project stands right now → STATE.md. How to work in this repo → CLAUDE.md. How to work with you *anywhere*, or cross-project goals → agent memory. Never let the same fact live in both — repo-scoped facts belong in the repo, which versions them; memories rot invisibly because nothing does.
 
 ### BACKLOG.md — "What to do next"
 **What:** A prioritized task list shared between you and the agent. Five tiers: Urgent (ASAP), High (1-3 days), Priority (within 2 weeks), Strategic (no deadline), Non-priority (someday).
@@ -68,7 +69,7 @@ The agent reads `docs/CONTEXT-PROTOCOL.md` and checks:
 - Was a critical lesson learned?
 - Is anything in STATE.md now outdated?
 
-If yes to any → it suggests specific edits. You approve or adjust.
+If yes to any → it suggests specific edits. You approve or adjust. When STATE.md changes, the agent re-verifies it against the code and bumps the `Last verified` date + commit SHA.
 If no → you're done.
 
 ---
@@ -77,7 +78,7 @@ If no → you're done.
 
 1. **You control updates.** The agent never modifies context files without you asking.
 2. **Pointers, not summaries.** Context files reference file paths. They don't explain what's in those files. The agent can read them itself.
-3. **Prune aggressively.** If STATE.md is growing past 80 lines, move stuff to docs/ or delete it.
+3. **Prune aggressively.** If STATE.md is growing past 6 KB (`wc -c`), move stuff to docs/ or delete it. Cut content — don't compress by writing longer lines.
 4. **One file per domain.** When a system gets complex (payments, auth, scraping), give it a docs/ file.
 5. **Decisions, not descriptions.** Write "We chose Stripe because X", not "Stripe is a payment processor that..."
 

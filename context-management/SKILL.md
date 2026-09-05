@@ -114,6 +114,8 @@ Complex backlog items get a dedicated mission file with full implementation deta
 
 Simple single-file changes stay in BACKLOG.md only. The agent proactively assesses complexity and suggests creating a mission file when warranted.
 
+**Mission lifecycle (execution gate).** A mission carries a status: `DRAFT` → `READY` → `IN_PROGRESS` → `DONE`. A DRAFT mission has unresolved `[OPEN]` decisions in its Open Decisions section, surfaced by the template's forcing questions (integration boundaries, conflict scenarios, trigger/lifecycle, opinionated defaults, blast radius). **An agent must refuse to execute a DRAFT mission** and instead list the open decisions for the user to resolve; only a READY mission (all decisions `[RESOLVED]`) can be picked up. See `assets/MISSION.template.md`.
+
 ### docs/ — Deep Context (on-demand)
 
 Loaded only when working on a specific domain.
