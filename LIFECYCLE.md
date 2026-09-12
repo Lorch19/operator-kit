@@ -52,6 +52,31 @@ routing is stale, the skill is effectively lost.
 Claude can still *recommend* a user-invoked skill (it reads the routing table); it just
 can't fire one unasked.
 
+### Keeping the routing table honest
+
+The validator reads the `## Full Routing Table` section specifically, not the whole of
+`CLAUDE.md`. The distinction is load-bearing: matching a skill name anywhere in the file
+passes any skill merely mentioned in the prose pack listings above, which is how six
+skills — five `pm-agents` components and `product-strategy-session` — sat unrouted while
+validation reported clean.
+
+Two directions are checked. A promoted skill with no row is a rule-1 violation. A row
+whose reference resolves to no skill is a stale row left by a rename or deletion, and is
+reported the same way. Slash commands (`/pm:spec`) and pack directories (`pm-agents`)
+are legitimate targets and are not flagged.
+
+```bash
+python3 scripts/validate-kit.py --fix    # append a row for every unrouted skill
+```
+
+`--fix` appends into the section mapped to the skill's pack and marks the row `TODO —`
+with a phrase drafted from the skill's description. That guarantees reachability; it does
+not write good routing prose. Sharpen the phrase and move the row if the pack spans
+sections — `PACK_SECTION` maps each pack to one primary section, and `pm-frameworks`
+alone legitimately spans four. Existing rows are never rewritten, so the command is safe
+to re-run: the hand-written task phrases are the source of truth and only absences are
+filled.
+
 ### Changing a skill's invocation
 
 Adding `[B]` reachability is the usual reason to promote a skill back to model-invoked —

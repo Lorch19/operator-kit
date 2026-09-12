@@ -164,6 +164,24 @@ _Failure mode._ Steering by prohibition — telling the agent what _not_ to do �
 
 _Avoid_: ironic rebound, don't-prompting, the pink elephant
 
+### Precedent
+
+The rework that bought a rule, recorded beside it — the verbatim complaint, the discarded version, the number of rounds to converge. It turns a rule from an assertion into evidence, and the two are argued with differently: an assertion is weighed against the arguer's judgement, evidence is only disproven. Paired with a **self-check** and a stable ID, it is the unit that lets a body of rules outlive the people who wrote them. The one accumulation exempt from the **relevance** test, and therefore the one most damaged by fabrication — precedent invented at the desk is **sediment** wearing armour, since the exemption protects it from the discipline that would clear it. Cures **re-litigation**.
+
+_Avoid_: rationale, justification, history, changelog
+
+### Self-Check
+
+The question that converts a rule into an observation the agent can actually make — phrased so it is answered by measuring or counting rather than by judging (_measure the pixel height_, not _is it readable_). A self-check answerable by feeling is a **no-op**: it returns whatever the agent already believes, so the rule it guards is unenforced while appearing checked. The third part of a **precedent** block, and what keeps a flat peer-set of rules checkable without promoting it into **steps**.
+
+_Avoid_: check, validation, acceptance criterion, QA
+
+### Re-litigation
+
+_Failure mode._ A settled decision reopened because the reason for it was never recorded, so an argument the original rework already defeated wins on the second pass — the rule softened, skipped, or reversed. **Sediment**'s mirror image: sediment is content that stayed too long, re-litigation is content that left too early or never bound at all. Cured by **precedent**; the cheap partial cure is recording each deliberate deviation where the work lives, so a departure stays legible as a choice rather than an omission.
+
+_Avoid_: backsliding, drift, regression
+
 ## Pruning
 
 Keeping a skill lean — each remedy paired with the failure it cures.

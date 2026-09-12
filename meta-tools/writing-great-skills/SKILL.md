@@ -58,6 +58,24 @@ Check every line for **relevance**: does it still bear on what the skill does?
 
 Then hunt **no-ops** sentence by sentence, not just line by line: run the no-op test on each sentence in isolation, and when one fails, delete the whole sentence rather than trim words from it. Be aggressive — most prose that fails should go, not be rewritten.
 
+## Precedent
+
+Some skills carry rules: flat **reference** applied every run — a review checklist, a house style, a set of constraints. Rules decay in their own way. Nobody remembers which ones were bought with rework, so under pressure they get softened, skipped, or argued away one run at a time.
+
+A **precedent** is the rework that bought the rule, recorded beside it. Write each rule in three parts:
+
+- **Rule** — one executable sentence. What to do, not what to believe.
+- **Precedent** — what actually happened: the verbatim complaint, the version that was thrown out, how many rounds it took to converge. This is the part that survives a plausible argument for dropping the rule.
+- **Self-check** — a question answered by measuring, not by judging. _Measure the rendered text height in pixels_ beats _is the text readable_; _count the occurrences_ beats _is it overused_. A self-check satisfiable by feeling is a **no-op**: it passes whatever the agent already believes.
+
+Number the rules and never renumber. The ID is how a precedent gets cited — from a review report, another skill, a commit message — and a reused number silently rewrites what those citations point at. Append; retire by marking.
+
+Say how strong each precedent is. One that converged across many independent runs and one that fired once are both worth keeping, but a single case presented as a law invites over-fitting.
+
+Precedent is the one accumulation that is not **sediment**: a rule carrying its rework is evidence, and evidence is cleared by being disproven rather than by the **relevance** test. That exemption is exactly why the evidence has to be real — precedent invented at the desk is sediment wearing armour, immune to the discipline that would otherwise remove it.
+
+Deviating from a rule is fine when it is deliberate and recorded where the work lives. An unrecorded deviation reads as the rule having been forgotten, and that is where **re-litigation** starts.
+
 ## Leading words
 
 A **leading word** is a compact concept already living in the model's pretraining that the agent thinks with while running the skill (e.g. _lesson_, _fog of war_, _tracer bullets_). Repeated throughout the text (though not necessarily - a strong leading word might only be needed once), it accumulates a distributed definition and anchors a whole region of behaviour in the fewest tokens, by recruiting priors the model already holds.
@@ -78,6 +96,7 @@ Use these to diagnose issues the user may be having with the skill.
 - **Premature completion** — ending a step before it's genuinely done, attention slipping to _being done_. Defence, in order: sharpen the completion criterion first (cheap, local); only if it is irreducibly fuzzy _and_ you observe the rush, hide the post-completion steps by splitting (the sequence cut).
 - **Duplication** — the same meaning in more than one place. Costs maintenance and tokens, and inflates a meaning's prominence on the ladder past its real rank.
 - **Sediment** — stale layers that settle because adding feels safe and removing feels risky. The default fate of any skill without a pruning discipline.
+- **Re-litigation** — a settled decision reopened because the reason was never recorded, so an argument the original rework already defeated wins on the second pass. Sediment's mirror image: content that left too early rather than stayed too long. Cured by **precedent**.
 - **Sprawl** — a skill simply too long, even when every line is live and unique. Hurts readability and maintainability and wastes tokens. The cure is the ladder: disclose **reference** behind pointers, and split by **branch** or sequence so each path carries only what it needs.
 - **No-op** — a line the model already obeys by default, so you pay load to say nothing. The test: does it change behaviour versus the default? A weak leading word (_be thorough_ when the agent is already thorough-ish) is a no-op; the fix is a stronger word (_relentless_), not a different technique.
 - **Negation** — steering by prohibition backfires: _don't think of an elephant_ names the elephant and makes it more available, not less. Prompt the **positive** — state the target behaviour so the banned one is never spoken; keep a prohibition only as a hard guardrail you can't phrase positively, and even then pair it with what to do instead.
