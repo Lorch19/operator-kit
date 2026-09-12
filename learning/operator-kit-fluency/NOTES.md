@@ -24,6 +24,17 @@ Working notes on how Omri wants to be taught. Update as preferences surface.
   answer. Where two skills overlap with no `DO NOT` clause separating them, that is a
   prune signal and the lesson says so.
 
+## Published lessons
+
+Lessons live here as local HTML (linking `assets/lesson.css`, per the `teach` skill).
+Because Omri works from remote sessions where local files don't open, each lesson is also
+published as a self-contained Artifact with the styles inlined. The local file is the
+source; the Artifact is the delivery copy — change the local one first.
+
+| Lesson | Artifact |
+|---|---|
+| `0001-the-tiebreaker.html` | https://claude.ai/code/artifact/fee27f5f-ee67-4c64-bfb7-7b6b802a7209 |
+
 ## To confirm with him
 
 - Is `learning/operator-kit-fluency/` the right home for this workspace? It lives inside
