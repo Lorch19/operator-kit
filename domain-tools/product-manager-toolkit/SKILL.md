@@ -4,7 +4,7 @@ disable-model-invocation: true
 description: >-
   Comprehensive toolkit for product managers including RICE prioritization, customer interview analysis, PRD templates, discovery frameworks, and go-to-market strategies.
   Use when you need RICE prioritization or customer interview analysis with Python scripts.
-  DO NOT use for strategic prioritization framework selection — use dean-peters prioritization-advisor instead.
+  DO NOT use for strategic prioritization framework selection — use pm-frameworks/prioritization-advisor instead.
 type: workflow
 best_for:
   - "RICE scoring and feature prioritization"

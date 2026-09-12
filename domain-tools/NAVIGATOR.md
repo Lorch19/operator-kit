@@ -39,7 +39,7 @@ All scripts use Python standard library only (no dependencies). Run with `python
 
 | If you need... | Go to... |
 |---|---|
-| SaaS KPI definitions | `dean-peters/saas-revenue-growth-metrics` |
-| Strategic positioning | `dean-peters/positioning-workshop` |
-| Product strategy frameworks | `compound-pm/skills/strategy-craft` |
-| Prioritization framework selection | `dean-peters/prioritization-advisor` |
+| SaaS KPI definitions | `pm-frameworks/saas-revenue-growth-metrics` |
+| Strategic positioning | `pm-frameworks/positioning-workshop` |
+| Product strategy frameworks | `pm-agents/strategy-craft` |
+| Prioritization framework selection | `pm-frameworks/prioritization-advisor` |

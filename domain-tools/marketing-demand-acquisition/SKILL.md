@@ -4,7 +4,7 @@ disable-model-invocation: true
 description: >-
   Multi-channel demand generation, paid media optimization, SEO strategy, and partnership programs for Series A+ startups.
   Use when planning paid media, SEO, partnerships, or attribution for Series A+ growth.
-  DO NOT use for strategic positioning — use marketing-strategy-pmm or dean-peters positioning-workshop instead.
+  DO NOT use for strategic positioning — use marketing-strategy-pmm or pm-frameworks/positioning-workshop instead.
 type: tool
 best_for:
   - "Paid media and SEO strategy"

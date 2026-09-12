@@ -4,7 +4,7 @@ disable-model-invocation: true
 description: >-
   Analyzes pipeline coverage, tracks forecast accuracy with MAPE, and calculates GTM efficiency metrics for SaaS revenue optimization.
   Use when analyzing pipeline health, forecast accuracy, or GTM efficiency. Includes Python scripts.
-  DO NOT use for revenue metric definitions — use dean-peters saas-revenue-growth-metrics instead.
+  DO NOT use for revenue metric definitions — use pm-frameworks/saas-revenue-growth-metrics instead.
 type: tool
 best_for:
   - "Pipeline coverage and health analysis"
