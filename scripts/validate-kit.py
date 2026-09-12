@@ -162,6 +162,16 @@ def main():
     r_start, r_end, r_lines = region
     refs = routed_refs(r_lines, r_start, r_end)
 
+    # A generated row still carrying its marker is reachable but never sharpened.
+    # Warn rather than fail: --fix should leave a green tree, and the reminder
+    # then survives every run until someone writes a real trigger phrase.
+    for i in range(r_start, r_end):
+        m = re.match(r"^\|\s*TODO\s*—\s*.*?\|\s*`([^`]+)`", r_lines[i])
+        if m:
+            warnings.append(
+                f"CLAUDE.md:{i + 1}: `{m.group(1)}` still carries a generated TODO "
+                f"phrase — rewrite it as a real task trigger")
+
     active = bucketed = model = user = 0
     missing = []
 

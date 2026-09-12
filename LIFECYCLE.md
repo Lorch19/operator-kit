@@ -77,6 +77,11 @@ alone legitimately spans four. Existing rows are never rewritten, so the command
 to re-run: the hand-written task phrases are the source of truth and only absences are
 filled.
 
+Every run then warns about any row still carrying its `TODO —` marker, naming the file
+and line. A warning rather than a failure, so `--fix` leaves a green tree — but the
+reminder repeats on every run until the phrase is rewritten, which is what stops a
+generated placeholder from quietly becoming the permanent routing entry.
+
 ### Changing a skill's invocation
 
 Adding `[B]` reachability is the usual reason to promote a skill back to model-invoked —
