@@ -113,6 +113,25 @@ Underscore-prefixed so they sort away from packs and never read as one.
    use `git rm` for that.
 4. Skill `name:` values are unique across the whole repo, buckets included.
 
+### Deciding what to bucket
+
+Buckets only work if something tells you what is dead. The kit is installed globally and
+used across repos, so this repo's git history cannot answer that — the usage happens
+elsewhere. Claude Code's session transcripts can:
+
+```bash
+python3 scripts/skill-usage.py --days 90        # used vs. never-invoked, every repo
+python3 scripts/skill-usage.py --unused         # the candidate list, by pack
+```
+
+It reads `~/.claude/projects/<encoded-working-dir>/*.jsonl`, one directory per working
+directory, so a single run covers every repo the kit is installed in. **Run it on the
+machine you work on** — transcripts are local, so a remote session sees only itself.
+
+A zero means "no record of use in this window", not "unused": transcripts rotate, and a
+skill invoked by another skill or applied from memory leaves no `Skill` record. Treat the
+output as the candidate list that a review then decides on, never as the decision.
+
 ### Moving a skill
 
 ```bash

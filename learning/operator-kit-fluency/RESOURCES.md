@@ -34,9 +34,14 @@ kit-shaped questions get real answers.
 
 ## Gaps
 
-- **No usage telemetry.** Nothing records which skills actually ran. Git history shows
-  what was built, never what was used. This is the single biggest gap in grounding these
-  lessons, and only you can close it.
+- ~~**No usage telemetry.**~~ **Closed 2026-09-12.** Claude Code writes a JSONL
+  transcript per session under `~/.claude/projects/<encoded-working-dir>/`, one directory
+  per working directory — so it covers every repo, which is where the kit is actually
+  used. Every skill invocation is a `Skill` tool_use record naming the skill.
+  [`scripts/skill-usage.py`](../../scripts/skill-usage.py) reads them and cross-references
+  the kit. **Run it on your own machine** — transcripts are local, so a remote session
+  sees only itself. Read its docstring first: a zero means "no record in this window",
+  which is a prune candidate, not proof of non-use.
 - **No worked examples.** Your own `BACKLOG.md` flags this: several `pm-frameworks`
   skills reference templates without ever showing what good output looks like. Until
   that lands, lessons cannot show you the target artifact.

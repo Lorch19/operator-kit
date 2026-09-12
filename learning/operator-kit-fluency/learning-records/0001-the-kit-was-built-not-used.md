@@ -48,12 +48,31 @@ descriptions make the wrong skill fire.
 ## What this does *not* prove
 
 Editing history is not usage history. A skill can be excellent, used often, and never
-need a commit. There is no telemetry in this repo, so **the audit produces candidates,
-not verdicts.** The one input that would settle it — which skills you have actually run —
-only you have.
+need a commit. So **the audit produces candidates, not verdicts.**
 
-That is why pruning follows the lessons rather than preceding them: working through the
-kit is what converts a candidate into a decision.
+There is a second, worse flaw, and Omri caught it rather than me: **the kit is installed
+globally and used across repos.** This repo's git history was never going to show usage,
+because the usage does not happen here. Measuring a cross-repo tool by one repo's commits
+was the wrong instrument for the question.
+
+## Correction — the usage data does exist (2026-09-12)
+
+Claude Code writes a JSONL transcript per session under
+`~/.claude/projects/<encoded-working-dir>/`, **one directory per working directory**, so
+the store spans every repo at once. Each invocation appears as a `Skill` tool_use record
+naming the skill.
+
+[`scripts/skill-usage.py`](../../scripts/skill-usage.py) scans them all and cross-
+references the kit's 141 skills. It must run on the machine the work happens on —
+transcripts are local.
+
+Its zeros still are not verdicts: transcripts rotate, a skill invoked by another skill
+leaves no record, and knowledge applied from memory leaves none either. But "no record of
+use across every repo, over 90 days" is a far stronger candidate signal than "no focused
+commit", and it is the right instrument.
+
+Pruning still follows the lessons — the script narrows the field; working through what
+survives is what converts a candidate into a decision.
 
 ## Revisit when
 
