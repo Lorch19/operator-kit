@@ -1,0 +1,55 @@
+{
+  "contest": "design-tools vs ux-reviewer / ux-creator / ux-review",
+  "skill_name": "design-tools",
+  "contenders": {
+    "kit": ["design-tools/design-critique", "design-tools/ux-copy", "design-tools/accessibility-review", "design-tools/design-handoff"],
+    "substitute": ["ux-reviewer", "ux-creator", "ux-review"]
+  },
+  "why": "31 invocations across up to 10 repos for the substitutes; 0 for all seven design-tools skills. The largest single gap in the kit, and the clearest case where the losing side has never been given a fair run.",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Here's the onboarding flow for the app — three screens, email signup then a preferences step then the dashboard. Something about it feels heavy but I can't say what. Take a look.",
+      "expected_output": "A structured critique naming specific problems (hierarchy, step count, cognitive load) with concrete fixes, not a list of generic heuristics.",
+      "expectations": [
+        "Names specific, actionable problems rather than restating usability principles",
+        "Prioritises findings instead of presenting a flat list",
+        "Asks for or reasons about the actual screens rather than answering generically",
+        "Proposes fixes a developer could implement without further interpretation"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Empty state for the projects page. Right now it just says 'No projects'. Users land here on day one and bounce.",
+      "expected_output": "Microcopy options with rationale, addressing the activation problem rather than only rewriting the string.",
+      "expectations": [
+        "Treats the bounce as an activation problem, not only a copy problem",
+        "Gives more than one option with the tradeoff between them stated",
+        "Copy is specific to a projects page, not a template with a blank filled in",
+        "Considers what the first action should be, not just what the text says"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We're shipping the settings redesign to engineering on Thursday. What do they need from me?",
+      "expected_output": "A handoff spec covering tokens, states, responsive behaviour and edge cases — surfacing what is missing rather than only listing headings.",
+      "expectations": [
+        "Enumerates states (loading, error, empty, disabled) rather than happy path only",
+        "Covers responsive behaviour and breakpoints",
+        "Flags what is still undecided and needs an answer before Thursday",
+        "Output is usable as the actual handoff document, not advice about writing one"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Is this accessible enough to ship? Dark theme, lots of grey-on-grey, and the primary button is a mid-blue on near-black.",
+      "expected_output": "A WCAG assessment that computes or demands contrast ratios and gives a ship/no-ship answer with specifics.",
+      "expectations": [
+        "Names the specific WCAG criteria and thresholds at stake (e.g. 4.5:1 body, 3:1 large text and UI)",
+        "Asks for or computes actual contrast ratios rather than eyeballing",
+        "Covers more than contrast — focus order, focus visibility, target size",
+        "Gives a clear ship / do-not-ship verdict rather than hedging"
+      ]
+    }
+  ]
+}
