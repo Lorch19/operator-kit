@@ -8,7 +8,9 @@ Source: https://github.com/mattpocock/skills — © 2026 Matt Pocock, MIT Licens
 
 Vendored (lightly adapted: `/setup-matt-pocock-skills` references renamed to
 `/agent-context-setup`, Codex `agents/openai.yaml` manifests dropped, router
-references removed):
+references removed; `writing-great-skills` additionally gained a **Precedent**
+section, three glossary terms, and a seventh failure mode — Operator Kit
+additions, not upstream, sourced as noted under *video-shotcraft* below):
 
 | Skill | Landed at | Upstream path |
 |---|---|---|
@@ -60,6 +62,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## Vincentwei1021/video-shotcraft — patterns, no code
+
+Source: https://github.com/Vincentwei1021/video-shotcraft — © Wei Yihao, Apache-2.0.
+
+No files are vendored from it. Two ideas were re-derived in English and written into
+Operator Kit's own conventions:
+
+| Pattern | Upstream origin | Landed at |
+|---|---|---|
+| **Precedent block** — rule + precedent + self-check, stable append-only IDs, documented deviations | `references/aesthetic-rules.md` | `meta-tools/writing-great-skills` (SKILL.md + GLOSSARY.md) |
+| **Generated index over hand-maintained** — regenerate the index from source frontmatter, fail CI on drift | `gallery/sync-from-cards.py` | `scripts/validate-kit.py --fix` |
+
+A pinned copy of the upstream repo, with a provenance record and security review,
+lives at `Lorch19/video-shotcraft-lab` (private).
 
 ## Anthropic knowledge-work-plugins / official skills
 

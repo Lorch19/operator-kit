@@ -52,6 +52,36 @@ routing is stale, the skill is effectively lost.
 Claude can still *recommend* a user-invoked skill (it reads the routing table); it just
 can't fire one unasked.
 
+### Keeping the routing table honest
+
+The validator reads the `## Full Routing Table` section specifically, not the whole of
+`CLAUDE.md`. The distinction is load-bearing: matching a skill name anywhere in the file
+passes any skill merely mentioned in the prose pack listings above, which is how six
+skills — five `pm-agents` components and `product-strategy-session` — sat unrouted while
+validation reported clean.
+
+Two directions are checked. A promoted skill with no row is a rule-1 violation. A row
+whose reference resolves to no skill is a stale row left by a rename or deletion, and is
+reported the same way. Slash commands (`/pm:spec`) and pack directories (`pm-agents`)
+are legitimate targets and are not flagged.
+
+```bash
+python3 scripts/validate-kit.py --fix    # append a row for every unrouted skill
+```
+
+`--fix` appends into the section mapped to the skill's pack and marks the row `TODO —`
+with a phrase drafted from the skill's description. That guarantees reachability; it does
+not write good routing prose. Sharpen the phrase and move the row if the pack spans
+sections — `PACK_SECTION` maps each pack to one primary section, and `pm-frameworks`
+alone legitimately spans four. Existing rows are never rewritten, so the command is safe
+to re-run: the hand-written task phrases are the source of truth and only absences are
+filled.
+
+Every run then warns about any row still carrying its `TODO —` marker, naming the file
+and line. A warning rather than a failure, so `--fix` leaves a green tree — but the
+reminder repeats on every run until the phrase is rewritten, which is what stops a
+generated placeholder from quietly becoming the permanent routing entry.
+
 ### Changing a skill's invocation
 
 Adding `[B]` reachability is the usual reason to promote a skill back to model-invoked —
@@ -82,6 +112,25 @@ Underscore-prefixed so they sort away from packs and never read as one.
    **why** it was retired. A retirement without a replacement named is just deletion —
    use `git rm` for that.
 4. Skill `name:` values are unique across the whole repo, buckets included.
+
+### Deciding what to bucket
+
+Buckets only work if something tells you what is dead. The kit is installed globally and
+used across repos, so this repo's git history cannot answer that — the usage happens
+elsewhere. Claude Code's session transcripts can:
+
+```bash
+python3 scripts/skill-usage.py --days 90        # used vs. never-invoked, every repo
+python3 scripts/skill-usage.py --unused         # the candidate list, by pack
+```
+
+It reads `~/.claude/projects/<encoded-working-dir>/*.jsonl`, one directory per working
+directory, so a single run covers every repo the kit is installed in. **Run it on the
+machine you work on** — transcripts are local, so a remote session sees only itself.
+
+A zero means "no record of use in this window", not "unused": transcripts rotate, and a
+skill invoked by another skill or applied from memory leaves no `Skill` record. Treat the
+output as the candidate list that a review then decides on, never as the decision.
 
 ### Moving a skill
 

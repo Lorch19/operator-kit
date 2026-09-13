@@ -163,7 +163,7 @@ Skills for building and optimizing your toolkit itself.
 - `internal-comms` — Status reports, 3P updates, newsletters, FAQs
 - `webapp-testing` — Playwright-based web app testing with screenshots
 - `security-guidance` — PreToolUse hook monitoring 9 security patterns (XSS, injection, eval)
-- `writing-great-skills` — The *editorial* half of skill authoring: invocation choice, information hierarchy, progressive disclosure, leading words, and the six failure modes (premature completion, duplication, sediment, sprawl, no-op, negation). Pair with `skill-creator`, which handles scaffolding and evals.
+- `writing-great-skills` — The *editorial* half of skill authoring: invocation choice, information hierarchy, progressive disclosure, leading words, precedent blocks (rule + precedent + self-check), and the seven failure modes (premature completion, duplication, sediment, sprawl, no-op, negation, re-litigation). Pair with `skill-creator`, which handles scaffolding and evals.
 - `install-operator-kit` — Install/update the kit across Claude Code, claude.ai, and Cowork; verifies each surface rather than assuming
 
 ### 8. Operations Tools (`operations-tools/`)
@@ -311,6 +311,7 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | Add facilitation to any workshop | `pm-frameworks/workshop-facilitation` |
 | **Strategy & Research** | |
 | Strategy session | `pm-agents` → `/pm:strategy` |
+| End-to-end strategy session (positioning → validated roadmap) | `pm-frameworks/product-strategy-session` |
 | Competitive analysis | `domain-tools/competitive-teardown` |
 | Market sizing | `pm-frameworks/tam-sam-som-calculator` |
 | Positioning | `pm-frameworks/positioning-workshop` |
@@ -356,6 +357,11 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | Engagement loops and onboarding psychology | `pm-agents/behavioral-design` |
 | Growth loops, viral mechanics, retention | `pm-agents/growth-systems` |
 | Generate solution candidates (20 techniques) | `pm-agents/solution-creativity` |
+| Design a metrics framework (outcome → intermediate → leading) | `pm-agents/metrics-design` |
+| Evaluate a new opportunity before committing to it | `pm-agents/opportunity-evaluation` |
+| Win stakeholder buy-in on a specific decision | `pm-agents/stakeholder-buyin` |
+| Segmentation, differentiation, competitive positioning | `pm-agents/strategy-craft` |
+| Write a 3-part product vision narrative | `pm-agents/vision-narrative` |
 | **Operations** | |
 | Process documentation / SOP | `operations-tools/process-doc` |
 | Operational runbook | `operations-tools/runbook` |
@@ -409,6 +415,7 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | **Meta / Tooling** | |
 | Create/optimize a skill | `meta-tools/skill-creator` |
 | Edit a skill for predictability (vocabulary + failure modes) | `meta-tools/writing-great-skills` |
+| Turn hard-won rework into rules that survive | `meta-tools/writing-great-skills` |
 | Bootstrap a project's context files | `meta-tools/project-bootstrap` |
 | Schedule a context-sync task | `meta-tools/context-sync-setup` |
 | Deploy to a VPS over rsync+SSH | `meta-tools/deploy-rsync` |

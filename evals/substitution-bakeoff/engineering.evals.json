@@ -1,0 +1,44 @@
+{
+  "contest": "engineering-tools/tdd vs test-driven-development · engineering-tools/diagnosing-bugs vs systematic-debugging",
+  "skill_name": "engineering-tools",
+  "contenders": {
+    "kit": ["engineering-tools/tdd", "engineering-tools/diagnosing-bugs"],
+    "substitute": ["test-driven-development", "systematic-debugging"]
+  },
+  "why": "Two substitutes at 3 invocations each across multiple repos; both kit equivalents at zero. Both kit versions come from mattpocock/skills and carry specific doctrine — tdd's four anti-patterns, diagnosing-bugs' insistence on a red-capable loop before hypothesising. If that doctrine is not showing up in the output, the kit versions are not earning their place.",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "The pipeline drops about one ticker in fifty during the nightly run. No pattern I can see. It's been happening for two weeks.",
+      "expected_output": "Builds a tight, reproducible, red-capable feedback loop before proposing causes.",
+      "expectations": [
+        "Refuses to hypothesise before it can reproduce the failure on demand",
+        "Drives toward one command that goes red on the bug",
+        "Treats 'no pattern I can see' as a measurement gap rather than randomness",
+        "Does not open with a list of plausible causes"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Add retry-with-backoff to the fetcher. Write it test-first.",
+      "expected_output": "A red-green loop with tests written against behaviour at a real seam, not against implementation detail.",
+      "expectations": [
+        "Writes a failing test first and shows it failing for the right reason",
+        "Tests observable behaviour rather than internal calls or timer mocks that assert the implementation",
+        "Identifies the seam to test at rather than reaching for heavy mocking",
+        "Avoids tests that would still pass if the retry logic were deleted"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "This test is flaky. Passes locally, fails in CI maybe one run in five. Just make it pass.",
+      "expected_output": "Pushes back on 'just make it pass' and treats the flake as a real defect.",
+      "expectations": [
+        "Declines to skip, retry, or loosen the assertion as the fix",
+        "Treats intermittent failure as a genuine bug — usually order, time, or shared state",
+        "Builds a way to reproduce the flake reliably before changing anything",
+        "Explains why the requested shortcut is the wrong move rather than silently complying"
+      ]
+    }
+  ]
+}

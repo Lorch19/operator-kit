@@ -1,0 +1,114 @@
+/* Shared stylesheet for Operator Kit fluency lessons.
+   Every lesson links this so the course reads as one thing. Tufte-ish:
+   serif body, generous measure, muted palette, prints clean. */
+
+:root {
+  --ink:      #1a1a17;
+  --ink-soft: #57534e;
+  --ink-faint:#8a847c;
+  --paper:    #fdfcf9;
+  --rule:     #e0dcd3;
+  --accent:   #9a3412;
+  --ok:       #3f6212;
+  --ok-bg:    #f2f7e8;
+  --no:       #9f1239;
+  --no-bg:    #fdf2f4;
+  --code-bg:  #f4f2ec;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:#e8e5df; --ink-soft:#b5afa5; --ink-faint:#868077;
+    --paper:#17171a; --rule:#33322f; --accent:#f0a882;
+    --ok:#a3c05c; --ok-bg:#20260f; --no:#f2839c; --no-bg:#2a1219;
+    --code-bg:#232326;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 3rem 1.25rem 5rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.65 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+main { max-width: 40rem; margin: 0 auto; }
+
+.eyebrow {
+  font: 600 11px/1.4 ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: .5rem;
+}
+
+h1 { font-size: 1.95rem; line-height: 1.15; margin: 0 0 .4rem; letter-spacing: -.01em; }
+h2 {
+  font-size: 1.18rem; margin: 2.6rem 0 .7rem;
+  padding-bottom: .35rem; border-bottom: 1px solid var(--rule);
+}
+h3 { font-size: 1rem; margin: 1.6rem 0 .4rem; }
+
+.standfirst { color: var(--ink-soft); font-size: 1.06rem; margin: 0 0 2rem; }
+
+code, .skill {
+  font: .87em/1.4 ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  background: var(--code-bg); padding: .1em .38em; border-radius: 3px;
+  overflow-wrap: anywhere;
+}
+
+blockquote {
+  margin: 1.2rem 0; padding: .1rem 0 .1rem 1.1rem;
+  border-left: 3px solid var(--rule); color: var(--ink-soft);
+}
+
+.note {
+  background: var(--code-bg); border-left: 3px solid var(--accent);
+  padding: .9rem 1.1rem; margin: 1.5rem 0; font-size: .95rem;
+}
+
+/* --- quiz ------------------------------------------------------------- */
+
+.q { margin: 1.9rem 0; padding-bottom: 1.2rem; border-bottom: 1px dotted var(--rule); }
+.q:last-of-type { border-bottom: 0; }
+.q .prompt { font-weight: 600; margin-bottom: .2rem; }
+.q .scenario { color: var(--ink-soft); margin: 0 0 .85rem; }
+
+.opts { display: grid; gap: .45rem; }
+
+.opt {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  font: .93rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  padding: .6rem .8rem; border: 1px solid var(--rule); border-radius: 5px;
+  background: transparent; color: var(--ink);
+}
+.opt:hover:not(:disabled) { border-color: var(--ink-faint); }
+.opt:disabled { cursor: default; }
+.opt.right { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); font-weight: 700; }
+.opt.wrong { background: var(--no-bg); border-color: var(--no); color: var(--no); }
+
+.why {
+  margin-top: .75rem; padding: .7rem .9rem; border-radius: 5px;
+  background: var(--code-bg); font-size: .92rem; color: var(--ink-soft);
+}
+.why cite { display: block; margin-top: .45rem; font-size: .82rem; color: var(--ink-faint); font-style: normal; }
+
+.score {
+  margin: 2rem 0 0; padding: 1rem; text-align: center;
+  border: 1px solid var(--rule); border-radius: 6px;
+  font: 600 1rem ui-sans-serif, system-ui, sans-serif;
+}
+
+footer {
+  margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+  font-size: .9rem; color: var(--ink-soft);
+}
+footer a { color: var(--accent); }
+
+@media print {
+  body { padding: 0; font-size: 11pt; }
+  .opt { border-color: #bbb; }
+  .why { background: none; border: 1px solid #ddd; }
+}

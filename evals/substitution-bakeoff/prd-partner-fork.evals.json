@@ -1,0 +1,56 @@
+{
+  "contest": "prd-partner — operator-kit copy (466L) vs claude.ai synced copy (428L)",
+  "skill_name": "prd-partner",
+  "contenders": {
+    "kit": ["prd-partner (operator-kit, 466 lines)"],
+    "synced": ["prd-partner (claude.ai account, 428 lines, model-invoked)"]
+  },
+  "why": "The most-used kit skill at 11 invocations across 2 repos, and it exists in two divergent versions. The synced copy is model-invoked so it fires by default, whether or not it is the better one. Highest-leverage fork to settle: improvement here compounds across every future PRD.",
+  "note": "Same skill, two versions — so judge on output quality, not on which name appears. Run blind.",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to add a weekly digest email that summarises what changed in a user's projects. Not sure yet if it's worth building.",
+      "expected_output": "Discovery Mode behaviour — sharpening the thinking before producing a document, since the user has signalled genuine uncertainty.",
+      "expectations": [
+        "Recognises 'not sure if it's worth building' as a discovery signal and does not jump straight to a PRD",
+        "Interrogates the underlying problem rather than accepting the proposed solution",
+        "Surfaces what would have to be true for this to be worth building",
+        "Does not produce a polished document that hides the unresolved question"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Write me the PRD for the digest email. Engineering needs it Monday. Assume we've decided to build it.",
+      "expected_output": "PRD Mode, Dev-Team output — a complete engineering-ready spec, no discovery detour.",
+      "expectations": [
+        "Switches to producing the document without re-litigating whether to build",
+        "Picks the Dev-Team output mode from the audience cue ('engineering needs it')",
+        "Includes success criteria that are measurable, not aspirational",
+        "Names open questions explicitly rather than silently inventing answers"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "This spec is for the exec review on Thursday, not for engineers. Rework it.",
+      "expected_output": "Mode conversion to Stakeholder — strategic framing, not a reformatted engineering doc.",
+      "expectations": [
+        "Changes what is emphasised, not merely the section headings",
+        "Leads with the business case and the decision being asked for",
+        "Drops or compresses implementation detail an exec will not read",
+        "Preserves the substance rather than producing a thinner version of the same doc"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Add a feature where we auto-summarise the user's uploaded documents with an LLM and surface the summary in the digest.",
+      "expected_output": "A spec that proactively raises the domain considerations an LLM-over-user-documents feature carries.",
+      "expectations": [
+        "Raises data handling and privacy for user-uploaded content unprompted",
+        "Addresses failure modes specific to generated summaries — inaccuracy, hallucination, user recourse",
+        "Considers cost and latency as product constraints, not just engineering ones",
+        "Does not treat 'add AI summarisation' as an ordinary CRUD feature"
+      ]
+    }
+  ]
+}

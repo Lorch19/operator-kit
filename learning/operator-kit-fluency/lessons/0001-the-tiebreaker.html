@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 01 — The tiebreaker lives in the frontmatter</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<main>
+
+<p class="eyebrow">Operator Kit Fluency · Lesson 01</p>
+<h1>The tiebreaker lives in the frontmatter</h1>
+<p class="standfirst">Your kit's real failure mode isn't forgetting a skill exists — it's two skills that sound alike. There is already a tiebreaker written into 58 of them. This lesson makes you fast at reading it.</p>
+
+<h2>Three layers, narrowing</h2>
+
+<p>Routing runs through three layers, each narrower than the last:</p>
+
+<ol>
+<li><code>CLAUDE.md</code> — the routing table. Task phrase → skill. <em>The only index Claude has</em> for the 104 user-invoked skills.</li>
+<li>The pack's <code>NAVIGATOR.md</code> — a decision tree <em>within</em> one pack.</li>
+<li>The skill's own <code>description:</code> frontmatter — where the <code>DO NOT use for…</code> clause settles ties.</li>
+</ol>
+
+<p>Layer 1 gets you to a neighbourhood. Layer 3 picks the house. Most routing mistakes happen because people stop at layer 1.</p>
+
+<div class="note">
+<strong>Why this is the highest-leverage lesson.</strong> <code>CLAUDE.md</code> diagnoses the problem itself: <em>"the more near-identical descriptions compete, the more often the wrong one fires."</em> At 141 skills you have a lot of competition. The <code>DO NOT</code> clause is the kit's built-in answer, and it's sitting in 58 skills unread.
+</div>
+
+<h2>Five scenarios</h2>
+<p class="scenario">Pick without looking anything up. The explanation quotes the skill's own frontmatter.</p>
+
+<div class="q" data-answer="1">
+  <p class="prompt">1. Strategic angles</p>
+  <p class="scenario">A competitor ships something that reframes the category. You want to think it through from several strategic angles — what it signals, what it forecloses, how you'd respond.</p>
+  <div class="opts">
+    <button class="opt">domain-tools/competitive-teardown</button>
+    <button class="opt">pm-agents/product-riff</button>
+    <button class="opt">gtm-tools/competitive-battlecard</button>
+    <button class="opt">sales-tools/competitive-intelligence</button>
+  </div>
+  <div class="why" hidden><strong>product-riff.</strong> The tiebreaker is written into the skill you'd probably reach for first: <code>competitive-teardown</code> says <em>"DO NOT use for strategic product analysis from multiple angles — use pm-agents/product-riff instead."</em> Teardown is for scoring, feature matrices and pricing. Riff is for product sense.
+  <cite>domain-tools/competitive-teardown/SKILL.md, frontmatter</cite></div>
+</div>
+
+<div class="q" data-answer="1">
+  <p class="prompt">2. Next quarter's channels</p>
+  <p class="scenario">You're planning paid media, SEO and partnership programs for next quarter, and you need the attribution model to go with them.</p>
+  <div class="opts">
+    <button class="opt">domain-tools/marketing-strategy-pmm</button>
+    <button class="opt">domain-tools/marketing-demand-acquisition</button>
+    <button class="opt">pm-frameworks/acquisition-channel-advisor</button>
+    <button class="opt">gtm-tools/growth-loops</button>
+  </div>
+  <div class="why" hidden><strong>marketing-demand-acquisition</strong> — but read the caveat, it matters more than the answer.
+  <br><br>The declared pair is clean: <code>marketing-strategy-pmm</code> says <em>"DO NOT use for demand gen execution — use marketing-demand-acquisition instead."</em> Positioning goes to pmm; running the channels goes here. That much the frontmatter settles.
+  <br><br><strong>The undeclared pair is not clean.</strong> <code>acquisition-channel-advisor</code> says it's for <em>"deciding how to allocate marketing budget across channels."</em> That overlaps this scenario directly, and neither skill mentions the other. The honest discriminator is emphasis — <em>planning and running programs</em> (demand-acquisition) vs <em>a scale/test/kill verdict on channels</em> (advisor) — but you had to infer it, because nobody wrote it down. Second prune signal of the lesson.
+  <cite>domain-tools/marketing-strategy-pmm · pm-frameworks/acquisition-channel-advisor, frontmatter</cite></div>
+</div>
+
+<div class="q" data-answer="1">
+  <p class="prompt">3. The measurement plan</p>
+  <p class="scenario">You need a full hierarchy: the outcome metric, the intermediate metrics beneath it, and the leading indicators that move first.</p>
+  <div class="opts">
+    <button class="opt">pm-agents/analytical-thinking</button>
+    <button class="opt">pm-agents/metrics-design</button>
+    <button class="opt">analytics-tools/cohort-analysis</button>
+    <button class="opt">domain-tools/financial-analyst</button>
+  </div>
+  <div class="why" hidden><strong>metrics-design.</strong> <code>analytical-thinking</code> says <em>"DO NOT use for detailed metrics hierarchies or measurement plans — use metrics-design instead."</em> Analytical-thinking is for North Star framing and tradeoffs; metrics-design builds the actual structure.
+  <br><br>Worth knowing: <code>metrics-design</code> was <strong>missing from the routing table entirely</strong> until this week. Claude could not reach it at all. It was one of six in that state.
+  <cite>pm-agents/skills/analytical-thinking/SKILL.md · see learning-records/0001</cite></div>
+</div>
+
+<div class="q" data-answer="0">
+  <p class="prompt">4. Two story maps</p>
+  <p class="scenario">You already know the user workflow and the priorities. You just need the map itself as an artifact.</p>
+  <div class="opts">
+    <button class="opt">pm-frameworks/user-story-mapping</button>
+    <button class="opt">pm-frameworks/user-story-mapping-workshop</button>
+    <button class="opt">pm-frameworks/customer-journey-map</button>
+    <button class="opt">pm-frameworks/user-story-splitting</button>
+  </div>
+  <div class="why" hidden><strong>user-story-mapping.</strong> No <code>DO NOT</code> clause needed — the two descriptions split cleanly on <em>where the knowledge comes from</em>. This one is <em>"from existing knowledge about user workflows and priorities."</em> The <code>-workshop</code> variant is <em>"a facilitated, interactive session to discover and build a story map from scratch."</em>
+  <br><br>That split repeats across your kit: <code>customer-journey-map</code> vs <code>-mapping-workshop</code> is the same pair. <strong>Artifact-from-what-you-know vs. session-to-discover</strong> — learn it once, it routes four skills.
+  <cite>pm-frameworks/user-story-mapping{,-workshop}/SKILL.md</cite></div>
+</div>
+
+<div class="q" data-answer="-1">
+  <p class="prompt">5. The battlecard</p>
+  <p class="scenario">Sales needs a card for handling "why not Competitor X?" on live calls.</p>
+  <div class="opts">
+    <button class="opt">gtm-tools/competitive-battlecard</button>
+    <button class="opt">sales-tools/competitive-intelligence</button>
+  </div>
+  <div class="why" hidden><strong>There is no right answer, and that is the lesson.</strong> Both produce a battlecard. Neither carries a <code>DO NOT</code> clause pointing at the other. <code>competitive-battlecard</code> is <em>"sales-ready competitive battlecards… positioning, feature comparison, objection handling"</em>; <code>competitive-intelligence</code> is <em>"research competitors and build an interactive battlecard."</em>
+  <br><br>When two skills overlap and neither declares the boundary, routing is a coin flip — and per <code>CLAUDE.md</code>'s own reasoning, competing descriptions make the wrong one fire. <strong>That is a prune signal, not a memorisation problem.</strong> One should absorb the other, or one should declare the boundary.
+  <cite>gtm-tools/competitive-battlecard · sales-tools/skills/competitive-intelligence</cite></div>
+</div>
+
+<p class="score" id="score" hidden></p>
+
+<h2>The win</h2>
+<p>When two skills sound alike, <strong>open the frontmatter and look for <code>DO NOT use for…</code></strong> — 58 skills carry one, and it names the correct alternative outright. When there isn't one and the overlap is real, you haven't found a hard routing problem; you've found two skills that should be one.</p>
+
+<h2>Read next</h2>
+<p>The <strong>Invocation policy</strong> section of <a href="../../../LIFECYCLE.md"><code>LIFECYCLE.md</code></a> — the [A]/[B]/[C] rule for what earns model-invocation. It explains <em>why</em> 104 of your skills can't fire on their own, which is the whole reason recall matters. Roughly five minutes, and the highest-trust source you have on your own kit.</p>
+
+<footer>
+<p><strong>I'm your teacher here — ask me followups.</strong> Anything unclear, anything you'd route differently, any pair you want drilled: say so and I'll build the next lesson around it. If you disagree with an answer, that's the most useful thing you can tell me — it usually means the kit is ambiguous, not that you're wrong.</p>
+<p>Workspace: <a href="../MISSION.md">MISSION.md</a> · <a href="../learning-records/0001-the-kit-was-built-not-used.md">Learning record 0001</a> · <a href="../RESOURCES.md">RESOURCES.md</a></p>
+</footer>
+
+</main>
+
+<script>
+(function () {
+  var answered = 0, correct = 0, scored = 0;
+  var qs = document.querySelectorAll('.q');
+  qs.forEach(function (q) {
+    var want = parseInt(q.dataset.answer, 10);
+    var opts = q.querySelectorAll('.opt');
+    if (want >= 0) scored++;
+    opts.forEach(function (btn, i) {
+      btn.addEventListener('click', function () {
+        if (q.dataset.done) return;
+        q.dataset.done = '1';
+        answered++;
+        if (want < 0) {
+          opts.forEach(function (b) { b.classList.add('wrong'); });
+        } else {
+          opts[want].classList.add('right');
+          if (i !== want) btn.classList.add('wrong'); else correct++;
+        }
+        opts.forEach(function (b) { b.disabled = true; });
+        q.querySelector('.why').hidden = false;
+        if (answered === qs.length) {
+          var el = document.getElementById('score');
+          el.hidden = false;
+          el.textContent = correct + ' / ' + scored + ' on the questions that have an answer'
+            + (correct === scored ? ' — routing is solid. Next lesson can go deeper.'
+                                  : ' — worth a re-run in a few days, from memory.');
+        }
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
