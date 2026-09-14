@@ -5,7 +5,6 @@ description: >-
   Visualize the user journey by creating a hierarchical map that breaks down high-level activities into steps and tasks, organized left-to-right as a narrative flow.
   Use when you need to create a story map artifact from existing knowledge about user workflows and priorities.
   DO NOT use when you need facilitated team alignment — use user-story-mapping-workshop instead.
-type: component
 ---
 
 

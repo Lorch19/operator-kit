@@ -1,11 +1,6 @@
 ---
 name: sql-queries
 description: "Generate SQL queries from natural language descriptions. Supports BigQuery, PostgreSQL, MySQL, and other dialects. Reads database schemas from uploaded diagrams or documentation. Use when writing SQL, building data reports, exploring databases, or translating business questions into queries."
-type: tool
-best_for:
-  - "Translating business questions into SQL"
-  - "Writing optimized queries for analytics"
-  - "Cross-dialect SQL generation"
 ---
 
 # SQL Query Generator

@@ -4,12 +4,6 @@ description: >-
   Evaluate product opportunities using the 5-question customer problem framework, business context analysis, and prioritization matrices.
   Use when evaluating whether to pursue a new opportunity.
   DO NOT use for existing feature prioritization — use RICE or prioritization frameworks instead.
-type: component
-best_for:
-  - "Evaluating whether to pursue a new product opportunity"
-  - "Applying the 5-question customer problem framework"
-  - "Prioritizing opportunities against business context"
-  - "Assessing problem-market fit before committing resources"
 ---
 
 # Opportunity Evaluation Skill

@@ -7,18 +7,6 @@ description: >-
   Use when someone is preparing for, interviewing for, starting, or recalibrating
   in a product leadership role. DO NOT use for day-to-day PM skills or IC work —
   use prd-development, discovery-process, or prioritization-advisor instead.
-type: interactive
-theme: career-leadership
-best_for:
-  - "Preparing to transition from PM to Director"
-  - "Evaluating or starting a VP or CPO role"
-  - "Structuring your first 90 days in a new leadership position"
-  - "Diagnosing what isn't working in a current leadership role"
-scenarios:
-  - "I'm a senior PM preparing for Director interviews next quarter"
-  - "I have a CPO offer — what questions should I ask before accepting?"
-  - "I'm two months into a new VP role and want to validate my approach"
-estimated_time: "15-30 min"
 ---
 
 ## Purpose

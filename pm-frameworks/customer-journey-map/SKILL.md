@@ -5,16 +5,6 @@ description: >-
   Create a comprehensive customer journey map that visualizes how customers interact with your brand across all stages—from awareness to loyalty—documenting their actions, touchpoints, emotions, KPIs, and business goals.
   Use when you have journey data and need to create the journey map artifact with stages, touchpoints, emotions, and KPIs.
   DO NOT use when you need facilitated discovery to build the map interactively — use customer-journey-mapping-workshop instead.
-type: component
-theme: workshops-facilitation
-best_for:
-  - "Mapping the full customer experience across all touchpoints"
-  - "Aligning cross-functional teams on the end-to-end customer journey"
-  - "Identifying pain points and opportunities by stage with measurable KPIs"
-scenarios:
-  - "I need to map the customer journey for our B2B SaaS onboarding experience from signup to first value"
-  - "Create a journey map for a PM leader evaluating our skills repo — from discovery through loyalty"
-estimated_time: "20-30 min"
 ---
 
 

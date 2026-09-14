@@ -6,7 +6,6 @@ description: >
   Telegram digest with green/red status per project.
   Triggers: "check health", "system status", "are my services up", "health report",
   or runs automatically as a daily scheduled task.
-best_for: Monitoring deployed services across multiple projects
 ---
 
 # Health Check Monitor

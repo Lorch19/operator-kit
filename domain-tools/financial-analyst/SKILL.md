@@ -5,11 +5,6 @@ description: >-
   Performs financial ratio analysis, DCF valuation, budget variance analysis, and rolling forecast construction for strategic decision-making.
   Use when you need financial modeling (DCF, ratio analysis, variance, forecasting). Includes Python scripts.
   DO NOT use for SaaS KPI tracking — use pm-frameworks/saas-revenue-growth-metrics instead.
-type: tool
-best_for:
-  - "DCF valuation and financial modeling"
-  - "Ratio analysis and budget variance"
-  - "Rolling forecast construction"
 ---
 
 # Financial Analyst Skill

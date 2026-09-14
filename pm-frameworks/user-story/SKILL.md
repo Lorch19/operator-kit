@@ -5,16 +5,6 @@ description: >-
   Create clear, concise user stories that combine Mike Cohn's user story format with Gherkin-style acceptance criteria.
   Use when writing user stories from scratch with proper acceptance criteria, or converting requirements into development-ready stories.
   DO NOT use for breaking down large stories — use user-story-splitting instead. DO NOT use for breaking down epics — use epic-breakdown-advisor instead.
-type: component
-theme: pm-artifacts
-best_for:
-  - "Writing user stories with proper acceptance criteria"
-  - "Converting requirements into development-ready stories"
-  - "Establishing story quality standards across your team"
-scenarios:
-  - "I need to write a user story for a new notification system in our B2B SaaS app"
-  - "Convert this PRD requirement into a properly formatted user story with Gherkin acceptance criteria"
-estimated_time: "5-10 min"
 ---
 
 

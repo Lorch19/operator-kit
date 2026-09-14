@@ -5,16 +5,6 @@ description: >-
   Guide product managers through structured PRD (Product Requirements Document) creation by orchestrating problem framing, user research synthesis, solution definition, and success criteria into a cohesive document.
   Use when writing a complete PRD from scratch or structuring product requirements for an engineering handoff.
   DO NOT use for hypothesis framing — use epic-hypothesis instead. DO NOT use for roadmap-level planning — use roadmap-planning instead.
-type: workflow
-theme: pm-artifacts
-best_for:
-  - "Writing a complete PRD from scratch"
-  - "Structuring product requirements for an engineering handoff"
-  - "Documenting a major new feature before development begins"
-scenarios:
-  - "I need a PRD for a new AI-powered recommendation feature in our e-commerce platform"
-  - "I've completed a discovery sprint and need to turn the findings into a PRD my engineers can act on"
-estimated_time: "60-120 min"
 ---
 
 

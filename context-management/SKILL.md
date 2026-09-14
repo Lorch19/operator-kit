@@ -8,11 +8,6 @@ description: >
   "start a new project", "session management", "context files", or when the user is struggling with
   context loss between sessions. Also use when the user asks to update, review, or restructure their
   project's context files.
-type: workflow
-best_for:
-  - "Setting up CLAUDE.md + STATE.md for a project"
-  - "Maintaining context across AI coding sessions"
-  - "Structuring project knowledge for Claude Code or Cursor"
 ---
 
 # Context Management for AI Coding Agents

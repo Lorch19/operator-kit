@@ -6,7 +6,6 @@ description: >-
   with structured rationale, alternatives, and consequences. Use when making significant
   architectural, infrastructure, or product decisions that should be recorded for future reference.
   Do NOT use for minor implementation choices or style preferences.
-type: workflow
 ---
 
 # ADR Writer

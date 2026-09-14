@@ -5,7 +5,6 @@ description: >-
   Create an initial, assumption-based persona profile that synthesizes available user research, market data, and stakeholder knowledge into a working hypothesis about your target user.
   Use when you need to align teams early in product development with a lightweight persona before conducting extensive research.
   DO NOT use when you need to understand the full customer journey — use customer-journey-map instead. DO NOT use for JTBD analysis — use jobs-to-be-done instead.
-type: component
 ---
 
 

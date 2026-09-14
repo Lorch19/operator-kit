@@ -5,7 +5,6 @@ description: >-
   Evaluate acquisition channels using unit economics, customer quality, and scalability. Recommends scale/test/kill decisions.
   Use when deciding how to allocate marketing budget across channels or evaluating whether to scale, test, or kill a specific acquisition channel.
   DO NOT use when you need quick metric formulas — use finance-metrics-quickref instead. DO NOT use for deep revenue/retention analysis — use saas-revenue-growth-metrics instead.
-type: interactive
 ---
 
 

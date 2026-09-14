@@ -6,7 +6,6 @@ description: >
   remote environment verification, post-deploy setup, health checks, and optional Telegram notification.
   Triggers: "deploy to VPS", "deploy via rsync", "push to server", "deploy this project",
   or when a project needs a deploy script.
-best_for: Deploying Python or Node.js projects to a VPS via rsync+SSH
 ---
 
 # Deploy via Rsync

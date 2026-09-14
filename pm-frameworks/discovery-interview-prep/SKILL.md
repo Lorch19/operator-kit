@@ -5,17 +5,6 @@ description: >-
   Guide product managers through preparing for customer discovery interviews by asking adaptive questions about research goals, customer segments, constraints, and methodologies.
   Use when preparing for upcoming customer interviews and you need an interview plan, question framework, and methodology recommendation.
   DO NOT use when you need a full end-to-end discovery cycle — use discovery-process instead.
-type: interactive
-theme: discovery-research
-best_for:
-  - "Designing a customer discovery interview plan"
-  - "Choosing the right interview methodology for your goals and constraints"
-  - "Preparing for research with limited customer access"
-scenarios:
-  - "I need to interview 5 enterprise customers about why they churned in the last 90 days"
-  - "I'm validating a new product idea with a 2-week deadline and cold outreach only"
-  - "I want to understand why users aren't activating on our core feature"
-estimated_time: "15-20 min"
 ---
 
 

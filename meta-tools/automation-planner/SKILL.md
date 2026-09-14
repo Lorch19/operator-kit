@@ -7,7 +7,6 @@ description: >-
   scripts, monitoring jobs, or any background automation. Covers scheduling, failure
   handling, concurrency, and monitoring.
   Do NOT use for one-off scripts or manual workflows.
-type: workflow
 ---
 
 # Automation Planner

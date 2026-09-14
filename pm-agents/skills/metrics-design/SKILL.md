@@ -4,12 +4,6 @@ description: >-
   Design complete metrics frameworks with outcome-intermediate-leading hierarchy, activation funnels, and engagement dimensions.
   Use when defining success metrics, KPI hierarchies, or measurement plans.
   DO NOT use for financial modeling — use the financial-analyst skill instead.
-type: component
-best_for:
-  - "Designing KPI hierarchies and success metrics"
-  - "Building activation funnels and engagement dimensions"
-  - "Creating measurement plans for product launches"
-  - "Defining outcome-intermediate-leading metric frameworks"
 ---
 
 # Metrics Design Skill

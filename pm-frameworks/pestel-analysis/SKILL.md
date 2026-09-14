@@ -5,7 +5,6 @@ description: >-
   Conduct a systematic analysis of macro-environmental factors—Political, Economic, Social, Technological, Environmental, and Legal—that could impact your product or project.
   Use when assessing external opportunities and threats for strategic planning, market entry, or product direction decisions.
   DO NOT use for internal product strategy — use product-strategy-session instead. DO NOT use for competitive analysis — use company-research instead.
-type: component
 ---
 
 

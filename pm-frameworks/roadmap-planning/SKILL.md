@@ -5,16 +5,6 @@ description: >-
   Guide product managers through strategic roadmap planning by orchestrating prioritization, epic definition, stakeholder alignment, and release sequencing skills into a structured process.
   Use when building a quarterly or half-year roadmap, sequencing work across teams, or preparing a roadmap for exec review.
   DO NOT use for individual feature prioritization — use prioritization-advisor instead. DO NOT use for full product strategy — use product-strategy-session instead.
-type: workflow
-theme: strategy-positioning
-best_for:
-  - "Building a strategic roadmap that survives exec review"
-  - "Prioritizing competing initiatives across multiple teams"
-  - "Planning and sequencing work for the next quarter or half-year"
-scenarios:
-  - "I have 15 competing initiatives and need to build a Q2 roadmap my exec team will actually approve"
-  - "I'm planning our 6-month product roadmap and need to sequence work across 3 teams"
-estimated_time: "45-90 min"
 ---
 
 

@@ -4,7 +4,6 @@ description: >-
   Fast lookup table for 32+ SaaS finance metrics with formulas, benchmarks, and when to use each. Includes red flags and decision frameworks.
   Use when you need a quick formula lookup, benchmark check, or decision framework reminder for any SaaS finance metric.
   DO NOT use when you need deep revenue/retention analysis — use saas-revenue-growth-metrics instead. DO NOT use for unit economics deep dives — use saas-economics-efficiency-metrics instead.
-type: component
 ---
 
 

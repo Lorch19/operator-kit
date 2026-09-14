@@ -5,27 +5,6 @@ description: >-
   Multi-channel demand generation, paid media optimization, SEO strategy, and partnership programs for Series A+ startups.
   Use when planning paid media, SEO, partnerships, or attribution for Series A+ growth.
   DO NOT use for strategic positioning — use marketing-strategy-pmm or pm-frameworks/positioning-workshop instead.
-type: tool
-best_for:
-  - "Paid media and SEO strategy"
-  - "Partnership and attribution programs"
-  - "Multi-channel demand generation"
-triggers:
-  - demand gen
-  - demand generation
-  - paid ads
-  - paid media
-  - LinkedIn ads
-  - Google ads
-  - Meta ads
-  - CAC
-  - customer acquisition cost
-  - lead generation
-  - MQL
-  - SQL
-  - pipeline generation
-  - acquisition strategy
-  - HubSpot campaigns
 metadata:
   version: 1.1.0
   author: Alireza Rezvani

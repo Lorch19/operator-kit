@@ -4,12 +4,6 @@ description: >-
   Segmentation, differentiation, and strategic thinking frameworks.
   Use when developing product strategy, segmentation, or competitive positioning.
   DO NOT use for OKR setting or roadmap planning.
-type: component
-best_for:
-  - "Developing product strategy from scratch"
-  - "Needs-based market segmentation"
-  - "Competitive differentiation analysis"
-  - "Applying Hamilton Helmer's 7 Powers"
 ---
 
 # Strategy Craft Skill

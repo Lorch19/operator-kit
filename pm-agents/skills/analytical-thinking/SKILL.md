@@ -4,12 +4,6 @@ description: >-
   North Star Metrics, ecosystem analysis, goal-setting, and tradeoff frameworks.
   Use when defining North Star Metrics, setting team goals, or resolving product tradeoffs.
   DO NOT use for detailed metrics hierarchies or measurement plans — use metrics-design instead.
-type: component
-best_for:
-  - "Defining North Star Metrics for a product"
-  - "Mapping multi-sided ecosystem dynamics and metrics"
-  - "Setting team goals with structured frameworks"
-  - "Resolving product tradeoffs with analytical rigor"
 ---
 
 # Analytical Thinking Skill

@@ -5,16 +5,6 @@ description: >-
   Diagnose SaaS business health using key metrics, identify red flags, and prioritize actions. Analyzes growth, retention, efficiency, and capital health.
   Use when you need a comprehensive health scorecard across all business dimensions, preparing for board meetings, or identifying which metrics are red flags.
   DO NOT use for quick formula lookup — use finance-metrics-quickref instead. DO NOT use for deep dives into a single metric family — use saas-revenue-growth-metrics or saas-economics-efficiency-metrics instead.
-type: interactive
-theme: finance-metrics
-best_for:
-  - "Getting a complete read on your SaaS business health across all dimensions"
-  - "Identifying which metrics are red flags vs. leading indicators"
-  - "Preparing for a board meeting or investor review"
-scenarios:
-  - "Our growth is strong but we're burning cash fast — I need to understand our unit economics before the board meeting"
-  - "I'm preparing for a Series A board meeting and need to assess our business health across growth, retention, and efficiency"
-estimated_time: "20-30 min"
 ---
 
 

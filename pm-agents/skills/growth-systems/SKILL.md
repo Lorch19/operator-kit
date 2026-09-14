@@ -3,12 +3,6 @@ name: growth-systems
 description: >-
   Growth loops, retention frameworks, viral mechanics, and acquisition models.
   Use when designing or diagnosing growth loops, viral mechanics, or retention frameworks.
-type: component
-best_for:
-  - "Designing self-reinforcing growth loops"
-  - "Diagnosing retention and churn patterns"
-  - "Building viral mechanics and referral systems"
-  - "Modeling acquisition channels and flywheel dynamics"
 ---
 
 # Growth Systems Skill

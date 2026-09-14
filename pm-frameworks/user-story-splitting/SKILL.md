@@ -5,7 +5,6 @@ description: >-
   Break down large user stories, epics, or features into smaller, independently deliverable stories using systematic splitting patterns.
   Use when you have an existing story that is too large for a single sprint and needs to be decomposed into smaller vertical slices.
   DO NOT use for writing stories from scratch — use user-story instead. DO NOT use for full epic breakdown — use epic-breakdown-advisor instead.
-type: component
 ---
 
 

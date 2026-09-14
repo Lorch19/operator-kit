@@ -5,7 +5,6 @@ description: >-
   Guide product managers through a comprehensive product strategy session by orchestrating positioning, problem framing, customer discovery, and roadmap planning skills into a cohesive end-to-end process.
   Use when you need to establish or refresh product strategy end-to-end, from positioning through validated roadmap.
   DO NOT use for individual activities like positioning alone — use positioning-workshop instead. DO NOT use for roadmap planning alone — use roadmap-planning instead.
-type: workflow
 ---
 
 

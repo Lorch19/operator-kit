@@ -4,12 +4,6 @@ description: >-
   Apply 20 systematic creativity techniques to generate solution candidates for product opportunities.
   Use when brainstorming solutions to a defined problem.
   DO NOT use before problem framing is complete.
-type: component
-best_for:
-  - "Generating diverse solution candidates for a defined problem"
-  - "Applying systematic creativity techniques to explore solution space"
-  - "Breaking out of obvious solutions with constraint manipulation"
-  - "Brainstorming product solutions using structured ideation"
 ---
 
 # Solution Creativity Skill

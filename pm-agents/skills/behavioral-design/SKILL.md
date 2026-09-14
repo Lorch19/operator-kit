@@ -3,12 +3,6 @@ name: behavioral-design
 description: >-
   Apply behavioral psychology, UX principles, and decision science to product design.
   Use when designing user behavior patterns, engagement loops, or onboarding flows.
-type: component
-best_for:
-  - "Designing onboarding flows using behavioral psychology"
-  - "Applying decision science to reduce user friction"
-  - "Building habit-forming engagement loops"
-  - "Optimizing UX with cognitive bias awareness"
 ---
 
 # Behavioral Design Skill

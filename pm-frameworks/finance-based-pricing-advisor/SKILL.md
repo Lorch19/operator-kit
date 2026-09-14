@@ -5,7 +5,6 @@ description: >-
   Evaluate pricing changes using financial impact analysis — ARPU/ARPA, conversion, churn risk, NRR, and payback. Recommends go/no-go on pricing decisions.
   Use when you have a specific pricing change in mind (price increase, new tier, add-on, discount) and need to evaluate its financial viability.
   DO NOT use for quick formula lookup — use finance-metrics-quickref instead. DO NOT use for broad business health assessment — use business-health-diagnostic instead.
-type: interactive
 ---
 
 

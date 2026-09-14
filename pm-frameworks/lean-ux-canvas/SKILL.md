@@ -5,7 +5,6 @@ description: >-
   Guide product managers through Jeff Gothelf's Lean UX Canvas v2—a one-page tool that frames work around a business problem, exposes assumptions, and ensures learning every sprint.
   Use when aligning a cross-functional team around core assumptions and testable hypotheses before committing to full development.
   DO NOT use for hypothesis framing on a single epic — use epic-hypothesis instead. DO NOT use for full discovery cycles — use discovery-process instead.
-type: interactive
 ---
 
 ## Purpose

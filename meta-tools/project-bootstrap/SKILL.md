@@ -6,7 +6,6 @@ description: >
   Use when bootstrapping a new project or retrofitting context onto an existing repo.
   Triggers: "bootstrap this project", "set up context", "add CLAUDE.md", "initialize project",
   "retrofit context", "this project needs context files", or when opening a repo that has no CLAUDE.md.
-best_for: Setting up or retrofitting project context management files
 ---
 
 # Project Bootstrap

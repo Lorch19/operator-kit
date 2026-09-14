@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Break a plan, spec, or conversation into a set of **tickets** — tracer-bullet vertical slices, each declaring the tickets that **block** it.
 
-The issue tracker and triage label vocabulary should have been provided to you — run `/agent-context-setup` if not.
+The issue tracker and triage label vocabulary should have been provided to you — if not, ask the user to run `/agent-context-setup` (it is user-invoked, so you cannot fire it yourself).
 
 ## Process
 

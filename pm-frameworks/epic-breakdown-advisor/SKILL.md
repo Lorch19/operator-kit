@@ -5,7 +5,6 @@ description: >-
   Break down epics into user stories using Richard Lawrence's Humanizing Work methodology—a flowchart-driven approach that applies 9 splitting patterns sequentially.
   Use when you have a large epic that needs systematic decomposition into vertical-slice user stories using proven splitting patterns.
   DO NOT use for splitting individual stories that are already small — use user-story-splitting instead. DO NOT use for writing stories from scratch — use user-story instead.
-type: interactive
 ---
 
 

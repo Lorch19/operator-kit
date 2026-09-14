@@ -4,12 +4,6 @@ description: >-
   Apply proven buy-in techniques to align stakeholders on product direction. Covers framing, social proof, goal seek, inception, citation, and narration.
   Use when you need to influence stakeholders on a specific decision.
   DO NOT use for general communication or presentation skills.
-type: component
-best_for:
-  - "Getting executive alignment on product direction"
-  - "Building stakeholder narratives for funding decisions"
-  - "Applying influence techniques to drive consensus"
-  - "Crafting persuasive framing for product initiatives"
 ---
 
 # Stakeholder Buy-In Skill

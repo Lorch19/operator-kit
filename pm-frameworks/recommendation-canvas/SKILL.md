@@ -5,7 +5,6 @@ description: >-
   Evaluate and propose AI product solutions using a structured canvas that assesses business outcomes, customer outcomes, problem framing, solution hypotheses, positioning, risks, and value justification.
   Use when proposing AI-powered features or products and you need a comprehensive, defensible recommendation for stakeholders.
   DO NOT use for non-AI product decisions — use feature-investment-advisor instead. DO NOT use for validating assumptions — use pol-probe-advisor instead.
-type: component
 ---
 
 

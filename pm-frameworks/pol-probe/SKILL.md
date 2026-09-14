@@ -5,7 +5,6 @@ description: >-
   Define a Proof of Life (PoL) probe—a lightweight validation artifact that surfaces harsh truths before expensive development.
   Use when you already know which probe type you need and want to define and document it.
   DO NOT use when you're unsure which probe type to use — use pol-probe-advisor instead.
-type: component
 ---
 
 ## Purpose

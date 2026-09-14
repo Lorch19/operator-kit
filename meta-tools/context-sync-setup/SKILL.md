@@ -6,7 +6,6 @@ description: >
   STATE.md and BACKLOG.md fresh by comparing with git log and optional health checks.
   Triggers: "set up context sync", "add auto-sync", "create sync task", "keep context fresh",
   or when bootstrapping a new project that needs automated maintenance.
-best_for: Creating automated context freshness tasks for projects
 ---
 
 # Context Sync Setup

@@ -4,12 +4,6 @@ description: >-
   Write compelling 3-part vision narratives that are detailed, opinionated, and user-centric.
   Use when crafting a product vision statement or narrative for a spec.
   DO NOT use for GTM messaging — use marketing-strategy-pmm instead.
-type: component
-best_for:
-  - "Crafting product vision statements and narratives"
-  - "Writing aspirational problem descriptions that build empathy"
-  - "Articulating opinionated solution visions for specs"
-  - "Creating user-centric narratives for stakeholder alignment"
 ---
 
 # Vision Narrative Skill

@@ -5,17 +5,6 @@ description: >-
   The core mental model for the PM-to-Director transition: altitude (scope) and horizon (time), the waiter-to-operator shift, four transition zones, named failure modes, and the Cascading Context Map.
   Use when you need to understand what changes in the PM-to-Director transition, diagnose which transition zone is causing friction, or create context from vague company strategy.
   DO NOT use for full career coaching across multiple transitions — use career-growth-advisor instead.
-type: component
-theme: career-leadership
-best_for:
-   - "Understanding what actually changes when you move from PM to Director"
-   - "Diagnosing which transition zone is creating friction in your role"
-   - "Applying the Cascading Context Map when organizational direction is vague"
-scenarios:
-   - "I'm a senior PM trying to understand what changes when I become a Director"
-   - "I'm newly promoted to Director and something isn't clicking — help me diagnose it"
-   - "My team has no clear direction and I need to create context from a vague company strategy"
-estimated_time: "10-15 min"
 ---
 
 ## Purpose

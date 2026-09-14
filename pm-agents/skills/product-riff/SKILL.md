@@ -4,12 +4,6 @@ description: >-
   Explore product news, launches, and announcements from multiple strategic angles to build product sense.
   Use when analyzing a product launch, competitive move, or market shift from multiple strategic angles.
   DO NOT use for structured competitive intelligence — use competitive-teardown instead.
-type: component
-best_for:
-  - "Analyzing product launches and announcements"
-  - "Building product sense through structured exploration"
-  - "Evaluating competitive moves from multiple angles"
-  - "Rapid strategic analysis of market shifts"
 ---
 
 # Product Riff Skill

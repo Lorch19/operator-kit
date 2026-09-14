@@ -5,7 +5,6 @@ description: >-
   Craft a clear, empathetic End-of-Life (EOL) message that communicates product or feature discontinuation, explains the rationale, addresses customer impact, provides transition support, and positions the replacement solution.
   Use when sunsetting a product or feature and you need a customer-facing communication that maintains trust and reduces churn.
   DO NOT use for writing press releases — use press-release instead.
-type: component
 ---
 
 

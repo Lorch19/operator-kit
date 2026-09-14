@@ -3,12 +3,6 @@ name: pm-operating-system
 description: >-
   Load and apply the PM's personalized operating system from pm-profile.yaml.
   Use when setting up or customizing your PM workflow. Requires pm-profile.yaml.
-type: component
-best_for:
-  - "Loading personalized PM frameworks and vocabulary"
-  - "Adapting outputs to a PM's preferred working style"
-  - "Setting up or customizing the PM workflow profile"
-  - "Applying learned patterns from past product cycles"
 ---
 
 # PM Operating System Skill

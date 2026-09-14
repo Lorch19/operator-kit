@@ -5,7 +5,6 @@ description: >-
   Guide product managers through discovering and articulating product positioning by asking adaptive questions about target customers, unmet needs, product category, benefits, and competitive differentiation.
   Use when you need facilitated discovery to explore and define positioning from scratch, especially before writing PRDs or launch plans.
   DO NOT use when you already have positioning context — use positioning-statement instead.
-type: interactive
 ---
 
 

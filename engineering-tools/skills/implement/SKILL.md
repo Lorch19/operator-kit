@@ -10,6 +10,6 @@ Use /tdd where possible, at pre-agreed seams.
 
 Run typechecking regularly, single test files regularly, and the full test suite once at the end.
 
-Once done, use /code-review to review the work.
+Once done, ask the user to run `/code-review` on the work — it is user-invoked, so you cannot fire it yourself.
 
 Commit your work to the current branch.

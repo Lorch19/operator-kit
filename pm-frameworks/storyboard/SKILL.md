@@ -5,7 +5,6 @@ description: >-
   Create a 6-frame visual narrative that tells the story of a user's journey from problem to solution, using the classic storytelling arc to build empathy, illustrate value, and make abstract product concepts concrete.
   Use when you need to pitch a feature, align stakeholders on a vision, or test if your solution resonates emotionally before building it.
   DO NOT use when you need a full customer journey map — use customer-journey-map instead.
-type: component
 ---
 
 

@@ -5,7 +5,6 @@ description: >-
   Create a comprehensive company profile that extracts executive insights, product strategy, transformation initiatives, and organizational dynamics from publicly available sources.
   Use when researching a company for competitive analysis, partnership evaluation, interview preparation, or market entry decisions.
   DO NOT use for macro-environmental analysis — use pestel-analysis instead.
-type: component
 ---
 
 

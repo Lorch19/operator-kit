@@ -3,12 +3,6 @@ name: simulation
 description: >-
   Cognitive empathy engine — simulation, metacognition, and intellectual flexibility for product decisions.
   Use when stress-testing decisions through scenario analysis and cognitive bias checking.
-type: component
-best_for:
-  - "Stress-testing product decisions through scenario analysis"
-  - "Detecting cognitive biases in your reasoning"
-  - "Simulating user reactions to product changes"
-  - "Building intellectual flexibility and product judgment"
 ---
 
 # Simulation Skill

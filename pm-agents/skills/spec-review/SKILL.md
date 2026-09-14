@@ -4,12 +4,6 @@ description: >-
   Create comprehensive product specs through structured AskUserQuestion interviews or review existing specs against a detailed completeness checklist.
   Use when reviewing a product spec before engineering handoff.
   DO NOT use for writing specs — use the /pm:spec command instead.
-type: component
-best_for:
-  - "Reviewing specs for completeness before engineering handoff"
-  - "Creating specs through structured interview workflows"
-  - "Identifying gaps in edge cases, permissions, and error handling"
-  - "Auditing specs against a quality checklist"
 ---
 
 # Spec Review Skill

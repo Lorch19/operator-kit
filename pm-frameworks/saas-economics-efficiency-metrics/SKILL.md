@@ -5,7 +5,6 @@ description: >-
   Evaluate unit economics and capital efficiency for SaaS. Covers CAC, LTV, payback, margins, burn rate, Rule of 40, and magic number.
   Use when you need deep analysis of unit economics, profitability, cash runway, or efficiency ratios to decide when to scale vs. optimize.
   DO NOT use for quick formula lookup — use finance-metrics-quickref instead. DO NOT use for revenue and retention metrics — use saas-revenue-growth-metrics instead.
-type: component
 ---
 
 

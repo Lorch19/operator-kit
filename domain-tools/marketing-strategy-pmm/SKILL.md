@@ -5,23 +5,6 @@ description: >-
   Product marketing skill for positioning, GTM strategy, competitive intelligence, and product launches. Covers April Dunford positioning, ICP definition, competitive battlecards, launch playbooks, and international market entry.
   Use when building GTM strategy, launch plans, battlecards, or sales enablement.
   DO NOT use for demand gen execution — use marketing-demand-acquisition instead.
-type: workflow
-best_for:
-  - "GTM strategy and launch playbooks"
-  - "April Dunford positioning methodology"
-  - "Sales enablement and competitive battlecards"
-triggers:
-  - product marketing
-  - PMM
-  - positioning
-  - GTM strategy
-  - go-to-market
-  - competitive analysis
-  - battlecard
-  - product launch
-  - market entry
-  - sales enablement
-  - win loss analysis
 ---
 
 # Marketing Strategy & PMM

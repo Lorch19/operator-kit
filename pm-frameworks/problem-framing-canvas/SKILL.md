@@ -5,7 +5,6 @@ description: >-
   Guide PMs through MITRE's Problem Framing Canvas with structured questions across Look Inward, Look Outward, and Reframe to produce a clear, bias-resistant problem statement.
   Use when you need a thorough, bias-resistant problem exploration that examines assumptions, stakeholders, and equity before defining the problem.
   DO NOT use when you just need a quick empathy-driven problem statement — use problem-statement instead.
-type: interactive
 ---
 
 
