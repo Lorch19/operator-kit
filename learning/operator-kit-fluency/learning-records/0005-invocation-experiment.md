@@ -83,19 +83,22 @@ small; the comparison is what carries the signal.
 - **Observation may change behaviour.** Omri now knows which skills were promoted.
 - **Transcripts rotate.** Confirm `SESSIONS` looks sane before reading anything into the
   counts.
-- **A surface change would invalidate this outright.** (Raised 2026-09-15, while the
-  experiment was running.) `skill-usage.py` reads `~/.claude/projects/*.jsonl` — Claude
-  **Code** transcripts, the format verified directly. Work done on a surface that does not
-  write there is invisible to it. If Omri's usage moves to the Claude desktop chat app, or
-  claude.ai, or Cowork, the promoted cohort will read as "still not firing" when the truth
-  is "the work moved" — and that points at exactly the wrong conclusion, since a false null
-  here exonerates nothing and condemns 17 skills that were never given their chance.
+- **A surface change would invalidate this outright.** `skill-usage.py` reads
+  `~/.claude/projects/*.jsonl` — Claude **Code** transcripts, the format verified directly.
+  Work done on a surface that does not write there is invisible to it. Were usage to move
+  to the Claude desktop *chat* app, claude.ai, or Cowork, the promoted cohort would read as
+  "still not firing" when the truth is "the work moved" — the worst failure available here,
+  since a false null exonerates the policy and condemns 17 skills that never got a chance.
 
-  **Check this first on 2026-10-15**, before reading any counts: ask which surfaces were
-  used over the window. If a meaningful share of the work happened outside Claude Code,
-  the result is *unreadable*, not negative — extend the window rather than concluding.
-  Whether the chat desktop app records invocations anywhere comparable has **not been
-  verified**; find out before relying on either answer.
+  **Raised and resolved 2026-09-15:** Omri is moving to **Claude Code's desktop app**, not
+  the chat app — the same Claude Code in a window, writing to the same transcript store. No
+  effect on this experiment. (An earlier version of this record misattributed the move to
+  the chat app. Corrected; the threat below stands on its own merits, not on that.)
+
+  **Still check first on 2026-10-15**, before reading any counts: confirm which surfaces
+  were used. If a meaningful share of the work happened outside Claude Code, the result is
+  *unreadable*, not negative — extend the window rather than concluding. Whether the chat
+  desktop app records invocations anywhere comparable has **not been verified**.
 
 ## If it confirms
 
