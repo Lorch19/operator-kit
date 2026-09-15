@@ -83,6 +83,19 @@ small; the comparison is what carries the signal.
 - **Observation may change behaviour.** Omri now knows which skills were promoted.
 - **Transcripts rotate.** Confirm `SESSIONS` looks sane before reading anything into the
   counts.
+- **A surface change would invalidate this outright.** (Raised 2026-09-15, while the
+  experiment was running.) `skill-usage.py` reads `~/.claude/projects/*.jsonl` — Claude
+  **Code** transcripts, the format verified directly. Work done on a surface that does not
+  write there is invisible to it. If Omri's usage moves to the Claude desktop chat app, or
+  claude.ai, or Cowork, the promoted cohort will read as "still not firing" when the truth
+  is "the work moved" — and that points at exactly the wrong conclusion, since a false null
+  here exonerates nothing and condemns 17 skills that were never given their chance.
+
+  **Check this first on 2026-10-15**, before reading any counts: ask which surfaces were
+  used over the window. If a meaningful share of the work happened outside Claude Code,
+  the result is *unreadable*, not negative — extend the window rather than concluding.
+  Whether the chat desktop app records invocations anywhere comparable has **not been
+  verified**; find out before relying on either answer.
 
 ## If it confirms
 
