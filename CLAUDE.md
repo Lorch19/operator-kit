@@ -24,19 +24,20 @@ them per-account as zip uploads. Installing on one does nothing for the other.
 
 ## How skills are invoked
 
-141 active skills. Only **37** are model-invoked — Claude fires those on its own. The
-other **104 are user-invoked**: type `/<skill-name>` to run them. Their descriptions are
+141 active skills. **54** are model-invoked — Claude fires those on its own. The
+other **87 are user-invoked**: type `/<skill-name>` to run them. Their descriptions are
 kept out of context entirely, which is why the routing table below must stay complete —
 **it is the only index Claude has for them.** Claude can still *recommend* a user-invoked
 skill by reading this file; it just can't fire one unasked.
 
-The 37 Claude fires by itself:
+The 54 Claude fires by itself:
 
 | Why | Skills |
 |---|---|
 | **You name an output, not a skill** | `docx` `pptx` `xlsx` `pdf` `ab-test-analysis` `sql-queries` `cohort-analysis` `doc-coauthoring` `web-artifacts-builder` |
 | **Another skill calls it** | `grilling` `research` `tdd` `prototype` `domain-modeling` `codebase-design` `workshop-facilitation` `finance-metrics-quickref` `webapp-testing` · all 13 `pm-agents/` components |
 | **Claude notices before you do** | `diagnosing-bugs` `incident-response` `security-guidance` `frontend-design` `skill-creator` `prd-partner` |
+| **Invocation experiment** (promoted 2026-09-15, re-measure 2026-10-15) | `accessibility-review` `design-critique` `user-research` `ux-copy` `documentation` `system-design` `tech-debt` `testing-strategy` `internal-comms` `compliance-tracking` `process-optimization` `risk-assessment` `account-research` `call-prep` `competitive-intelligence` `daily-briefing` `draft-outreach` — each declares its own TRIGGER list, so each is [A]. See `learning-records/0005`. |
 
 Rules, buckets (`_incubator/`, `_deprecated/`), and the retirement log: **`LIFECYCLE.md`**.
 Enforced by `python3 scripts/validate-kit.py` — run it after adding or moving any skill.

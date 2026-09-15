@@ -32,6 +32,18 @@ JUSTIFIED = {
     "webapp-testing": "B",
     "diagnosing-bugs": "C", "incident-response": "C", "security-guidance": "C",
     "frontend-design": "C", "skill-creator": "C", "prd-partner": "C",
+    # Invocation experiment, 2026-09-15 -> re-measure 2026-10-15.
+    # All [A]: each of these declares its own `TRIGGER with "..."` list in its
+    # description, i.e. it was authored to fire on a named output and was
+    # bulk-switched to user-invoked by the 2026-07-27 policy commit. Measured
+    # usage after that: user-invoked 3.8% vs model-invoked 13.5%. The other 87
+    # user-invoked skills are the control. See learning-records/0005.
+    "accessibility-review": "A", "design-critique": "A", "user-research": "A",
+    "ux-copy": "A", "documentation": "A", "system-design": "A",
+    "tech-debt": "A", "testing-strategy": "A", "internal-comms": "A",
+    "compliance-tracking": "A", "process-optimization": "A", "risk-assessment": "A",
+    "account-research": "A", "call-prep": "A", "competitive-intelligence": "A",
+    "daily-briefing": "A", "draft-outreach": "A",
 }
 JUSTIFIED_PREFIX = ("pm-agents/",)  # components the /pm: commands pull in mid-run
 

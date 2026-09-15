@@ -39,8 +39,16 @@ A skill stays **model-invoked** only if at least one of these holds:
 scoring, a pipeline review — is a deliberate act. Making it model-invoked buys nothing
 and costs context every turn.
 
-Current split: **37 model-invoked / 104 user-invoked**, ~3.1K tokens of description in
+Current split: **54 model-invoked / 87 user-invoked**, ~4.0K tokens of description in
 context, down from ~11.5K.
+
+17 of those 54 were promoted on 2026-09-15 as a running experiment: measured usage was
+13.5% for model-invoked skills against 3.8% for user-invoked, so the policy itself is a
+suspect in the kit's 6% usage rate. Each promoted skill declares its own `TRIGGER with
+"..."` list — it was authored to fire on a named output and bulk-switched by the
+2026-07-27 commit. The remaining 87 are the control. Re-measure with
+`scripts/skill-usage.py --days 30` on 2026-10-15; see
+`learning/operator-kit-fluency/learning-records/0005`.
 
 ### The cost, stated plainly
 

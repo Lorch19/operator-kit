@@ -1,6 +1,5 @@
 ---
 name: draft-outreach
-disable-model-invocation: true
 description: Research a prospect then draft personalized outreach. Uses web research by default. TRIGGER with "draft outreach to [person/company]", "write cold email to [prospect]", "reach out to [name]".
 ---
 

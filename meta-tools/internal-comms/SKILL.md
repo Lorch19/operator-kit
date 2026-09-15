@@ -1,6 +1,5 @@
 ---
 name: internal-comms
-disable-model-invocation: true
 description: Write internal communications — status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates. TRIGGER when asked to write any internal communication document.
 ---
 
