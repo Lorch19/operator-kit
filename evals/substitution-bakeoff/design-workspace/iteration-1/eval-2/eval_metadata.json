@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "empty-state-activation",
+  "prompt": "Empty state for the projects page. Right now it just says 'No projects'. Users land here on day one and bounce.",
+  "expected_output": "Microcopy options with rationale, addressing the activation problem rather than only rewriting the string.",
+  "assertions": [
+    "Treats the bounce as an activation problem, not only a copy problem",
+    "Gives more than one option with the tradeoff between them stated",
+    "Copy is specific to a projects page, not a template with a blank filled in",
+    "Considers what the first action should be, not just what the text says"
+  ]
+}

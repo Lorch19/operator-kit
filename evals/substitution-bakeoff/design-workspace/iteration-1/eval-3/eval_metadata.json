@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "engineering-handoff-spec",
+  "prompt": "We're shipping the settings redesign to engineering on Thursday. What do they need from me?",
+  "expected_output": "A handoff spec covering tokens, states, responsive behaviour and edge cases \u2014 surfacing what is missing rather than only listing headings.",
+  "assertions": [
+    "Enumerates states (loading, error, empty, disabled) rather than happy path only",
+    "Covers responsive behaviour and breakpoints",
+    "Flags what is still undecided and needs an answer before Thursday",
+    "Output is usable as the actual handoff document, not advice about writing one"
+  ]
+}

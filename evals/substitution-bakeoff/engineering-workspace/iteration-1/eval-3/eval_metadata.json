@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "flaky-test-pushback",
+  "prompt": "This test is flaky. Passes locally, fails in CI maybe one run in five. Just make it pass.",
+  "expected_output": "Pushes back on 'just make it pass' and treats the flake as a real defect.",
+  "assertions": [
+    "Declines to skip, retry, or loosen the assertion as the fix",
+    "Treats intermittent failure as a genuine bug \u2014 usually order, time, or shared state",
+    "Builds a way to reproduce the flake reliably before changing anything",
+    "Explains why the requested shortcut is the wrong move rather than silently complying"
+  ]
+}

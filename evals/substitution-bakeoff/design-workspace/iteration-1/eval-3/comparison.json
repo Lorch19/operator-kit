@@ -1,0 +1,138 @@
+{
+  "winner": "A",
+  "reasoning": "The prompt asks 'what do they need from me?' two days before an engineering handoff. A answers by producing the handoff packet itself; B answers by producing a work plan for producing one. A contains a filled screen inventory, a token table, a component table with props and new/modified/reused status, a states matrix, a save-model decision with debounce/optimistic-revert/dependent-setting specs, a breakpoint table with pixel values, a role-by-setting permissions matrix that also answers 'what does a non-editor see', ~50 final copy strings, an old-to-new URL redirect map, rollout and kill criteria, six analytics events, an open-decisions table with recommendation/owner/needed-by, and a QA checklist. A PM can correct the wrong rows and send it. B's 'Part 1 - The handoff package' is a ranked list of fifteen artifacts to produce with time estimates ('Screen inventory + state table ... 45m'); the artifact itself is never produced. B's Part 4 says outright 'you write this; here's why and how', and Part 5 lists checks it could not run. Only B's Part 3 (a provisional targets doc) is a paste-able artifact, and that is a design-targets doc, not the engineering handoff. B's own stress test concedes the problem: 'You gave a PM a 30-item checklist the day before a handoff. Most of it won't get done.' On the other three expectations A is also ahead on specification depth: both name the state set, but A designs each state's behavior and copy while B only requires that the cells be filled; A specifies lg/md/sm behavior, the 44px floor, the PreferenceMatrix mobile collapse and 200%-zoom reflow, while B covers responsive with a single '<=768px, one frame' requirement and a Major finding that the frame is missing. On undecided items the two are closest - B's Q1-Q5 'if wrong' column is sharper about consequences - but A converts them into an owner/date/recommendation table rather than telling the reader to build one. Neither had a real design. Both disclose this honestly and neither fabricates measurements (A explicitly refuses to state contrast ratios it did not measure). B's disclosure is more rigorous - a stated confidence level, an unrun-vs-truncated distinction, a whole section of checks it could not perform - and B produces several genuinely sharper design catches A lacks: the setting-level parity map including what happens to the stored value, 'the most-changed settings got deeper', 'adds settings and removes none', and 'what must not change'. Those are review findings, not handoff content, and they do not offset the format miss. B is also noisier as a deliverable: process meta leaks into the prose ('12 is exactly the cap', 'this has happened twice in this skill's history') and its paste-able template addresses the user by name. A's exposure is the mirror risk - invented screen names, token values and role rows could be mistaken for real - but A front-loads the five assumptions in Section 0, marks which one is load-bearing, repeats 'fill this in for your actual screens', and returns to it first in the stress test. Both close with a strong stress test; A's 'book the 45 minutes with the eng lead rather than hand over finished decisions' is the better push-back on the user's own framing.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 4,
+        "completeness": 5,
+        "accuracy": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.3,
+      "structure_score": 5.0,
+      "overall_score": 9.3
+    },
+    "B": {
+      "content": {
+        "correctness": 4,
+        "completeness": 3,
+        "accuracy": 4
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 4,
+        "usability": 3
+      },
+      "content_score": 3.7,
+      "structure_score": 3.7,
+      "overall_score": 7.4
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9,
+      "strengths": [
+        "Is the handoff document, not advice about one - eight sections of spec a PM can correct and send",
+        "States are specified, not just listed: saving/saved/error/disabled/locked/loading-skeleton each get a behavior and a string",
+        "Responsive covered at three named breakpoints with pixel values, plus the PreferenceMatrix mobile-collapse edge case and 200% reflow",
+        "Permissions matrix answers the column designers skip - what a non-editor actually sees - with a stated disabled-vs-hidden rule",
+        "Save model treated as the architectural decision it is: hybrid per control type, optimistic revert, 300ms debounce, dependent-setting retention, concurrent-edit answer",
+        "~50 final copy strings including errors, empty states, confirmations and localization notes",
+        "Open decisions in an owner/recommendation/needed-by table rather than buried in prose",
+        "Migration section covers what redesigns forget: anchor-level redirects, email templates, help docs, permanent-not-temporary redirects",
+        "Refuses to fabricate contrast ratios and instead names the five measurements most likely to fail",
+        "Stress test challenges the user's own framing (handoff is not one-way; book a working session with the eng lead)"
+      ],
+      "weaknesses": [
+        "Invented screen names, token values and role rows could be mistaken for real if the reader skips Section 0",
+        "Cites 2.5.5 as a WCAG 2.1 AA item under an 'AA' heading; target size at that number is AAA",
+        "Section 1 is a meta checklist that partially duplicates Section 7",
+        "Long - the Thursday-critical items would benefit from being physically separated from the week-1 ones",
+        "Misses the setting-level parity map (old setting -> new location + stored value) that B correctly identifies as the top risk; A's redirect map covers URLs only"
+      ]
+    },
+    "B": {
+      "score": 7,
+      "strengths": [
+        "Best-in-class epistemic hygiene: stated confidence, an explicit 'this is not a review', and a separate section for checks it could not run so 'I couldn't look' never reads as 'I looked and found nothing'",
+        "The parity map insight - a setting that exists today landing nowhere, including what happens to the stored value - is a sharper catch than anything in A",
+        "Tiering by cost-of-omission with a single named 'if you do one thing' item is well-judged for a one-day window",
+        "Q1-Q5 table's 'if wrong' column shows the consequence of each assumption, not just the assumption",
+        "Several genuine design critiques A lacks: most-changed settings getting deeper, net-positive setting count with zero removals, aggregate summaries hiding per-item exceptions",
+        "'What must not change' is a real insight about how redesign intent gets optimized away mid-build",
+        "Part 3's provisional targets doc is a usable paste-able artifact with a metrics matrix and anti-goals",
+        "Stress test names the strongest counter-argument against itself and concedes it"
+      ],
+      "weaknesses": [
+        "Fails the sharpest expectation: 'Part 1 - The handoff package' is a list of artifacts to produce with time estimates, not the artifacts; the deliverable is advice about a handoff",
+        "States are named as required table headers ('loading / saving / saved / save-failed / permission-denied / offline / first-run-empty') but no state's behavior, visual or copy is specified",
+        "Responsive is one breakpoint (<=768px) and a requirement for one frame; no behavior at other widths, no touch-target or reflow spec beyond a single minor bullet",
+        "No copy deck, no component spec, no animation spec, thin accessibility - each is named as something the PM should write",
+        "Process meta leaks into the prose ('12 is exactly the cap', 'this has happened twice in this skill's history', pass numbers) - noise in a document addressed to a PM",
+        "The paste-able template addresses the user by first name, which breaks it as a shareable artifact",
+        "Leaves roughly five hours of work on the PM's plate the day before the deadline, which its own stress test flags"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Enumerates states (loading, error, empty, disabled) rather than happy path only",
+          "passed": true,
+          "note": "Section 3.4 specifies default/hover/disabled/locked/saving/saved/error per element; 3.8 adds skeleton loading, slow-save, per-section load failure and two empty states; 4.1-4.5 supply the strings for each."
+        },
+        {
+          "text": "Covers responsive behaviour and breakpoints",
+          "passed": true,
+          "note": "Section 3.6 gives lg/md/sm with pixel values and the nav treatment at each, a 44px touch-target floor, the PreferenceMatrix mobile-collapse recommendation, and 200%-zoom reflow in 3.8."
+        },
+        {
+          "text": "Flags what is still undecided and needs an answer before Thursday",
+          "passed": true,
+          "note": "Section 0 lists five load-bearing assumptions; Section 7 is an eight-row decisions table with recommendation, owner and needed-by, three marked Thursday."
+        },
+        {
+          "text": "Output is usable as the actual handoff document, not advice about writing one",
+          "passed": true,
+          "note": "Sections 2-8 are the artifact: inventory, tokens, layout, components, states, save model, responsive, permissions, edge cases, animation, a11y, copy, redirects, rollout, analytics, decisions, QA."
+        }
+      ]
+    },
+    "B": {
+      "passed": 2,
+      "total": 4,
+      "pass_rate": 0.5,
+      "details": [
+        {
+          "text": "Enumerates states (loading, error, empty, disabled) rather than happy path only",
+          "passed": true,
+          "note": "Tier 0 #1 and criterion C8 both name the full set including offline and first-run-empty, and insist a blank cell is not a state - but no state's behavior is specified."
+        },
+        {
+          "text": "Covers responsive behaviour and breakpoints",
+          "passed": false,
+          "note": "One breakpoint (<=768px) appears, as a requirement for a single missing frame (Tier 0 #6, finding B10). No behavior is specified at any width beyond 'drill-in with back'; no other breakpoints, no reflow or zoom handling."
+        },
+        {
+          "text": "Flags what is still undecided and needs an answer before Thursday",
+          "passed": true,
+          "note": "Q1-Q5 with an 'if wrong' consequence column, Tier 2 #15 on owner-less open questions, and an Open questions block in the targets doc."
+        },
+        {
+          "text": "Output is usable as the actual handoff document, not advice about writing one",
+          "passed": false,
+          "note": "Part 1 lists fifteen artifacts to produce with time estimates rather than producing them; Part 2 is checks to run; Part 4 states 'you write this'; Part 5 is checks it could not run. Only Part 3's targets doc is paste-able, and that is not the engineering handoff."
+        }
+      ]
+    }
+  }
+}

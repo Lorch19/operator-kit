@@ -1,0 +1,130 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Projects empty state — three directions</title>
+<style>
+:root{
+  --ground:#F5F5F3; --surface:#FFFFFF; --ink1:#15161A; --ink2:#5B6473;
+  --accent:#2F55E0; --accent-ink:#FFFFFF; --line:#E4E4DF; --ghost:#C9CCD1;
+  --wash:#EEF1FD;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#2b2b2f;font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;color:var(--ink1);padding:24px}
+.rail{display:flex;gap:28px;align-items:flex-start}
+.col{width:390px}
+.caption{color:#fff;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;opacity:.75}
+.frame{width:390px;height:844px;background:var(--ground);overflow:hidden;position:relative;border-radius:14px}
+/* chrome */
+.topbar{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--line)}
+.ws{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px}
+.wsdot{width:22px;height:22px;border-radius:6px;background:#1D2433;color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700}
+.av{width:26px;height:26px;border-radius:50%;background:#D8DCE4}
+.phead{padding:20px 16px 12px;display:flex;align-items:center;justify-content:space-between}
+.h1{font-size:24px;font-weight:700;letter-spacing:-.01em}
+.btn{height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--line);background:var(--surface);font-size:14px;font-weight:600;color:var(--ink1);display:inline-flex;align-items:center;gap:6px}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.wide{width:100%;justify-content:center;height:44px;font-size:15px}
+.body{padding:4px 16px 16px}
+/* A */
+.mk{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 16px 16px;box-shadow:0 1px 2px rgba(20,22,28,.05)}
+.kick{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.mkh{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.sub{font-size:13.5px;color:var(--ink2);margin-bottom:14px}
+.field{width:100%;height:46px;border:1.5px solid var(--accent);border-radius:9px;padding:0 12px;font-size:15px;color:var(--ink1);background:var(--surface);display:flex;align-items:center}
+.field .ph{color:#5B6473}
+.caret{width:1.5px;height:19px;background:var(--accent);margin-right:1px}
+.orrow{margin-top:14px;font-size:12.5px;color:var(--ink2)}
+.chips{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.trow{min-height:56px;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:9px 12px;margin-bottom:8px;display:block;width:100%;text-align:left;cursor:pointer;font-family:inherit}
+.trow b{display:block;font-size:14px;font-weight:650;color:var(--ink1)}
+.trow span{display:block;font-size:12.5px;color:var(--ink2);margin-top:2px}
+.spacer12{height:12px}
+.ghostcard{border:1.5px dashed var(--ghost);border-radius:14px;padding:14px 16px;background:transparent}
+.gtitle{font-size:14.5px;font-weight:600;color:var(--ink2);display:flex;align-items:center;gap:8px}
+.tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#E9EAEE;color:#4A5160;border-radius:5px;padding:2px 6px}
+.gmeta{font-size:12.5px;color:var(--ink2);margin-top:5px}
+.glinks{margin-top:10px;display:flex;gap:10px}
+.glinks button{min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:9px;background:var(--surface);font:600 13.5px inherit;color:var(--accent);font-family:inherit;cursor:pointer}
+/* B */
+.banner{background:var(--wash);border:1px solid #D4DCFA;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#2A3B7A;margin-bottom:12px}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 1px 2px rgba(20,22,28,.05);position:relative}
+.ribbon{position:absolute;top:12px;right:12px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#E9EAEE;color:#4A5160;border-radius:5px;padding:3px 7px}
+.ptitle{font-size:17px;font-weight:700;margin-bottom:4px}
+.pmeta{font-size:13px;color:var(--ink2);margin-bottom:12px}
+.bar{height:7px;border-radius:4px;background:#ECEDF0;overflow:hidden;margin-bottom:10px}
+.bar i{display:block;height:100%;width:58%;background:var(--accent)}
+.avrow{display:flex;gap:-6px}
+.avrow span{width:24px;height:24px;border-radius:50%;background:#D8DCE4;border:2px solid #fff;margin-right:-8px;display:inline-block}
+.newslot{margin-top:12px;border:1.5px dashed var(--ghost);border-radius:14px;padding:22px 16px;text-align:center}
+.newslot .plus{font-size:20px;color:var(--ink2)}
+.newslot .nt{font-size:14.5px;font-weight:600;margin-top:4px}
+.newslot .ns{font-size:12.5px;color:var(--ink2);margin-top:2px}
+/* C */
+.forkhead{font-size:18px;font-weight:700;margin:2px 0 4px}
+.forksub{font-size:13.5px;color:var(--ink2);margin-bottom:14px}
+.row{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 14px;display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+.ico{width:34px;height:34px;border-radius:9px;background:#EFF1F5;display:grid;place-items:center;font-size:15px;flex:0 0 auto}
+.rt{font-size:15px;font-weight:650}
+.rs{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.chev{margin-left:auto;color:#9AA1AD;font-size:16px}
+</style></head><body>
+<div class="rail">
+
+<div class="col"><div class="caption">A — Workbench</div>
+<div class="frame" id="fA">
+  <div class="topbar"><div class="ws"><span class="wsdot">A</span>Acme</div><div class="av"></div></div>
+  <div class="phead"><div class="h1">Projects</div><div class="btn">New project</div></div>
+  <div class="body">
+    <div class="mk" id="A-focal">
+      <div class="kick">Your first project</div>
+      <div class="mkh">What are you working on?</div>
+      <div class="sub">A project holds the tasks, files and notes for one piece of work. Most people start with whatever is on their desk today.</div>
+      <div class="field"><span class="caret"></span><span class="ph">e.g. Q3 website redesign</span></div>
+      <div style="height:12px"></div>
+      <div class="btn primary wide" id="A-cta">Create project</div>
+      <div class="orrow">or start from a template</div>
+      <div class="chips" style="display:block;margin-top:10px"><button class="trow"><b>Content calendar</b><span>Weekly slots, draft → review → live</span></button><button class="trow"><b>Product launch</b><span>Launch date, 6 workstreams, go / no-go</span></button><button class="trow"><b>Client retainer</b><span>Monthly cycle, hours budget, deliverables</span></button></div>
+    </div>
+    <div class="spacer12"></div>
+    <div class="ghostcard">
+      <div class="gtitle">Website redesign <span class="tag">Sample</span></div>
+      <div class="gmeta">12 tasks · 3 files · read-only</div>
+      <div class="glinks"><button>Look around</button><button>Remove sample</button></div>
+    </div>
+  </div>
+</div></div>
+
+<div class="col"><div class="caption">B — Showroom</div>
+<div class="frame" id="fB">
+  <div class="topbar"><div class="ws"><span class="wsdot">A</span>Acme</div><div class="av"></div></div>
+  <div class="phead"><div class="h1">Projects</div><div class="btn primary">New project</div></div>
+  <div class="body">
+    <div class="banner">This is a sample project so you can see how yours will look. Delete it whenever you like.</div>
+    <div class="pcard" id="B-focal">
+      <div class="ribbon">Sample</div>
+      <div class="ptitle">Website redesign</div>
+      <div class="pmeta">7 of 12 tasks done · due 14 Oct · Design</div>
+      <div class="bar"><i></i></div>
+      <div class="avrow"><span></span><span></span><span></span></div>
+    </div>
+    <div class="newslot">
+      <div class="plus">+</div>
+      <div class="nt">Create your first project</div>
+      <div class="ns">Name it and start adding tasks</div>
+    </div>
+  </div>
+</div></div>
+
+<div class="col"><div class="caption">C — Route</div>
+<div class="frame" id="fC">
+  <div class="topbar"><div class="ws"><span class="wsdot">A</span>Acme</div><div class="av"></div></div>
+  <div class="phead"><div class="h1">Projects</div><div class="btn">New project</div></div>
+  <div class="body">
+    <div class="forkhead">Let's get your first project in</div>
+    <div class="forksub">Three ways in. Pick whichever matches what you already have.</div>
+    <div class="row" id="C-focal"><div class="ico">▦</div><div><div class="rt">Start from a template</div><div class="rs">8 ready-made setups — tasks and stages already filled in</div></div><div class="chev">›</div></div>
+    <div class="row"><div class="ico">⇪</div><div><div class="rt">Import what you have</div><div class="rs">Trello, Asana or a CSV — keeps your lists and owners</div></div><div class="chev">›</div></div>
+    <div class="row"><div class="ico">✎</div><div><div class="rt">Start blank</div><div class="rs">Name it and go — about 20 seconds</div></div><div class="chev">›</div></div>
+  </div>
+</div></div>
+
+</div>
+</body></html>

@@ -1,0 +1,36 @@
+
+> fetcher-retry-tdd@0.1.0 test
+> node --test test/fetcher.test.ts
+
+✔ returns the parsed body when the first attempt succeeds (12.522458ms)
+✔ throws HttpError carrying the status when the server keeps failing (0.423334ms)
+✔ retries after a 503 and returns the body from the retry (0.207666ms)
+✔ stops after the default attempt budget and surfaces the last failure (0.224667ms)
+✔ does not retry a 400 — the request is wrong, not the server (0.153875ms)
+✔ retries a 429 because the server is asking us to slow down (0.167708ms)
+✔ honours a configured attempt budget (0.1845ms)
+✔ spaces retries out with exponentially growing waits (0.177958ms)
+✔ caps how long it will wait between attempts (0.341041ms)
+✔ jitters each wait so retrying clients do not sync up (0.215375ms)
+✖ retries when the connection itself fails (0.140708ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91.22875
+
+✖ failing tests:
+
+test at test/fetcher.test.ts:163:1
+✖ retries when the connection itself fails (0.140708ms)
+  TypeError: fetch failed
+      at TestContext.<anonymous> (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/test/fetcher.test.ts:166:16)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1103:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:785:18)
+      at Test.postRun (node:internal/test_runner/test:1232:19)
+      at Test.run (node:internal/test_runner/test:1160:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7)

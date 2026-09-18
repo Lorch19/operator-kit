@@ -1,0 +1,110 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs execute the same reframe competently — same section skeleton, same removals (R1-R6, digest_send_log, rendering, batching), same refusal to fabricate internal business numbers, same catch that the source spec's <0.5% unsubscribe guardrail watches the wrong metric. All four expectations pass for both. B wins on the quality of what it puts in the space the implementation detail vacated. Three concrete differences decide it. (1) B produces original, checkable analysis A does not: compounding the source spec's own 0.5%/send unsubscribe ceiling over a year yields ~23% list attrition (0.995^52 = 0.7705 — verified), which converts a criterion the source doc treated as a safety limit into a hazard. A never interrogates that number quantitatively. (2) B surfaces a decision A misses entirely — sending the digest from a dedicated subdomain, correctly characterised as cheap now and effectively impossible to retrofit after reputation damage. That is exactly the irreversible, non-obvious call an exec forum exists to make; A's §5 ask (approve a complaint-rate gate) is softer and procedural. (3) Where A declines to fill a section, B replaces it. A's 'Why now' is a bare [NEEDS INPUT] plus a note that it is the first question a good exec asks; B populates it with researched fact (Asana's daily summary and AI recaps, customers publicly requesting more digest configurability). A's market-context section explains why it omitted TAM/SAM/SOM ('would be theatre here'); B says the same in one clause then supplies the internal sizing table that is the right lens. Refusing to fabricate is correct and both do it — but B does it while still going and getting the facts that were gettable, which is strictly the better position. B is also the better-built exec artifact: it bounds the ask ('Not being decided Thursday: the feature concept, cadence, or channel. Those are settled.') where A's header item (1) 'confirm the engagement thesis is worth testing' is an endorsement request rather than a decision; it adds a Phase 3 showing what v1 unlocks; it includes a do-nothing baseline in the options table; and it fences the Stress Test 'For Omri, not for the exec deck' with a double rule, so the deliverable is cleanly extractable from the meta-commentary, which A's single-rule structure leaves blurred. B's stress test is sharper too — it challenges the source spec's primary metric itself (a user who reads the digest, replies by email and never logs in is well served but scores as a failure), names the strongest attack it cannot counter ('everyone ships digests and nobody claims they moved retention'), and flags its own §5 as possibly over-engineered with a compression offered. A's counterpart critiques its confidence, not its premises. A's real edge is sourcing hygiene: its §5 facts cite Google's own sender guidelines and Microsoft's own engineering blog (5,000/day, RFC 8058, 0.10%/0.30%, 550 5.7.15 from 5 May 2025), and it pointedly declines to state the unsubscribe-processing deadline it could not confirm from a primary source. B's equivalent claims rest on vendor/SEO pages (PowerDMARC, Red Sift, Sender.net) and it generalises 'table stakes in this category' from a single competitor. That is a genuine provenance weakness — but B's substantive §5 claims agree with A's independently primary-sourced versions on every key number, so the exposure is hygiene rather than demonstrated error, and B discloses the limit itself ('I did not verify the equivalent for Linear, Notion, or Basecamp'). For a document whose job is to survive a Thursday exec review, B's extra decision-grade content outweighs A's better citations. Not a blowout — A is a strong doc — but B is better.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 5,
+        "completeness": 4,
+        "analytical_depth": 4
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 4.3,
+      "structure_score": 4.3,
+      "overall_score": 8.7
+    },
+    "B": {
+      "content": {
+        "correctness": 4,
+        "completeness": 5,
+        "analytical_depth": 5
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 4.7,
+      "structure_score": 4.7,
+      "overall_score": 9.3
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 8.7,
+      "strengths": [
+        "Best-in-pair sourcing: §5 deliverability facts cite Google's own sender guidelines and Microsoft's own engineering blog rather than intermediaries",
+        "Explicitly declines to state Google's unsubscribe-processing deadline because it could not confirm it from a primary source — rare and correct discipline",
+        "Richest treatment of the causal ambiguity: names Overload vs. Selection as two readings of the same 2.1-vs-4.4 data and shows each implies a different decision",
+        "Decision request is placed literally at the top of the document, above §1",
+        "Vivid, accurate framing of the unsubscribe-vs-complaint distinction ('a complaint is a user telling Google we're a spammer')",
+        "Assumptions table carries an 'If wrong' column so the reader can see what each bad assumption costs",
+        "Honest and well-argued defence of leaving business math blank rather than fabricating it"
+      ],
+      "weaknesses": [
+        "'Why now' is entirely [NEEDS INPUT] — an empty section with a lecture attached, in the doc whose audience asks that question first",
+        "Market context is handled by refusal ('TAM/SAM/SOM would be theatre here') rather than by supplying the internal sizing that is the right lens",
+        "Misses the dedicated-sending-subdomain decision — the most irreversible and most exec-appropriate call in the problem space",
+        "Never interrogates the 0.5%/send unsubscribe ceiling quantitatively, so the source spec's weakest number survives partly intact",
+        "Higher [NEEDS INPUT] density (~8 flags, two of them whole sections) leaves more holes for a Thursday meeting",
+        "Header decision item (1) 'confirm the engagement thesis is worth testing' is an endorsement request, not a decision, and does not align cleanly with §9's list",
+        "Meta-commentary bleeds into the doc body ('Read the engagement number carefully', 'Market context. Deliberately omitted'), addressed to the template rather than the reader",
+        "Single-rule separators leave the boundary between preamble, deliverable, and stress test blurred — harder to extract the doc to actually send",
+        "'550 5.7.15' is the most engineer-flavoured artifact in either document; A anticipates the objection ('Why is a PM telling me about DKIM?') rather than resolving it"
+      ]
+    },
+    "B": {
+      "score": 9.3,
+      "strengths": [
+        "Original, verified quantitative insight: compounds the source's own 0.5%/send ceiling to ~23% annual list attrition (0.995^52 = 0.7705, confirmed), reframing a criterion the source treated as a guardrail",
+        "Surfaces the dedicated-sending-subdomain decision and correctly classifies it as cheap now, effectively impossible to retrofit — genuinely exec-level and absent from A",
+        "'Why now' is populated with researched fact (Asana's daily summary and AI project recaps; customers requesting more digest configurability) instead of a blank",
+        "Replaces market sizing rather than merely declining it — one clause on why TAM/SAM/SOM is the wrong lens, then the internal sizing table that is the right one",
+        "Bounds the decision explicitly: 'Not being decided Thursday: the feature concept, cadence, or channel. Those are settled.'",
+        "Separates outcome / activity / guardrail metrics as a stated principle, making clear only one number actually tests the thesis",
+        "Phase 3 in the phasing table shows what v1 unlocks (1-2 project owners, Slack), gated on the §4 read",
+        "Options table includes a do-nothing baseline A omits, and the in-app-feed rebuttal is sharp ('Circular — solves the problem only for users who don't have it')",
+        "Holdout is specified concretely (matched, 10-20%, held through week 8) rather than deferred to an open question",
+        "Stress test challenges the source spec's premise, not just its confidence: logins may be the wrong outcome metric entirely",
+        "Names the attack it cannot counter ('everyone ships digests and nobody claims they moved retention') and flags its own §5 as possibly over-engineered, with a compression offered",
+        "Double-rule fencing and 'For Omri, not for the exec deck' cleanly separate the sendable deliverable from the meta-commentary",
+        "Careful not to over-claim competitively: wrote 'table stakes in this category' rather than naming Linear, Notion or Basecamp unverified, and said so"
+      ],
+      "weaknesses": [
+        "§5 rests on vendor/SEO sources (PowerDMARC, Red Sift, Sender.net) rather than Google's, Yahoo's, or Microsoft's own postmaster documentation",
+        "Asserts 'as of 2026, non-compliant bulk mail gets permanent 550 rejections' and 'honored within 2 days' without a primary citation",
+        "Generalises 'table stakes in this category' from a single verified competitor (Asana) — disclosed in the stress test, but the claim still does load-bearing work in §2's 'Why now'",
+        "References `project_events` by table name in the risk table — mild implementation residue, though framed as a first-contact trust risk",
+        "Still long (~2,500 words) for the 20-minute slot it assumes; §5 in particular could be the two lines B itself proposes"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Changes what is emphasised, not merely the section headings", "passed": true, "note": "Genuine re-emphasis: problem restated in business terms ('commitment to the product is currently punished'), new cost-of-status-quo table, new deliverability risk section, new recommendation with alternatives. Not a relabelling."},
+        {"text": "Leads with the business case and the decision being asked for", "passed": true, "note": "Strongest placement in the pair — a 'Decision requested today' line sits above §1. Slightly undercut because item (1) is an endorsement request rather than a decision, and the three items do not map cleanly onto §9."},
+        {"text": "Drops or compresses implementation detail an exec will not read", "passed": true, "note": "Removes R1-R6, digest_send_log, rendering, batching and says so in the gap analysis. Weakest of the four: §5 re-imports engineer-grade detail (RFC 8058, SPF/DKIM/DMARC, 550 5.7.15) and anticipates rather than resolves the 'why is a PM telling me about DKIM' objection."},
+        {"text": "Preserves the substance rather than producing a thinner version of the same doc", "passed": true, "note": "Substantially expanded, not thinned. But two sections (Why now, Market context) are preserved as flagged gaps rather than content, so the doc is denser in reasoning than in usable material."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Changes what is emphasised, not merely the section headings", "passed": true, "note": "Re-emphasis plus reframing: success criteria explicitly resorted into outcome vs. activity vs. guardrail, rollout reframed as a measured rollout with a holdout, and the source's unsubscribe criterion recomputed into an annual attrition figure that changes its meaning."},
+        {"text": "Leads with the business case and the decision being asked for", "passed": true, "note": "§1 opens with the segment and the evidence, closes with exactly two decisions and a recommendation, then bounds the scope — 'Not being decided Thursday: the feature concept, cadence, or channel.' The negative boundary is the better exec-facilitation move."},
+        {"text": "Drops or compresses implementation detail an exec will not read", "passed": true, "note": "Same removals as A, but every §5 row is framed by 'Why the exec team should care', and B self-flags the section as compressible to two lines. Only residue is naming project_events in the risk table."},
+        {"text": "Preserves the substance rather than producing a thinner version of the same doc", "passed": true, "note": "Preserves everything and adds verified external research plus original arithmetic. Holds the same line as A on not inventing internal numbers while still filling the sections that could be filled from outside sources."}
+      ]
+    }
+  }
+}

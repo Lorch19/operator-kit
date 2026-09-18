@@ -1,0 +1,136 @@
+{
+  "winner": "A",
+  "reasoning": "Both outputs correctly reframe the bounce as an activation and state-machine problem rather than a copy problem, and both are well above the bar. A wins on the three expectations that are about design craft rather than diagnosis.\n\nVERIFICATION OF A'S BUILD-AND-MEASURE CLAIM (the decisive factor): A claims it built the states as HTML, rendered them, and measured real numbers. The artifacts exist (outputs/mock/zero-states.html 252 lines, directions.html 130 lines at a real 390x844 frame, zero-states.prereview.html kept as the before). I recomputed its stated numbers from its own CSS with the WCAG relative-luminance formula and spot-checked its structural claims. Every check matched, several exactly: sample-card dashed boundary #82888F vs ground #F5F5F3 = 3.28 (claimed 3.28) and vs fill #FFFFFF = 3.58 (claimed 3.58); warn tint #FBEEDD vs ground = 1.05 (claimed 1.05); phone placeholder #5B6473 on white = 5.97 (claimed 5.97). Element counts claimed post-fix were 24 buttons / 7 inputs / 6 live regions; actual file has 24 <button>, 7 <input>, 5 aria-live + 1 role=alert. The pre-review file has 0 buttons, 0 inputs, 0 ARIA, corroborating the review finding M5. Six frames z0-z5 present; 5 distinct headlines with z0 correctly having none, exactly as its evidence table states; the sidebar markup is byte-identical across all 6 frames (verified by regex extraction, 6 blocks, 1 unique); every sub-44px height in the phone file belongs to a non-interactive decoration (avatar, workspace dot, caret, icon tile) while the interactive elements are min-height 56px, 46px and 44px, supporting '0 targets under 44px'. These measurements are load-bearing, not decorative: the three-direction comparison in section 5 rejects directions B and C on measured focal-point and empty-band failures ('no saturated element anywhere -- three equal rows cannot have a focal point, by construction'), which is a design argument prose alone cannot make.\n\nONE REAL HOLE IN A: the .dim{opacity:.62} wrapper on Z5's cached list composites --ink2 #5B6473 to roughly #999FA8, about 2.67:1 against white -- below AA. A's blanket claim '0 text runs below 4.5:1' is therefore overclaimed, and the miss exposes the method's limitation (getComputedStyle reports the declared color, not the opacity-composited one). One element out of 51 checked, but it is exactly the class of defect A built the harness to catch.\n\nB'S NUMBERS: B's contrast table is arithmetically close but not clean, and is explicitly against an invented palette. Recomputed: #111827 on white is 17.74 (B claims 16.9); #FFFFFF on #2563EB is 5.17 (B claims 4.54, and annotates it 'thin margin' when the real margin is comfortable). #6B7280 4.83, #9CA3AF 2.54, #D1D5DB 1.47 and #B91C1C 6.47 are all correct. No error flips a pass/fail conclusion and both errors understate (i.e. err toward flagging risk), and B honestly labels the hexes as placeholders -- but the numbers are advisory rather than measurements of anything that exists.\n\nEXPECTATION-BY-EXPECTATION: (1) Activation framing -- tie, both excellent. B makes the sharper falsifiable strategic claim ('the best empty state is one the user never sees... I'd expect the removal to beat the redesign'); A makes the sharper operational one (success = a real project that still has activity on day 7, plus pre-authored kill-triggers: kill the sample card if sample_opened < 5%). (2) Options with tradeoffs -- A clearly stronger. A's three directions (Workbench / Showroom / Route) differ architecturally, each carries an explicit 'Sacrifice' row, and two are rejected on measured grounds. B's five options (A-E) are tone variants of one layout with a 'Best for' column; its genuinely structural alternatives are the Tier 1/2/3 ladder, named but not compared on stated tradeoffs. (3) Copy specificity -- A stronger. A's Z2 reads 'Acme has 23 projects, but none of them include you', Z3 gives '14 PROJECTS / 0 SHOWN' with clickable near-miss counts ('Drop Owner: me -- 3 match'), Z4 names 'Spring campaign, archived 4 days ago', and templates describe their actual contents ('Weekly slots, draft to review to live, one owner per post'). B's first-run copy is good and specific, but E-2 ('Try removing a filter, or create a project') and E-4 ('You have {n} archived projects') are competent generics. (4) First action -- A decisively stronger. In A the create form IS the empty state, in the real card shape in grid slot 1, autofocused, 0 clicks and 0 navigations, with the header button removed on Z1 so one job has one door. B recommends putting a button inside the empty state and defers the auto-opened form to Tier 3.\n\nWHERE B IS GENUINELY BETTER, and it is not trivial: the state-selection decision table (8 ordered rows, return on first match) is directly codeable; the EmptyState component prop signature, token table, breakpoint table, animation plus prefers-reduced-motion, and edge cases (offline, optimistic create, cross-tab race, 200ms skeleton minimum to prevent flicker) make it buildable without a follow-up conversation, which A is not. B's 'extract one EmptyState and route every list through it' is a systemic insight A misses entirely. B also catches the permission state (E-5: never render a primary action that will 403) -- a legitimate day-one bounce cause in invite-based signups that A completely omits, and a real gap given A's Z2 assumes the invited user can create. B's localization section (ICU plurals, no fragment concatenation, +35% German width, locked termbase) has no counterpart in A.\n\nBut the deliverable's core job is the design, and there B ships close to the pattern it itself diagnoses as the failure mode -- centered single column, optional illustration, heading plus body plus two buttons. Anchoring at 12vh instead of centering is a real improvement, but A rejects that pattern with an argument ('the illustration carries no information, appears once, and is visually alien to the page it sits on') and instead draws the empty state in the populated grid's own geometry, which is the more original and better-reasoned move.\n\nON THE EXTRA MATERIAL: A's prose is only marginally longer than B's (420 vs 378 lines), so the additional spend went into the build -- three HTML files, 574 lines -- not into padding the write-up. That material is load-bearing: it is what converts A's contrast, target-size, focal-point and band claims from assertions into facts, and it is what let A discover and fix four blockers (three of which contradicted its own earlier claims). The most padding-adjacent part is section 7's 20-line self-review, which is partly meta-process, though it is also the document's strongest evidence that the numbers were adversarially checked. A narrow win on the rubric, a clear win on design craft.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 5,
+        "completeness": 4,
+        "accuracy": 5
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 4.7,
+      "structure_score": 4.3,
+      "overall_score": 9.0
+    },
+    "B": {
+      "content": {
+        "correctness": 4,
+        "completeness": 5,
+        "accuracy": 3
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.0,
+      "structure_score": 4.7,
+      "overall_score": 8.7
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9,
+      "strengths": [
+        "Build-and-measure claim verified: every spot-checked number matched its own CSS, several to the exact decimal (3.28, 3.58, 1.05, 5.97), and element/structural counts (24 buttons, 7 inputs, 6 live regions, 6 frames, 5 distinct headlines, byte-identical sidebar, 0 sub-44px interactive targets) all check out",
+        "Measurements are load-bearing, not decorative: directions B and C are rejected on measured focal-point and empty-band failures, an argument prose cannot make",
+        "The first action IS the design -- inline create form in grid slot 1, autofocused, 0 clicks and 0 navigations, header button removed so one job has one door",
+        "Copy is genuinely page-specific across all six states (23 projects at Acme, 14 PROJECTS / 0 SHOWN, 'Spring campaign' archived 4 days ago, templates describing real contents)",
+        "Explicitly rejects the genre-default centered-illustration pattern with a reasoned argument and draws the empty state in the populated grid's geometry instead",
+        "Kill-triggers authored before ship (sample card dies below 5% sample_opened) so optional elements cannot become permanent furniture by default",
+        "Honest non-fixes disclosed: trailing bands of 59.8-65.6% on Z2-Z5 flagged rather than gamed by re-centering, and Z2-Z5 never rendered at phone width"
+      ],
+      "weaknesses": [
+        "Overclaims '0 text runs below 4.5:1': .dim{opacity:.62} on Z5's cached list composites --ink2 to about 2.67:1 against white, a real AA failure its getComputedStyle method structurally could not see",
+        "Misses the no-permission state entirely -- a legitimate day-one bounce cause in invite-based signups, and its Z2 assumes the invited user can create",
+        "No component spec, token table, breakpoint table, animation/reduced-motion guidance or edge cases (offline, optimistic create, cross-tab race); an engineer would need a follow-up conversation",
+        "No localization guidance at all",
+        "Section 7's self-review is the most padding-adjacent material in either document",
+        "The prereview file is 192 lines, not the 319 its own review finding M5 cites"
+      ]
+    },
+    "B": {
+      "score": 8.7,
+      "strengths": [
+        "Sharpest strategic claim in either document: 'the best empty state is one the user never sees', with a falsifiable prediction that removal beats redesign, and a Tier 3 experiment to test it",
+        "State-selection decision table (8 ordered rows, return on first match) is directly codeable and is the actual fix for the loading/error/empty conflation",
+        "Catches the no-permission state (E-5: never render a primary action that will 403), which A misses entirely",
+        "Systemic insight A lacks: extract one EmptyState component and route every list in the product through it",
+        "Handoff is genuinely build-ready -- prop signatures, tokens, breakpoints, animation with prefers-reduced-motion, and edge cases including offline, optimistic create, cross-tab race, and a 200ms skeleton minimum to prevent flicker",
+        "Substantive localization section (ICU plurals, no fragment concatenation, +35% German width, locked termbase) with no counterpart in A",
+        "Honestly labels its palette as placeholder and its criticals as 'flagged on suspicion, not evidence'",
+        "Guardrail metric (projects created then deleted within 10 minutes) catches the failure mode where templates inflate creation with junk"
+      ],
+      "weaknesses": [
+        "Two contrast values are arithmetically wrong: #111827 on white is 17.74 not 16.9, and white on #2563EB is 5.17 not 4.54 -- the latter annotated 'thin margin' when the real margin is comfortable",
+        "The entire contrast table is against an invented palette, so the accessibility section is a list of things to verify rather than verified facts; nothing was built or rendered",
+        "Ships close to the genre-default pattern it itself diagnoses as the failure mode of empty-state redesigns (centered column, optional illustration, heading + body + two buttons)",
+        "Its 'more than one option' is five tone variants of one layout, not structurally different designs; the real alternatives (Tier 1 vs Tier 3) are named but never compared on stated tradeoffs",
+        "The recommended day-one design still costs a click to reach the create form; the auto-opened form is deferred to Tier 3",
+        "Secondary-state copy (E-2, E-4) is noticeably thinner and more generic than the first-run copy",
+        "Real redundancy across the four skill-report sections -- U-1/U-2 restate in the handoff state table and again in the stress test"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Treats the bounce as an activation problem, not only a copy problem",
+          "passed": true,
+          "note": "Frames the defect as one string doing six jobs; Z0 (renders before the response arrives) and Z5 (error) identified as trust bugs and ordered first in the one-day budget. Success defined as a real project still active on day 7, explicitly rejecting created-and-abandoned. Instrumentation includes abandoned_with_text and pre-authored kill-triggers."
+        },
+        {
+          "text": "Gives more than one option with the tradeoff between them stated",
+          "passed": true,
+          "note": "Three architecturally distinct directions (Workbench / Showroom / Route), each with an explicit Sacrifice row, each built at 390x844 and measured; B and C rejected on measured C7/C8 failures, and one element of B retained as the ghost sample card."
+        },
+        {
+          "text": "Copy is specific to a projects page, not a template with a blank filled in",
+          "passed": true,
+          "note": "Verbatim copy for all six states, keyed to real data: 'Acme has 23 projects, but none of them include you'; '14 PROJECTS / 0 SHOWN'; 'Drop Owner: me -- 3 match'; 'Spring campaign, archived 4 days ago'. Templates name their contents rather than a category. Stated rule: every count comes from data, never from the string."
+        },
+        {
+          "text": "Considers what the first action should be, not just what the text says",
+          "passed": true,
+          "note": "The create form is the empty state, in the real card shape in grid slot 1, autofocused: criterion C1 is 0 navigations and 0 clicks, C2 is load-to-created in under 20s. Header 'New project' button removed on Z1 so one job has one door. Z2's primary is deliberately 'Create my own project' rather than 'Ask for access', because making the primary a request hands the user's activation to someone else's inbox."
+        }
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Treats the bounce as an activation problem, not only a copy problem",
+          "passed": true,
+          "note": "Strongest single line in either document: 'not better words on this screen -- not needing this screen on day one', with U-1 (loading) and U-2 (error) flagged Critical as state-machine rather than copy problems. Primary metric is first project within 24h of signup, with a created-then-deleted guardrail."
+        },
+        {
+          "text": "Gives more than one option with the tradeoff between them stated",
+          "passed": true,
+          "note": "Passes, but at a shallower level than A: options A-E are five tone variants of one layout with a Best for column and stated weaknesses ('Weaker on the blank-page problem', 'Avoid for enterprise buyers'), plus an explicit do-not-ship anti-pattern. The structurally different alternatives are the Tier 1/2/3 ladder, which is named but not compared on stated tradeoffs."
+        },
+        {
+          "text": "Copy is specific to a projects page, not a template with a blank filled in",
+          "passed": true,
+          "note": "First-run copy is specific and well-reasoned -- the second clause ('most teams start with whatever they're working on this week') is correctly identified as the line that solves the blank-page problem, and the reversibility line is correctly identified as high-leverage. Weaker across the rest of the family: E-2 and E-4 are close to fill-in-the-blank."
+        },
+        {
+          "text": "Considers what the first action should be, not just what the text says",
+          "passed": true,
+          "note": "U-3 puts the primary action inside the empty state adjacent to the motivating sentence; E-5 refuses to render an action the user cannot complete; A-7 specifies focus return and announcement after create (better than A on this point); Tier 3 proposes the auto-opened create form. But the recommended day-one design still costs a click, where A's costs none."
+        }
+      ]
+    }
+  }
+}

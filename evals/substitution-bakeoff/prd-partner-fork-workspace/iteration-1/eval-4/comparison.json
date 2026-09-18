@@ -1,0 +1,161 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs are strong, senior-grade PRDs that clear all four expectations decisively: both push back on a solution-shaped request, both run an architecture tradeoff table and land on ingest-time summarisation for the right reason (failure timing), both treat indirect prompt injection as P0 because the output lands in an email from the company's own sending domain, and both refuse to fabricate baselines. B wins on three dimensions that matter for a Dev-Team PRD.\n\n(1) LEGAL PRECISION -- the dimension the outputs actually contradict each other on. B states: Art 50(2) machine-readable marking binds PROVIDERS of the generative system, not us as deployer; Art 50(4) deployer labelling binds only text 'published to inform the public on matters of public interest'; therefore a private work digest does not trigger Art 50(4) -- label anyway for trust, not because the Act compels it. I verified this against the Commission FAQ, the Commission's Art 50 transparency guidelines, and DLA Piper's deployer analysis: B's provider/deployer split and its subarticle attribution are exactly right, and its conclusion follows directly from the limiting clause it quotes. A reaches a similar bottom line but by a fuzzier route -- it lumps '[t]he strict marking/disclosure duties' together, never distinguishes provider from deployer, and then spends its Art 50 row on the 2 Dec 2026 transitional grace. That date is real (I checked -- I had doubted it), but the grace applies ONLY to Art 50(2), i.e. only to the provider marking duty, so it is a non-sequitur for a company consuming an LLM API, and A's 'a feature launched now does not qualify for it' subtly reinforces the wrong mental model that the deployer carries that duty. Same pattern on GDPR: A asserts a sub-processor 'must appear on the public sub-processor list' as if it were an Art 28 duty; B correctly separates the legal duty (prior notice of intended sub-processor changes + right to object) from market practice ('standard practice is general written authorisation + a public sub-processor list + ~30 days notice'). B also covers Art 5 purpose limitation -- documents were uploaded for storage and collaboration, so summarisation is a NEW processing purpose -- and Art 17/20 erasure and portability cascading to derived summaries. Both are correct and load-bearing, and A misses both entirely.\n\nOn hedging: I did NOT reward B for confidence. A's hedge ('likely outside', 'do not treat the exemption as settled', NEEDS INPUT for counsel, Open Question 1) is genuine merit and I credited it -- B decides a legal question without routing it to a lawyer, which is a real liberty and is why B's accuracy is 4 not 5. But A hedges a claim it framed less precisely, while B's confidence is proportionate to a plain statutory limitation it quotes and attributes correctly. Better-supported beats better-hedged-but-misattributed here.\n\n(2) MEASUREMENT. B makes a tenant-level holdout (10% minimum, four weekly sends) a P0 requirement, tenant-level specifically so colleagues do not receive visibly different digests and compare them, plus a pre-registered ship threshold agreed before the first send and a kill switch testable in staging. A identifies the identical problem -- its own Stress Test concedes 'your primary metric is unfalsifiable... absent a holdout, the guardrails are doing more real work than the primary metric' -- but leaves it as a concession to an imagined critic rather than promoting it into the requirements. B turned the critique into a requirement; A left it in the critique.\n\n(3) ENGINEERING USABILITY. B carries stable requirement IDs (P0-A1, P0-B3, P0-C1, P0-D6) that are cross-referenced throughout and can be quoted in a ticket; A uses unnumbered bullets under area headings, so nothing in it is referenceable. B also has user stories and a phased roadmap that A lacks, and a richer edge-case table (document replaced twice in one week rendering as one row not three; access GRANTED between upload and send, not only revoked; 'a refusal string must never appear in an email' -- a genuinely non-obvious LLM failure mode).\n\nB also carries sharper original privacy catches: two INDEPENDENT admin toggles (may we send documents to a third-party model at all, vs may summary text leave the app in outbound email) with the correct argument that an admin can reasonably accept the first and refuse the second; a content-hash-only cache key as a cross-tenant disclosure ('it leaks that tenant B holds the same file as tenant A'); and no summary text in subject or preview text because preview renders on lock screens and smartwatches.\n\nWhere A genuinely wins, and it is not trivial: its Section 6 probe is the best single idea in either document -- hand-write summaries for 30 real documents from 10 consenting tenants, paste them into next week's digest, measure. 'Hand-written summaries are the ceiling: if the ceiling doesn't move the metric, the model won't either.' Its Stress Test then adds an extractive-baseline arm (first substantive sentence: zero hallucination, zero sub-processor, zero cost) and concedes it should have been in the plan. B has nothing comparable. A also has a per-recipient user-level off switch that B lacks entirely (B has admin toggles only), a real recourse mechanism (any user with access can HIDE a summary, suppressing it for all future digests, vs B's report-a-form which only files a complaint), an adversarial CI suite with five named injection cases and ship blocked on a clean pass, quarantine-rate spike alerting as an attack signal, and a golden set of 50 documents gating every prompt or model change. Those are real advantages and they keep the margin modest.\n\nBut the balance favours B: A's best contribution is one excellent pre-build experiment, while B is more accurate on the legal reasoning the prompt singled out, closes the measurement hole A only names, and is the document an engineering team could pick up and build from on Monday.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 4,
+        "completeness": 4,
+        "accuracy": 4
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 4,
+        "usability": 4
+      },
+      "content_score": 4.0,
+      "structure_score": 4.0,
+      "overall_score": 8.0
+    },
+    "B": {
+      "content": {
+        "correctness": 5,
+        "completeness": 5,
+        "accuracy": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 4,
+        "usability": 5
+      },
+      "content_score": 4.67,
+      "structure_score": 4.67,
+      "overall_score": 9.3
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 8,
+      "strengths": [
+        "Best single idea in either document: the Section 6 probe -- hand-write summaries for 30 real documents from 10 tenants, ship them in next week's digest, measure. 'Hand-written summaries are the ceiling: if the ceiling doesn't move the metric, the model won't either.'",
+        "Stress Test adds an extractive-baseline arm (first substantive sentence beats an LLM blurb at zero hallucination, zero sub-processor, zero cost) and admits it should have been in the plan -- a genuine concession that improves the recommendation",
+        "Strong architecture argument decided on failure TIMING rather than cost: a failure at digest-assembly time happens after send with no recovery path, so it must happen days earlier",
+        "Sharp measurability insight -- 'You cannot learn anything inside an email' -- correctly drives the summary to be stored in-app with the digest as a read-only projection",
+        "Per-recipient user-level off switch honoured at render time (B has no individual user control at all)",
+        "Real user recourse: any user with document access can HIDE a summary, suppressing it for all recipients in all future digests, without needing an admin",
+        "Adversarial injection test suite in CI with five named cases and ship blocked on a clean pass -- more enforceable than B's 'red-team before launch'",
+        "Quarantine-rate spike alerting framed as 'what an attack looks like from the inside'",
+        "Golden set of ~50 documents with human reference summaries, run on every prompt or model change, blocking on regression",
+        "Properly hedges the Art 50 conclusion ('likely outside', 'do not treat the exemption as settled') and routes it to counsel as an open question",
+        "Excellent counter-narrative (Sam's 14-file photo dump) motivating the digest budget rule: 'as good at staying quiet as it is at speaking up'",
+        "Refuses to chunk-and-reduce long documents in v1 because 'a partial summary of a long document is the most dangerous output the feature can produce'",
+        "Correctly rejects digest click-through as a north star because a good summary suppresses the click"
+      ],
+      "weaknesses": [
+        "Conflates EU AI Act Art 50(2) and 50(4) -- refers to 'the strict marking/disclosure duties' as one bundle and never distinguishes provider from deployer, which is the actual crux for a company consuming an LLM API",
+        "Spends its Art 50 row on the 2 Dec 2026 transitional grace. The date is correct (verified), but that grace applies only to Art 50(2), the PROVIDER machine-readable marking duty, so it is irrelevant to this deployer -- and 'a feature launched now does not qualify for it' implies the deployer carries that duty",
+        "States practice as legal duty: a sub-processor 'must appear on the public sub-processor list' is common contractual practice, not a GDPR Art 28 requirement",
+        "Misses GDPR Art 5 purpose limitation -- that documents uploaded for storage and collaboration are being put to a new processing purpose -- which is one of the strongest privacy arguments available here",
+        "Misses Art 17/20: derived summaries as personal data that must cascade on erasure and appear in exports (deletion appears only as an edge case, not as a legal obligation)",
+        "Identifies the unfalsifiable-metric problem in its own Stress Test but never promotes a holdout into the requirements; it appears only as 'hold out 10% if you can' in a reply to an imagined critic",
+        "No stable requirement IDs -- requirements are unnumbered bullets under area headings, so nothing can be referenced from a ticket or a review",
+        "No user stories and no phased roadmap (only a short backlog)",
+        "Digest ranking order left as [NEEDS INPUT] with a proposal, where the competing output makes ranking the named differentiating requirement",
+        "Every success-metric target is blank; principled, but it means the document cannot yet gate its own launch"
+      ]
+    },
+    "B": {
+      "score": 9,
+      "strengths": [
+        "Most precise legal reasoning in either document, and verified correct: Art 50(2) machine-readable marking binds PROVIDERS of the generative system, not the deployer; Art 50(4) deployer labelling binds only text 'published to inform the public on matters of public interest'; therefore a private work digest does not trigger it -- label anyway for trust, not because the Act compels it",
+        "Adds the product-relevant meta-point that overstating a legal obligation invites the wrong design",
+        "Correctly separates legal duty from market practice on GDPR Art 28(2): the duty is prior notice plus right to object; the public sub-processor list and ~30-day window are 'standard practice'",
+        "Covers GDPR Art 5 purpose limitation -- documents were uploaded for storage and collaboration, so summarisation is a new processing purpose requiring an admin control and in-product notice, not a silent rollout",
+        "Covers Art 17/20: summaries are derived personal data, so deletion must cascade within the deletion SLA and summaries must appear in data exports",
+        "Two INDEPENDENT admin toggles (may we send documents to a third-party model at all, vs may summary text leave the app in outbound email) with the correct argument that collapsing them forces an all-or-nothing that loses the second group",
+        "Cross-tenant cache-key leak caught and prohibited: a content-hash-only key leaks that tenant B holds the same file as tenant A, and shares tenant A's generated text into tenant B's product",
+        "No summary text in subject line or email preview text, because preview renders in inbox lists, lock screens and smartwatches -- contexts the recipient did not choose",
+        "Tenant-level holdout (10% minimum, four weekly sends) as a P0 requirement, tenant-level specifically so colleagues do not receive visibly different digests and compare them; plus a pre-registered ship threshold and a staging-tested kill switch",
+        "Names the measurement failure mode explicitly: email engagement drifts seasonally, so a before/after read will show a 'win' either way",
+        "Stable, cross-referenced requirement IDs (P0-A1, P0-B3, P0-C1, P0-D6) that an engineer can quote in a ticket",
+        "'basis: truncated' flag stored and rendered to the reader as 'based on the first N pages' -- an honest, concrete disclosure of the summary's limits",
+        "Strict output contract validated in code, not requested in the prompt: 'Prompts are guidance; validators are the contract'",
+        "Technically precise injection defence: per-request randomised delimiters (spotlighting), zero-width and bidi-override character stripping, off-canvas/0pt/white-on-white text removal, mapped to OWASP LLM Top 10 by item",
+        "Minimum-length policy -- a 40-word note is not summarised, its first two lines are shown verbatim",
+        "Spreadsheets excluded with the sharpest justification in either doc: 'a wrong summary of a financial model is the worst failure mode available to us'",
+        "Third candidate problem A does not consider -- 'competitors ship AI summaries; we need an AI story' -- which is a real and common driver for AI features",
+        "Competitive context that actually shapes a requirement: the chat-recap lesson (quality collapses without aggressive relevance filtering) justifies the ranking cap",
+        "Stress Test attacks its own central claim: if p90 documents-per-week is 3, the ranking cap never binds and 'the requirement I called the differentiator is dead weight' -- with a concrete cheap test (query the distribution before writing code)",
+        "Names three vanity metrics explicitly and explains why listing rejected metrics in the PRD prevents them reappearing in the first dashboard someone builds",
+        "'A refusal string must never appear in an email' -- a non-obvious LLM-specific edge case A misses"
+      ],
+      "weaknesses": [
+        "Decides a legal question without routing it to counsel: 'A private weekly work digest does not trigger Art. 50(4)' is accurate and well-attributed, but a PRD should still carry a sign-off caveat, and the open questions for Legal cover the DPA point without covering this one",
+        "No per-recipient user-level opt-out -- only workspace admin toggles, so an individual who does not want AI summaries in their own digest has no control (a real gap the competing output fills)",
+        "Weaker user recourse: a one-tap 'this is wrong' link to a web form files a complaint but does not suppress the offending summary, where the competing output lets any user with access hide it immediately",
+        "No golden evaluation set or regression gate on prompt/model changes -- quality relies on a weekly human audit only",
+        "Red-teaming with hostile documents is asserted as a mitigation but never made a concrete CI gate with named test cases",
+        "Requirement numbering is out of sequence within groups (B1-B4, then B6, then P1-B5; C1-C3, C5, then P1-C4; D1-D4, D6, then P1-D5), which reads as a defect in a document whose IDs are meant to be referenceable",
+        "Nothing equivalent to a cheap pre-build experiment that could kill the feature before engineering starts -- its cheapest test only sizes one requirement rather than testing the premise",
+        "Section 16 is meta-commentary addressed to the skill's author rather than to the PRD's reader, and sits outside the deliverable",
+        "Latency is logged in telemetry and noted against one rejected approach, but is less explicitly treated as a product constraint than in the competing output"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Raises data handling and privacy for user-uploaded content unprompted",
+          "passed": true,
+          "note": "Strong and unprompted: GDPR Art 28 sub-processor with notice/objection window on the critical path from week 1, data residency per tenant, contractual zero-retention and no-training, tenant + per-user + project-level off switches, ACL re-checked at SEND time per recipient rather than at generation, and 'never log document text or summary text -- zero-retention at the provider is undone by verbose logging at home'. Weaker than B on legal attribution: misses purpose limitation and the erasure/portability cascade, and states the public sub-processor list as a legal duty."
+        },
+        {
+          "text": "Addresses failure modes specific to generated summaries -- inaccuracy, hallucination, user recourse",
+          "passed": true,
+          "note": "Faithfulness sampling (n>=50 weekly, >=95% pass, below 90% pull the digest surface and keep in-app), golden set of ~50 documents gating prompt and model changes, thumbs up/down bound to prompt_version and model_id, numbers permitted only if verbatim in source, omission named as 'the quieter failure', and the strongest recourse in either document -- any user with access can hide a summary permanently. Refuses chunk-and-reduce because 'a partial summary of a long document is the most dangerous output the feature can produce'."
+        },
+        {
+          "text": "Considers cost and latency as product constraints, not just engineering ones",
+          "passed": true,
+          "note": "Eligibility gate placed before any model call as the primary cost control ('cheaper to classify than to summarise'), per-tenant weekly token budget that stops generation and alerts rather than silently degrading quality, cost-per-tenant-per-week as a tracked metric with a hard cap, and the honest risk that 'the unit cost never goes to zero'. Strongest of the two on latency: p95 latency dashboarded, and lazy-on-open explicitly rejected because email clients will not execute it."
+        },
+        {
+          "text": "Does not treat 'add AI summarisation' as an ordinary CRUD feature",
+          "passed": true,
+          "note": "Opens by refusing the framing ('Your ask was a solution, not a problem'), forks into three candidate problems that build three different products, runs a four-option architecture table decided on failure timing, treats indirect prompt injection as the highest-severity risk ('a successful injection is brand-authenticated phishing' from your own domain), and closes with 'the LLM call is a week of work; the consent surfaces, off-switches and safety scanning are the other eight'."
+        }
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Raises data handling and privacy for user-uploaded content unprompted",
+          "passed": true,
+          "note": "Broadest and most precisely attributed treatment: Art 28(2) sub-processor notice with duty separated from practice, Art 5 purpose limitation (summarisation is a NEW purpose for documents uploaded for storage), Art 17/20 erasure and portability cascading to derived summaries, Art 9 special categories with per-folder exclusion, international transfer mechanism and an EU-resident endpoint as a vendor-selection gate. Plus three original catches: two independent admin toggles, cross-tenant cache-key disclosure, and no summary text in email preview (lock screens, smartwatches). Gap: no individual user opt-out."
+        },
+        {
+          "text": "Addresses failure modes specific to generated summaries -- inaccuracy, hallucination, user recourse",
+          "passed": true,
+          "note": "Materially-misleading rate audited weekly (n=100, three-point rating) with a proposed <=2% rollback threshold explicitly flagged as needing sign-off; 'basis: truncated' stored and surfaced to the reader as 'based on the first N pages' so a partial summary cannot masquerade as complete; output contract validated in code with retry-once-then-store-nothing; standing caveat plus one-tap 'this is wrong'; a model refusal must never reach an email; spreadsheets excluded because a wrong summary of a financial model is the worst available failure. Weaker than A on recourse -- reporting files a complaint but does not suppress the summary -- and has no golden-set regression gate."
+        },
+        {
+          "text": "Considers cost and latency as product constraints, not just engineering ones",
+          "passed": true,
+          "note": "R1 frames the economics correctly -- cost scales with upload volume, not seats -- with the concrete failure case of a tenant syncing a 10,000-file Drive folder; per-tenant daily and weekly caps plus a global circuit breaker with 'the digest must never fail because the LLM budget did'; a request-level cap for pathological documents costing 40x median; idempotency keyed on content hash to prevent duplicate spend; cost per tenant published weekly from day one. Notably honest: it names the cost the chosen architecture incurs (paying to summarise documents nobody opens) and re-opens that decision against itself in the Stress Test."
+        },
+        {
+          "text": "Does not treat 'add AI summarisation' as an ordinary CRUD feature",
+          "passed": true,
+          "note": "Refuses the framing, forks into three candidate problems including 'we need an AI story', and argues that summarisation is commoditised while per-recipient SELECTION is the product -- then makes the ranking cap P0 and calls it the differentiating requirement. Untrusted uploaded content is treated as attacker-controllable input mapped to OWASP LLM01/02/05/10, with the severity argument stated plainly: the output lands in an email from our sending domain, carrying our sender reputation, to people who trust it."
+        }
+      ]
+    }
+  }
+}

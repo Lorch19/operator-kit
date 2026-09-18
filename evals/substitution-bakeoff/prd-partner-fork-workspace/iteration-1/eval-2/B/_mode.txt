@@ -1,0 +1,1 @@
+PRD Mode / Dev-Team output — "Assume we've decided to build it" closes the build question (no Discovery detour), and "Engineering needs it Monday" is the audience cue for Dev-Team rather than AI-Build or Stakeholder.

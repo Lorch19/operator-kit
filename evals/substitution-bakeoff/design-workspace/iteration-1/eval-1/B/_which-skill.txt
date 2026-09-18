@@ -1,0 +1,35 @@
+Skill used: ux-reviewer (/Users/omrilorch/UX-Agent/skills/ux-reviewer/SKILL.md)
+
+Why this one and not ux-creator: the user has an existing three-screen flow and asked
+for a critique ("take a look", "feels heavy"). ux-creator is for designing from scratch;
+its own SKILL.md says "If asked to review, hand off."
+
+Reference files read and applied:
+- ux-reviewer/references/review-passes.md  (the five-pass checklists — Pass 0 codebase
+  prep, Pass 2 "judge the set, not the frame", Pass 3 scope gate 3-of-5 + Lenses A/B/C,
+  Pass 4 craft + visual-treatment coverage, Pass 5 floor checks)
+- ux-creator/LESSONS.md                    (recurring-X-is-a-mode; review the build not
+  the spec; highest-coverage treatment must carry the most energy; rank-then-drop, not
+  rank-alone; split slack, don't pool it)
+- ux-reviewer/CALIBRATION.md               (cap = ~12 Catches i.e. Blocker+Major, NOT the
+  total, resolved 2026-08-23; 50% run-to-run noise floor; the one confirmed miss —
+  a design that passed 9/9 and was rejected for "no point of view")
+- ux-creator/references/design-targets-template.md (shape of the PROVISIONAL
+  DESIGN-TARGETS.md drafted in section 11)
+
+Skill rules that visibly shaped the output:
+- No DESIGN-TARGETS.md existed -> drafted a PROVISIONAL one and scored against it
+  rather than refusing or inventing silently (Inputs rule 2).
+- No codebase and no build -> Pass 0 declared unrunnable, review marked LOW confidence,
+  every pixel-dependent finding tagged [needs build] (Pass 0 rule).
+- "I saw zero of three screens" stated as a finding in itself (Pass 2, the checklist's
+  self-declared largest repeated miss).
+- Visual-treatment coverage split written out (2 of 3 form, 1 of 3 data) even though it
+  couldn't be confirmed -- "an unstated count is an unrun check".
+- Every flag names a countable artifact and is paired with a cheaper alternative.
+- Mandatory Truncated line emitted with the explicit count against the cap (9 of ~12,
+  none cut) and the one merge disclosed.
+
+Constraint handling: could not ask follow-ups, so the six questions are written into
+section 10 with the five assumptions proceeded under, each labelled with which finding
+it would flip. Full review delivered regardless.

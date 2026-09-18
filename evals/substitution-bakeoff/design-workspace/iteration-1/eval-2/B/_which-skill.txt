@@ -1,0 +1,40 @@
+Skills used (all four from the assigned design-tools pack, in this order):
+
+1. design-tools/design-critique  — PRIMARY DIAGNOSIS.
+   Ran the full critique framework (First Impression, Usability, Visual
+   Hierarchy, Consistency, Accessibility) against the described current
+   state ("No projects"). Output section 1. This is what surfaced the two
+   critical findings that no amount of copy would fix: the empty state is
+   almost certainly also the loading state and also the error state.
+
+2. design-tools/ux-copy  — PRIMARY DELIVERABLE.
+   Applied the skill's "Empty States" copy pattern (what this is + why it's
+   empty + how to start) plus its CTA pattern (start with a verb, be
+   specific). Output section 2: recommended copy, 5 tone alternatives
+   including one explicit anti-pattern, a 7-variant zero-state family
+   (first-run / filtered / search / archived / no-permission / error /
+   loading), rationale, and localization notes.
+
+3. design-tools/accessibility-review  — AUDIT OF THE PROPOSED DESIGN.
+   WCAG 2.1 AA audit run forward against the design proposed in section 2
+   (no live page exists to audit), using the skill's output format:
+   findings table with WCAG refs, color-contrast table with computed
+   ratios, keyboard-navigation table, priority fixes. Output section 3.
+
+4. design-tools/design-handoff  — ENGINEERING SPEC.
+   Full handoff using the skill's format: design tokens, component props,
+   states and interactions, responsive behavior, edge cases, animation,
+   accessibility notes. Extended with a state-selection decision table
+   (the fix for the critique's two criticals), instrumentation, and three
+   delivery tiers. Output section 4.
+
+Per CLAUDE.md skill rules: skills named up front in the output, every
+framework section filled with real analysis rather than placeholders, and a
+"Stress Test" section added at the end (section 5).
+
+Constraint handling: the pack's skills each open with a "What I Need"
+section requiring user input. Since this ran unattended, those questions are
+written explicitly into output section 0 as a table of 8 questions, each
+paired with the assumption proceeded under and the impact if that assumption
+is wrong; three are flagged as decision-changing. Full work delivered
+regardless.

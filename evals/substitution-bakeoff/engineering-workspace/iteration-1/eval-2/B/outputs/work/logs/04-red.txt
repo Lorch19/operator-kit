@@ -1,0 +1,31 @@
+
+> fetcher-retry-tdd@0.1.0 test
+> node --test test/fetcher.test.ts
+
+✔ returns the parsed body when the first attempt succeeds (11.957542ms)
+✔ throws HttpError carrying the status when the server keeps failing (0.514042ms)
+✔ retries after a 503 and returns the body from the retry (0.231042ms)
+✔ stops after the default attempt budget and surfaces the last failure (0.2255ms)
+✔ does not retry a 400 — the request is wrong, not the server (0.19125ms)
+✖ retries a 429 because the server is asking us to slow down (0.144125ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82.703083
+
+✖ failing tests:
+
+test at test/fetcher.test.ts:76:1
+✖ retries a 429 because the server is asking us to slow down (0.144125ms)
+  Error [HttpError]: HTTP 429 for https://api.test/thing
+      at Object.fetchJson (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/src/fetcher.ts:35:21)
+      at async TestContext.<anonymous> (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/test/fetcher.test.ts:84:16)
+      at async Test.run (node:internal/test_runner/test:1110:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7) {
+    status: 429,
+    url: 'https://api.test/thing'
+  }

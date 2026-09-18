@@ -1,0 +1,16 @@
+ux-reviewer (primary, and the only skill run).
+
+Routing: the task is a ship/no-ship judgement on an existing design ("Is this accessible
+enough to ship?") — a review, not creation. ux-reviewer's description covers "is this the
+right design" and "before shipping any user-facing surface"; its Pass 5 floor checks are
+exactly contrast, focus order, and non-colour-only signals.
+
+ux-creator was read and deliberately NOT run: its SKILL.md scopes it to designing from
+scratch and says "If asked to review, hand off." Two of its artifacts were borrowed as
+inputs, as ux-reviewer's Inputs section directs — ux-creator/LESSONS.md (shared lesson
+file, read by both skills) and the DESIGN-TARGETS.md contract concept, which ux-reviewer
+drafts as PROVISIONAL when none exists.
+
+Reference files read as mandated: ux-reviewer/references/review-passes.md (the SKILL says
+the checklists must not be run from memory), ux-creator/LESSONS.md, and CALIBRATION.md for
+the finding-cap scope ruling (cap of ~12 bounds Catches = Blocker+Major, not the total).

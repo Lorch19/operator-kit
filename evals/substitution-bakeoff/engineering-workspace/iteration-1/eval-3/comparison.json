@@ -1,0 +1,104 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs are strong and both satisfy all four expectations — neither treats retry/skip/loosen as the fix, both frame the flake as an undeclared dependency in the system, both build a measurement harness before touching code, and both argue the shortcut down explicitly. B wins narrowly on three grounds. (1) It answers this specific prompt more squarely: its first substantive move is a flat refusal plus the three shortcuts and what each actually costs ('converts a 20% signal into a 0% signal'), whereas A's opening table lists quarantine-with-skip as 'Yes, if you need green today', which softens exactly the line the prompt is testing. (2) B carries better fix-stage machinery, the part A leaves abstract: the 4b gate ('write down what production change should make this test fail; would the edited test still fail for it? NO -> you loosened the assertion, revert') is the sharpest anti-shortcut device in either document; the mutation check (git stash the fix, confirm it goes red again) catches the false fix that a rate comparison alone can miss; the production-vs-test fork keyed on 'does the contract actually promise what the test asserts' is a discriminator A never draws; and it ships working waitFor implementations in TS and Python where A only names the principle. (3) B sets a stricter reproduction bar — one command at >=95% failure, written at the top of the ticket, versus A's >=50% — and reasons from the evidence's shape rather than a generic prior (a steady 20% implies something sampled per run, so clock/TZ knobs go last, not first). It does this in ~5,000 words against A's ~6,450, with almost no redundancy, while A restates its confidence math in section 2, section 10 and again in the Stress Test. A's real advantages are on the diagnosis-instrumentation side and they are genuine: it actually ran its own tooling against synthetic fixtures, found and fixed a broken YAML block, and said so; its CI-history forensics spots SHAs that went both red and green as free replay anchors; its Wilson intervals and greens-needed table ('at 20%, 14 consecutive greens for 95% confidence') directly defuse the 'I ran it ten times' fallacy that B only implicitly guards against; and it is admirably explicit that its Phase 1 gate is unmet so the hypotheses are priors, not findings. But A's order-bisect fallback advantage is offset by weaker fix guidance, and its extra length buys reference breadth (the six-runtime knob table) rather than a better path to a fixed test. An engineer handed both would reach a verified, non-coincidental fix faster with B.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 5,
+        "completeness": 5,
+        "accuracy": 5
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 5.0,
+      "structure_score": 4.3,
+      "overall_score": 9.3
+    },
+    "B": {
+      "content": {
+        "correctness": 4,
+        "completeness": 5,
+        "accuracy": 5
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.7,
+      "structure_score": 5.0,
+      "overall_score": 9.7
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9,
+      "strengths": [
+        "Actually executed its own scripts against synthetic fixtures and reported the results, including that the workflow YAML failed to parse on first attempt and was fixed — evidence rather than a claim of correctness",
+        "CI-history forensics as a zero-new-runs first move; detecting a SHA that went both red and green gives a free, confirmed replay anchor",
+        "Wilson confidence interval plus a greens-needed table (20% rate -> 14 consecutive greens for 95% confidence) directly attacks the central trap of flake work: treating green-run count as a proxy for 'fixed'",
+        "Five hypotheses each stated with an explicit falsification clause, plus a re-rank table keyed to the literal CI error text",
+        "Explicitly declares its own Phase 1 gate unmet ('I am handing you the loop, not a verdict'), so priors are not mistaken for findings",
+        "order-bisect.sh includes a linear-shrink fallback for polluters that span both halves, and that path was tested",
+        "Six-runtime knob table with the honest note that rspec --bisect and go test -race make its own script unnecessary in those ecosystems"
+      ],
+      "weaknesses": [
+        "Opens by listing quarantine-with-skip as 'Yes, if you need green today', giving the escape hatch top billing on a prompt specifically testing whether the line holds",
+        "Reproduction gate of >=50% is materially weaker than a 95% bar for calling a flake deterministic",
+        "Fix guidance is a hierarchy of principles with no runnable code — waitFor, clock injection and seeding are named but not implemented",
+        "No equivalent of a mutation check: nothing verifies that reverting the fix brings the failure back",
+        "~28% longer, with real redundancy — the confidence math appears in section 2, is restated in section 10, and again in the Stress Test",
+        "Section 7's self-verification, while trust-building, is space spent on its own artifacts rather than the user's bug, and A concedes it proves nothing about the flake"
+      ]
+    },
+    "B": {
+      "score": 10,
+      "strengths": [
+        "Leads with an unambiguous refusal and a three-row table of what each shortcut actually costs, including the sharp framing that the measured 20% rate is the most valuable artifact in the bug and the shortcut throws it away",
+        "The 4b gate — name the production change this test should catch, make the edit, ask whether it would still catch it — is the single best defence against assertion-loosening disguised as a fix",
+        "Mutation check (stash the fix, confirm red returns) catches the 'fixed' test that was only perturbed, the failure mode that produces re-flaking three weeks later",
+        "Production-vs-test fork keyed on whether the contract actually promises what the test asserts, with 'the test was wrong' allowed exactly once and only with the contract written down",
+        "Distinguishes probe from fix throughout — cache.clear() and a 2s sleep are confirmations, explicitly not the remedy",
+        "Reasons from the evidence's shape: a steady 20% implies a per-run sampled cause, so clock/TZ knobs are ordered last rather than by generic prior",
+        "Ships working waitFor implementations in TypeScript and Python, plus the one narrow case where a fixed delay is legitimate",
+        "Stricter exit criterion (one command, >=95% failure, written at the top of the ticket) and a clean Definition of Done checklist",
+        "Plain-English glosses interleaved after each technical block rather than lumped into a trailing section",
+        "Stress Test names the real tension head-on — that refusing a direct instruction is itself a risk, and the pushback should arrive with the reproduction command in hand"
+      ],
+      "weaknesses": [
+        "order-bisect.sh is the weaker script: it gives up with 'polluter spans both halves' instead of a linear shrink, leaves $RUNNER unquoted, and fails_with treating any of REPEAT runs as red can mislead the search while the ordering is still partly flaky",
+        "Asserts the 95% and 200/200 thresholds without the sample-size arithmetic that justifies them; no confidence-interval reasoning",
+        "Does not claim to have run any of its own scripts, so the bisector's rough edges went uncaught",
+        "CI mining lacks A's both-red-and-green SHA trick, which can confirm the flake and hand over a replay anchor in one step",
+        "The 'no root cause' exit clause, though well-guarded, sits at the end where a fatigued reader reaches for it first"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Declines to skip, retry, or loosen the assertion as the fix", "passed": true, "note": "Retry/sleep-bump/loosen explicitly disqualified ('the one I won't do silently'). Quarantine is offered, but as tracked debt with owner, issue and 14-day expiry, and never as the fix — though it is given prominent top-of-document billing."},
+        {"text": "Treats intermittent failure as a genuine bug - usually order, time, or shared state", "passed": true, "note": "Five ranked hypotheses covering timing race, order pollution, clock/TZ boundary, contended resource and data nondeterminism, each with an explicit falsification prediction."},
+        {"text": "Builds a way to reproduce the flake reliably before changing anything", "passed": true, "note": "flake-hunt.sh with rate measurement and replay lines, a seven-rung stressor ladder, a CI hammer workflow, and a stated gate that blocks progress to hypotheses until the loop is red."},
+        {"text": "Explains why the requested shortcut is the wrong move rather than silently complying", "passed": true, "note": "Argues retrying is a coin-flip on whether the race is in test or product, and that flake rates compound into reflexive re-runs that let genuine regressions through."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Declines to skip, retry, or loosen the assertion as the fix", "passed": true, "note": "All three refused by name, with loosening called strictly the worst. Quarantine permitted only time-boxed, owner-named, ticket-linked, with a build that fails on expiry: 'A quarantine with an expiry date is a plan. One without is a burial.'"},
+        {"text": "Treats intermittent failure as a genuine bug - usually order, time, or shared state", "passed": true, "note": "States the usual causes are production bugs, not test bugs, and works a knob ladder through parallel contention, shuffled order, CI order, CPU starvation, race detector and clock/locale."},
+        {"text": "Builds a way to reproduce the flake reliably before changing anything", "passed": true, "note": "'Fails 1 in 5 is not RED. It is noise.' Exit criterion is one command at >=95% failure written at the top of the ticket, with an order-bisect and mutation-tracing follow-up."},
+        {"text": "Explains why the requested shortcut is the wrong move rather than silently complying", "passed": true, "note": "Opens with the refusal, gives three reasons (production bugs in disguise, discarding the only measured rate, compounding flake rates destroying suite credibility), and revisits the ethics of refusing an instruction in the Stress Test."}
+      ]
+    }
+  }
+}

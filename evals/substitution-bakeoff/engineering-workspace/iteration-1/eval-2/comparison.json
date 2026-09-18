@@ -1,0 +1,111 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs deliver a working, zero-dependency retry-with-backoff fetcher with a green suite and a self-run mutation check, and the established mutation result confirms neither suite is vacuous (expectation 4 satisfied by both). B wins decisively on the three live dimensions. (1) Red evidence: B retained 12 red logs, 12 green logs and a per-cycle implementation snapshot (work/logs/, work/history/). I verified 06-red.txt shows '[0,0,0,0]' vs '[0,100,300,700]' and 08-red.txt shows the jitter failure, and history/01-after.ts -> 02-after.ts -> 09-after.ts confirms the narrated 'ad-hoc if -> bounded loop -> try/catch loop' restructure actually happened. A narrates equivalent failures in a table with specific messages, which reads credibly, but retains no artifact, so its red loop is unverifiable. (2) Observable behaviour vs implementation coupling: this is the decisive gap, and I tested it rather than trusting either report. A asserts on the arguments and call count of an injected sleep collaborator ('assert.deepEqual(waits, [100,200,400])', 'assert.equal(waits.length, 2)'). B injects a virtual clock whose sleep advances a counter and has the fake transport stamp clock.now() on each request, then asserts on when each request actually reached the server ('offsets(net.requests) === [0,100,300,700]'). I applied a behaviour-preserving refactor to both implementations -- splitting each wait into two half-waits, identical total elapsed delay and identical request schedule. A: 4 of 12 tests broke. B: 0 of 14 broke. A's backoff tests are pinned to how the code waits; B's are pinned to what the server observes. (3) Seam identification: B writes the seams down before testing (a six-row question table), explicitly rejects a standalone retry() helper in favour of the existing fetchJson seam with reasoning, and fakes exactly three system boundaries (network, clock, randomness) with hand-written closures -- no internal collaborator faked. A also avoids heavy mocking (a plain closure transport, not a framework) and tests at fetchJson, so it clears the bar, but it pushes sleep and random into the public RetryOptions type documented as 'Injected for tests', and adds a jitter:false production flag that mainly exists to make assertions deterministic. B additionally covers three behaviours A declined -- connection-level failure, Retry-After, and caller abort -- and kills 7 of 7 mutants to A's 6 of 6. A's genuine wins are secondary: it caught a real bug (a trailing sleep after the final attempt), wrote the named regression test while the bug was still live, and kept its test helper outside test/ so the runner does not pick it up -- B's test/support/fakes.ts does get collected, showing as a spurious 14th passing 'test' on a bare 'node --test' (B's own npm script scopes to one file, so the impact is cosmetic). That hygiene point and A's honest YAGNI restraint do not offset a suite that breaks under a refactor that changes no behaviour.",
+  "rubric": {
+    "A": {
+      "content": {
+        "red_evidence": 3,
+        "behavioural_seam": 2,
+        "seam_identification": 3,
+        "coverage_correctness": 4,
+        "honesty_rigour": 4
+      },
+      "structure": {
+        "organization": 4,
+        "reproducibility": 3,
+        "usability": 5
+      },
+      "content_score": 3.2,
+      "structure_score": 4.0,
+      "overall_score": 7.2
+    },
+    "B": {
+      "content": {
+        "red_evidence": 5,
+        "behavioural_seam": 5,
+        "seam_identification": 5,
+        "coverage_correctness": 5,
+        "honesty_rigour": 5
+      },
+      "structure": {
+        "organization": 5,
+        "reproducibility": 5,
+        "usability": 4
+      },
+      "content_score": 5.0,
+      "structure_score": 4.67,
+      "overall_score": 9.7
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 7,
+      "strengths": [
+        "Caught a real bug during the loop (unconditional sleep in catch, so the final failed attempt slept before throwing) and wrote the named regression test while the bug was still live",
+        "Avoided a mocking framework: a hand-written closure transport with a real call counter",
+        "Honestly dropped two candidate tests that passed on first write rather than dressing them up as TDD cycles",
+        "Test-directory hygiene: helper placed in test-support/ so Node's runner does not collect it, keeping output pristine",
+        "Strong stress test that names real holes, including that realSleep is exercised by nothing and that maxDelayMs=30s is a dead code path at maxAttempts=3",
+        "Clear plain-English explanation of what backoff and jitter are for",
+        "6 of 6 self-run mutations killed; suite runs 12/12 green in ~92ms"
+      ],
+      "weaknesses": [
+        "Backoff, cap, no-trailing-wait and jitter tests assert on the arguments and call count of the injected sleep collaborator, testing how the code waits rather than what a caller or server observes",
+        "Empirically confirmed coupling: a behaviour-preserving refactor splitting each wait into two half-waits (identical total delay, identical request schedule) broke 4 of A's 12 tests",
+        "'assert.equal(waits.length, 2)' is a call-count assertion on a collaborator, the pattern expectation 2 warns against",
+        "No red or green logs retained, so the nine narrated red cycles cannot be verified from the artifact",
+        "Test seams leak into the production API: sleep and random sit in the public RetryOptions, documented as 'Injected for tests'",
+        "The jitter:false flag exists largely to make deterministic assertions possible",
+        "No coverage of connection-level abort, Retry-After, or caller cancellation (declined as YAGNI, though A itself names Retry-After as the most likely next requirement)"
+      ]
+    },
+    "B": {
+      "score": 10,
+      "strengths": [
+        "Virtual-clock seam: sleep advances a counter and the fake transport stamps clock.now(), so tests assert on when each request actually reached the server -- the thing an outage victim cares about",
+        "Verified refactor-resilient: the same behaviour-preserving half-wait refactor that broke 4 of A's tests broke 0 of B's 14",
+        "Full red/green evidence retained (work/logs/00-12) plus a per-cycle implementation snapshot (work/history/); I spot-checked 06-red.txt and 08-red.txt and both show the right assertion diff",
+        "history/ corroborates the narrated restructure (if status===503 -> bounded loop -> try/catch loop) with no existing assertion changing, which is the claim a seam argument lives or dies on",
+        "Seams written down before any test: a six-row question table naming where the tests would change shape, including the explicit choice of fetchJson over a standalone retry() helper",
+        "Exactly three boundaries faked (network, clock, randomness); no internal collaborator mocked",
+        "Broader production-relevant coverage: connection-level failure, Retry-After honoured over the computed guess, and abort short-circuiting",
+        "7 of 7 self-run mutations killed, each mapped to the single test that notices",
+        "Caught and reported a real suite defect mid-run: three tests were falling through to setTimeout and really sleeping, pushing the suite to 897ms before the virtual clock brought it to 84ms",
+        "Unusually candid stress test: discloses that tsc --noEmit was never run, that random:()=>1 is a value Math.random cannot return, that a malformed JSON body is wrongly treated as transient (found by reading code, not by a test), and that POST replay is unguarded",
+        "Directly answers the 'eleven cycles is theatre' critique with the three things the loop surfaced that writing it in one go would not have"
+      ],
+      "weaknesses": [
+        "test/support/fakes.ts is collected by a bare 'node --test' and shows as a spurious 14th passing entry; the npm script scopes to one file, so impact is cosmetic, but A noticed this class of pollution and B did not",
+        "random: () => 1 pins a boundary Math.random never reaches (self-flagged)",
+        "FetcherDeps mixes boundaries (transport, clock, random) with policy (retry) -- self-flagged and deferred to review rather than fixed",
+        "The abort check runs after the in-flight request resolves, so it prevents further attempts rather than cancelling the current one",
+        "Retry-After and abort arguably exceed the literal ask, though each was driven by its own red test",
+        "systemClock, the path that runs in production, is exercised by no test (self-flagged; A has the same hole)"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 3,
+      "total": 4,
+      "pass_rate": 0.75,
+      "details": [
+        {"text": "Writes a failing test first and shows it failing for the right reason", "passed": true, "note": "Nine cycles narrated with specific failure text (2 !== 3, [] vs [100,200,400]) and a full assertion diff for the trailing-sleep bug, but no red logs retained, so it cannot be verified from the artifact."},
+        {"text": "Tests observable behaviour rather than internal calls or timer mocks that assert the implementation", "passed": false, "note": "Four tests assert on the arguments and call count of an injected sleep. A behaviour-preserving refactor splitting each wait into two halves broke 4 of 12 tests."},
+        {"text": "Identifies the seam to test at rather than reaching for heavy mocking", "passed": true, "note": "Tests at fetchJson with a hand-written closure transport and a real call counter, no mocking framework. Weakened by pushing sleep and random into the public production options as documented test hooks."},
+        {"text": "Avoids tests that would still pass if the retry logic were deleted", "passed": true, "note": "Established: forcing maxAttempts=1 failed 9 of 12 tests."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Writes a failing test first and shows it failing for the right reason", "passed": true, "note": "12 red logs and 12 green logs on disk plus a per-cycle implementation snapshot; 06-red.txt and 08-red.txt verified to show the correct assertion diffs, and history/ corroborates the narrated implementation progression."},
+        {"text": "Tests observable behaviour rather than internal calls or timer mocks that assert the implementation", "passed": true, "note": "Asserts on request arrival timestamps on a virtual clock ([0,100,300,700]), not on sleep calls. Zero of 14 tests broke under the behaviour-preserving half-wait refactor."},
+        {"text": "Identifies the seam to test at rather than reaching for heavy mocking", "passed": true, "note": "Seams enumerated before testing; fetchJson chosen over a standalone retry() helper with stated reasoning; exactly three system boundaries faked with hand-written closures and no internal collaborator mocked."},
+        {"text": "Avoids tests that would still pass if the retry logic were deleted", "passed": true, "note": "Established: forcing maxAttempts=1 failed 9 of 14 tests."}
+      ]
+    }
+  }
+}

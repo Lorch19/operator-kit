@@ -1,0 +1,12 @@
+{
+  "eval_id": 4,
+  "eval_name": "dark-theme-a11y-ship-call",
+  "prompt": "Is this accessible enough to ship? Dark theme, lots of grey-on-grey, and the primary button is a mid-blue on near-black.",
+  "expected_output": "A WCAG assessment that computes or demands contrast ratios and gives a ship/no-ship answer with specifics.",
+  "assertions": [
+    "Names the specific WCAG criteria and thresholds at stake (e.g. 4.5:1 body, 3:1 large text and UI)",
+    "Asks for or computes actual contrast ratios rather than eyeballing",
+    "Covers more than contrast \u2014 focus order, focus visibility, target size",
+    "Gives a clear ship / do-not-ship verdict rather than hedging"
+  ]
+}

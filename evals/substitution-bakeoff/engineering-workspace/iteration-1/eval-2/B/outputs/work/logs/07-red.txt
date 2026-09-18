@@ -1,0 +1,49 @@
+
+> fetcher-retry-tdd@0.1.0 test
+> node --test test/fetcher.test.ts
+
+✔ returns the parsed body when the first attempt succeeds (11.741167ms)
+✔ throws HttpError carrying the status when the server keeps failing (302.760125ms)
+✔ retries after a 503 and returns the body from the retry (101.449625ms)
+✔ stops after the default attempt budget and surfaces the last failure (305.150625ms)
+✔ does not retry a 400 — the request is wrong, not the server (1.007ms)
+✔ retries a 429 because the server is asking us to slow down (101.457458ms)
+✔ honours a configured attempt budget (705.5455ms)
+✔ spaces retries out with exponentially growing waits (2.387292ms)
+✖ caps how long it will wait between attempts (2.606041ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1612.195584
+
+✖ failing tests:
+
+test at test/fetcher.test.ts:125:1
+✖ caps how long it will wait between attempts (2.606041ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      0,
+      100,
+      300,
+  +   700,
+  +   1500
+  -   550,
+  -   800
+    ]
+  
+      at TestContext.<anonymous> (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/test/fetcher.test.ts:137:10)
+      at async Test.run (node:internal/test_runner/test:1110:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 0, 100, 300, 700, 1500 ],
+    expected: [ 0, 100, 300, 550, 800 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

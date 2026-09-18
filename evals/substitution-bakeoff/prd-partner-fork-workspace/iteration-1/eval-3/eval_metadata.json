@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "stakeholder-conversion",
+  "prompt": "This spec is for the exec review on Thursday, not for engineers. Rework it.",
+  "expected_output": "Mode conversion to Stakeholder \u2014 strategic framing, not a reformatted engineering doc.",
+  "assertions": [
+    "Changes what is emphasised, not merely the section headings",
+    "Leads with the business case and the decision being asked for",
+    "Drops or compresses implementation detail an exec will not read",
+    "Preserves the substance rather than producing a thinner version of the same doc"
+  ]
+}

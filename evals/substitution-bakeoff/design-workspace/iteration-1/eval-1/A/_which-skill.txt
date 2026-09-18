@@ -1,0 +1,46 @@
+SKILLS USED
+===========
+
+PRIMARY: design-tools/design-critique
+  The task is "take a look at this flow, something feels heavy" — a direct match for
+  the skill's TRIGGER ("review this design", "what do you think of this screen?").
+  Followed its 5-dimension framework (first impression, usability, visual hierarchy,
+  consistency, accessibility) and its output structure.
+
+  ONE DELIBERATE ADAPTATION: the skill's output template has a "Findings" table that
+  implies observation. There is no artifact to observe (no screenshots, no code, no
+  Figma). Rather than fabricate observations into the template, I converted each
+  finding into a candidate diagnosis + prior + a self-administered test. Stated that
+  adaptation explicitly at the top of the output. Per project CLAUDE.md: "never let a
+  template override real data" and "say the weaker true thing."
+
+SECONDARY: design-tools/ux-copy
+  Copy weight is one of the top-ranked causes of felt heaviness in onboarding, so
+  section 6 runs the ux-copy skill properly: its four copy patterns (CTAs, error
+  messages, empty states, confirmation), its output format (recommended copy,
+  alternatives table with tone/best-for, rationale, localization notes). "Before"
+  strings are labeled as reconstructions of the common industry pattern, not as
+  quotes from the user's product.
+
+NOT RUN: design-tools/accessibility-review
+  A WCAG 2.1 AA audit needs an artifact — real color values for contrast ratios, real
+  DOM for focus order, real targets to measure. A filled-in contrast table invented
+  from a verbal description would be fabrication, and worse than nothing because it
+  reads as a clean bill of health. Section 9 says this, names the four checks most
+  likely to fail on a flow of this shape when there IS an artifact, and notes the one
+  genuine overlap (cognitive load is an accessibility concern, so the
+  decision-removing recommendations are a11y wins).
+
+NOT RUN: design-tools/design-handoff
+  Handoff specs are for a settled design going to engineering. This design is under
+  diagnosis and the recommendation is to delete a screen — tokens, props and
+  breakpoint tables would be thrown away. Section 9 says to run it after the flow
+  is settled.
+
+CONSTRAINT HANDLING
+  Cannot ask follow-ups. The 5 questions that would actually change the
+  recommendation are written into section 0 as a table, each paired with the
+  assumption used instead and what changes if that assumption is wrong. Full
+  deliverable delivered regardless.
+
+  Stress Test section included per project CLAUDE.md rule for analysis output.

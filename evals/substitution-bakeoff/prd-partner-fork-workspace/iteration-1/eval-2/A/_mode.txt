@@ -1,0 +1,1 @@
+PRD Mode / Dev-Team output — the build decision was stated as already made (so not Discovery Mode, though the underlying problem was thin enough that I reconstructed it and flagged the riskiest assumption), and "engineering needs it Monday" names engineers as the audience (so Dev-Team, not AI-Build or Stakeholder).
