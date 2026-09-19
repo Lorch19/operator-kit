@@ -1,0 +1,138 @@
+{
+  "winner": "B",
+  "reasoning": "The prompt is a seven-word solution statement with zero context, and the eval is testing restraint: can the output refuse the framing, reconstruct the problem, and name what it needs to know without quietly inventing the missing context? Both outputs open strongly and both push back without refusing. B wins because it sustains that discipline the whole way through; A abandons it after section 2.\n\nA's section 2 is the single best passage in either document: the split into a credibility problem, a latency problem, and a context problem, each with a different user, a different success metric, and a different right answer ('Only (c) requires a native app'), is a genuine reframe that would change how a reader thinks. Its 'permanent tax' costing (two release trains, store review on every hotfix, 15-25% of an engineer forever per platform, starting the day you ship) and its pre-committed decision thresholds are both excellent. But having correctly established that it does not know which of a/b/c is true, A proceeds to generate 20 candidate moves, cluster them into eight lettered candidates, score all eight across valuable/usable/feasible/viable, and lay out a 14-week schedule. That violates expectation 1 directly, and several of the 20 are plain app-feature ideas (pre-meeting briefs 15 minutes before a calendar event, a home screen fused with the user's day, share-sheet artifacts). Worse, the whole apparatus rests on an invented company: an existing desk-bound web product, an approval workflow with a rubber-stamp rate, RFP checklists, named lost deals, zero mobile engineers. A labels every one of those assumptions honestly and says what changes if each is wrong, which is a real mitigation — but labeling does not make sections 3 through 6 true, and if the reader is a solo founder with an idea rather than a B2B SaaS team, nearly all of that output is inapplicable. A's own stress test concedes the point ('every threshold in section 5 is defensible reasoning over invented inputs').\n\nB states 'I'm not going to generate app ideas yet. That would be filling in claims 1 and 2 with my guesses and calling it your strategy' — and then does not. Its decomposition of the sentence into three claims, only the third of which was stated, and its observation that the stated one is the least important and least reversible, is a cleaner attack on the framing than A's. Its seven questions are structured better than A's table because each names the mechanism explicitly ('why it forks the work') rather than only the consequence. Its capability test is the most reusable artifact in either document: seven candidate justifications for the word 'mobile', each with the condition under which it is load-bearing, and an explicit scoring rule (zero -> mobile web, one -> check a wrapper first, two or more -> justified, and those two are what version one must prove). It then self-criticizes the weakest row of its own table twice — flagging store presence as 'the most over-claimed' in the table and returning to it in the stress test to concede it is occasionally the true reason.\n\nOn the repository grounding specifically: B's use of it is disciplined rather than confident-sounding irrelevance, but it is only mildly valuable. B checks for client code, finds none, and — crucially — does not conclude that the repo tells it what the app should be. It draws the opposite inference: 'this repo gives no candidate for what the app is. So the app is either for a different product entirely, or it doesn't exist yet even as a concept. Either way, the missing information isn't technical.' It then leads its own stress test with the strongest objection to its own evidence: 'My repository evidence may be beside the point. Nothing in your sentence says the app belongs to this codebase.' That is the correct epistemic handling of a negative result from probably-the-wrong-repo. The grounding earns B a small amount of credit for verifying instead of assuming, and costs it nothing because it is correctly bounded — but the finding itself is thin, and B's inference that this is therefore 'greenfield, the heavier process' is the one place it over-reads the evidence. If the repo had been the decisive factor here, B would not have won; it wins on restraint and on the capability test.\n\nB's other weaknesses: the opening paragraph about 'the full treatment' and writing to docs/specs/<date>-<topic>-design.md leaks an internal process convention into what is a product question, and its path A (five conversations, ask about past behavior not 'would you use this') is standard discovery advice — correct and unusually well-specified, with a written pass condition of three of five describing the problem unprompted and showing a self-built workaround, but not novel. A is the more intellectually interesting document; B is the more correct response to this prompt.\n\nExpectations: B passes 4 of 4; A passes 3 of 4, failing the first and most important one.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness_of_approach": 3,
+        "completeness": 5,
+        "groundedness_vs_fabrication": 3
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 3.7,
+      "structure_score": 4.7,
+      "overall_score": 8.3
+    },
+    "B": {
+      "content": {
+        "correctness_of_approach": 5,
+        "completeness": 4,
+        "groundedness_vs_fabrication": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 4,
+        "usability": 5
+      },
+      "content_score": 4.3,
+      "structure_score": 4.7,
+      "overall_score": 9.0
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 8,
+      "strengths": [
+        "Best single insight in either document: the credibility / latency / context taxonomy, with a different user, success metric and correct answer for each, and the conclusion that only the context problem requires a native app",
+        "Names the 'mobile app' sentence as an answer rather than a question in the first line and never softens that",
+        "Costs the thing nobody costs: two release trains, store review on every hotfix, minimum-OS liability, crash triage as a new on-call surface, 15-25% of an engineer forever per platform, starting at ship not at start",
+        "Keeps the full-parity native app in the lineup as candidate Z so the original ask is explicitly evaluated and explicitly beaten rather than ignored",
+        "Pre-commits decision thresholds (mobile session share <8%, 8-20% with >24h approval latency, >20% or a structurally non-desk persona) so the call is not re-litigated by whoever is loudest",
+        "Strongest stress test of the two: the 'if mobile is the platform shift in this category, this is the exact plan that loses' critique is real, and A names the specific data pull that would detect that world",
+        "Every assumption in section 1 is paired with what changes if it is wrong"
+      ],
+      "weaknesses": [
+        "Directly violates the first expectation: generates 20 candidate moves, eight clustered candidates and a scored evaluation despite having just argued it does not know which problem it is solving",
+        "Several of the 20 are ordinary app feature ideas, not problem-framing moves (pre-meeting briefs, calendar-fused home screen, share-sheet artifacts, hallway-ready digest)",
+        "Invents an entire company to reason about — existing desk-bound web product, approval workflow with a rubber-stamp rate, RFP checklists, lost deals, no mobile engineers — and builds four of its six sections on that substrate",
+        "Labeling the assumptions mitigates but does not repair this: sections 3-6 are only meaningful in the assumed world, and A's own stress test concedes the thresholds are 'defensible reasoning over invented inputs'",
+        "Verified nothing despite having the ability to look; the entire document is reasoning, with no attempt to reduce any of the seven unknowns it identified",
+        "A 14-week staged plan for a reader whose situation is unknown risks being wholly inapplicable rather than merely imprecise",
+        "Long and dense; the genuinely load-bearing content (sections 1, 2 and the thresholds) is buried under generation the prompt did not ask for"
+      ]
+    },
+    "B": {
+      "score": 9,
+      "strengths": [
+        "Holds the line the eval is testing: states plainly that generating app ideas would mean filling in the unstated claims with its own guesses and calling it the user's strategy, then does not generate any",
+        "Sharpest reframe of the premise: three bundled claims, only the third stated, and the stated one is both the least important and the least reversible",
+        "The seven questions name the mechanism, not just the consequence — each has an explicit 'why it forks the work' alongside the assumption and the if-I'm-wrong branch",
+        "The capability test is the most reusable artifact in either document and is product-agnostic: seven justifications for the word 'mobile', each with its load-bearing condition, plus a hard scoring rule at zero / one / two or more",
+        "Attacks the weakest line of its own framework twice, flagging store presence as 'the most over-claimed' reason inside the table and returning to concede in the stress test that it is occasionally the true one",
+        "Scope inventory is a good rhetorical move: eight components of 'a mobile app', only one of which is the product, the other seven being the toll",
+        "Verified rather than assumed, and drew the correct negative inference — the repo offers no candidate for what the app is, so the missing information is not technical",
+        "Leads its own stress test with the strongest objection to its own method: the repo evidence may be beside the point because nothing in the prompt says the app belongs to this codebase",
+        "Its assumptions (no named user, small team, no deadline, no budget) are light and hold across far more possible situations than A's invented B2B SaaS",
+        "The recommended path has a falsifiable pass condition written before the work starts: three of five describe the problem unprompted and show a self-built workaround"
+      ],
+      "weaknesses": [
+        "The repo finding is thin — 'no client code here' is close to self-evident, and the section spends more space on it than it returns",
+        "Over-reads that evidence in one place: concluding 'greenfield, therefore the heavier process' does not follow if the app belongs to a different product, which B itself later flags",
+        "Leaks internal process convention into a product question: 'the full treatment', and writing the design to docs/specs/<date>-<topic>-design.md, presume a workflow the prompt never established",
+        "Less strategically rich than A — it has no equivalent of the credibility / latency / context split, which is the one idea that would most change a reader's mind",
+        "Path A is competent but conventional discovery advice; well-specified, but not an insight",
+        "Names no numeric thresholds and no cost figures, so it is weaker than A at pre-committing the eventual decision"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 3,
+      "total": 4,
+      "pass_rate": 0.75,
+      "details": [
+        {
+          "text": "Does not start generating mobile app ideas on this prompt",
+          "passed": false,
+          "note": "Explicitly announces it will generate ('generates a wide set of candidates') and produces 20 moves, 8 clustered candidates and a full valuable/usable/feasible/viable scoring. Many moves are anti-app, which is a partial defence, but items 3, 9, 16, 17, 18 and 19 are app feature concepts. The majority of the document is generation and evaluation."
+        },
+        {
+          "text": "Establishes what problem the app is meant to solve before proposing anything",
+          "passed": true,
+          "note": "Section 2 is the strongest treatment of this in either output — credibility vs latency vs context, each with its own user and success metric. Passes, though A then proposes at length without resolving which one is true."
+        },
+        {
+          "text": "Names what it would need to know and why each answer changes the work",
+          "passed": true,
+          "note": "Seven questions in a table, each with the assumption carried and the consequence if it is wrong (e.g. a net-new product with no web presence 'inverts' the analysis into a platform-choice question)."
+        },
+        {
+          "text": "Pushes back on the framing without simply refusing to engage",
+          "passed": true,
+          "note": "Opens with 'that sentence is an answer, not a question' and supplies a complete alternative plan plus the line to say out loud in the room."
+        }
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Does not start generating mobile app ideas on this prompt",
+          "passed": true,
+          "note": "Refuses explicitly and holds to it. The three paths forward are process options, and the scope inventory is a list of what any app must contain, not a proposal for what this one should do."
+        },
+        {
+          "text": "Establishes what problem the app is meant to solve before proposing anything",
+          "passed": true,
+          "note": "Three-claim decomposition, Q1 on who has the problem and what they do instead, and a day 1-2 task of writing the problem as one sentence with the explicit note that inability to write it without inventing details is itself the finding."
+        },
+        {
+          "text": "Names what it would need to know and why each answer changes the work",
+          "passed": true,
+          "note": "Seven questions, each with why it forks the work, the working assumption, and the branch if wrong — e.g. an existing backend means the design starts at its API and scope drops by more than half."
+        },
+        {
+          "text": "Pushes back on the framing without simply refusing to engage",
+          "passed": true,
+          "note": "Calls it 'a solution wearing a project's clothes' while still delivering a capability test with a scoring rule, a scope inventory, three costed paths and a concrete five-day plan."
+        }
+      ]
+    }
+  }
+}

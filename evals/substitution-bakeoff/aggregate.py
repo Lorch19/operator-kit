@@ -9,6 +9,10 @@ CONTESTS = {
                           {"kit": "engineering-tools (kit)", "other": "superpowers (substitute)"}),
     "prd-partner-fork":  ("prd-partner-fork-workspace/iteration-1",
                           {"kit": "prd-partner 466L (operator-kit)", "other": "prd-partner 428L (claude.ai synced)"}),
+    "writing":           ("writing-workspace/iteration-1",
+                          {"kit": "meta-tools/writing-great-skills (kit)", "sub": "superpowers/writing-skills"}),
+    "ideation":          ("ideation-workspace/iteration-1",
+                          {"kit": "pm-agents ideation (kit)", "sub": "superpowers/brainstorming"}),
 }
 
 for name, (ws, labels) in CONTESTS.items():
@@ -23,6 +27,19 @@ for name, (ws, labels) in CONTESTS.items():
         c = json.loads(cpath.read_text())
         w = c.get("winner", "?")
         side = key[ev].get(w) if w in ("A", "B") else "TIE"
+        # swap test: same files, positions exchanged. If the unblinded winner
+        # changes, the verdict tracked the slot rather than the content.
+        spath = wsp / f"eval-{ev}" / "comparison_swapped.json"
+        if spath.exists():
+            import hashlib
+            h = lambda q: hashlib.md5(pathlib.Path(q).read_bytes()).hexdigest()
+            orig = {t: h(wsp/"_blind"/f"eval-{ev}"/f"{t}.md") for t in "AB"}
+            swp  = {t: h(wsp/"_blind_swapped"/f"eval-{ev}"/f"{t}.md") for t in "AB"}
+            inv  = {v: t for t, v in orig.items()}
+            sw   = json.loads(spath.read_text()).get("winner")
+            if sw in ("A","B"):
+                side_sw = key[ev][inv[swp[sw]]]
+                side = side if side_sw == side else "VOID (flipped on swap)"
         sa = c.get("rubric", {}).get("A", {}).get("overall_score", "")
         sb = c.get("rubric", {}).get("B", {}).get("overall_score", "")
         rows.append((ev, w, side, sa, sb))

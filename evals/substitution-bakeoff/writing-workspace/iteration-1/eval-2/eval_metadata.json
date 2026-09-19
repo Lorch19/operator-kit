@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "writing-2",
+  "prompt": "my SKILL.md is about 900 lines and two people have now told me it's too long. what do I actually cut",
+  "expected_output": "Applies progressive disclosure \u2014 what belongs in SKILL.md vs references/ vs scripts/ \u2014 with a concrete cut list, not a general plea for brevity.",
+  "assertions": [
+    "Uses a principle for what stays vs what moves out, not just 'cut the fluff'",
+    "Names specific categories of content to relocate and where they go",
+    "Recognises that length itself is not the defect \u2014 reachability of the right content is",
+    "Gives an actionable ordering, not an undifferentiated list"
+  ]
+}

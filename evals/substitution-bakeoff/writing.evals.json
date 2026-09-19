@@ -1,0 +1,44 @@
+{
+  "contest": "meta-tools/writing-great-skills vs superpowers/writing-skills",
+  "skill_name": "writing-great-skills",
+  "contenders": {
+    "kit": ["meta-tools/writing-great-skills (102 lines, USER-invoked)"],
+    "substitute": ["superpowers/writing-skills (679 lines, model-invoked)"]
+  },
+  "why": "2 invocations for the substitute, 0 for the kit. The kit's version is the editorial half of skill authoring — invocation choice, information hierarchy, progressive disclosure, precedent blocks, the seven failure modes. It is also 1/7th the length and user-invoked, so it has never had a chance to fire. Tests whether the editorial framing earns its place against a much larger general skill-writing guide.",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "this skill keeps not firing when I actually need it. the description is 'Helps with data analysis tasks'. what do I do",
+      "expected_output": "Diagnoses the description as the triggering mechanism and rewrites it with concrete trigger contexts, rather than giving generic advice about clarity.",
+      "expectations": [
+        "Identifies the description field as the thing that decides invocation, not the body",
+        "Rewrites the actual description rather than describing how to rewrite it",
+        "Addresses near-miss competition — what else might claim the same queries",
+        "Explains why the original fails, not just that it does"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "my SKILL.md is about 900 lines and two people have now told me it's too long. what do I actually cut",
+      "expected_output": "Applies progressive disclosure — what belongs in SKILL.md vs references/ vs scripts/ — with a concrete cut list, not a general plea for brevity.",
+      "expectations": [
+        "Uses a principle for what stays vs what moves out, not just 'cut the fluff'",
+        "Names specific categories of content to relocate and where they go",
+        "Recognises that length itself is not the defect — reachability of the right content is",
+        "Gives an actionable ordering, not an undifferentiated list"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I keep having to give Claude the same correction every session — it writes migrations without a rollback step. I've told it like six times. how do I make it stick",
+      "expected_output": "Turns a recurring correction into a durable rule that survives — rule plus precedent plus self-check — rather than suggesting he just add a line to CLAUDE.md.",
+      "expectations": [
+        "Produces the actual rule text, not advice about writing rules",
+        "Includes something that makes the rule verifiable or self-checking, not just a statement",
+        "Explains why bare imperatives decay and what makes one survive",
+        "Addresses where it should live so it is actually loaded when relevant"
+      ]
+    }
+  ]
+}

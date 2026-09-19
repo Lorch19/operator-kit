@@ -1,0 +1,5 @@
+superpowers:brainstorming
+
+Path: /Users/omrilorch/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/skills/brainstorming/SKILL.md
+Classification taken: architectural (new system, no existing flow in the repo).
+Only SKILL.md was read; visual-companion.md was not needed (no visual question arose, and the run is unattended).

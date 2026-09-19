@@ -1,0 +1,103 @@
+{
+  "winner": "A",
+  "reasoning": "Both outputs satisfy all four expectations and neither fabricates evidence, so the decision turns on density and on how fast the user reaches something pasteable. A leads with an unmissable 'The rule block — paste this' heading at ~24% of its length, containing one self-contained fenced block (DB-001/DB-002, each with Rule / Precedent / Self-check) that can go straight into a project rules file. B's deliverable is diffuse: a _TEMPLATE.sql, four lines of rules prose, a hook script, a settings.json fragment and a checker self-test, spread across three tiers and gated behind a 20-minute 'reproduce it before you fix it' step — so a 30-second skim yields a project rather than a paste. On expectation 3, A's diagnosis is the deeper one (storage / durability / enforcement, plus 'your correction arrives after the migration is written — it's a repair, not an instruction'), and its 'an assertion is argued with, evidence is only disproven' plus the argument for using the token `down` rather than the phrase 'rollback step' are non-obvious mechanisms for why a rule survives. On expectation 4, A is directly on-criterion: it ranks four homes explicitly by whether each is loaded at the moment a migration is written, names the context budget, and identifies the weak-pointer failure ('See docs/precedents/database.md' gets read roughly never because nothing says when). B's placement section is framed as tier selection rather than loadedness, though its skill-description trap is a good catch. B is not weak — 'there were never six corrections, there were six sessions that each got told once' is the single sharpest line in either document, its PostToolUse exit-2 hook semantics are correct, its [[:space:]] classes are more portable than A's \\s, and giving the checker its own self-test (disclosing that the first regex rejected files produced by its own template) is a genuine deepening that A lacks. But roughly 200 of B's extra 222 lines are not all load-bearing: 'Common mistakes with this specific fix' restates five points already argued, 'Order of operations' restates the tiers a third time, and assumption four is flagged four separate times (opening table, Step 1, leak table, Stress Test). B also carries a mild internal tension — 'Six is a pattern. Build the permanent thing' immediately followed by a step telling you not to build yet. On honesty about evidence both behave well, but A's is structural rather than only commentary: it deliberately leaves the Precedent dates and verbatim quote as blanks and argues why filling them from imagination would be worse ('a precedent invented at the desk is a stale line wearing armour'), then supplies a recovery grep. I checked A's one concrete verification claim — it states 92 transcript files mention the term; running the same command now returns 98, consistent with a real run whose count has since grown. A ran what it claimed to run. A's deductions are minor: its CI grep '^\\s*(pass|-- *TODO)\\s*$' can false-positive on a bare `pass` line inside an up-block, and its zsh-globbing aside is directionally right but imprecise (zsh errors on no-match rather than silently finding nothing).",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 5,
+        "completeness": 5,
+        "accuracy": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.7,
+      "structure_score": 5.0,
+      "overall_score": 9.2
+    },
+    "B": {
+      "content": {
+        "correctness": 5,
+        "completeness": 5,
+        "accuracy": 5
+      },
+      "structure": {
+        "organization": 3,
+        "formatting": 4,
+        "usability": 3
+      },
+      "content_score": 5.0,
+      "structure_score": 3.3,
+      "overall_score": 8.3
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9,
+      "strengths": [
+        "Pasteable rule block arrives early under an unmissable 'paste this' heading; one self-contained artifact rather than five",
+        "Self-check lives inside the rule text itself (up -> down -> up round trip, plus a count-match test: files changed must equal files round-tripped clean)",
+        "Strongest account of why bare imperatives decay: assertions lose to plausible local arguments, and evidence beside the rule is what resists softening",
+        "Distinctive durability mechanics: stable citable IDs that are never renumbered, and using the token `down` rather than the phrase 'rollback step' so rule vocabulary matches file vocabulary",
+        "Placement section ranked explicitly by whether the rule is loaded at the moment of writing, including the weak-pointer failure mode and the context-budget tradeoff",
+        "Anticipates the exception that kills the rule (DB-002 for irreversible migrations) instead of leaving an exemption clause",
+        "Deliberately leaves the precedent slots blank with a clear argument against inventing one, plus a working recovery grep; its stated verification (92 matching transcripts) checks out against a live run returning 98",
+        "Stress test names the real weakness (precedent bought by irritation, not by an incident) and the strongest alternative hypothesis (the codebase's existing migrations teach the opposite of the rule)"
+      ],
+      "weaknesses": [
+        "CI script's '^\\s*(pass|-- *TODO)\\s*$' can match a bare `pass` line anywhere in the file, not just an empty down-block",
+        "\\s in ERE is a GNU extension and would fail on stock BSD grep (moot on this machine, which shims grep to ugrep)",
+        "zsh globbing aside is slightly wrong: unquoted *.jsonl errors with 'no matches found' rather than silently matching nothing",
+        "No equivalent of B's checker self-test, so its CI gate could rot into a meaningless green check",
+        "No measurement protocol to confirm the rule actually stuck beyond 'say DB-001 and see'"
+      ]
+    },
+    "B": {
+      "score": 8,
+      "strengths": [
+        "Best single reframe in either output: there were never six corrections, there were six sessions each told once, so repetition was never in play",
+        "Richest verification apparatus: template VERIFIED checkboxes, a PostToolUse hook with correct exit-2 blocking semantics, CI reuse, and a self-test for the checker itself",
+        "Honest disclosure that the first regex draft matched '-- ROLLBACK' but not '-- ## ROLLBACK', rejecting files its own template produced",
+        "Makes the irreversible case a costlier required slot rather than an exemption, with a good argument for why exemption clauses spread",
+        "Uses portable [[:space:]] classes rather than \\s",
+        "Step 1 correctly tries to falsify its own load-bearing assumption before building, and the failure-type table is a useful diagnostic",
+        "Strong closing honesty: six anecdotes are not six measurements, and the critic's point that the migration tool may already scaffold a down stub",
+        "Concrete five-sessions-plus-control protocol for checking whether the fix stuck"
+      ],
+      "weaknesses": [
+        "406 lines with visible sediment: 'Common mistakes' restates five earlier points, 'Order of operations' restates the tiers a third time, and assumption four is flagged four separate times",
+        "The pasteable rule is thin (four lines of prose) and the real deliverable is split across five artifacts, so a 30-second skim yields a project rather than something to paste today",
+        "Gates the entire fix behind a 20-minute baseline step, adding friction to a question asked as 'how do I make it stick'",
+        "Internal tension: 'Six is a pattern. Build the permanent thing' is immediately followed by a step saying do not build yet",
+        "Weakest of the two on expectation 4 specifically — placement is framed as tier selection rather than as whether the rule is in context at the moment a migration is written",
+        "Spends meaningful space on generic taxonomy about rule forms, which edges toward advice about writing rules rather than the rule"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Produces the actual rule text, not advice about writing rules", "passed": true, "note": "Full pasteable block: DB-001 and DB-002, each with Rule, Precedent and Self-check sections, under a 'paste this' heading."},
+        {"text": "Includes something that makes the rule verifiable or self-checking, not just a statement", "passed": true, "note": "Self-check is embedded in the rule: run up -> down -> up on a scratch DB and paste the output; count of migrations changed must equal count round-tripped clean; plus grep -L for the irreversible marker and a CI script."},
+        {"text": "Explains why bare imperatives decay and what makes one survive", "passed": true, "note": "Three-layer diagnosis (storage, durability, enforcement) plus the repair-not-instruction point; 'an assertion is argued with, evidence is only disproven'; redefining done as a binary bound; matching rule vocabulary to file vocabulary."},
+        {"text": "Addresses where it should live so it is actually loaded when relevant", "passed": true, "note": "Four homes ranked explicitly by loadedness at the moment of writing, with context-budget cost, the weak-pointer failure mode, when it becomes a skill, and a sequencing rule for adding the CI gate."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Produces the actual rule text, not advice about writing rules", "passed": true, "note": "Delivers _TEMPLATE.sql plus four lines of project-rules prose; passes, but the rule text proper is thin and the output devotes real space to generic taxonomy about rule forms."},
+        {"text": "Includes something that makes the rule verifiable or self-checking, not just a statement", "passed": true, "note": "VERIFIED checkboxes in the template, PostToolUse hook exiting 2, CI over changed files, a self-test for the checker, and a five-sessions-plus-control measurement protocol. The deepest coverage of this expectation."},
+        {"text": "Explains why bare imperatives decay and what makes one survive", "passed": true, "note": "Six sessions each told once rather than six corrections; prose reminders compete for attention while empty slots do not; no softeners; exemption clauses spread."},
+        {"text": "Addresses where it should live so it is actually loaded when relevant", "passed": true, "note": "Template in the migrations directory, rules in the project file, skill only if it spans repos, plus a good trap about skill descriptions summarizing the procedure. Framed as tier selection more than as loadedness."}
+      ]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+meta-tools/writing-great-skills
+
+Full path: /Users/omrilorch/operator-kit/meta-tools/writing-great-skills/SKILL.md
+Also read its disclosed reference file: GLOSSARY.md

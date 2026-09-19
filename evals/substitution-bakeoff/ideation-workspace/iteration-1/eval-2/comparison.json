@@ -1,0 +1,182 @@
+{
+  "winner": "B",
+  "reasoning": "Close call, decided on breadth of decision support rather than on the candidate-distinctness test, which came out near-even. DISTINCTNESS AUDIT (the sharpest test): A claims 13 candidates; honest count is ~11 distinct mechanisms, ~10 if you are strict. Two collapses are left standing: #5 'episodic grouping (by session/month)' and #6 'time-bucket browse (week/month/2025)' are the same mechanism — group the list by time so browsing replaces recall — in two costumes; #11 'account-wide index' and #12 'self-serve restore + support console' are a lookup and its completion, and A itself bundles them into a single approach. B presents 20 angle-outputs in Part 3, of which only ~11-12 are distinct (items 1/4/7/15/17/20 are all one temporal-recognition family; 9/10 are both creation-time naming; 13/16 are both resurfacing; 14 and 20 are meta-moves, not ideas) — but B does not present the 20 as its answer. Part 4 is explicitly headed 'Clustering the twenty into seven real candidates' and collapses them to 7, of which 7 are genuinely distinct (creation-time naming / temporal-visual recognition / unified cross-boundary index / identity repair / ambient resurfacing / semantic content retrieval / re-use-over-retrieve). So the honest numbers are A 11-of-13 and B 7-of-7 (from 20 raw). A's larger count is mostly finer slicing of the same territory, not additional territory: the union difference is small, and the one real gap is A's — it has no 're-use over retrieve' idea at all, which is arguably the biggest single escape from the search frame in either document, and it lacks semantic content retrieval (by explicit reasoned exclusion). B does the deduplication itself rather than leaving it for the reader. Net: a tie on this test. FIXATION: A wins this one outright, and it is the clause the user actually wrote ('I can't get past it'). A's Section 1 gives four mechanisms of the fixation itself — inheriting the user's own solution-hypothesis because the verb in the ticket is 'find'; availability (every tool has a search box); 'add search' converting a mushy multi-cause mess into something estimable by Friday; and it being the lowest-blame option, since an option that cannot be wrong also cannot be evaluated. Its tell is excellent: a support ticket means the user already tried, so search most likely converts 'I can't find it' into 'I searched and it's not there', which is a worse ticket. B explains why search is *insufficient* ('a query language for people who already remember the answer' — the sharpest single line in either document) but never explains why this PM keeps returning to it. That is adjacent, not the same, and B fails the expectation. WHY B STILL WINS: the ask was 'need better options', and B is the better options document end to end. It evaluates all seven candidates on four dimensions plus a named validation move each (dry-run the naming heuristic on 200 real projects and read the output yourself; hand-check whether 20 real ticket descriptions contain enough content-words to be resolvable) where A gives only For/Against on three bundles and never evaluates 8 of its 13 candidates individually. B's duds are argued, not asserted — folders and tags 'require exactly the organizational discipline your users have already proven they don't have; you'd be shipping a feature that only serves the users who don't have the problem'. B's metrics are materially better (rate not count, with the reason; % still untitled at day 7 as the leading indicator; zero-result rate as a failure canary; rename-rate as a counter-metric that would catch a bad naming heuristic). B's stress test is a tier above: it attacks its own top recommendation (a confidently wrong auto-name is worse than an honest 'Untitled' because every row now demands evaluation), names its own biggest internal contradiction (recency-first design may be a no-op against the word 'old'), flags survivorship bias in the ticket corpus, and challenges the premise of the brief itself — 'top support complaint' may just be the easiest complaint to articulate, so check whether it correlates with churn. A never challenges the brief. Finally, fit: roughly 35% of A (Sections 5 and 7) is a full technical design of one approach plus a build-approval gate, for a product the document states it has not seen, resting on an admitted guess at Q1. That content is genuinely good — the security surface of the unified index ('a stale index that leaks another account's project title is a security incident that dwarfs the original complaint'), permissions enforced at read time, index rebuild as a first-class tested operation, identity merges always user-confirmed — and it is a real gap in B, which recommends the same unified index and cross-account switching without once mentioning the authorization surface. But it answers a question the user has not reached yet, and A opens with two paragraphs of scope negotiation where B opens with a four-line answer. On expectation count A leads 4-3; per the rubric that is secondary to overall task completion, and on task completion B is ahead.",
+  "rubric": {
+    "A": {
+      "content": {
+        "fixation_diagnosis": 5,
+        "candidate_distinctness": 4,
+        "generative_method": 4,
+        "evaluation_rigor": 3,
+        "self_criticism": 4
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 4.0,
+      "structure_score": 4.3,
+      "overall_score": 8.3
+    },
+    "B": {
+      "content": {
+        "fixation_diagnosis": 3,
+        "candidate_distinctness": 4,
+        "generative_method": 5,
+        "evaluation_rigor": 5,
+        "self_criticism": 5
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.4,
+      "structure_score": 5.0,
+      "overall_score": 9.4
+    }
+  },
+  "distinctness_audit": {
+    "A": {
+      "candidates_claimed": 13,
+      "genuinely_distinct": 11,
+      "distinct_solution_mechanisms": 10,
+      "collapses_found": [
+        "#5 episodic grouping (by work session / month) and #6 time-bucket browse (this week / this month / 2025) are one mechanism — temporal grouping of the list so browsing replaces recall — presented twice under different bucket headings",
+        "#11 account-wide index + 'can't find it?' flow and #12 self-serve restore + support recovery console are a lookup and the actions taken on its results; A itself folds them into a single approach (Approach B), which concedes they are one surface"
+      ],
+      "borderline_but_accepted": [
+        "#6 time buckets vs #7 visible facets — both narrow-without-typing, but different axes (time vs owner/status/type) and different affordances; counted as distinct",
+        "#2 claim-your-work (identity binding at signup) vs #11 cross-identity lookup — same symptom, opposite ends of the lifecycle; counted as distinct",
+        "#13 instrument the queue is a diagnostic move, not a solution mechanism; counted in the 11 but excluded from the 10"
+      ],
+      "notes": "Low padding (~15%). Genuinely wide mechanism coverage — creation-time naming, identity binding, lifecycle transparency, row-level recognition cues, temporal grouping, faceting, query search, proactive resurfacing, spatial persistence, cross-boundary lookup, recovery. No dedup pass of its own; the two collapses are left standing for the reader to notice. Missing entirely: any re-use / 'start from my last one' reframe. Semantic content retrieval is absent by explicit reasoned exclusion, not oversight."
+    },
+    "B": {
+      "candidates_claimed": 7,
+      "genuinely_distinct": 7,
+      "raw_list_claimed": 20,
+      "raw_list_genuinely_distinct": 11,
+      "collapses_found": [
+        "In the raw 20: #1 recents-as-home, #4 pick-up-where-you-left-off strip, #7 photo library, #15 time-and-context-as-index, #17 'on this day' time machine and #20's photo-library verdict are one mechanism family — temporal/visual recognition browsing — in roughly six costumes",
+        "In the raw 20: #9 auto-naming and #10 end-of-session naming nudge are both creation-time naming",
+        "In the raw 20: #13 make the project find the user and #16 monthly digest are both proactive resurfacing",
+        "In the raw 20: #6 'links I've shared' and #19 recipients-as-retrieval-channel are both share-channel retrieval",
+        "In the raw 20: #14 (reframe) and #20 (metaphor comparison) are meta-moves, not candidate ideas"
+      ],
+      "borderline_but_accepted": [
+        "Candidate C (unified index + search) and candidate D (identity repair) both touch the wrong-account symptom, from the retrieval side and the prevention side respectively; counted as distinct on the same logic applied to A's #2 vs #11"
+      ],
+      "notes": "The raw 20 is heavily padded (~45% near-duplicates), but B does not offer it as its candidate set — Part 4 is headed 'Clustering the twenty into seven real candidates' and performs the deduplication itself. Judged on what B actually proposes, 7 of 7 are structurally distinct. Smaller set than A's, covering nearly the same territory, plus two mechanisms A lacks (semantic content retrieval; re-use-over-retrieve)."
+    },
+    "verdict": "Effectively a tie. A surfaces more distinct mechanisms (11 vs 7) but leaves two near-duplicate pairs uncorrected and its extra count is finer slicing of shared territory rather than new territory. B's raw generation list is the more padded artifact but B collapses it honestly and its proposed set has zero waste. Neither side is guilty of the failure this test was designed to catch."
+  },
+  "output_quality": {
+    "A": {
+      "score": 8,
+      "strengths": [
+        "Section 1 is the best content in either document: four named mechanisms of the fixation itself (inherited framing, availability, ambiguity-to-ticket conversion, lowest-blame option)",
+        "'A support ticket means the user already tried' — sharp tell that search converts 'I can't find it' into the worse ticket 'I searched and it's not there'",
+        "Six-failure-mode table with a 'does search fix it?' column, yielding the crisp diagnosis 'search addresses one and a half of six'",
+        "Word-by-word deconstruction of the complaint (Users / can't find / their / old / projects) is a generative move few would make, and 'old' and 'their' each open a real branch",
+        "Q1-Q8 each carry a working answer plus what flips if wrong, and Q1 is named as the highest-value question with its cost (an afternoon)",
+        "Three approaches presented as competing theories of the problem rather than as a menu",
+        "Design section has real engineering depth B lacks entirely: read-time authorization instead of trusting the indexed copy, index-as-rebuildable-projection, live-read for the active workspace vs index elsewhere, identity merges always user-confirmed because a wrong merge is unrecoverable",
+        "Test plan targets the p90 fixture (400 projects, 60% untitled, three workspaces, two logins) rather than the demo case",
+        "Stress test concedes a legitimate rival gate — crude instrumented search shipped next week — and says it would defend that version if speed is the constraint"
+      ],
+      "weaknesses": [
+        "Does not evaluate 8 of its 13 candidates individually; only the three bundles get For/Against, with no feasibility, cost, or risk/impact sorting",
+        "Metrics are supplied for the recommended approach only, not for the option set",
+        "Pass 3 of its generation method is a single undeveloped line ('create → name → store → resurface → retrieve → recover') despite the document leaning hard on it for the claim that search occupies one cell of six; Pass 4 is one sentence",
+        "Two near-duplicate candidate pairs left uncorrected (#5/#6, #11/#12)",
+        "No 're-use over retrieve' idea anywhere — the reframe that most fully escapes the retrieval frame is absent",
+        "Roughly 35% of the document (Sections 5 and 7) is a technical design plus a build-approval gate for an approach chosen on an admitted guess, about a product the document states it has not seen — premature against an ask for options",
+        "Opens with two paragraphs of scope negotiation and workflow framing ('Nothing gets built until you approve the design') before any substance",
+        "Never questions the premise that the top support complaint is the right thing to chase"
+      ]
+    },
+    "B": {
+      "score": 9,
+      "strengths": [
+        "'Short version' answers the question in four lines, with the recommended first three moves stated immediately",
+        "'Search is a query language for people who already remember the answer. It asks the user to supply a name at the exact moment name-recall is what failed' — the sharpest single sentence in either document",
+        "C1-C5 root-cause table with a 'does search fix it?' column, and an explicit instruction to tag 100 tickets against it before building anything",
+        "Ten-question assumption table with what-flips discipline matching A's",
+        "Twenty-angle forced generation (constraint manipulation, structural, psychology, perspective, experience) is the more visibly systematic battery, and it forces angles that produce ideas it then argues against",
+        "Performs its own deduplication: 20 angle-outputs clustered into 7 real candidates, with the provenance of each cluster shown",
+        "Full evaluation apparatus: four dimensions per candidate, a named validation move per candidate, classification, risk/impact 2x2, and explicit duds with reasons rather than assertions",
+        "Duds argued well — folders and tags 'require exactly the organizational discipline your users have already proven they don't have; you'd be shipping a feature that only serves the users who don't have the problem'",
+        "Metrics section is the stronger of the two: rate not count with the reason given, % still untitled at day 7 as the leading signal, zero-result rate as a failure canary, rename-rate as a counter-metric that would catch a bad naming heuristic",
+        "Conditional Release 3 ('don't build both') rather than a fixed roadmap",
+        "Stress test attacks its own top recommendation (a confidently wrong auto-name is worse than an honest 'Untitled' because every row now demands evaluation), names its own biggest internal contradiction (recency-first may be a no-op against 'old'), flags survivorship bias in who files tickets, and challenges the brief's premise — top complaint may be the easiest to articulate, so check whether it correlates with churn"
+      ],
+      "weaknesses": [
+        "Does not diagnose the fixation itself — explains why search is insufficient, never why this PM keeps landing on it, which is the clause the user actually wrote ('I can't get past it')",
+        "Part 3's header oversells: 'twenty candidate ideas' when roughly nine are relabelled versions of five mechanisms; the honesty arrives only in Part 4",
+        "Angles 14 and 20 produce meta-moves rather than ideas, so the forced one-per-angle discipline is not quite kept",
+        "No engineering depth — recommends a unified cross-boundary index (C) and cross-account detection and switching (D) without once raising the authorization surface, which is the exact place that class of change goes wrong and which A treats as the single point deserving disproportionate review",
+        "Part 6 uses MMR / Neutralizer / Differentiator / Big Bet vocabulary without defining it",
+        "Smaller candidate set than A's (7 vs 11 distinct mechanisms), omitting spatial persistence and treating recovery actions as a sub-feature rather than an option in its own right"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Breaks the stated fixation instead of producing search variants",
+          "passed": true,
+          "note": "Search is candidate 8 of 13 and fourth in the recommended sequence, explicitly reframed as 'the last mile rather than the first move' and specified as content search with typo tolerance rather than a title-prefix match. Twelve of thirteen candidates are non-search."
+        },
+        {
+          "text": "Candidates are structurally different from each other, not one idea rephrased",
+          "passed": true,
+          "note": "11 of 13 genuinely distinct. Two collapses left standing: #5/#6 are both temporal grouping; #11/#12 are a lookup and its recovery actions, which A itself bundles into one approach."
+        },
+        {
+          "text": "Uses some systematic generative method rather than free association",
+          "passed": true,
+          "note": "Four named passes: word-by-word deconstruction of the complaint, six failure modes, lifecycle-stage intervention, and inversion. The first two are sharp instruments; passes 3 and 4 are each a single line and carry more argumentative weight than they earn."
+        },
+        {
+          "text": "Addresses why the user got stuck on search, not just what else to build",
+          "passed": true,
+          "note": "Section 1 is dedicated to exactly this and names four mechanisms — inherited framing from the ticket's own verb, availability, conversion of ambiguity into an estimable ticket, and blame-avoidance ('an option that can't be wrong also can't be evaluated')."
+        }
+      ]
+    },
+    "B": {
+      "passed": 3,
+      "total": 4,
+      "pass_rate": 0.75,
+      "details": [
+        {
+          "text": "Breaks the stated fixation instead of producing search variants",
+          "passed": true,
+          "note": "Six of seven candidates are non-search; search is folded inside candidate C and shipped only bundled with auto-naming, with the sequencing point stated directly: 'search ships in the same release as auto-naming, or it indexes Untitled (14) and you get a second ticket wave.' More pragmatic than A's ordering, equally non-search in substance."
+        },
+        {
+          "text": "Candidates are structurally different from each other, not one idea rephrased",
+          "passed": true,
+          "note": "7 of 7 proposed candidates are distinct. The raw 20-angle list is ~45% near-duplicates, but B clusters it into the 7 itself rather than presenting the 20 as options, which is the honest accounting this test looks for."
+        },
+        {
+          "text": "Uses some systematic generative method rather than free association",
+          "passed": true,
+          "note": "The stronger of the two methods: a five-family, twenty-angle forced battery, one idea per angle including angles that produce ideas it then argues against, followed by clustering, four-dimension evaluation, classification, and a risk/impact 2x2."
+        },
+        {
+          "text": "Addresses why the user got stuck on search, not just what else to build",
+          "passed": false,
+          "note": "Near miss. Part 1 explains why search is insufficient (correct but not differentiating, and mis-sequenced) and the short version lands the best line in either document about why search fails this job. But it explains the weakness of the solution, not the mechanism of the fixation — nothing about availability, inherited framing, ambiguity-relief, or blame-avoidance. The user said 'I can't get past it', which is a question about their own thinking, and B does not answer it."
+        }
+      ]
+    },
+    "note": "A leads on expectation count 4-3, driven entirely by the fixation expectation. Per the rubric, assertion pass rates are secondary to overall task completion, and on completion — breadth and rigor of the options analysis, which is what 'need better options' asked for — B is ahead by a clear margin."
+  }
+}

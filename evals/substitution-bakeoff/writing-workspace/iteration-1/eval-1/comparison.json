@@ -1,0 +1,124 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs satisfy all four stated expectations, so the decision turns on two things I verified by execution rather than reading. First, the dispositive check: B opens with `disable-model-invocation: true` as a named frontmatter key, gives a command to check it, explains the mechanism (the flag strips the description out of the model's reach, making any rewrite futile), and states that deleting one line is then the entire fix. This is not speculative — grep finds `disable-model-invocation` referenced in 190 SKILL.md files under ~/.claude/plugins on this machine, and it is the single most likely cause of the reported symptom. A names the concept only, buried in an assumptions-table row ('If it's user-invoked-only, no description on earth will fire it'), never names the key, never gives a check, and omits it from both its Step 0 four-point triage and its final checklist — then assumes 'Model-invoked' and proceeds. Second, command verification. Each output's method rests on one load-bearing harvest command that mines the user's transcripts for real prompt phrasings; every downstream step in both documents depends on its output. B's harvest works exactly as advertised: 2 seconds, 10 short verbatim typed prompts ('fix the metric first', 'this is my current portfolio in interactive. analyze it'). A's harvest exits 0 and prints plausible-looking results, but is materially wrong for its stated purpose. Its filter `select(.type==\"user\" and has(\"promptSource\"))` — described as pulling 'one line per typed prompt' — matches only 1509 of 16709 user lines across ~/.claude/projects, and every one of those carries promptSource=\"sdk\". Measured against the same keyword pattern, it returns 16 unique prompts where the unfiltered version returns 67 (76% dropped), and the 16 it keeps have a median length of 2424 characters: long machine-authored SDK/mission prompts, the opposite of the short typed phrasings A tells the user to harvest. It also takes 62 seconds. This is the more dangerous defect class, because it does not look broken — the user would paste SDK boilerplate into their description believing it was their own vocabulary. A's other broken check is its collision grep (`grep -rh '^name:' ~/.claude/skills ~/.claude/plugins | sort | uniq -d`), whose stated pass/fail rule is 'Any output is a collision'; it emits 194 lines on this machine, including agent definitions, README.md files, template placeholders (`name: \"[PM Name]\"`, `name: Skill Name`), and marketplaces/ mirrors of cache/. Under A's own rule the user stops at Step 0 and never reaches the rewrite. B is not clean either: two of its five commands fail. `ls ~/.claude/skills/ ~/.claude/plugins/*/skills/ | grep -i <skill-name>` aborts under zsh ('no matches found', exit 1, zero output) and returns nothing under bash, for a skill that exists four times on disk — exactly the silent-false-negative failure mode that matters here. Its §6 neighbour grep `grep -rh \"^description:\" ~/.claude/skills/*/SKILL.md ~/.claude/plugins/*/skills/*/SKILL.md` returns 0 lines under zsh and 7 under bash against 311 SKILL.md files actually present, because plugin skills live at plugins/cache/<marketplace>/<pack>/<version>/<skill>/SKILL.md, not plugins/*/skills/*/. Both of B's failures are in auxiliary checks, and B's own `find ~/.claude -name SKILL.md -exec grep -l \"^name: <skill-name>\" {} \\;` does the same discovery job correctly (verified: returned 4 correct paths), so the user has a working route to the same answer. B's accuracy is also independently corroborated: the three neighbour descriptions it quotes for ab-test-analysis, cohort-analysis and sql-queries are verbatim correct against the files on disk, which grounds both its 'house pattern' rewrite shape and its near-miss competition analysis in the user's real installed set. A's near-miss handling is hypothetical ('a SQL skill, a spreadsheet skill, or a charting skill'). A is genuinely strong and close: its Step 4 warning — never summarize the workflow in the description, because the description is in context and the body is not, so a procedural description produces a skill that fires and is then followed shallowly — is a real, non-obvious failure mode B lacks entirely, and A is the only one whose worked rewrite actually contains the negative boundary clause it recommends. Its closing checklist is the more usable artifact. But B additionally supplies the structural escape hatch A relegates to its stress test (§5: if you cannot name four distinct triggers, the skill's scope is the problem and no wording rescues it), a failure-shape triage table that maps each observed symptom to a distinct lever, and a sharper account of the user's literal complaint — that a maximally generic description matches specific prompts worst, which is why the misses cluster on the cases that mattered. B wins on the dispositive check, on the correctness of the one command everything else depends on, and on grounding its claims in the user's actual skill set.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 3,
+        "completeness": 4,
+        "accuracy": 3
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 3.3,
+      "structure_score": 4.7,
+      "overall_score": 8.0
+    },
+    "B": {
+      "content": {
+        "correctness": 4,
+        "completeness": 5,
+        "accuracy": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 4.3,
+      "structure_score": 4.7,
+      "overall_score": 9.0
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 8,
+      "strengths": [
+        "Only output to name the reverse trap: a description that summarizes the workflow makes the agent act on the summary instead of opening the body, producing a skill that fires reliably and is followed shallowly",
+        "Worked rewrite is the only one that actually contains the negative-boundary clause it recommends ('Not for authoring SQL against a live warehouse, or for production pipeline code')",
+        "Closing 14-item checklist is the most usable single artifact in either document",
+        "Correctly insists the baseline must actually fail before the rewrite, and says so twice",
+        "Recommends renaming the skill alongside the description, noting the name is also router-visible metadata",
+        "Two of its commands verified working: `claude plugin list` and the python3/yaml frontmatter parse (returned the expected dict for a real SKILL.md)"
+      ],
+      "weaknesses": [
+        "Misses the dispositive check: never names `disable-model-invocation: true`, gives no way to test it, and omits it from Step 0 and the checklist despite it being referenced in 190 SKILL.md files on this machine",
+        "Load-bearing harvest command is wrong for its stated purpose: `has(\"promptSource\")` matches only 1509 of 16709 user lines, all promptSource=\"sdk\"; drops 51 of 67 matching prompts and returns SDK mission prompts of median length 2424 chars, not the 'one line per typed prompt' it claims",
+        "That failure is silent — the command exits 0 and prints plausible output, so the user would mistake SDK boilerplate for their own vocabulary",
+        "Harvest takes 62 seconds (jq over 180 transcript files) versus 2 seconds for the equivalent",
+        "Collision check emits 194 lines on a normal machine under a stated rule of 'Any output is a collision' — false positives from agent files, README.md, template placeholders and marketplaces/ mirrors of cache/ — which would halt the user at Step 0",
+        "Near-miss competition handled hypothetically ('a SQL skill, a spreadsheet skill'); never checks what is actually installed",
+        "yaml parse via `.read().split('---')[1]` breaks on any description containing a triple-dash"
+      ]
+    },
+    "B": {
+      "score": 9,
+      "strengths": [
+        "Leads with the dispositive check — `disable-model-invocation: true` named explicitly, with a command, the mechanism (flag strips the description from the model's reach), and the consequence (deleting one line is the whole fix); verified as a real key referenced in 190 SKILL.md files here",
+        "Load-bearing harvest command verified working: 2 seconds, returned 10 short verbatim typed prompts, exactly what it promises",
+        "Three quoted neighbour descriptions (ab-test-analysis, cohort-analysis, sql-queries) are verbatim accurate against the files on disk — grounds both the rewrite pattern and the competition analysis in the user's real installed set",
+        "§5 names the structural escape hatch as the likeliest outcome: if you cannot list four distinct triggers, the skill's scope is vague and no wording rescues it; supplies the test ('Without this skill, the agent would get X wrong')",
+        "Directly explains the user's literal words — a maximally generic description matches specific prompts worst, so misses cluster precisely on the cases that mattered",
+        "§8 failure-shape table maps each distinct observed symptom (never fires / fires late / neighbour wins / fires on everything) to a different lever",
+        "Measurement protocol scores both directions (5/5 fire and 0/4 near-misses, 'not 9/9') and flags fresh-session-per-probe as a confound",
+        "Stress test concedes the single-run variance objection on its own terms and states the condition under which it would switch to 3 runs per probe",
+        "`find ~/.claude -name SKILL.md -exec grep -l \"^name: X\" {} \\;` verified working — returned 4 correct paths"
+      ],
+      "weaknesses": [
+        "§0 discovery command `ls ~/.claude/skills/ ~/.claude/plugins/*/skills/ | grep -i <skill-name>` is broken: aborts under zsh with 'no matches found' (exit 1, zero output) and returns nothing under bash, for a skill present four times on disk — a false negative that would read as 'my skill is not discoverable'",
+        "§6 neighbour grep `~/.claude/plugins/*/skills/*/SKILL.md` is the wrong path: returns 0 lines under zsh and 7 under bash against 311 SKILL.md files actually installed (correct path is plugins/cache/<marketplace>/<pack>/<version>/<skill>/SKILL.md)",
+        "Its own worked rewrite in §4 contains no negative-boundary clause, even though §6 tells the user to carve one",
+        "Does not warn against summarizing the workflow in the description — the reverse failure A covers",
+        "No consolidated checklist; the reader must reassemble the procedure from nine sections"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Identifies the description field as the thing that decides invocation, not the body", "passed": true, "note": "'The router never sees your task — it sees your description and decides whether to open the skill at all.' Reinforced in Step 4: the description is injected into context, the body is not until the skill opens."},
+        {"text": "Rewrites the actual description rather than describing how to rewrite it", "passed": true, "note": "Ships a complete 476-char YAML block with name and description, including the negative-boundary clause; also supplies the formula for re-deriving it."},
+        {"text": "Addresses near-miss competition", "passed": true, "note": "Covered in four places (Step 0 item 4, Step 1 'no negative boundary', the rewrite's 'Not for' clause, Step 5 table) and correctly insists on editing both descriptions. But entirely hypothetical — names no actually-installed neighbour."},
+        {"text": "Explains why the original fails, not just that it does", "passed": true, "note": "Step 1 table gives five distinct defects with mechanism, plus the key observation that this is discovery failure not instruction-following failure, so emphasis words cannot help."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Identifies the description field as the thing that decides invocation, not the body", "passed": true, "note": "§2 gives the cleanest mental model: the description is a pointer sitting in context every turn and 'the target doesn't decide when the agent reaches — the wording does'; Move 4 draws the corollary that anything explaining how the skill works belongs in the body."},
+        {"text": "Rewrites the actual description rather than describing how to rewrite it", "passed": true, "note": "Before / shape / After, with a complete filled description carrying four distinct triggers, matched to the verified house pattern of the user's own analytics skills."},
+        {"text": "Addresses near-miss competition", "passed": true, "note": "§6 names the three real neighbours with verbatim-accurate descriptions and asks per-trigger whether another skill also claims it; §7 adds four should-not-fire probes; §8 has a dedicated row. Weaker than A only in that the worked rewrite itself carries no boundary clause."},
+        {"text": "Explains why the original fails, not just that it does", "passed": true, "note": "§1 gives three independently fatal failures plus the sharpest point in either document: an instruction the model already obeys by default is 'a no-op wearing a frontmatter key', and generic wording fails hardest on the specific prompts where the skill was actually needed."}
+      ]
+    }
+  },
+  "verification_findings": {
+    "environment": "macOS, zsh; 43 project dirs and 180 .jsonl transcripts under ~/.claude/projects; 16709 user-type lines; 302 SKILL.md under ~/.claude/plugins plus 9 under ~/.claude/skills",
+    "A_commands": [
+      {"command": "claude plugin list", "result": "PASS - lists installed plugins with versions, scope and status"},
+      {"command": "python3 -c \"import yaml,sys; print(yaml.safe_load(open(sys.argv[1]).read().split('---')[1]))\" SKILL.md", "result": "PASS - printed the expected dict with name and description for a real SKILL.md. Fragile: .split('---')[1] breaks on any description containing a triple-dash"},
+      {"command": "grep -rh '^name:' ~/.claude/skills ~/.claude/plugins | sort | uniq -d", "result": "FAIL (false positives) - 194 lines emitted under A's stated rule 'Any output is a collision'. Includes agent .md files, README.md, and template placeholders (name: \"[PM Name]\", name: Skill Name), plus marketplaces/ mirrors of cache/. Restricting to plugins/cache + ~/.claude/skills still yields 44, nearly all legitimate dual-marketplace installs. A user following the stated rule halts at Step 0"},
+      {"command": "jq -r 'select(.type==\"user\" and has(\"promptSource\")) ...' ~/.claude/projects/*/*.jsonl | grep -v '^<' | grep -iE '...' | sort -u", "result": "FAIL (wrong population, silent) - exit 0 in 62s, 16 lines. But promptSource is present on only 1509 of 16709 user lines and every value is \"sdk\". Same keyword pattern without that filter yields 67 unique prompts, so 51 (76%) are dropped; the 16 kept have median length 2424 chars and are SDK/scheduled-task mission prompts, not the 'one line per typed prompt' the text claims. The whole downstream method (Steps 3 and 5) is fed by this"}
+    ],
+    "B_commands": [
+      {"command": "sed -n '1,10p' path/to/your-skill/SKILL.md", "result": "PASS - trivially correct, and sufficient to reveal disable-model-invocation in frontmatter"},
+      {"command": "ls ~/.claude/skills/ ~/.claude/plugins/*/skills/ 2>/dev/null | grep -i <skill-name>", "result": "FAIL (false negative) - zsh aborts the whole command with 'no matches found' on the unmatched glob (exit 1, zero output); bash also returns nothing. Verified against skill-creator, which exists at four paths on disk. Real plugin skills live at plugins/cache/<marketplace>/<pack>/<version>/<skill>/, never at plugins/*/skills/"},
+      {"command": "find ~/.claude -name SKILL.md -exec grep -l \"^name: <skill-name>\" {} \\;", "result": "PASS - returned 4 correct paths for skill-creator (marketplaces/operator-kit, marketplaces/anthropic-agent-skills, cache/operator-kit, marketplaces/claude-plugins-official). Covers the same discovery question the broken ls was meant to answer"},
+      {"command": "cd ~/.claude/projects && grep -rh '\"type\":\"user\"' ./*/*.jsonl | python3 -c '...' | head -40", "result": "PASS - 2 seconds, 10 unique short verbatim typed prompts. Does precisely what the surrounding text promises, and the <200-char cap is what keeps SDK boilerplate out"},
+      {"command": "grep -rh \"^description:\" ~/.claude/skills/*/SKILL.md ~/.claude/plugins/*/skills/*/SKILL.md", "result": "FAIL (false negative) - zsh: 0 lines plus 'no matches found'; bash: 7 lines against 311 SKILL.md files actually installed, a 98% miss, from the same wrong plugin path"}
+    ],
+    "disable_model_invocation_check": {
+      "A": "PARTIAL - the concept appears only as a row in the assumptions table ('Is this skill model-invoked, or does your setup require you to call it by name? ... If it's user-invoked-only, no description on earth will fire it and the fix is a config change, not a wording change'). The frontmatter key is never named, no check is offered, and it is absent from Step 0's four-point triage and from the final checklist. A then assumes 'Model-invoked' and proceeds",
+      "B": "FULL - §0 names `disable-model-invocation: true`, supplies the command, explains the mechanism (the flag strips the description out of the model's reach; the field becomes a note for humans), argues it is a live hypothesis precisely because the current string reads like a human-facing summary, and states that if set, deleting that line is the entire fix. Repeated as assumption 1 and revisited in the stress test's counter-argument",
+      "corroboration": "grep -rl 'disable-model-invocation' over ~/.claude/plugins and ~/.claude/skills returns 190 files, confirming the key is real and widely used in this environment, not invented"
+    }
+  }
+}

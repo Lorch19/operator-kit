@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "ideation-2",
+  "prompt": "users can't find their old projects \u2014 it's our top support complaint. I keep landing on 'add search' and it feels lazy but I can't get past it. need better options",
+  "expected_output": "Generates genuinely distinct solution candidates using systematic technique, breaking the fixation rather than producing variations on search.",
+  "assertions": [
+    "Breaks the stated fixation instead of producing search variants",
+    "Candidates are structurally different from each other, not one idea rephrased",
+    "Uses some systematic generative method rather than free association",
+    "Addresses why the user got stuck on search, not just what else to build"
+  ]
+}

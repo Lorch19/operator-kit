@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "writing-1",
+  "prompt": "this skill keeps not firing when I actually need it. the description is 'Helps with data analysis tasks'. what do I do",
+  "expected_output": "Diagnoses the description as the triggering mechanism and rewrites it with concrete trigger contexts, rather than giving generic advice about clarity.",
+  "assertions": [
+    "Identifies the description field as the thing that decides invocation, not the body",
+    "Rewrites the actual description rather than describing how to rewrite it",
+    "Addresses near-miss competition \u2014 what else might claim the same queries",
+    "Explains why the original fails, not just that it does"
+  ]
+}

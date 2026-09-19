@@ -1,0 +1,111 @@
+{
+  "winner": "A",
+  "reasoning": "The prompt asks 'what do I ACTUALLY cut' — a request for a decision, not a procedure for reaching one. A answers it: it identifies the specific 915-line file, audits it section by section, and returns a line-numbered cut list with destinations (915 -> ~142, -85%). I independently re-ran the numbers against the file A names: every structural claim checks out — competency definitions at 34-131, anti-patterns at 132-140, Steps 1-5 at 255-420, Steps 6-7 at 421-508, Step 8 at 509-752, examples at 771-850, pitfalls at 851-897. A's 'about 195 of 243 lines dead per run' for Step 8 is right too: the five mutually-exclusive branches total 238 lines and the largest is 72, so 166-201 lines never fire on a given session. B answers a different, adjacent question: how to find out what to cut. Its Step 1 audit commands are real and run correctly, but they output a heading map, not a decision, and every yield figure in its cut list is labelled 'typical for a 900-line file'. The reader finishes B still owing themselves the work. Beyond groundedness, three things separate them. (1) A has a fourth destination B lacks: deterministic prose -> scripts/. B's item #2 only relocates code that is already code; A converts 88 lines of prose arithmetic and if/else rules into scripts/score.py, and repurposes the three worked examples from context cost into test fixtures for it. That is a categorically better move, and it is the kind of thing only a section-by-section read surfaces. (2) A reads the frontmatter, finds disable-model-invocation: true, and uses it to argue against splitting into separate skills — the cost is the user's memory, not the context window. I confirmed that flag is present. B assumes automatic invocation and closes by floating exactly the split A rules out, so on this file B's final recommendation is wrong for a reason A names. (3) A's verification is stronger where it counts: check 5 runs the same five answers against old and new and requires the recommended priority and delivered plan to be identical — a behavioural-equivalence test on the actual decision output, versus B's looser 'diff the behaviour'. B is not weak, and it wins real points. Its 'what does not get cut' section is the best original passage in either document: compressing the method into the description field as the highest-damage available move, rationalization tables being load-bearing precisely because they look repetitive, explicit no-exception clauses being the belt rather than belt-and-braces. A has no equivalent to the description-field trap. B also contributes durable general rules A misses — keep every reference one level deep, add a contents list to any split file over 100 lines, avoid @-style auto-loading links that force-load the target — and better statistics (5 runs for wording-sensitive checks, spread treated as data, versus A's 3/3). B is the better general method and would transfer to a file A's specifics cannot touch. But B's own transferability is undercut when its audit meets this file: running B's command 2 returns '11 of 915 lines (1%) inside 1 blocks', and B's own stress test says that under ~25% code+reference it should 'throw out this ordering and treat it as an editing job'. That verdict is wrong here — the real win is a relocation win (one branch of five fires per run), which B's Step 2 classification would catch but its Step 3 cut list, dominated by code, language-variant examples and flowcharts this file does not have, does not name. B's calibration is also invented (200-300 target, 500 ceiling) where A's is measured against the corpus the file lives in (n=141, median 134, p75 301), which I verified. All four expectations pass for both outputs, so they do not discriminate; the rubric does. A wins on groundedness, diagnostic correctness and the sharper sorting principle (its reason-vs-recite test — 'needed every run' and 'needed in context from turn one' are different claims — is the single best idea in either document and is what unlocks the rubric relocation). B wins on transferability and on naming failure modes A missed. On a question whose operative word is 'actually', the answer beats the method.",
+  "rubric": {
+    "A": {
+      "content": {
+        "principle_quality": 5,
+        "groundedness": 5,
+        "diagnostic_correctness": 5,
+        "failure_mode_coverage": 5,
+        "transferability": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.8,
+      "structure_score": 5.0,
+      "overall_score": 9.8
+    },
+    "B": {
+      "content": {
+        "principle_quality": 4,
+        "groundedness": 3,
+        "diagnostic_correctness": 3,
+        "failure_mode_coverage": 5,
+        "transferability": 5
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 4.0,
+      "structure_score": 4.67,
+      "overall_score": 8.7
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9.8,
+      "strengths": [
+        "Identifies the actual file and audits it section by section; every line-number claim I re-checked is correct (34-131, 132-140, 255-420, 421-508, 509-752, 771-850, 851-897)",
+        "Reason-vs-recite test is the sharpest principle in either document: 'needed every run' and 'needed in context from turn one' are different claims, and it is what licenses moving the maturity rubric",
+        "Four destinations, not three: adds deterministic-prose -> scripts/, converting 88 lines of arithmetic and if/else rules into scripts/score.py",
+        "Repurposes the three worked examples from context cost into test fixtures for that script — same content, changed role",
+        "Reads the frontmatter, finds disable-model-invocation: true (confirmed), and correctly argues the split-into-skills move is worse here because the cost is the user's memory",
+        "Ordering has a stated dependency rationale — never relocate what you were going to delete, never disclose a duplicate into two files — not just risk-ranking",
+        "Repo-calibrated target (n=141, median 134, p75 301) instead of an invented budget",
+        "Verification check 5 is a true behavioural-equivalence test: same five answers, old vs new, priority and plan must be identical",
+        "Pointer-wording section gives a weak/strong contrast and the right triage rule: fix the wording before pulling material back inline",
+        "Stress test is genuinely self-critical — names the file inference as the weakest link, and identifies verbatim-rubric drift as a consistency regression introduced by a readability fix, with a stated fallback (300 lines that work beat 142 that drift)"
+      ],
+      "weaknesses": [
+        "Stakes the specifics on inferring the file from a line count; if wrong, every line number evaporates (it says so)",
+        "Less useful as a reusable method than B — the sorting rule transfers, the cut list does not",
+        "Does the measurement for the reader rather than teaching them to measure, so nothing is learned for the next file",
+        "The ~142 'after' figure is a projection that cannot be checked until the work is done",
+        "Misses the description-field compression trap and the one-level-deep / auto-loading-link rules that B names"
+      ]
+    },
+    "B": {
+      "score": 8.7,
+      "strengths": [
+        "States the reframe most crisply in the opening line — length is not the defect, unreachability is — with a good pricing analogy (content needed 10% of the time priced as if needed 100%)",
+        "Decision layer vs execution layer is a memorable and correct dividing line, and its Step 2 classification question ('only for one branch of the work?') does catch the biggest real win",
+        "Audit commands are real and run correctly as written; the awk fence-tracking so code comments are not counted as headings is a careful touch",
+        "'What does not get cut' is the best original passage in either document — description-field compression as the highest-damage move, rationalization tables load-bearing precisely because they look repetitive, no-exception clauses as the belt",
+        "Durable general rules A lacks: keep references one level deep, contents list on any split file over 100 lines, avoid @-style auto-loading links",
+        "Better statistics than A: 5 runs for wording-sensitive checks, and spread across runs treated as data in its own right",
+        "Opens by telling the user to ask the two readers WHERE they bounced, not whether it is long — a genuinely good move on a vague complaint",
+        "90-minute timeboxed plan with a before-cut baseline, and a three-way reading of the behaviour diff that correctly distinguishes a broken pointer from load-bearing content"
+      ],
+      "weaknesses": [
+        "Answers 'how do I find out what to cut' when the question was 'what do I actually cut' — the reader finishes still owing themselves the audit",
+        "Every yield figure is 'typical for a 900-line file'; no number is a measurement",
+        "Assumes automatic invocation, which is wrong for this file, and the error propagates into the closing recommendation to split into separate skills — precisely the move that is wrong here",
+        "Its own audit invalidates much of its cut list on this file: command 2 returns 1% of lines inside code blocks, and items 1, 2, 3 and 6 lean on code, language-variant examples and flowcharts that are not present",
+        "Its stress-test escape hatch ('under ~25% code+reference, treat it as an editing job') would send the reader the wrong way here, since the real win is branch-based relocation",
+        "Budget is invented rather than calibrated; a 500-line ceiling would bless a file well above the corpus 75th percentile",
+        "The section-allocation table (80-120 lines for the core procedure) is generic scaffolding that does little work",
+        "No equivalent of A's deterministic-prose-to-script tier — item 2 only relocates code that is already code"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Uses a principle for what stays vs what moves out, not just 'cut the fluff'", "passed": true, "note": "Four-tier sorting table (perform / reason-with / recite / deterministic / delete) plus two mechanical tests: the branch test and the reason-vs-recite test. Explicitly says most of the 915 lines are not fluff."},
+        {"text": "Names specific categories of content to relocate and where they go", "passed": true, "note": "Named sections with line ranges and exact destinations: Steps 1-5 -> references/maturity-rubric.md, Step 8 -> references/plans/*.md x5, Steps 6-7 -> scripts/score.py, Examples -> scripts/test_score.py fixtures."},
+        {"text": "Recognises that length itself is not the defect — reachability of the right content is", "passed": true, "note": "'Length is the symptom, not the defect'; distinguishes three diseases (repeated meaning, stale layers, genuine length) with different cures; stress test closes on lines read per run rather than what wc -l prints."},
+        {"text": "Gives an actionable ordering, not an undifferentiated list", "passed": true, "note": "Five passes with a stated dependency rationale — deletions before de-duplication before moves, so you never relocate what you were about to delete — plus Pass 5 'don't split' and a before/after landing table."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Uses a principle for what stays vs what moves out, not just 'cut the fluff'", "passed": true, "note": "Three-bucket classification test with one question per bucket, resolving to 'SKILL.md is the decision layer, supporting files are the execution layer'."},
+        {"text": "Names specific categories of content to relocate and where they go", "passed": true, "note": "Nine categories with destinations — reference material -> reference/<topic>.md, code -> scripts/, duplicate examples -> delete all but one, provenance -> delete, and so on. Broader taxonomy than A's, but generic."},
+        {"text": "Recognises that length itself is not the defect — reachability of the right content is", "passed": true, "note": "Opening line states it outright, followed by 'the fix is mostly relocation, not compression' and 'most of it deserves a different address'."},
+        {"text": "Gives an actionable ordering, not an undifferentiated list", "passed": true, "note": "Nine items ordered by lines recovered per unit of risk, with a stop-when-you-hit-budget rule, plus a six-step 90-minute plan."}
+      ]
+    }
+  }
+}
