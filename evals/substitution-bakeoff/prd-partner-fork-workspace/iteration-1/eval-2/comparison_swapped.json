@@ -1,0 +1,141 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs are strong Dev-Team PRDs that skip discovery, declare the output mode, build a holdout-based measurement plan, and flag open questions loudly. B wins on two dimensions that matter for the stated task ('engineering needs it Monday'). First, buildability: B specifies an explicit event taxonomy with in/out decisions and collapse rules per event type, a half-open window interval with a timezone offset snapshotted at scheduling time, an idempotency key, retry/backoff with an abandon rule, batch failure isolation, a concrete rollout ramp with spam-rate gates at each step, bounce/complaint/soft-bounce handling, read-replica generation, a permission regression test as a release gate, signed expiring unsubscribe tokens, email-verification eligibility, org-level admin disable, and accessibility requirements. A has none of the taxonomy, no retry/failure semantics, no ramp detail, no accessibility beyond P1 dark mode, and no email-verification or org-level controls. Critically, A identifies the 'digest complaints poison all company email' risk but prescribes only a kill switch; B prescribes the actual mitigation (D6: dedicated sending subdomain and ESP stream isolated from transactional, IP-warmed) plus a transactional-deliverability guardrail metric. A also leaves the timezone/batch-architecture question (OQ-3), which it calls the highest-cost question in the doc, unanswered on the critical path with an instruction to 'answer this before Monday' -- B decides it (D5) and prices the reversal as low. Second, factual accuracy under spot-check, which is where the two genuinely separate. A's headline external claim -- 'Google, Yahoo, Microsoft and Apple now enforce bulk-sender rules with hard rejection rather than spam-foldering' (repeated in section 4 as 'Enforcement is rejection, not spam-foldering') -- overstates a real trend into a blanket cross-provider absolute. Google's own sender guidelines FAQ still says 'Messages might be rejected or delivered to recipients' spam folders' and its enforcement table lists 'Temporary or Permanent Failure codes, or spam foldering'; Microsoft did move to hard 5.7.515 rejection, but Apple's documented enforcement still includes spam routing. A compounds this by generalizing Gmail's 0.30% figure to 'the platform hard limit' and 'any provider'. B scopes the same facts correctly ('per Gmail bulk-sender policy') and states the mitigation-eligibility detail verbatim-accurately: at 0.3%+ a sender is ineligible for mitigation until the rate stays below 0.3% for 7 consecutive days -- which matches Google's FAQ exactly. B's other cited claims also check out: CASL's 10-business-day unsubscribe window (CRTC), the CAN-SPAM primary-purpose test and transactional/relationship exemption (FTC), and the RFC 8058 one-click requirement. B's sourcing is materially better too: FTC and CRTC primary regulator pages and Google's own Help page, versus A's mostly vendor-blog citations (Red Sift, PowerDMARC, Mailgun, EmailLabs, TermsFeed). A is not wrong on everything it uniquely contributes -- its RFC 8058 gotcha (List-Unsubscribe and List-Unsubscribe-Post MUST be covered by the DKIM signature and in the h= tag, so adding them post-signing silently breaks one-click) is verified correct and is a real implementation trap B omits, and its Gmail ~102KB clipping rationale for the item cap is also verified. Those are genuine wins for A, but they are two details against B's broader and better-verified coverage. On the expectations both score 4/4: both switch straight to the document (B's one line of framing pushback explicitly accepts the build call rather than re-litigating it), both declare Dev-Team from the audience cue, both give measurable criteria anchored to a holdout and both explicitly disqualify open rate as a goal metric, and both name open questions rather than inventing answers -- A ordered by what they block, B grouped by owner with a separate decisions log carrying a cost-to-reverse column. A's edge is statistical rigor (pre-registering a minimum detectable lift, a 6-send evaluation window, and the exposure-adjustment problem raised in its stress test); B's is operational completeness and verified precision. The second matters more for a Monday engineering handoff, and the accuracy gap breaks the tie decisively in B's favor.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 4,
+        "completeness": 4,
+        "accuracy": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 4.0,
+      "structure_score": 4.7,
+      "overall_score": 8.7
+    },
+    "B": {
+      "content": {
+        "correctness": 5,
+        "completeness": 5,
+        "accuracy": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.7,
+      "structure_score": 5.0,
+      "overall_score": 9.7
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9,
+      "strengths": [
+        "Cleanest possible handling of the build-decision constraint: states it up front, no discovery detour, residual framing risk deferred to the stress test",
+        "Verified-correct RFC 8058 implementation gotcha that B misses: List-Unsubscribe and List-Unsubscribe-Post must be added before DKIM signing so the signature covers them (RFC 8058 requires them in the h= tag), and the endpoint must accept an unauthenticated POST with no confirmation page",
+        "Verified-correct rationale for the item cap: Gmail clips messages over ~102KB behind 'View entire message', so an uncapped digest silently truncates for the heaviest users",
+        "Strongest statistical discipline of the two: pre-register a minimum detectable lift before send one, a 6-send evaluation window justified by cadence, and the exposure-adjustment problem raised honestly in the stress test",
+        "Open questions annotated with exactly what each blocks and what proceeds regardless, so Monday work can start against the unblocked majority",
+        "Explicitly declines to draw a legal conclusion and routes classification to Legal as OQ-1 while building to the stricter standard anyway",
+        "Tight, economical prose; the 'what I chose not to invent' closing paragraph is good discipline"
+      ],
+      "weaknesses": [
+        "Overstates enforcement: 'Google, Yahoo, Microsoft and Apple now enforce bulk-sender rules with hard rejection rather than spam-foldering' is a blanket cross-provider absolute. Google's own FAQ still lists spam-foldering alongside temporary and permanent failure codes, and Apple's documented enforcement includes spam routing. Microsoft is the only clean case (5.7.515)",
+        "Generalizes Gmail's 0.30% spam threshold to 'the platform hard limit' and 'any provider' without scoping it",
+        "Identifies the cross-stream deliverability risk but prescribes only a kill switch; misses the actual structural mitigation of separating the digest sending subdomain and stream from transactional email",
+        "No event taxonomy -- engineering cannot tell from this doc which activity types are in scope for v1",
+        "No retry policy, batch failure isolation, or send-rate control; ramp schedule left entirely as NEEDS INPUT",
+        "Leaves the timezone/batch-architecture decision (its own self-identified highest-cost question) open on the critical path",
+        "Item and project caps left as NEEDS INPUT, so the aggregation shape is undetermined at handoff",
+        "No email-verification eligibility rule, no org-level admin disable, accessibility only as P1 dark-mode",
+        "Sources are predominantly vendor deliverability blogs rather than primary regulator or provider documentation"
+      ]
+    },
+    "B": {
+      "score": 10,
+      "strengths": [
+        "Every load-bearing external claim spot-checked clean: the Gmail 0.3% mitigation-ineligibility rule with recovery after 7 consecutive days below threshold matches Google's FAQ verbatim; CASL's 10-business-day unsubscribe window matches CRTC; the CAN-SPAM primary-purpose test and transactional/relationship exemption match FTC guidance; RFC 8058 one-click correctly stated as insufficient via mailto or landing page alone",
+        "Scopes provider rules correctly ('per Gmail bulk-sender policy') instead of asserting a blanket cross-provider standard",
+        "Sourcing is primary where it counts: two FTC pages, two CRTC pages, and Gmail Help, with vendor blogs reserved for the MPP point only",
+        "Section 0 decisions log is the best structural idea in either doc: eight decisions made on the user's behalf, each with rationale and an explicit cost-to-reverse, so the reader knows which two or three actually need a yes/no before sprint planning",
+        "Event taxonomy table with per-event in/out decisions and collapse rules -- the single most sprint-plannable artifact in either document",
+        "Deep operational specificity: idempotency key on (user_id, digest_period_id), half-open window interval with timezone offset snapshotted at scheduling, batch failure isolation, bounded retries abandoned after cutoff+24h, read-replica generation, tested kill switch that drains in-flight batches, and a ramped rollout with a spam-rate gate at each step",
+        "Prescribes the real deliverability mitigation (dedicated sending subdomain and ESP stream isolated from transactional, IP-warmed) and adds a transactional inbox-placement guardrail to prove it worked",
+        "Treats the permission leak as a security requirement with teeth: render-time ACL check as a named rule plus a fixture-based regression test as a release gate that blocks the release when it fails",
+        "Unsubscribe token specified as signed, single-purpose and expiring rather than a raw user ID in a query string",
+        "Open questions grouped by owner with blocking status, and a backlog table that gives every non-goal a revisit trigger so scope creep has somewhere to go",
+        "Stress test is the sharper of the two: concedes the 7-day return metric is a proxy for retention, names the 'activity log vs. what needs you' reframe as the highest-leverage thing to reconsider, and closes with the two cheapest queries that would most change Monday's conversation"
+      ],
+      "weaknesses": [
+        "The MPP claim that opens are inflated 'by an estimated 15-20 points' is a point estimate sourced to marketing blogs rather than a primary source -- A's less specific 'a large share of recipients' is the safer phrasing",
+        "Opens with a line of framing pushback ('weekly digest email is a solution, not a problem') before the document; it explicitly accepts the build call and does not re-litigate it, but it is slightly more friction than the prompt invited",
+        "Misses the RFC 8058 DKIM signing-order trap that A catches -- it requires both headers but not that they be covered by the signature",
+        "Misses the Gmail ~102KB clipping constraint; it caps rows and projects but without the deliverability rationale",
+        "Longer than A (about 40 percent more) -- the extra length is substantive rather than padded, but it is more to read before Monday",
+        "Less statistical rigor on the primary metric than A: 'positive and statistically significant' is a weaker ship gate than a pre-registered minimum detectable lift over a defined number of exposures"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Switches to producing the document without re-litigating whether to build",
+          "passed": true,
+          "note": "Opens by stating the build decision is closed so there is no discovery detour; the only residual framing challenge is quarantined in the trailing Stress Test, which is a required section rather than re-litigation."
+        },
+        {
+          "text": "Picks the Dev-Team output mode from the audience cue ('engineering needs it')",
+          "passed": true,
+          "note": "Declares Dev-Team explicitly on line 1 and names the cue. Body is P0/P1-tagged requirements with IDs, dependencies-with-owners, and edge cases."
+        },
+        {
+          "text": "Includes success criteria that are measurable, not aspirational",
+          "passed": true,
+          "note": "Primary metric is incremental return rate defined as digest arm minus holdout arm with a 72h window; guardrails carry real numbers (0.10% operating margin, 0.30% breach trigger); open rate explicitly disqualified as a goal due to Apple MPP. Several targets are honestly left as NEEDS INPUT rather than invented."
+        },
+        {
+          "text": "Names open questions explicitly rather than silently inventing answers",
+          "passed": true,
+          "note": "Five assumptions listed up front, six numbered open questions ordered by what they block, each annotated with whether it gates the build or only the first send."
+        }
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Switches to producing the document without re-litigating whether to build",
+          "passed": true,
+          "note": "Says it skipped Discovery and went straight to the document. One line notes the request is solution-shaped, then explicitly accepts the call and proceeds; it reconstructs the problem in section 1 rather than reopening the build/don't-build question."
+        },
+        {
+          "text": "Picks the Dev-Team output mode from the audience cue ('engineering needs it')",
+          "passed": true,
+          "note": "Declares Dev-Team on line 1 and sets Audience to Engineering/Design/Legal. Depth is unambiguously engineering-facing: event taxonomy, idempotency key, half-open window semantics, retry and failure-isolation policy, read replicas, release-gate test."
+        },
+        {
+          "text": "Includes success criteria that are measurable, not aspirational",
+          "passed": true,
+          "note": "Primary is 7-day return-visit lift measured against a 10% stable-hash holdout held 8 weeks; guardrails carry numbers (unsubscribe <0.5% cumulative by week 4, stop above 1%; spam <0.1% with hard stop at 0.3%); open rate placed in an 'explicitly NOT a metric' row with the MPP reason. Ship gate is significance-based rather than a pre-registered effect size, which is the weaker half."
+        },
+        {
+          "text": "Names open questions explicitly rather than silently inventing answers",
+          "passed": true,
+          "note": "Section 0 logs eight decisions made on the user's behalf with rationale and cost-to-reverse; section 9 carries fourteen owner-grouped open questions with blocking status, and NEEDS INPUT markers sit inline where a number was not invented."
+        }
+      ]
+    }
+  }
+}

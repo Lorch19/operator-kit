@@ -1,0 +1,180 @@
+{
+  "winner": "B",
+  "reasoning": "B wins on three of the four expectations and decisively on the two that matter most for an activation problem, and its central differentiator — that it built and rendered the design and measured it — survives independent verification. I re-rendered both mock files and recomputed the numbers myself: interior empty band 3.1% on all six desktop states (claimed 3.1%), trailing band 37.3% on Z1 and 59.8-65.6% on Z2-Z5 (claimed identically), the sample card's dashed boundary at 3.28:1 vs ground and 3.58:1 vs fill (claimed exactly), 0 of 137 text runs below 4.5:1 against real computed parent surfaces, 24 buttons / 7 inputs / 6 live regions, one unique sidebar signature across all six frames, and 0 phone targets under 44px with Direction A trailing at 8.2% (claimed 8.1%). The rejected directions B and C measure 44.4% and 41.3% trailing against a stated 40% ceiling, so the rejection is evidenced rather than asserted. The retained pre-review file independently corroborates the self-correction story: it contains zero buttons, zero inputs and zero ARIA, and uses place-items:center, exactly the two defects the review section says it caught. These measurements are load-bearing, not decorative — they drive which direction is locked and which criteria were rewritten.\n\nOn the expectations: both outputs treat the bounce as an activation rather than a copy problem, and both do it well — A's 'the best empty state is one the user never sees' is as sharp a framing as B's 'one string is doing six different jobs', though B's success definition (a project that still has activity on day 7, with created-and-abandoned explicitly excluded) is tighter than A's 24-hour creation metric. B separates on expectations 2 and 4. A's 'more than one option' is five tone variants of the same screen — real tradeoffs are stated ('weaker on the blank-page problem', 'avoid for enterprise buyers'), but they are five ways to word one layout. B's three directions (Workbench / Showroom / Route) are structurally different answers, each built at 390x844, each with an explicit sacrifice, two rejected on measurement. On expectation 4, A specifies a better button inside the empty state; B changes what the first action is — the empty state becomes the create form in grid slot 1 with the name field autofocused, costing zero clicks and zero navigations, and the redundant header button is removed so there is one door. B's copy is also more concretely bound to a projects page: real counts in the strings (Acme has 23 projects, 14 PROJECTS / 0 SHOWN, 'All 7 of your projects are archived, the most recent was Spring campaign'), clickable near-miss filter counts, and template cards that name their actual contents.\n\nA is a strong document and beats B in several specific places. Its contrast arithmetic is honest and mostly exact (5 of 7 values correct; #111827 on white understated as 16.9 when it is 17.74, and #2563EB understated as 4.54 when it is 5.17 — both erring safe, and A openly flags that the whole palette is invented). Its EmptyState component spec with a props table and a first-match state-selection order table is more directly liftable by an engineer than B's prose equivalent. Its localization section (ICU plurals, no fragment concatenation, +35% German width, 'project' locked in the termbase) has no counterpart in B. And its E-5 no-permission state — never render a primary action that will 403 — is a genuine catch that B misses entirely; B's Z2 is adjacent but covers a different case. A's weakness is structural rather than local: every finding is an audit of a page that does not exist, so several read as 'you have probably done this wrong' rather than 'you did this wrong', and A says so itself in its stress test.\n\nOn cost: B's extra material is mostly load-bearing. The three built directions produce the rejection evidence, the review section documents four Blockers of which three were claims the author had already declared fine, and the evidence table explicitly lists what was not measured (Z2-Z5 at phone width, screen-reader behaviour, whether the inline form is the same component as the dialog). The domain brief and the C1-C10 criteria numbering are the closest thing to padding, but even there the C7 rewrite — that vertical-centering games an empty-band metric by halving one void into two — is a real insight rather than ceremony. Two of B's numbers do not reconcile: it reports '51 runs checked' where my scan found 137 text runs, and describes a 319-line pre-review file that is 192 lines on disk. Neither changes a conclusion, but both are claims stated with more precision than the artifact supports.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 4,
+        "completeness": 4,
+        "accuracy": 4,
+        "evidence_grounding": 2,
+        "option_tradeoffs": 3,
+        "first_action_design": 3
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 3.3,
+      "structure_score": 4.7,
+      "overall_score": 8.0
+    },
+    "B": {
+      "content": {
+        "correctness": 5,
+        "completeness": 4,
+        "accuracy": 4,
+        "evidence_grounding": 5,
+        "option_tradeoffs": 5,
+        "first_action_design": 5
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 4,
+        "usability": 4
+      },
+      "content_score": 4.7,
+      "structure_score": 4.0,
+      "overall_score": 8.7
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 8,
+      "strengths": [
+        "Frames the real recommendation correctly: the best empty state is one the user never sees, with a starter project or auto-opened create form as the highest-EV change",
+        "U-1/U-2 catch that the empty state is probably also the loading and error state, correctly rated Critical and correctly called a state-machine bug rather than a copy bug",
+        "E-5 no-permission state is a genuine catch the other output misses entirely: never render a primary action that will 403, because it converts mild disappointment into a trust problem",
+        "EmptyState component spec is directly implementable — props table, variant list, and a first-match state-selection order table an engineer can code from without a follow-up conversation",
+        "Localization section is specific and correct (ICU plurals, no fragment concatenation, +35% German width budget, 'project' locked in the termbase) and has no counterpart in the other output",
+        "Contrast arithmetic is verifiable and honest: 5 of 7 ratios exact, the two errors both understate rather than overstate, and the invented-palette caveat is disclosed rather than buried",
+        "Instrumentation section is the strongest part of the diagnosis — the variant distribution of empty_state_viewed is the cheap test that tells you within 48h whether the bounce was ever a copy problem",
+        "Delivery tiers make the over-spec objection answerable: Tier 1 is three variants and a state-machine fix in about a day",
+        "Stress test is unusually honest, naming that the whole diagnosis rests on one sentence of secondhand description"
+      ],
+      "weaknesses": [
+        "Nothing was built or rendered; every finding is an audit of a page that does not exist, so a number of accessibility findings are predictions ('you will probably use a div onClick') rather than observations",
+        "The 'more than one option' requirement is met with five tone variants of a single layout, not alternative designs — the tradeoffs stated are about voice and audience, not about structure",
+        "The first action remains 'click Create project, which opens the create flow'; U-4 identifies the blank-page problem but answers it with body copy and a pre-filled name rather than removing the step",
+        "Contrast table is against a self-invented palette, so the specific ratios are not actionable without redoing them; #2563EB is labelled a 'thin margin' at a claimed 4.54 when it is actually 5.17",
+        "Heading contrast claimed 16.9:1 where the true value is 17.74:1 (harmless direction, but it means the table was not machine-computed)",
+        "Seven variants, a component spec, an a11y audit and an i18n section for a page with one string is genuinely a lot of surface for an unvalidated diagnosis — A raises this objection against itself but only partly answers it"
+      ]
+    },
+    "B": {
+      "score": 9,
+      "strengths": [
+        "Built the design as real HTML at 1440x900 and 390x844 and measured it; I independently re-rendered both files and reproduced the numbers — interior band 3.1% on all six states, trailing 37.3% on Z1 and 59.8-65.6% on Z2-Z5, dashed boundary 3.28:1 vs ground and 3.58:1 vs fill, 0 text runs below 4.5:1 against real computed parent surfaces, 24 buttons / 7 inputs / 6 live regions, one unique sidebar signature across all six frames, 0 phone targets under 44px",
+        "The three directions are genuinely different structural answers, each built, each with an explicit sacrifice, and two rejected on measurement rather than taste — Showroom at 44.4% trailing and Route at 41.3% both exceed the stated 40% phone ceiling under my own measurement",
+        "Redesigns what the first action is rather than what it is labelled: the empty state IS the create form in grid slot 1, name field autofocused, zero clicks and zero navigations to the first meaningful action, with the redundant header button removed so one job has one door",
+        "Copy is bound to real data rather than templated — 'Acme has 23 projects, but none of them include you', eyebrow '14 PROJECTS / 0 SHOWN', 'All 7 of your projects are archived, the most recent was Spring campaign, archived 4 days ago', and near-miss filter counts that are clickable",
+        "Template cards name their actual contents ('Content calendar — weekly slots, draft to review to live, one owner per post') instead of being category labels",
+        "The independent review section is the most valuable non-obvious material in either document: four Blockers, three of which were things the author had already claimed were fixed or fine, and the retained pre-review file corroborates it — it has zero buttons, zero inputs, zero ARIA and uses place-items:center, exactly the defects described",
+        "Caught and documented its own metric-gaming: passing an empty-band criterion by vertical-centering halves one void into two and adds nothing, so the criterion was rewritten to separate interior from trailing band",
+        "Kill-triggers authored before ship (kill the sample card below 5% opened, the template row below 10% started) so optional elements cannot become permanent furniture by default",
+        "Evidence section explicitly lists what was NOT measured — Z2-Z5 at phone width, real screen-reader behaviour, keyboard traversal, and whether the inline form is the same component as the dialog",
+        "Success is defined as a project that still has activity on day 7, with created-and-abandoned named as a non-success, which is a sharper activation definition than a creation count"
+      ],
+      "weaknesses": [
+        "Two numeric claims do not reconcile with the artifacts: '51 runs checked' where my scan of the same file found 137 text runs, and a pre-review file described as 319 lines that is 192 lines on disk — neither changes a conclusion, but both are stated more precisely than the artifact supports",
+        "No no-permission state at all; Z2 covers 'member of a populated workspace' but not 'this user cannot create a project', which is the case the other output correctly flags as a silent day-one bounce cause in invite-based signups",
+        "No localization or i18n consideration anywhere, despite shipping fixed copy strings with embedded counts and an em-dash-heavy voice",
+        "Z2-Z5 were never rendered at phone width, so the two criteria the document leans on hardest are unmeasured for five of six states — disclosed, but it means the measurement record is thinner than the framing implies",
+        "The engineering handoff is prose; there is no component/props table, so it is less directly liftable than the other output's spec despite being more rigorous about what to build",
+        "The domain brief and the C1-C10 criteria numbering are the closest thing to ceremony, and the trailing-band criterion is failed-and-flagged on five of six states rather than solved",
+        "Denser and harder to skim; the process scaffolding occasionally competes with the recommendation for the reader's attention"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Treats the bounce as an activation problem, not only a copy problem",
+          "passed": true,
+          "note": "Strong pass. 'Biggest opportunity: not better words on this screen — not needing this screen on day one.' U-1/U-2 reframe the bug as a state machine problem; primary metric is first-project creation within 24h of signup, with a 10-minute-deletion guardrail against junk creation."
+        },
+        {
+          "text": "Gives more than one option with the tradeoff between them stated",
+          "passed": true,
+          "note": "Passes, but at copy level. Five tone variants (instructive / value-first / warm / enterprise / anti-pattern) each with a stated 'best for' and real weaknesses named. Plus three delivery tiers. All are variants of one layout rather than alternative designs."
+        },
+        {
+          "text": "Copy is specific to a projects page, not a template with a blank filled in",
+          "passed": true,
+          "note": "Pass. 'A project holds the tasks, files, and updates for one piece of work. Most teams start with whatever they're working on this week' answers the blank-page question directly. The E-2/E-3/E-4 strings are more generic than the first-run copy."
+        },
+        {
+          "text": "Considers what the first action should be, not just what the text says",
+          "passed": true,
+          "note": "Pass. U-3 puts the primary action inside the empty state, U-4 adds a pre-filled default name, and the handoff covers tab order, focus return after create, and the create-in-flight button state. But the first action is still a click that opens a separate create flow."
+        }
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Treats the bounce as an activation problem, not only a copy problem",
+          "passed": true,
+          "note": "Strong pass. 'You asked for an empty state. The defect is bigger and cheaper than that: one string is doing six different jobs.' Success is defined as a project that still has activity on day 7, with created-and-abandoned explicitly excluded; the one-day budget ordering puts the two trust bugs ahead of any copy work."
+        },
+        {
+          "text": "Gives more than one option with the tradeoff between them stated",
+          "passed": true,
+          "note": "Strong pass. Three structurally different directions, each built at 390x844, each with an explicit sacrifice row, two rejected on measurements I independently reproduced (44.4% and 41.3% trailing band against a 40% ceiling). One element is salvaged from a rejected direction and demoted, with the reason given."
+        },
+        {
+          "text": "Copy is specific to a projects page, not a template with a blank filled in",
+          "passed": true,
+          "note": "Strong pass. Counts are read from data and appear in the strings; template cards name their contents rather than a category; Z4 refuses teaching copy on the grounds that a returning user already knows what a project is; a footnote answers the privacy question a day-one user in a shared workspace has but does not ask."
+        },
+        {
+          "text": "Considers what the first action should be, not just what the text says",
+          "passed": true,
+          "note": "Strong pass, and the clearest separation between the two. The first action is typing into an already-focused field in grid slot 1 — zero clicks, zero navigations — and the header button is removed on that state so one job has one entry point. autofocus is deliberately restricted to the first-run state so it does not hijack the keyboard elsewhere."
+        }
+      ]
+    }
+  },
+  "verification_notes": {
+    "claim_under_scrutiny": "B claims to have built, rendered and measured the design as HTML. Verified directly rather than taken on trust.",
+    "artifacts_found": [
+      "outputs/mock/zero-states.html (252 lines, six 1440x900 frames)",
+      "outputs/mock/directions.html (130 lines, three 390x844 frames)",
+      "outputs/mock/zero-states.prereview.html (192 lines, retained as the before)"
+    ],
+    "independently_reproduced": [
+      "0 text runs below 4.5:1 against each element's real computed parent surface (my scan: 137 runs, 0 failures)",
+      "Sample-card dashed boundary 3.28:1 vs ground and 3.58:1 vs fill — exact match to the claim",
+      "Interior empty band 3.1% on all six desktop states — exact match",
+      "Trailing band Z1 37.3%, Z2-Z5 in 59.8-65.6% — exact match to the stated range",
+      "24 buttons, 7 inputs, 6 live regions (5 aria-live + 1 role=alert) — exact match",
+      "autofocus present exactly once, i.e. on the first-run state only — matches",
+      "Sidebar identical across all six frames (1 unique signature) — matches the 'byte-identical' claim",
+      "Phone Direction A: trailing 8.2% (claimed 8.1%), 0 targets under 44px — matches",
+      "Rejected directions: trailing 44.4% and 41.3% (claimed 45.3% and 42.3%), both fail the stated 40% ceiling — conclusion holds",
+      "Pre-review file contains 0 buttons, 0 inputs, 0 ARIA and uses place-items:center / justify-content:center — corroborates both the 'prose assertions' Blocker and the vertical-centering metric-gaming story"
+    ],
+    "discrepancies_found_in_B": [
+      "'51 runs checked' vs 137 text runs in my scan of the same file — likely a narrower counting scope, but unexplained",
+      "Pre-review file described as 319 lines is 192 lines on disk"
+    ],
+    "A_contrast_recomputation": [
+      "#6B7280 on #FFFFFF: claimed 4.83, actual 4.83 — correct",
+      "#9CA3AF on #FFFFFF: claimed 2.54, actual 2.54 — correct",
+      "#D1D5DB on #FFFFFF: claimed 1.47, actual 1.47 — correct",
+      "#B91C1C on #FFFFFF: claimed 6.4, actual 6.47 — correct to rounding",
+      "#111827 on #FFFFFF: claimed 16.9, actual 17.74 — understated, pass/fail unaffected",
+      "#2563EB with white: claimed 4.54 and flagged as a 'thin margin', actual 5.17 — understated, and the thin-margin caveat is unwarranted"
+    ],
+    "verdict_on_measurement": "B's measurements are sound and load-bearing: they determine which direction is locked, which criteria were rewritten, and which findings the self-review overturned. Full credit. A's contrast numbers are arithmetically honest but are against an openly invented palette, so they are structurally correct predictions rather than observations — A says as much itself.",
+    "verdict_on_extra_material": "Mostly load-bearing. The built directions supply the rejection evidence, the review section documents three self-refutations, and the evidence table bounds its own claims. The domain brief and criteria numbering are the closest to padding, but the empty-band criterion rewrite that came out of them is a real insight. Cost was not factored into the winner."
+  }
+}

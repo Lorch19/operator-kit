@@ -1,0 +1,107 @@
+{
+  "winner": "B",
+  "reasoning": "NUMERIC VERIFICATION FIRST (I recomputed every load-bearing ratio with the WCAG relative-luminance formula, plus APCA-W3 0.1.9 for A's Lc claims).\n\nOutput B: ~120 claimed ratios checked, 119 exact to the stated decimal. This includes the full 12x5 grey matrix, the 10-row blue-button table with per-colour relative luminances (#2563EB 0.1532, #0D6EFD 0.1833, #3B82F6 0.2355 - all exact), the border and focus-ring tables, and the entire remediation token table. B's derived luminance window is exactly right: for a #0A0A0A page, fill L must be >= 0.1091 for 3:1 and <= 0.1833 for a white label at 4.5:1, and the large-text ceiling is 0.30. I derived all three independently and they match to four decimals. The one discrepancy is inconsequential: B's token table lists focus-ring #FFFFFF as '19.80 vs base' where it defines base = #121212; 19.80 is the value against #0A0A0A, and the true figure is 18.73. No decision turns on 18.73 vs 19.80. Notably B did NOT make the lazy version of this mistake elsewhere - it correctly recomputed accent-fill #2F6FE4 as 4.03 against #121212 in the token table rather than reusing the 4.26 it had computed against #0A0A0A earlier. That is a deliberate re-derivation, and it is the same discipline B's own F-01 preaches.\n\nOutput A: ~45 ratios checked, 43 exact, and all five APCA Lc values verified exact (#8A8F98 39.9, #949AA3 45.4, #A8AEB8 56.2, #C9CED6 74.6, #FFFFFF-on-page 107.7), as is the derived '31 Lc of headroom' claim (actual 31.3). But the B2 focus-ring table has a real defect. Its column is headed 'vs blue fill #2563EB', and rows 2, 4 and 5 (#93C5FD 2.87, #E6E9EE 4.25, #FFFFFF 5.17) are indeed computed against #2563EB - while rows 1 and 3 are computed against #3B82F6 instead. #3B82F6 vs #2563EB is 1.41, not the claimed 1.00, and A's gloss 'identical colour, literally invisible' is simply false for the pair the header names. #A5B4FC vs #2563EB is 2.59, not 1.84 (a 41% error). So a single column silently mixes two baselines - which is precisely the failure A's own B3 finding is about.\n\nThis is not merely cosmetic. A predicts the user's blue is around #3B82F6 and recommends '#FFFFFF or #E6E9EE' for the focus ring, presenting #E6E9EE at 4.25:1 against the fill. Against #3B82F6 - the blue A itself expects them to have - #E6E9EE is 3.02:1. A designer who keeps their lighter blue and takes A's recommendation ships a focus ring with 0.02 of margin believing they have 1.25. The mixed baseline hides that, and hiding margin is exactly the harm the accuracy check is meant to catch.\n\nSUBSTANCE. Both handle the missing-artifact problem honestly and prominently: both open with an assumptions table, both state that every hex is their own stand-in, both close by saying the real values recompute the verdict. Neither passes off invented palettes as observed data. That is a genuine tie and both deserve credit for it.\n\nThey diverge on the read. A amplifies the user's stated worry ('the mid-blue button is the most likely hard failure'). B reframes it: the fill-vs-page check the user actually described almost certainly passes, and the blocker is the 'lots of grey-on-grey' they mentioned in passing - with the label-on-fill squeeze as a second, unasked-about risk inside the button. B's reframe is both correct and more useful; A's headline mostly tells the user what they already suspected.\n\nB also lands a finding A misses entirely: F-04, one blue token serving both button fill and inline link text, which have mutually exclusive requirements on dark. B proves it with the same hex appearing as a pass in one of its tables and a fail in another (#2563EB = 3.83:1 as a fill vs page, 3.62:1 as link text on #121212 - both verified). A gestures at link contrast once in its Minor list without computing it. B's T-03 then names the structural cause of grey-on-grey - elevation-by-lightness subtracts contrast from every token on each tier - and converts it into an architecture ('text tokens indexed by surface tier, not global'), which A's B3 approaches but never formalises into a token model.\n\nCOVERAGE BEYOND CONTRAST. Split, and B is ahead on volume. B has a full keyboard-navigation table (tab order, Enter/Space, Escape, modal focus trap, skip-to-content, ring visibility per surface tier), names a WCAG SC on every one of its nine findings (1.4.1, 1.4.3, 1.4.4, 1.4.10, 1.4.11, 2.4.7, 3.3.1, 3.3.2), states the large-text carve-out explicitly, and contributes the cheapest actionable check in either document - grep for 'outline: none' without a compliant replacement. B's gap is target size: 2.5.5/2.5.8 appear nowhere. A covers target size correctly (24px, 2.5.8) but only as 'unexamined', and omits focus order and keyboard operation entirely. Each misses one of the three items the expectation names.\n\nVERDICT CLARITY. B is decisively better. It opens 'Verdict first - No, not as described', and closes with a Ship Gate that tiers three named blockers, three next-release fixes, and a backlog, plus an effort estimate ('under a day of engineering and a half-day of QA if tokenised; a week if greys are hardcoded'). A opens well ('Verdict: fix-then-ship', 'No - not on what you've described') but then walks it back: 'Treat this as a prioritised test plan that happens to come with a probable answer, not as a verdict.' That is the hedge the task asks about, and A writes it explicitly.\n\nUSABILITY. B's 10-minute self-check is the single most valuable artifact in either document: find your darkest text-bearing surface, look it up in a four-row cheat sheet (#0A0A0A -> #797979 at 4.55:1; #1E1E1E -> #858585 at 4.52:1; all verified), compare your token, done. It converts B's own guesswork into the user's measurement in three steps. A's equivalent is a seven-step, 30-minute procedure - good, and steps 4/5/7 genuinely need no tooling, but it is a longer road to the same place. B then ships a paste-ready remediation spec (tokens, components, states, edge cases) whose every value I verified against every listed tier.\n\nWHERE A IS BETTER, and it is not nothing. A's M1/M2 is the best original analysis in either document: using APCA it shows a grey must reach roughly 10:1 on a dark panel before it is comfortable body text (not 4.5:1), and then argues structurally that luminance cannot carry both hierarchy and legibility on dark - only ~31 Lc separates a compliant body from white, while everything below body that is still AA-legal sits at Lc 34-45. Every number in that argument is exact. The conclusion - stop making luminance carry hierarchy, collapse to two greys, move distinction onto weight and size - is a real design recommendation that deletes tokens rather than adding them. B relegates the same perceptual point to two sentences in its Stress Test. A's 'What must not change' section is also distinctive and valuable: it explicitly guards against the overcorrections (border every card, push every grey to white) that a naive reading of nine contrast findings would produce. B has only fragments of that.\n\nBut A pays for this with a large amount of self-referential scaffolding - 'Pass 0', 'screens-per-treatment split: uncomputable', 'Catches list is 9 against the ~12 cap', 'Truncated: none' - that is about A's own review machinery rather than about the user's accessibility question, and it is a meaningful fraction of the document.\n\nNET. On the criterion the task singles out - a designer would ship on these numbers - B is the safer document by a clear margin: its load-bearing arithmetic is exact throughout, including a correctly derived luminance window that generalises beyond any specific hex, while A's one bad table both misstates a ratio and conceals that its own recommended focus-ring colour has almost no margin against the blue A predicts. Add B's sharper reframe, its unique F-04 finding, its keyboard coverage, its operational ship gate, and its 10-minute self-check, and B wins on content and structure alike. A's APCA analysis is the better single insight and its restraint section is a genuine loss if discarded, but they do not offset a verified numeric defect with a shipping consequence.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 3,
+        "completeness": 4,
+        "accuracy": 3
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 4,
+        "usability": 3
+      },
+      "content_score": 3.3,
+      "structure_score": 3.7,
+      "overall_score": 7.0
+    },
+    "B": {
+      "content": {
+        "correctness": 5,
+        "completeness": 4,
+        "accuracy": 5
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.7,
+      "structure_score": 5.0,
+      "overall_score": 9.7
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 7.0,
+      "strengths": [
+        "Best original insight in either document: APCA analysis showing a grey needs ~10:1 on a dark panel to be comfortable body text, not 4.5:1 - all five Lc values verified exact",
+        "M2's structural argument that luminance cannot carry both hierarchy and legibility on dark (only 31.3 Lc of headroom above a compliant body; verified) leads to a real design fix - fewer greys, hierarchy on weight and size",
+        "'What must not change' section explicitly guards against the overcorrections (border every card, push every grey to white) a naive reading of nine findings would cause",
+        "Blue-button window table (#2563EB to #2F6FEE for a white label on near-black) verified exact in all 12 cells",
+        "Unusually emphatic about its own epistemic limits - 'I reviewed zero screens', every finding written as a falsifiable prediction with a threshold",
+        "Plain-English explanation of why blue specifically fails (0.72/0.21/0.07 luminance weighting) is correct and genuinely clarifying",
+        "Covers target size with the correct SC and threshold (2.5.8, 24px), which B omits entirely"
+      ],
+      "weaknesses": [
+        "VERIFIED ERROR with a shipping consequence: the B2 focus-ring column headed 'vs blue fill #2563EB' silently mixes two baselines. Rows 2/4/5 are against #2563EB; rows 1 and 3 are against #3B82F6. #3B82F6 vs #2563EB is 1.41, not 1.00, and 'identical colour, literally invisible' is false for the named pair. #A5B4FC vs #2563EB is 2.59, not 1.84 (41% off)",
+        "Consequence of that mixed baseline: A recommends #E6E9EE as a focus ring at a stated 4.25:1, but against #3B82F6 - the blue A itself predicts the user has - it is 3.02:1. The table presents 1.25 of margin where 0.02 exists",
+        "Ironic given A's own B3 finding is precisely about measuring against the wrong background",
+        "Explicitly disclaims its own verdict at the close: 'Treat this as a prioritised test plan... not as a verdict'",
+        "No focus order and no keyboard-operation coverage at all",
+        "Large amount of self-referential review scaffolding (Pass 0, Catches cap, 'Truncated: none', uncomputable coverage split) that serves the process, not the reader",
+        "Amplifies the user's existing worry about the blue rather than testing it; hands back the framing it was given",
+        "Misses the mutually-exclusive fill-vs-link-text blue token problem that B computes"
+      ]
+    },
+    "B": {
+      "score": 9.7,
+      "strengths": [
+        "Numerically near-flawless: ~120 claimed ratios recomputed, 119 exact, including the full 12x5 grey matrix, the 10-row blue table with per-colour luminances, and every value in the remediation token table",
+        "Derived the luminance window exactly right and independently verifiable: fill L >= 0.1091 for 3:1 on #0A0A0A, <= 0.1833 for a white label at 4.5:1, 0.30 for large text. This generalises beyond any specific hex",
+        "Re-derived accent-fill #2F6FE4 against the new base #121212 (4.03) rather than reusing the #0A0A0A figure (4.26) - the same discipline its own F-01 preaches",
+        "Correct and more useful reframe: the fill-vs-page check the user described almost certainly passes; the greys and the label-on-fill are the blockers",
+        "F-04 is a genuinely sharp unique finding - one blue token cannot serve both fill and link text, proved by #2563EB appearing as 3.83:1 pass in one table and 3.62:1 fail in another (both verified)",
+        "T-03 names the structural cause of grey-on-grey (elevation-by-lightness subtracts contrast per tier) and converts it into an architecture: text tokens indexed by surface tier",
+        "10-minute self-check with a verified four-row cheat sheet converts B's own inference into the user's measurement in three steps",
+        "WCAG SC number on all nine findings (1.4.1, 1.4.3, 1.4.4, 1.4.10, 1.4.11, 2.4.7, 3.3.1, 3.3.2) plus the explicit large-text carve-out",
+        "Full keyboard-navigation table - tab order, Enter/Space, Escape, modal focus trap, skip-to-content, ring per surface tier - and the 'grep for outline: none' check, the cheapest actionable item in either document",
+        "Ship Gate with three tiers, named blockers, and a conditional effort estimate; paste-ready remediation spec",
+        "Stress Test honestly identifies where it is over-strict (1.4.11 fill-vs-page is genuinely ambiguous) and under-strict (WCAG 2.x over-rates dark mode vs APCA)"
+      ],
+      "weaknesses": [
+        "One verified slip, immaterial: the token table lists focus-ring #FFFFFF as '19.80 vs base' where base is defined as #121212; the correct figure is 18.73 (19.80 is against #0A0A0A). No decision turns on it",
+        "Target size (2.5.5 / 2.5.8) is absent entirely - the one item from the expected coverage it does not touch",
+        "Treats the APCA / dark-mode over-rating point only in the Stress Test, where A builds a substantive finding out of it",
+        "Has no consolidated equivalent of A's 'what must not change' - less protection against a team overcorrecting the greys toward white",
+        "Long for a yes/no ship question; it flags this itself but the remediation spec still arrives before the reader has any real hex values"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Names the specific WCAG criteria and thresholds at stake (e.g. 4.5:1 body, 3:1 large text and UI)", "passed": true, "note": "States 4.5:1 and 3:1 correctly throughout and names 1.4.3, 1.4.11, 1.4.4, 1.4.10, 2.5.8, WCAG 2.2 AA and the AAA 7:1 step. Weaker than B: does not name 2.4.7 despite focus visibility being its second Blocker, and never states the large-text 3:1 carve-out."},
+        {"text": "Asks for or computes actual contrast ratios rather than eyeballing", "passed": true, "note": "Computes ~45 WCAG ratios plus APCA Lc values; 43 of 45 verified exact and all APCA values exact. Two cells in the focus-ring table are wrong (see weaknesses). Also supplies a 7-step, 30-minute measurement procedure."},
+        {"text": "Covers more than contrast - focus order, focus visibility, target size", "passed": true, "note": "Partial: focus visibility is strong (Blocker B2); target size named with the right SC and threshold but marked unexamined; focus order and keyboard operation absent entirely. Does cover disabled states, colour-only signalling, forced-colors, zoom/reflow and reduced-motion."},
+        {"text": "Gives a clear ship / do-not-ship verdict rather than hedging", "passed": true, "note": "States 'Verdict: fix-then-ship' and 'No - not on what you've described' up front, but explicitly retracts it at the close: 'Treat this as a prioritised test plan that happens to come with a probable answer, not as a verdict.'"}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Names the specific WCAG criteria and thresholds at stake (e.g. 4.5:1 body, 3:1 large text and UI)", "passed": true, "note": "Declares WCAG 2.1 AA up front, tags a specific SC on every one of nine findings (1.4.1, 1.4.3, 1.4.4, 1.4.10, 1.4.11, 2.4.7, 3.3.1, 3.3.2), and states the large-text carve-out explicitly (3:1 at >=18.66px bold / >=24px regular). More systematic than A."},
+        {"text": "Asks for or computes actual contrast ratios rather than eyeballing", "passed": true, "note": "~120 ratios recomputed, 119 exact, including a 12x5 grey matrix and per-colour relative luminances. Derives the fill-luminance window (0.1091-0.1833) analytically rather than hex-by-hex - verified exact. The 10-minute self-check hands the measurement back to the user."},
+        {"text": "Covers more than contrast - focus order, focus visibility, target size", "passed": true, "note": "Partial but the stronger half: a full keyboard table covering tab order, Enter/Space, Escape, modal focus trap and skip-to-content, plus focus visibility (F-07 and the outline:none grep). Also placeholder-as-label, colour-only status, zoom/reflow, forced-colors, prefers-contrast, font weight. Target size is the one omission."},
+        {"text": "Gives a clear ship / do-not-ship verdict rather than hedging", "passed": true, "note": "'Verdict first - No, not as described', followed by a Ship Gate tiering three named blockers, three next-release fixes and a backlog, with a conditional effort estimate. No retraction anywhere; the Stress Test qualifies the inputs, not the verdict."}
+      ]
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs clear all four expectations and both ship harnesses that actually run — this was decided on verified claim integrity and on how much of the user's real problem each deliverable covers. I executed both. A's transcripts reproduce exactly (make red is deterministic; diagnose.py prints 506/506/497 with LOSS at enrich at 1.78%; drop_forensics separates DETERMINISTIC from STOCHASTIC on the shipped 14-night fixtures, including the honest self-flagged caveat that a 6.9x lift on 9 droppers is noise). But two of A's explicit claims about its own primary deliverables are false. A says 'ledger.py is delivered and has no dependency on my stand-in' and tells the user to 'Port this into your pipeline' — ledger.py has `import pipeline` at module scope, so copying it into a foreign directory raises ModuleNotFoundError on import (verified in /tmp). A also asserts a mutation check: 'deleting the lock ... each produces at least one failing test'; across 13 runs, deleting the lock leaves the suite at exactly the baseline 5 failed / 7 passed and test_ledger_accounts_correctly_under_the_concurrent_stage never goes red. In a document whose whole argument is 'do not report a proxy as the thing itself', asserting an unrun mutation result and a portability property that the file contradicts is the costliest possible error. B's numbers, by contrast, all held: GREEN/RED exits 0/1, MANGLED correctly identifying BRK.B and BF.B as renamed-and-deduplicated rather than dropped, backfill returning RUN-DEPENDENT on nights I generated myself, J=1.0 on both dropna and tail_batch, and tail_batch producing 54 drops (10.76%) exactly as the H4 rate-plausibility argument claims. Both of B's keep-forever modules (ticker_audit.py, stage_census.py) import and run standalone from an unrelated directory, which is what 'port this' has to mean. On substance B also covers more of the failure space: it is the only output that distinguishes a mangled symbol from a dropped one and that tracks `gained`/`dupes` so a stage resurrecting a stale row cannot hide a real loss behind a correct-looking total; it ships a working `replay` subcommand that turns a 1-in-50 nightly bug into 30/30 reds in one sitting rather than leaving replay as advice; and its question #3 (if the universe is regenerated nightly, 'the pipeline dropped it' and 'the universe builder never asked for it' look identical and have disjoint fixes) is the sharpest single insight in either document. B also carries the work through to a worked fix and a regression test at an explicitly argued seam, where A stops at diagnosis by design. A's compensating strength is real and I weighed it: it is the stricter of the two on expectation 1 — it refuses to rank causes at all, gating a signature-to-meaning table behind the instrument, where B does rank H1 as 'most likely'. But B builds and executes its loop to 30/30 reproduction in Phase 1 before any hypothesis appears in Phase 3, and re-ranks the whole list by what the measurement prints, so it satisfies the intent of that expectation rather than merely its letter. A spends noticeably more of its length on what it is refusing to do (the Iron Law block, the gate, the §7 refusal table) than B spends on the same discipline, and that budget came out of deliverable coverage.",
+  "rubric": {
+    "A": {
+      "content": {
+        "diagnostic_discipline": 5,
+        "measurement_insight": 5,
+        "reproduction_loop": 4,
+        "claim_integrity": 3
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 3
+      },
+      "content_score": 4.25,
+      "structure_score": 4.33,
+      "overall_score": 8.6
+    },
+    "B": {
+      "content": {
+        "diagnostic_discipline": 4,
+        "measurement_insight": 5,
+        "reproduction_loop": 5,
+        "claim_integrity": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.5,
+      "structure_score": 5.0,
+      "overall_score": 9.5
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 8.6,
+      "strengths": [
+        "Strictest discipline of the two: opens with 'What I am deliberately not doing yet' and physically gates the cause table behind the instrument in section 5",
+        "Section 1 is the best single argument in either document for why 'no pattern' is a measurement gap: the 140-drop-events arithmetic, and the proxy trap that absence-at-the-end collapses five different bugs into one symptom",
+        "Names the specific false-confirmation trap: at 2% a clean night happens by chance, so guess-and-check will falsely validate whatever you try first",
+        "Ships 14 nights x 2 scenarios of demo artifacts, so the deterministic-vs-stochastic discriminator is reproducible out of the box — verified, output matches the document exactly",
+        "Self-polices its own statistics: flags that a 6.9x lift on 9 droppers is noise, not a finding. Verified present in the real output",
+        "Deterministic where it claims to be — three pytest runs and two diagnose.py runs produced byte-identical dropped sets",
+        "Section 2 ('Define red before building anything') is the cleaner articulation of the target: five non-negotiable properties stated before a line is written",
+        "Section 7's refusal table names real anti-patterns (retry the fetch, backfill from last night, alert on a threshold) and says why each destroys evidence",
+        "Repo greps for locating stage seams are practical and well chosen"
+      ],
+      "weaknesses": [
+        "FALSIFIED CLAIM: states 'ledger.py is delivered and has no dependency on my stand-in' and instructs 'Port this into your pipeline' — ledger.py line 27 is a module-scope `import pipeline`, so it raises ModuleNotFoundError when copied into any other repo (verified by copying it to /tmp)",
+        "FALSIFIED CLAIM: the mutation check says deleting the lock produces a failing test; across 13 runs the suite stays at the baseline 5 failed / 7 passed and the concurrent-ledger test never goes red. The named mutation is not detected",
+        "The only command that actually goes red is red against the author's stand-in; the user-facing loop requires porting the ledger first, and the replay path is described rather than shipped as a runnable subcommand",
+        "No detection of the mangled-symbol case (renamed then deduplicated against its own twin) — its character profiler hints at it but never distinguishes 'present under another spelling' from 'dropped'",
+        "Does not track rows gained or duplicated, so a stage that resurrects a stale row can hide a real loss behind a correct-looking count",
+        "Stops at diagnosis: no worked fix, no red-to-green transcript on a repaired pipeline",
+        "Longest of the two, with a large share of the word budget spent on meta-commentary about its own restraint (Iron Law block, the gate, section 7) rather than on capability",
+        "Asserts the zero-threshold gate flatly without acknowledging the operational cost of failing a nightly job on one unaccounted ticker"
+      ]
+    },
+    "B": {
+      "score": 9.5,
+      "strengths": [
+        "Opens on the measurement, not on causes: 'You do not have a hypothesis problem. You have a measurement problem, and the measurement you need is already sitting on disk', followed by one command and 'Everything after this point is conditioned on what that prints'",
+        "Quantifies exactly how the eyeball misleads: in its own stochastic fixture 22% of drop events landed on a repeat offender by birthday-paradox coincidence, so the null baseline is what stops you inventing a pattern. This is the sharpest available answer to 'no pattern I can see'",
+        "Ships three loops at increasing cost, all executed and all verified by me: audit (51ms, exit 0/1, checked against an explicit red-capability checklist), backfill (per-night series plus verdict, reads step-vs-ramp for free), replay (30/30 red, --env sweeps for one-variable-at-a-time probes)",
+        "replay is the only real answer to 'a 2% bug is not debuggable one night at a time' — it converts one nightly sample into 30 in a sitting, which is what makes bisecting possible",
+        "Uniquely detects the mangled case: BRK.B and BF.B flagged as 'present under another spelling, not dropped'. Verified. A row-count check would have sent the user to the fetch layer for a bug that lives in the join key",
+        "The stage census tracks gained and dupes as well as lost, because a stage that resurrects a stale row hides a real loss behind a correct-looking total. Verified running standalone",
+        "Question #3 — if the universe is regenerated nightly rather than pinned, 'the pipeline dropped it' and 'the universe builder never asked for it' are indistinguishable in the output and have disjoint fixes — is the single most valuable observation in either document, and is correctly flagged as the assumption most worth resolving first",
+        "Hypotheses are gated on measurement, not asserted: the re-ranking table maps each backfill verdict to a new order and to hypotheses killed outright, and H4 is demoted on a quantitative rate argument (54 drops = 10.8% from the modulus, far off the observed 2%) that I reproduced",
+        "Every load-bearing number reproduced on re-execution: GREEN/RED exits, MANGLED pair, RUN-DEPENDENT verdict on nights I generated, J=1.0 on both dropna and tail_batch, legacy 2-failed to fixed 3-passed",
+        "Both keep-forever modules are stdlib-only and import standalone from an unrelated directory — verified, which is what 'port this into your repo' actually requires",
+        "Argues the test seam explicitly: a unit test on fetch() would pass while the bug shipped, because the defect lives in the aggregation boundary that decides what to do with the exception",
+        "Carries through to a worked fix (the TickerLedger conservation invariant), a red-to-green transcript, a cleanup grep tag, and a post-mortem that separates the mechanism bug from the missing invariant",
+        "Stress test names the operational trade-off honestly: a hard fail on one unaccounted ticker is a real cost, and if wrong for the user it must degrade to a loud alert, not back to silence"
+      ],
+      "weaknesses": [
+        "Softer than A on expectation 1: Phase 3 presents a ranked list with H1 labelled 'most likely', where A refuses to rank at all. Mitigated but not eliminated by the loop being built and executed first and by the re-ranking table",
+        "Transcript inconsistency: the Loop A examples print universe=500 while the shipped universe.txt is 502 lines, so those two blocks came from an earlier fixture than the one delivered",
+        "Does not ship the nights/ fixtures its backfill transcript shows, so that centrepiece command is not reproducible out of the box — I had to generate the nights myself (A did ship its equivalents)",
+        "Its own suite does not catch removing the LedgerBreach raise from pipeline_fixed.py — 3 tests still pass (it never claimed mutation coverage, unlike A, so this is a gap rather than a false claim)"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Refuses to hypothesise before it can reproduce the failure on demand", "passed": true, "note": "Strongest pass of the two. Section 5 is physically gated behind the instrument and the document argues that reading it first is how you fix the wrong thing."},
+        {"text": "Drives toward one command that goes red on the bug", "passed": true, "note": "`make red` verified non-zero and deterministic. Section 2 defines red's five properties before building. Docked in rubric because it is red only against the author's stand-in; the user's loop needs the ledger ported first, and that file does not import standalone."},
+        {"text": "Treats 'no pattern I can see' as a measurement gap rather than randomness", "passed": true, "note": "An entire section on it: the 140-events arithmetic, the proxy trap, and three distinct things 'no pattern' could mean, none of them 'it's random'."},
+        {"text": "Does not open with a list of plausible causes", "passed": true, "note": "Opens with an explicit refusal to provide one."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Refuses to hypothesise before it can reproduce the failure on demand", "passed": true, "note": "Passes on ordering and intent: Phase 1 builds and executes a loop to 30/30 reproduction and Phase 2 minimises before any hypothesis appears in Phase 3, and the re-ranking table makes the list a function of what the measurement prints. Weaker than A on the letter, since H1 is called 'most likely'."},
+        {"text": "Drives toward one command that goes red on the bug", "passed": true, "note": "Strongest pass of the two. `ticker_audit.py audit` exits 0/1 in 51ms against artifacts the user already has (verified), checked against an explicit red-capable/deterministic/fast/agent-runnable criterion, with replay raising the reproduction rate to 30/30."},
+        {"text": "Treats 'no pattern I can see' as a measurement gap rather than randomness", "passed": true, "note": "Names it as a measurement problem in the first two lines, then builds the null baseline the eyeball lacks and quantifies the miscalibration at 22% coincidental repeat offenders."},
+        {"text": "Does not open with a list of plausible causes", "passed": true, "note": "Opens with the discriminating question and the command that answers it; the hypothesis list sits in Phase 3 behind the executed loop."}
+      ]
+    }
+  },
+  "verification_performed": {
+    "note": "Both harnesses were executed rather than trusted. Findings below are from actual runs.",
+    "A_harness": [
+      "make red / pytest: 5 failed, 7 passed as documented; dropped set ['BL','BW','C','LEN-A','MDG','MMMM','SGWC','UEH','UHAL-B'] identical across 3 runs (determinism claim holds)",
+      "diagnose.py --bugs innerjoin: table matches the document exactly (506/506/497, LOSS at enrich, 1.78%), identical across 2 runs",
+      "drop_forensics.py on shipped demo/det and demo/sto: both verdicts and the 6.9x-lift caveat reproduce exactly",
+      "ledger.py copied to /tmp: `import ledger` -> ModuleNotFoundError: No module named 'pipeline'. Contradicts the document's explicit no-dependency claim for the artifact it tells the user to port",
+      "Lock-removal mutation (`with self._lock:` -> `if True:`): 8 full-suite runs and 5 targeted runs of the concurrent test — suite stays at baseline 5 failed/7 passed, the concurrent test passes every time. The documented mutation is not caught"
+    ],
+    "B_harness": [
+      "audit DROP_MODE=none -> [GREEN] exit=0; DROP_MODE=pool_swallow -> [RED] exit=1, as documented",
+      "audit DROP_MODE=symbol_collision -> MANGLED (2): BRK.B, BF.B, exactly as claimed",
+      "backfill over 14 nights I generated (5 clean + 9 pool_swallow): per-night table, step change at night 6, RUN-DEPENDENT verdict with observed J 0.0079 vs expected 0.0107 — behaves as documented",
+      "backfill over dropna and tail_batch nights: J=1.0, DETERMINISTIC verdict both times; tail_batch mean 54 drops / 10.76%, matching the H4 rate argument",
+      "replay --runs 10: 10/10 red with RUN-DEPENDENT verdict",
+      "pytest IMPL=pipeline_legacy -> 2 failed, 1 passed; IMPL=pipeline_fixed -> 3 passed, as documented",
+      "ticker_audit.py and stage_census.py both import and run standalone from /tmp (portability claim holds)",
+      "Mutation: neutering record_failure (regress to silent drop) is caught, 2 tests go red. Removing the LedgerBreach raise is not caught — a coverage gap, but no claim was made about it",
+      "Nit: universe.txt is 502 lines while the Loop A transcript prints universe=500"
+    ]
+  }
+}

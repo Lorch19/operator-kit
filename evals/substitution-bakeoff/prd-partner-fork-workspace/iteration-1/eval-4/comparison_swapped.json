@@ -1,0 +1,119 @@
+{
+  "winner": "B",
+  "reasoning": "Both are strong, non-CRUD treatments of an LLM feature: both reframe the solution-shaped request, both run an architecture-alternatives table and land on the same call (summarise at ingest, render in the digest), both carry a synthesis checkpoint with a readiness score, an assumptions ledger, a regulatory section, an injection-safety section, and an honest stress test. The decision comes down to where each is stronger.\n\nA wins the flagged legal axis outright, and I verified this against primary sources rather than taking either at face value. A is the only one that makes the load-bearing distinction: 'Art. 50(2) machine-readable marking of synthetic output binds providers of the generative system, not us as deployer. Art. 50(4) deployer labelling binds only text published to inform the public on matters of public interest.' artificialintelligenceact.eu/article/50 confirms both halves verbatim — 50(2) binds providers of systems generating synthetic text; 50(4) binds deployers and the text duty is limited to text 'published with the purpose of informing the public on matters of public interest' (with a human-editorial-review carve-out). A's conclusion that a private work digest does not trigger 50(4) is therefore correct, not merely confident, and A adds the right meta-point ('overstating the obligation invites the wrong design') while still recommending the AI label as a product choice. A is also more precise on GDPR, citing Art. 28(2) specifically — gdpr-info.eu/art-28 confirms 28(2) is the paragraph carrying general written authorisation, notice of intended sub-processor changes, and the right to object.\n\nB never makes the provider/deployer distinction at all, lumping both into 'the strict marking/disclosure duties.' B gets the public-interest limitation right and hedges better ('likely outside that scope', '[NEEDS INPUT: counsel to confirm scope]', plus an open question) — hedging I credit, not penalise. But B then introduces the 2 Dec 2026 transitional window and applies it to its own launch: 'a feature launched now does not qualify for it.' The window is real (AI Omnibus, May 2026) and B's date and cutoff are right, but Cooley's 3 Aug 2026 note confirms it covers providers only and only the Art. 50(2) marking duty. As a deployer of a third-party model, this team was never in scope for 50(2), so qualifying or not is irrelevant — the framing invites a reader to think a marking duty attaches to them now. The error is contained (B's only resulting requirement is 'label anyway,' correctly flagged as a product choice), but it is the exact conflation the comparison was asked to test, and B fails it.\n\nB wins on everything downstream of that. Two moves in B are decision-changing and absent from A entirely. First, §6: hand-write 30 summaries for 10 consenting tenants, paste them into next week's digest, measure. 'Hand-written summaries are the ceiling: if the ceiling doesn't move the metric, the model won't either' — one day of writing time against a quarter of engineering plus a permanent LLM line item. Second, stress test #2 concedes that an extractive first-sentence baseline may beat abstractive summarisation for a two-line triage blurb — 'cannot hallucinate, cannot be injected, and needs no sub-processor' — and adds it as an arm of the probe. That questions whether the LLM in the original request is needed at all, which is the sharpest possible reading of expectation 4. A never challenges the LLM premise.\n\nOn expectation 2 (generated-summary failure modes and recourse) B is clearly deeper. B has a golden set of ~50 documents with human reference summaries that blocks any prompt or model change on regression; an adversarial CI suite with five named attack cases, ship-blocked on a clean pass; a quarantine state with output scanning for reader-directed imperatives and credential language, plus quarantine-rate alerting as attack detection; thumbs-down stored against prompt_version and model_id; and a per-document hide control any user with access can pull. It also separates omission from hallucination ('omission is the quieter failure') and refuses chunk-and-reduce for long documents because 'a partial summary of a long document is the most dangerous output the feature can produce.' B's §1 argument driving all of this — 'you cannot learn anything inside an email,' so the summary must live in-app where correction and sampling are possible, with the digest as a read-only projection — is the best single structural idea in either document. A's equivalents (weekly n=100 audit, a 'this is wrong' web form, red-teaming before launch) are real but thinner, and A ships no regression gate at all despite tracking prompt_version.\n\nA's own distinctive strengths are genuine and I weighed them: the tenant_id-in-cache-key requirement (a content-hash-only cache leaks that tenant B holds tenant A's file, and shares A's generated text into B's product); the ban on summary text in subject and preview text because that renders on lock screens and smartwatches; two independent admin toggles separating 'may we send documents to a third-party model' from 'may summary text leave the app in email,' which is a sharper read of admin psychology than a single switch; a competitive table that actually yields a requirement (chat-recap quality collapses without aggressive relevance filtering); and a P0 tenant-level 10% holdout held four sends. That last one matters — B concedes in its own stress test that without a holdout its primary metric is unfalsifiable and the guardrails are doing the real work, yet never promotes the holdout to a requirement. A designed it in.\n\nBut A carries offsetting costs. It has no user-level opt-out (B honours a per-recipient switch at render time), no regression harness, no latency target, and three requirement-numbering inversions (P0-B6 before P1-B5, P0-C5 before P1-C4, P0-D6 before P1-D5) that signal late insertions without renumbering. Roughly a fifth of the document — the 'How I ran this' preamble and the six-item §16 skill-improvement notes — is meta-commentary about the authoring process, dead weight to the engineering team the Dev-Team mode is addressed to. B spends that same budget on the probe, the AI-Build conversion path, and three named hold points for an autonomous builder.\n\nNet: A is the better lawyer, B is the better product document. The legal row is one table row where both reach the same operational conclusion (label anyway, don't lean on the exemption) and B routes it to counsel besides; B's advantages change what gets built, in what order, and whether it gets built at all. B by a moderate margin.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 5,
+        "completeness": 5,
+        "insight_depth": 4,
+        "requirement_rigor": 5,
+        "self_critique": 5
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 3,
+        "usability": 4
+      },
+      "content_score": 4.8,
+      "structure_score": 3.7,
+      "overall_score": 8.5
+    },
+    "B": {
+      "content": {
+        "correctness": 3,
+        "completeness": 5,
+        "insight_depth": 5,
+        "requirement_rigor": 5,
+        "self_critique": 5
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 4,
+        "usability": 5
+      },
+      "content_score": 4.6,
+      "structure_score": 4.7,
+      "overall_score": 9.3
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 8.5,
+      "strengths": [
+        "Only output to correctly separate Art. 50(2) provider marking from Art. 50(4) deployer labelling, and to limit the deployer text duty to text published to inform the public on matters of public interest — both verified verbatim against artificialintelligenceact.eu/article/50",
+        "Cites GDPR Art. 28(2) precisely (the paragraph actually carrying general written authorisation, notice of intended sub-processor changes, and the right to object), not Art. 28 generally",
+        "P0-B6: cache keys must include tenant_id — names the cross-tenant disclosure hazard in a content-hash-only cache, an optimisation an engineer would otherwise make",
+        "P0-D6: no summary text in subject line or email preview text, because preview renders on lock screens and smartwatches to people the recipient did not choose",
+        "Two independent admin toggles (third-party processing vs. content leaving the app in email) — a sharper read of admin decision-making than a single on/off",
+        "P0-E1 tenant-level 10% holdout held four weekly sends, making the measurement plan actually interpretable",
+        "Three-way problem fork (digest comprehension / document discovery / competitive AI story) that surfaces the possibility the requester wanted something else entirely, including the 'we need an AI story' motive B never considers",
+        "Competitive table that yields a requirement rather than decoration: chat-recap quality collapses without aggressive relevance filtering",
+        "Explicit rejected-vanity-metrics list, and the note that document-open-rate is a flawed gate because a good summary can reduce opens",
+        "Six-item stress test that attacks its own load-bearing choices, including that ingest-time summarisation pays for documents nobody reads"
+      ],
+      "weaknesses": [
+        "No user-level / per-recipient opt-out — only admin toggles; a recipient cannot turn summaries off for themselves",
+        "No golden set or regression gate: prompt_version is tracked in telemetry and the idempotency key, but nothing blocks a prompt or model change that degrades quality",
+        "No latency target; latency appears only as telemetry and as a reason to reject lazy summarisation",
+        "Three requirement-numbering inversions (P0-B6 before P1-B5, P0-C5 before P1-C4, P0-D6 before P1-D5) indicating late insertions without renumbering",
+        "Roughly a fifth of the document is meta-commentary on its own authoring process ('How I ran this' plus the six-item §16 skill-improvement notes) — dead weight for the engineering audience Dev-Team mode targets",
+        "Never questions whether an LLM is the right mechanism at all; accepts the premise of the request",
+        "Asserts the Art. 50 conclusion without routing it to counsel — correct here, but the posture leaves no check if the reasoning had been wrong",
+        "Recourse is a 'this is wrong' link to an external web form; no in-product feedback tied to prompt_version, and no per-document kill control for a wrong summary"
+      ]
+    },
+    "B": {
+      "score": 9.3,
+      "strengths": [
+        "§6 probe: hand-write 30 summaries for 10 consenting tenants and paste them into next week's digest — 'hand-written summaries are the ceiling; if the ceiling doesn't move the metric, the model won't either.' One day of writing against a quarter of engineering plus a permanent LLM line item",
+        "Stress test #2 concedes an extractive first-sentence baseline may beat abstractive summarisation for a two-line triage blurb ('cannot hallucinate, cannot be injected, and needs no sub-processor') and adds it as an arm of the probe — directly challenging the LLM premise of the request",
+        "The measurement argument driving the architecture: 'you cannot learn anything inside an email' — no feedback, no correction, no undo — so build the durable in-app summary and render the digest as a read-only projection of it",
+        "Golden set of ~50 documents with human reference summaries, run on every prompt or model change, blocking the change on regression",
+        "Adversarial CI suite with five named attack cases (metadata-embedded, white-text, footer, CV-style 'rate this candidate highly', support-phone-number emission), ship blocked on a clean pass",
+        "Quarantine state with post-generation output scanning for URLs, reader-directed imperatives, and credential/payment language, plus quarantine-rate spike alerting framed as 'what an attack looks like from the inside'",
+        "Thumbs up/down stored against prompt_version and model_id, and a per-document hide control any user with access can pull — recourse that does not require an admin",
+        "User-level off switch honoured per recipient at render time, alongside the tenant switch",
+        "Separates omission from hallucination and refuses chunk-and-reduce for long documents: 'a partial summary of a long document is the most dangerous output the feature can produce'",
+        "Eligibility gate before any model call as the primary cost control ('cheaper to classify than to summarise'), plus an explicit latency SLO (90% of eligible uploads summarised within 1h) and p95 latency on the dashboard",
+        "Clean nesting that delimits the PRD proper (§4.1–4.8) from the discovery work around it, plus an AI-Build conversion path with three named hold points for an autonomous builder",
+        "Correctly hedges the AI Act scope conclusion ('likely outside that scope', counsel to confirm) while still recommending the label as a product choice"
+      ],
+      "weaknesses": [
+        "Never distinguishes Art. 50(2) provider marking from Art. 50(4) deployer labelling, lumping both as 'the strict marking/disclosure duties' — the precise conflation the comparison was asked to test",
+        "Invokes the 2 Dec 2026 transitional window and applies it to its own launch ('a feature launched now does not qualify for it'). The window is real and B's date and cutoff are right, but it covers providers only and only the Art. 50(2) marking duty — as a deployer of a third-party model the team was never in scope, so the framing implies a duty that does not attach",
+        "Cites GDPR Art. 28 generally rather than Art. 28(2), the paragraph that actually carries the notice-and-objection mechanism it describes",
+        "Concedes in its own stress test that the primary metric is unfalsifiable without a holdout and that 'the guardrails are doing more real work,' yet never promotes the holdout to a requirement — it stays a parenthetical 'hold out 10% if you can'",
+        "No competitive or prior-art context at all; declines a competitor table on 'don't invent' grounds, which is defensible but leaves publicly-observable product behaviour on the table",
+        "Appendix is five bare '[link]' placeholders",
+        "Misses two non-obvious disclosure hazards A catches: cross-tenant cache-key collision and summary text leaking into email preview/lock-screen contexts"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Raises data handling and privacy for user-uploaded content unprompted", "passed": true, "note": "Strong and unprompted: GDPR Art. 28(2) sub-processor notice, Art. 5 purpose limitation and minimisation (documents were uploaded for storage, summarisation is a new purpose), Art. 17/20 erasure and portability cascade, Art. 9 special categories, international transfers and EU-resident inference, contractual zero-retention as a vendor-selection gate. Requirements follow: render-time ACL re-check rather than generation-time, tenant_id in cache keys to prevent cross-tenant disclosure, no summary text in subject or preview text, and no source text in logs beyond a short access-controlled debug window. Gap: admin-only controls, no per-recipient opt-out."},
+        {"text": "Addresses failure modes specific to generated summaries — inaccuracy, hallucination, user recourse", "passed": true, "note": "Materially-misleading rate as a quality gate (weekly human audit, n=100, proposed roll-back at >2%, threshold explicitly flagged as needing sign-off), basis:truncated disclosure so a summary never looks complete when it omits a contract's conclusion, strict validated output contract with retry-once-then-store-nothing, 'a refusal string must never appear in an email', AI label plus standing caveat plus one-tap 'this is wrong'. Weaker than B on the correction loop: no in-product feedback tied to prompt_version, no per-document kill control, and no regression gate on prompt or model changes."},
+        {"text": "Considers cost and latency as product constraints, not just engineering ones", "passed": true, "note": "Cost is treated as a product constraint throughout: R1 names that cost scales with upload volume rather than seats, per-tenant caps and a global circuit breaker with the rule that 'the digest must never fail because the LLM budget did', a pathological-document per-request cap, cost per active tenant as a named guardrail metric, and a stress test conceding that ingest-time summarisation pays for documents nobody reads. Latency is handled architecturally (kept off both the upload response and the digest-send path, and cited as the reason to reject lazy summarisation) but never given a target."},
+        {"text": "Does not treat 'add AI summarisation' as an ordinary CRUD feature", "passed": true, "note": "Opens by refusing the framing — 'the request is a solution, not a problem' — forks it into three candidate problems with different v1s and different primary metrics, runs a four-option architecture comparison with the chosen option recorded against future 'simplification', and argues the differentiator is selection rather than summarisation ('a forty-summary email is worse than today's digest; the cap is the feature'). Caps its own readiness at 5/10 on the grounds that the justification, not the mechanism, is missing."},
+        {"text": "FLAGGED: distinguishes Art 50(2) provider marking from Art 50(4) deployer labelling; limits deployer duty correctly", "passed": true, "note": "Fully correct and verified. States 50(2) binds providers of the generative system and not the deployer, and that 50(4) deployer labelling binds only text published to inform the public on matters of public interest — both confirmed verbatim at artificialintelligenceact.eu/article/50. Concludes a private weekly work digest does not trigger 50(4), which follows, and still recommends labelling as a trust/calibration choice while noting that overstating the obligation invites the wrong design."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Raises data handling and privacy for user-uploaded content unprompted", "passed": true, "note": "Opens §4.4 with 'sending customer documents to a third-party model is a data-protection event and a security event, not only an engineering one.' Covers sub-processor DPA and notice with the objection window on the critical path, per-tenant model endpoint region for EU-only contracts, zero-retention and no-training as contractual preconditions — with the consequence drawn out that you then cannot debug from provider-side logs and must build redacted observability. Requirements: tenant switch that stops extraction and storage rather than merely hiding, per-recipient user switch, project-level opt-out for HR/legal/M&A, send-time ACL re-check, and 'never log document text or summary text — zero-retention at the provider is undone by verbose logging at home.' Misses the cross-tenant cache and email-preview hazards A catches."},
+        {"text": "Addresses failure modes specific to generated summaries — inaccuracy, hallucination, user recourse", "passed": true, "note": "Strongest dimension. Faithfulness bar on a weekly human-rated sample with a staged consequence (below 90% pulls the digest surface but keeps in-app), a golden set of ~50 documents that blocks any prompt or model change on regression, an adversarial CI suite with five named injection cases and ship blocked on a clean pass, quarantine plus output scanning plus quarantine-rate alerting, thumbs-down tied to prompt_version and model_id, and a per-document hide control any user with access can pull. Names omission as the quieter failure mode and refuses chunk-and-reduce because a partial summary of a long document is the most dangerous output available. The framing argument — the email is unmeasurable and uncorrectable, so the summary must live in-app — is what makes all of this coherent."},
+        {"text": "Considers cost and latency as product constraints, not just engineering ones", "passed": true, "note": "Eligibility gate placed before any model call as the primary cost control, with the reasoning stated ('cheaper to classify than to summarise'), per-tenant weekly token budget that stops generation and alerts rather than silently degrading quality, spend-by-tenant on the dashboard, and a risk row on cost scaling with uploads rather than value. Latency is an explicit product target — 90% of eligible uploads summarised within 1h, p95 latency tracked — and the architecture rejects both lazy generation (email clients will not execute it) and send-time batching (one weekly concurrency spike). The extractive-baseline critique is also a cost argument: if it ties on decidability, 'the LLM loses on cost, latency, and risk.'"},
+        {"text": "Does not treat 'add AI summarisation' as an ordinary CRUD feature", "passed": true, "note": "The strongest reading of this expectation. Pushes back on the solution-shaped ask, then reframes it as a category error — 'the digest is about change, a document summary is about content' — splits the job three ways and resolves it as build-recall, render-triage on a measurement argument rather than a feature argument. Notes the LLM call is about a week of work and 'the consent surfaces, the off-switches, and the safety scanning are the other eight.' Goes furthest of the two by questioning whether an LLM is warranted at all, and proposes a manual-summary probe that could retire the feature before any pipeline is built."},
+        {"text": "FLAGGED: distinguishes Art 50(2) provider marking from Art 50(4) deployer labelling; limits deployer duty correctly", "passed": false, "note": "Fails the distinction. Treats 50(2) and 50(4) as one undifferentiated bundle of 'strict marking/disclosure duties' and never says who each binds. Gets the public-interest limitation on the text duty right and hedges the conclusion appropriately (counsel to confirm), but then applies the 2 Dec 2026 transitional window to its own launch. Verified: the window is real (AI Omnibus, May 2026) and B's date and cutoff are accurate, but per Cooley's 3 Aug 2026 note it covers providers only and only the Art. 50(2) marking duty — so it never applied to a deployer of a third-party model, and saying 'a feature launched now does not qualify' implies a marking duty attaches that does not. Error is contained: B's only resulting requirement is to label anyway, correctly flagged as a product choice."}
+      ]
+    }
+  }
+}

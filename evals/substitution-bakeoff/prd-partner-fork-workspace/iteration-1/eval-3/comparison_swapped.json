@@ -1,0 +1,111 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs are strong, near-identical in length (2958 vs 2937 words), and both genuinely rework the spec rather than relabel it — each strips R1-R6, the digest_send_log schema, HTML/plaintext rendering and batching mechanics, and each rebuilds the doc around problem cost, business impact, deliverability risk, resource ask, and a recommendation with alternatives. B wins narrowly on the dimension the prompt weights most heavily: it is the better decision document. B puts the ask in the masthead, above the executive summary ('Decision requested today: (1) confirm the engagement thesis is worth testing, (2) name an eng lead, (3) approve the deliverability guardrail in §5'), and all three are answerable in the room. A places its ask at the end of §1 and one of its two asks is resourcing — but A's §7 is entirely [NEEDS INPUT], so the doc requests a decision it does not equip the room to make. B also opens §2 with a 'What the status quo costs' table (the business case as a single artifact) and builds the document spine around a genuine dichotomy — Overload vs. Selection, two readings of the 2.1-vs-4.4 login gap that lead to different decisions — which is the sharpest reframe of the source's evidence in either document and directly motivates its week-2 gate. On accuracy of the regulatory section, B cites primary sources (Google sender guidelines, Microsoft's own bulk-sender blog) and attributes precisely (550 5.7.15 rejection, Microsoft, from 5 May 2025), names the 5,000/day threshold that actually makes them a bulk sender, and catches a real defect A misses: the spec's 'unsubscribe link in footer' describes a link where RFC 8058 requires a header. A's §5 relies on secondary aggregators (PowerDMARC, Red Sift, Sender.net) and generalises the 550 rejection across Google/Yahoo/Microsoft/Apple collectively, which is looser than the record supports. A is not far behind and owns the single best line in either document: it compounds the source's <0.5%/send unsubscribe ceiling into annual list attrition. I checked this independently — 0.995^52 = 0.7705, i.e. ~22.9% of the list gone in a year, and 0.999^52 gives ~5.1% — and A's figures ('~23%', '~5%', '0.995^52 approximately 0.77') are all correct. That is exactly the move the task rewards: converting an implementation guardrail into a business number an exec can act on. A also did real competitive research with citations (Asana's daily summary and AI recaps, plus customer requests for more digest configurability) where B declines and marks the competitive audit [NEEDS INPUT]; A adds a useful 'Not being decided Thursday' scope-fence, a five-option alternatives table, and a sharper meta-critique that logins are themselves a proxy and renewal would be the better outcome metric. Against that, A asserts 'table stakes in this category' in the body and leans on it in §8 while conceding in its own Stress Test that it never verified anything beyond Asana. Demerits run the other way too: B invents a meeting date and gets it wrong — it stamps 'Executive Review — Thursday 17 Sep 2026' on the header from an assumed 'today is Wed 16 Sep 2026'; the day-of-week math is internally right but the actual date is 20 Sep 2026, making Thursday the 24th. A deliberately avoided this (its assumption 4 treats Week 1/2/4 as relative to build completion, not calendar dates), so B has a visible error in an exec-facing title, in a doc that explicitly promises not to invent facts the source lacks. B's §5 also runs slightly deeper into engineering detail than an exec needs (SMTP error code, header-vs-footer RFC mechanics), which cuts against expectation 3, though B justifies it with the blast-radius argument and pre-empts the objection in its Stress Test. Both outputs pass all four expectations, so expectations are not the discriminator here; the rubric is. Net: A has the higher-value single insight and did more real research; B is the better-built decision document — ask at the top, every ask decidable, a cleaner hypothesis spine, and more precisely sourced risk. For a doc whose entire brief is 'this is for the exec review on Thursday', B edges it.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 4,
+        "completeness": 5,
+        "accuracy": 5
+      },
+      "structure": {
+        "organization": 4,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 4.7,
+      "structure_score": 4.3,
+      "overall_score": 9.0
+    },
+    "B": {
+      "content": {
+        "correctness": 5,
+        "completeness": 5,
+        "accuracy": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.7,
+      "structure_score": 5.0,
+      "overall_score": 9.5
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9,
+      "strengths": [
+        "Best single analytic move in either doc: compounds the <0.5%/send unsubscribe ceiling into ~23% annual list attrition (0.995^52 = 0.7705) — independently verified correct, including the ~5% figure at 0.10%",
+        "Did real competitive research with citations (Asana daily summary, AI recaps, customer requests for more digest configurability) where the other output only asserts an impression",
+        "'Not being decided Thursday: the feature concept, cadence, or channel' — a genuinely useful meeting scope-fence absent from B",
+        "Richest alternatives table (five options, including daily/real-time and Slack-first, each with a stated reason for rejection)",
+        "Sharpest meta-critique in the Stress Test: logins are themselves a proxy for renewal, so the inherited outcome metric may be the wrong one",
+        "Names the source's internal contradiction — 'approved for build' with eng lead TBD — and the unfalsifiable-metric trap if digest clicks count as sessions",
+        "Refused to invent a calendar date, explicitly treating Week 1/2/4 as relative to build completion",
+        "Honest strongest-attack admission: 'Everyone ships digests and nobody claims they moved retention... I don't have a counter'"
+      ],
+      "weaknesses": [
+        "Asks for a resourcing decision (§7) that the document cannot support — every line of §7 is [NEEDS INPUT], so the room cannot actually decide it Thursday",
+        "Regulatory section rests on secondary aggregators (PowerDMARC, Red Sift, Sender.net) rather than Google's or Microsoft's own documentation",
+        "Overbroad claim that 'as of 2026, non-compliant bulk mail gets permanent 550 rejections' generalised across Google/Yahoo/Microsoft/Apple; the documented 550 5.7.15 enforcement is Microsoft-specific",
+        "Asserts 'table stakes in this category' in the body and relies on it in the recommendation, while conceding in its own Stress Test that only Asana was checked",
+        "Never states what threshold actually makes them a bulk sender, so §5's premise is unquantified",
+        "Longer prose preamble (gap analysis plus five numbered assumptions) before the document proper, less scannable than B's four-row assumption table",
+        "Decision ask is buried at the end of §1 rather than above the fold"
+      ]
+    },
+    "B": {
+      "score": 9.5,
+      "strengths": [
+        "Decision ask sits in the masthead above the executive summary — three numbered items, all answerable in the room (confirm thesis, name eng lead, approve deliverability gate)",
+        "'What the status quo costs' table in §2 is the cleanest single business-case artifact in either document",
+        "Overload vs. Selection: two competing readings of the 2.1-vs-4.4 gap that lead to different decisions, built into the document spine and tied directly to the week-2 gate recommendation",
+        "Catches a real spec defect A misses — 'unsubscribe link in footer' describes a link, but RFC 8058 requires a header",
+        "Primary, precisely attributed sources: Google sender guidelines, Microsoft's own blog (550 5.7.15, enforcement from 5 May 2025), plus dmarcian corroborating",
+        "Names the 5,000/day threshold that triggers bulk-sender rules, quantifying the premise of §5",
+        "Distinguishes unsubscribe rate from spam complaint rate and explains why the spec's guardrail 'looks like it's already covered' but isn't",
+        "Honest '[NEEDS INPUT]' on Why Now, noting it is the first question a good exec asks — rather than back-filling a rationale",
+        "Explicit epistemic footnote on the one figure it could not confirm from a primary source",
+        "Recommendation is more decision-shaped: proceed to 10% with a gate that has teeth, don't pre-approve full rollout, plus the three specific changes to the approved plan"
+      ],
+      "weaknesses": [
+        "Invents a meeting date and gets it wrong: header reads 'Thursday 17 Sep 2026' from an assumed 'today is Wed 16 Sep 2026', but the actual date is 20 Sep 2026, making Thursday the 24th — a visible error in an exec-facing title, and inconsistent with the doc's own pledge not to invent facts the source lacks",
+        "Declines competitive context entirely ([NEEDS INPUT]), relying on 'I believe they are' where A actually went and checked",
+        "§5 carries more engineering detail than an exec needs (SMTP error code, header-vs-footer RFC mechanics, 'worth ten seconds of confirmation with the eng lead'), cutting against the drop-implementation-detail expectation",
+        "No business-arithmetic insight comparable to A's compounding-attrition line; the <0.5% unsubscribe figure is carried forward but never compounded",
+        "Mentions batched scheduling in the risk table, a residual implementation detail"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Changes what is emphasised, not merely the section headings", "passed": true, "note": "Reframes success criteria into outcome vs. activity vs. guardrail, converts rollout into a measured rollout with a holdout, and recasts the unsubscribe ceiling as annual attrition — substantive re-emphasis, not relabelling."},
+        {"text": "Leads with the business case and the decision being asked for", "passed": true, "note": "Passes, but less prominently than B: §1 opens with the business case and names two decisions at its end, one of which (resourcing) the document cannot support because §7 is entirely [NEEDS INPUT]."},
+        {"text": "Drops or compresses implementation detail an exec will not read", "passed": true, "note": "Explicitly removes the data model, R1-R6, rendering and batching. Slightly cleaner on this than B, whose §5 goes deeper into SMTP and RFC mechanics."},
+        {"text": "Preserves substance rather than producing a thinner version", "passed": true, "note": "Expands rather than thins: adds verified competitive research, a five-option alternatives table, a Phase 3, and retains both source open questions."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Changes what is emphasised, not merely the section headings", "passed": true, "note": "Reorganises around a cost-of-status-quo table and a competing-hypotheses reading of the login gap, and promotes spam complaint rate over unsubscribe rate as the guardrail that matters."},
+        {"text": "Leads with the business case and the decision being asked for", "passed": true, "note": "Strongest of the two: three numbered asks in the document header above §1, all decidable in the meeting, followed immediately by the cost table."},
+        {"text": "Drops or compresses implementation detail an exec will not read", "passed": true, "note": "Passes — removes R1-R6, schema, rendering, batching — but §5 reintroduces SPF/DKIM/DMARC, a 550 5.7.15 error code and RFC 8058 header mechanics, justified by blast radius but denser than the exec brief invites."},
+        {"text": "Preserves substance rather than producing a thinner version", "passed": true, "note": "Expands substantially and adds a defect catch absent from the source, though it drops competitive context to [NEEDS INPUT] rather than researching it."}
+      ]
+    }
+  },
+  "verification_notes": {
+    "arithmetic_check": "Ran independently rather than trusting the output. A's compounding claim is correct: 0.995^52 = 0.77055, i.e. ~22.9% of the list gone within a year, matching A's '~23%' and '0.995^52 approximately 0.77'. A's companion figure also checks out: 0.999^52 = 0.94930, ~5.1% at a 0.10% rate, matching its '~5%'. Both documents' '~30% of the gap' is correct (0.7 / 2.3 = 30.4%), and '~480/year' from 40 tickets/month is correct. B carries the <0.5% per-send figure forward but never compounds it, so it makes no comparable claim to check.",
+    "date_check": "B asserts 'Today is Wed 16 Sep 2026' and titles the doc 'Thursday 17 Sep 2026'. The day-of-week mapping is internally correct (16 Sep 2026 is a Wednesday, 17 Sep a Thursday), but the actual current date is 20 Sep 2026 (a Sunday), which puts the real Thursday at 24 Sep. B flagged it as an assumption with a stated consequence, which mitigates but does not remove the error. A stamped no date at all and reasoned explicitly that the source's Week 1/2/4 are relative to build completion.",
+    "length_check": "wc -w gives A 2958 words and B 2937 words — effectively identical, so neither wins on brevity and neither is the 'thinner version' expectation 4 warns against."
+  }
+}

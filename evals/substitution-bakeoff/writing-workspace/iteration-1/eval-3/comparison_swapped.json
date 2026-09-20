@@ -1,0 +1,88 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs satisfy all four expectations, but B answers the question that was asked and A answers a larger one. The user said 'it writes migrations without a rollback step' and asked how to make a correction stick. B's spine is exactly that: storage/durability/enforcement diagnosis, then a fenced rule block under a heading that literally reads 'The rule block - paste this' at 22% of the document, then four candidate homes ranked by the single criterion 'whether it's actually loaded at the moment a migration is being written', then sequencing and a ten-minute version. On the 30-second skim test the grader flagged, B hands over something pasteable; A (406 lines) leads with a five-row assumptions table and a mandatory 'Step 1 - Reproduce it before you fix it (20 minutes)' before its template appears at line 119. A's reproduce-first argument is genuinely sharp - if Claude writes bad rollbacks rather than no rollbacks, a required slot manufactures confident garbage that now passes review - but the user already stated the failure is omission, and A concedes this in its own stress test ('you described the rollback as absent rather than empty'). A also repeats itself: 'grep is not proof' appears in Tier 2, Common Mistakes, and the Stress Test; 'don't add unless' appears twice. That extra material is partly load-bearing and partly padding.\n\nOn durability of the artifact itself, B wins on design. B's DB-001 is self-contained - Rule, Precedent, Self-check travel together in the one file that is always loaded - and the self-check is deliberately not answerable by feeling ('Count the migration files added or modified. Count the ones whose round-trip you just ran clean. The two numbers match, or the change isn't done'). A's always-loaded text is only four lines with no self-check and no evidence; the durable parts are outsourced to a template file and a hook. B also gives the better check on the merits: up->down->up against a scratch database proves the down works, where A's grep only proves a section exists (A says so honestly). B's vocabulary argument - use 'down' not 'rollback step', because 'down' is already a token in the model's priors and a phrase can be satisfied by a comment that says rollback - is the most specific mechanism in either document, and expectation 3 (why bare imperatives decay) is where B is strongest: 'An assertion is argued with. Evidence is only disproven,' plus the observation that a correction delivered after the migration is written is a repair, not an instruction.\n\nI ran the shipped code. A is 4/4 clean: its hook accepts its own _TEMPLATE.sql (exit 0), rejects a migration with no rollback (exit 2), handles Alembic 'def downgrade', ignores non-migration paths, and its baseline git ls-files loop correctly flagged 1 of 3 fixtures. A's disclosed near-miss is real and admirable - the pattern needs the '#*' branch to match '-- ## ROLLBACK', and without it the checker would have rejected every file its own template produces - and A ships a self-test so the checker cannot rot into a meaningless green light. That is the best verification hygiene in either document and it is why the margin here is moderate rather than wide.\n\nB's code is 2/3. Its four round-trip commands are all correct, and its zsh claim checks out (unquoted --include=*.jsonl errors 'no matches found' in zsh). Its CI gate correctly passes a good migration and a file marked 'irreversible:' and correctly fails an empty 'def downgrade(): pass' and a file with no down - but it false-positives on a valid migration whose *upgrade* is 'pass', because '^\\s*pass\\s*$' is file-scoped rather than scoped to the downgrade body. That fails closed (noisy, not silent), which is the safer direction. The real defect is B's precedent-extraction snippet: Claude Code transcripts carry user text at message.content, not top-level content, so d.get('content') returns None for every line. Run verbatim against the densest matching project directory it printed '2026-09-16T06:08:06.067Z None' for all 28 user lines - a silent failure, in the document that lectures about checks 'satisfiable by judgment' being decorative, sitting directly under a confident 'Verified on your machine just now' parenthetical that lends it unearned credibility. (That verification claim itself has drifted but is not fabricated: the count is now 116, not 92.) This is a genuine ding, but it is peripheral - it is a convenience for filling a slot, not the rule, the round-trip, or the placement analysis, all of which stand.\n\nOn honesty about evidence, the tiebreaker the grader raised, B is the clearer case. It leaves <dates> and '<paste your actual words here>' blank and defends the blank: 'A precedent invented at the desk is a stale line wearing armour... If you can't source it, leave the rule bare rather than dress it in a story.' It then grades its own precedent ('strong on recurrence, weak on cost - no production rollback has yet failed') and names the evidence that would retire it. A never faces this test but shows comparable discipline: disclosing its own regex bug and insisting on 'the weaker true thing: has a rollback section, not rollback tested.' Both are honest; neither fabricates. Net: A is the better-engineered checker, B is the better answer to the question, and on a prompt this specific the answer wins.",
+  "rubric": {
+    "A": {
+      "content": {"correctness": 5, "completeness": 4, "accuracy": 5},
+      "structure": {"organization": 3, "formatting": 4, "usability": 2},
+      "content_score": 4.67,
+      "structure_score": 3.0,
+      "overall_score": 7.7
+    },
+    "B": {
+      "content": {"correctness": 4, "completeness": 4, "accuracy": 5},
+      "structure": {"organization": 5, "formatting": 5, "usability": 4},
+      "content_score": 4.33,
+      "structure_score": 4.67,
+      "overall_score": 9.0
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 7.7,
+      "strengths": [
+        "Every shipped snippet verified working: hook accepts its own template (exit 0), rejects a no-rollback migration (exit 2), handles Alembic 'def downgrade', ignores non-migration paths; baseline git loop correctly flagged 1 of 3 fixtures",
+        "Only output that ships a self-test guarding its own checker, and discloses the real near-miss (pattern needed '#*' to match '-- ## ROLLBACK' or it would have rejected every file its template produces)",
+        "'Reproduce it before you fix it' is a genuinely sharp insight: if the failure is bad rollbacks rather than absent ones, a required slot manufactures plausible garbage that now passes review",
+        "Structural framing (required slot in the artifact, not a prose reminder near it) with a failure-type-to-form table is a correct and well-argued account of why reminders decay",
+        "Irreversible case handled as a different required slot that costs MORE than compliance, with a clear argument that exemption clauses spread",
+        "Explicit about what the check does not prove: 'presence of the word is not presence of a working rollback'",
+        "Verification protocol (five fresh sessions plus a control, read all six yourself) is rigorous and rarely offered"
+      ],
+      "weaknesses": [
+        "406 lines for a narrow question; the pasteable artifact sits at 29% behind a mandatory 20-minute prerequisite, so a 30-second skim yields homework rather than a rule",
+        "Gates the answer behind re-verifying something the user already stated ('it writes migrations without a rollback step'), and concedes this in its own stress test",
+        "The always-loaded rule text is only four lines with no embedded self-check and no evidence; durability is outsourced to a separate template file and hook",
+        "Its check only proves a section exists, never that the down works - weaker on the merits than an executed round-trip",
+        "Visible redundancy: 'grep is not proof' restated in Tier 2, Common Mistakes, and the Stress Test; 'don't add unless' stated twice",
+        "Six roughly five-item tables/lists give the document a repetitive texture that inflates length without adding claims"
+      ]
+    },
+    "B": {
+      "score": 9.0,
+      "strengths": [
+        "Leads with the deliverable: a complete fenced rule block under a heading that reads 'The rule block - paste this' at 22% of a 184-line document",
+        "Rule is self-contained and durable - Rule, Precedent, and Self-check travel together in the one file that is always loaded",
+        "Self-check is deliberately not answerable by feeling: count migration files touched, count clean round-trips, the numbers must match",
+        "Strongest account of why bare imperatives decay ('An assertion is argued with. Evidence is only disproven'), plus the observation that a post-hoc correction is a repair, not an instruction",
+        "The 'down' vs 'rollback step' vocabulary argument is specific and non-obvious: a token already in the model's priors versus a phrase satisfiable by a comment",
+        "'Where it lives' ranks four homes by exactly the criterion that matters - whether it is loaded when a migration is being written - and names the weak-pointer failure mode",
+        "Honest blank precedent with an explicit defense, self-graded strength ('strong on recurrence, weak on cost'), and a named condition that would retire it",
+        "All four round-trip commands verified correct; zsh quoting claim verified correct; CI gate correct on all four main fixtures",
+        "DB-002 exists structurally to keep DB-001 alive, with the reasoning stated - a true exception must be legible or it reads as the rule being forgotten"
+      ],
+      "weaknesses": [
+        "The precedent-extraction python snippet is broken and fails silently: Claude Code transcripts store user text at message.content, so d.get('content') returned None for all 28 user lines in the densest matching project directory",
+        "That snippet is step 1 of its own ten-minute version and the tool meant to fill the slot it deliberately left blank, so the honesty move is undercut by the mechanism",
+        "The broken snippet sits directly under a confident 'Verified on your machine just now' parenthetical, which lends it credibility it did not earn",
+        "CI gate false-positives on a valid migration whose upgrade is 'pass', because '^\\s*pass\\s*$' is file-scoped rather than scoped to the downgrade body (fails closed, so noisy rather than dangerous)",
+        "Ships no self-test for its own checker, and the '92 transcript files' count has drifted to 116",
+        "No write-time gate (hook) and no reproduce-before-you-fix step, both of which A provides"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Produces the actual rule text, not advice about writing rules", "passed": true, "note": "Ships _TEMPLATE.sql plus four lines of project-rules prose; real and pasteable, but the always-loaded portion is thin and carries no self-check or evidence"},
+        {"text": "Includes something that makes the rule verifiable or self-checking", "passed": true, "note": "Strongest here: PostToolUse hook with settings.json wiring, CI reuse, and a self-test for the checker - all verified working. Honest that presence is not correctness"},
+        {"text": "Explains why bare imperatives decay and what makes one survive", "passed": true, "note": "Form-mismatch account with a failure-type-to-form table, no-softeners rule, and why exemption clauses spread"},
+        {"text": "Addresses where it should live so it is actually loaded when relevant", "passed": true, "note": "Project rules file as Tier 1, skill only if it spans repos, plus a useful note on skill frontmatter descriptions"}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Produces the actual rule text, not advice about writing rules", "passed": true, "note": "Strongest here: DB-001 and DB-002 in full with Rule/Precedent/Self-check, under a heading that says 'paste this', plus a never-renumber citation convention"},
+        {"text": "Includes something that makes the rule verifiable or self-checking", "passed": true, "note": "Self-check embedded in the rule, per-stack up->down->up round-trip (all four commands verified correct), and a CI gate; round-trip proves the down works, which a grep cannot"},
+        {"text": "Explains why bare imperatives decay and what makes one survive", "passed": true, "note": "Strongest here: storage/durability/enforcement split, assertion-versus-evidence, the 'down' vocabulary argument, and correction-as-repair"},
+        {"text": "Addresses where it should live so it is actually loaded when relevant", "passed": true, "note": "Strongest here: four homes ranked by whether they are loaded at write time, with context-budget tradeoff, weak-pointer failure mode, and explicit sequencing"}
+      ]
+    }
+  }
+}

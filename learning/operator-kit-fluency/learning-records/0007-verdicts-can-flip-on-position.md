@@ -1,6 +1,7 @@
 # 0007 — A blind verdict flipped when the outputs swapped places
 
-**Date:** 2026-09-19 · **Status:** measured, n=3 swap tests. One flip observed.
+**Date:** 2026-09-19 · **Updated:** 2026-09-20 with all 17 verdicts swap-tested.
+**Status:** measured. **6 of 17 verdicts flipped (35%).**
 
 ## What happened
 
@@ -98,3 +99,83 @@ sidecar file) prevented the leak entirely; the sanitizer should be a silent net 
 No skill bucketed, moved, reworded, or re-moded. `validate-kit.py`: 141 active,
 54 model-invoked, 87 user-invoked. See [[0006-routing-not-invocation]] for why
 `design-critique` must be scored per-skill on 2026-10-15.
+
+
+---
+
+# Update 2026-09-20 — all 17 verdicts swap-tested
+
+Every verdict across all five contests was re-judged with the two documents in
+exchanged positions, same brief, same expectations. Rule fixed in advance: a verdict
+that changes when the documents change places is **void**, applied uniformly.
+
+**6 of 17 flipped — 35%.**
+
+| Contest | As first reported | Position-controlled |
+|---|---|---|
+| design | 2-2 split | **2-2 split — all four held** |
+| engineering | "2-1 to superpowers" | **kit 1, 2 void** — inverted |
+| prd-partner fork | "2-2, neither better" | **synced 2, kit 0, 2 void** |
+| writing | "kit 3-0 sweep" | **kit 2, 1 void** |
+| ideation | kit 2-1 | kit 1, sub 1, 1 void |
+
+Surviving verdicts across everything: **kit 6, substitutes/synced 5, void 6.**
+
+## Three claims I made in-session that the swaps refuted
+
+1. **"Engineering goes 2-1 to superpowers."** Both substitute wins were slot artifacts.
+   The kit's single win is the best-evidenced verdict in the exercise — mutation test,
+   refactor test, and an independent re-derivation of the refactor test from the
+   opposite position all agree.
+2. **"The prd fork is a dead heat, neither version better."** Both kit wins voided; the
+   two surviving verdicts favour the **claude.ai synced 428L copy**.
+3. **"Writing is a clean 3-0 sweep."** Eval 1 flipped. It is 2-0 with a void.
+
+## Why the tests were run on everything, not the close ones
+
+6 of 11 original verdicts sat under a 1.0 margin, and **4 of those 6 favoured the
+substitute**. In design and engineering specifically, every kit win was wide (1.9, 1.5,
+2.5) and every substitute win was narrow (0.6, 0.3, 0.6, 0.4). Swap-testing only the
+fragile set would have been an instrument that could essentially only move one way —
+toward the kit — even under a threshold stated in advance.
+
+Testing all of them was the right call on the evidence: **prd eval 3 and eval 4 were kit
+wins and both flipped.** The selected set would have missed both.
+
+## What separates a verdict that holds from one that flips
+
+Verdicts backed by something **executed** held. Verdicts backed by **weighting** flipped.
+
+- Engineering eval 2 held and hardened: the swap judge independently re-derived the
+  behaviour-preserving refactor test (13/13 surviving vs 4/12 failing).
+- Design eval 2 held: the swap judge **re-rendered both mock files** and reproduced the
+  measurements exactly — interior band 3.1%, trailing bands 37.3%/59.8-65.6%, the
+  3.28:1 boundary, 0 text runs below AA, 0 targets under 44px.
+- Ideation eval 2 flipped: both judges recorded the *same* fact — only one side
+  diagnosed the user's stated fixation — and weighted it oppositely.
+
+Corroborating instability: the same losing document scored 6.9 and 8.3 across two runs
+of identical text.
+
+## Standing rules this produces
+
+1. **A single blind comparison is not a result.** 35% of them do not survive a swap.
+   Every verdict needs both positions before it can be cited.
+2. **Sub-1-point margins are no measured difference**, not narrow wins.
+3. **Comparators must execute what they judge.** Every verdict that held was anchored in
+   something run; the defects that decided them — a `jq` filter exiting 0 while dropping
+   76% of its population, a glob matching nothing under zsh, a `ledger.py` that fails to
+   import standalone, an `order-bisect.sh` that crashes on bash 3.2, a focus ring
+   presented at 4.25:1 that is really 3.02:1 — were all found by running, never by reading.
+4. **Balance the assignment in the harness.** The ideation randomiser drew the same
+   side three times (p=1/8), which is how this was noticed at all.
+
+## What it does NOT change
+
+No skill is retired on this evidence. Six voids and a near-even split across surviving
+verdicts is weaker support for pruning than the pre-swap numbers looked, not stronger.
+`design-tools` in particular came through fully controlled at 2-2 — a genuine quality
+tie against the substitute that has 31 invocations to its 0.
+
+See [[0006-routing-not-invocation]]: `design-critique` cannot win routing in any
+invocation mode, so score that cohort per-skill on 2026-10-15, not as a block.
