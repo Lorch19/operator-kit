@@ -1,0 +1,192 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Projects page — six zero states (1440×900)</title>
+<style>
+:root{
+  --ground:#F5F5F3; --surface:#FFFFFF; --ink1:#15161A; --ink2:#5B6473; --ink3:#5B6473;
+  --accent:#2F55E0; --accent-ink:#FFFFFF; --line:#E4E4DF; --ghost:#C2C6CD;
+  --wash:#EEF1FD; --warn:#8A4B12; --warnbg:#FDF3E7; --warnline:#F0DCC0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#2b2b2f;font:14px/1.45 -asystem,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;color:var(--ink1);padding:20px}
+.cap{color:#fff;font-size:12px;letter-spacing:.09em;text-transform:uppercase;margin:22px 0 8px;opacity:.8}
+.frame{width:1440px;height:900px;background:var(--ground);display:flex;overflow:hidden;border-radius:10px}
+/* sidebar */
+.side{width:240px;background:#FBFBF9;border-right:1px solid var(--line);padding:16px 12px;flex:0 0 auto}
+.ws{display:flex;align-items:center;gap:9px;font-weight:650;font-size:15px;padding:6px 8px;margin-bottom:16px}
+.wsdot{width:24px;height:24px;border-radius:7px;background:#1D2433;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+.nav a{display:flex;align-items:center;gap:10px;height:34px;padding:0 9px;border-radius:7px;color:var(--ink2);text-decoration:none;font-size:14px}
+.nav a.on{background:#ECEEF2;color:var(--ink1);font-weight:650}
+/* main */
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.hd{height:64px;display:flex;align-items:center;gap:14px;padding:0 32px;border-bottom:1px solid var(--line);background:var(--surface)}
+.h1{font-size:21px;font-weight:700;letter-spacing:-.01em}
+.search{margin-left:8px;height:34px;width:250px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;padding:0 10px;color:#5B6473;font-size:13.5px;background:#FAFAF8}
+.sp{flex:1}
+.btn{height:36px;padding:0 14px;border-radius:8px;border:1px solid var(--line);background:var(--surface);font-size:14px;font-weight:600;color:var(--ink1);display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.sm{height:32px;font-size:13.5px;padding:0 12px}
+.canvas{flex:1;padding:28px 32px;overflow:hidden}
+.canvas.split{display:flex;flex-direction:column;justify-content:center}  /* weighted split, not a bottom pool */
+.wrap{max-width:1120px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.span2{grid-column:span 2}
+.foot{margin-top:18px;font-size:13px;color:var(--ink3)}
+/* make card (focal) */
+.mk{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(20,22,28,.06)}
+.kick{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+.mkh{font-size:22px;font-weight:700;letter-spacing:-.012em;margin-bottom:6px}
+.sub{font-size:14px;color:var(--ink2);margin-bottom:16px;max-width:52ch}
+.rowin{display:flex;gap:10px}
+.field{flex:1;height:44px;border:1.5px solid var(--accent);border-radius:9px;padding:0 12px;font-size:15px;background:var(--surface);display:flex;align-items:center}
+.field .ph{color:#5B6473}
+.caret{width:1.5px;height:19px;background:var(--accent);margin-right:2px}
+.btn.go{height:44px;padding:0 20px;font-size:15px}
+.orrow{margin-top:16px;font-size:13px;color:var(--ink2)}
+.chips{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+.chip{height:32px;padding:0 12px;border:1px solid var(--line);border-radius:16px;background:var(--surface);font-size:13.5px;display:inline-flex;align-items:center}
+.tpl{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column}
+.tt{font-size:15px;font-weight:650;margin-bottom:5px}
+.ts{font-size:13px;color:var(--ink2)}
+.tl{margin-top:auto;padding-top:14px;font-size:13.5px;font-weight:600;color:var(--accent)}
+/* sample ghost */
+.ghost{border:1.5px dashed var(--ghost);border-radius:14px;padding:18px;background:transparent;display:flex;flex-direction:column}
+.gt{font-size:15px;font-weight:650;color:var(--ink2);display:flex;align-items:center;gap:8px}
+.tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#E7E8EC;color:#474E5C;border-radius:5px;padding:2px 6px}
+.gm{font-size:13px;color:var(--ink2);margin-top:6px}
+.gl{margin-top:auto;display:flex;gap:16px;font-size:13.5px;font-weight:600;color:var(--accent);padding-top:14px}
+/* generic message block (Z2/Z3/Z4/Z5) */
+.msg{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 24px;max-width:640px;box-shadow:0 1px 3px rgba(20,22,28,.06)}
+.msg.warnb{background:var(--warnbg);border-color:var(--warnline)}
+.mh{font-size:18px;font-weight:700;margin-bottom:5px}
+.mb{font-size:14px;color:var(--ink2);max-width:58ch}
+.acts{display:flex;gap:10px;margin-top:16px}
+.filters{display:flex;gap:8px;align-items:center;margin-bottom:16px;font-size:13px;color:var(--ink2)}
+.fchip{height:30px;padding:0 10px;border-radius:15px;background:#E9EBF0;display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink1)}
+.x{color:#5B6473;font-weight:700}
+/* skeleton */
+.sk{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;height:150px}
+.skl{height:12px;border-radius:6px;background:#ECEDF0;margin-bottom:10px}
+</style></head><body>
+
+<!-- ============ Z1 FIRST RUN ============ -->
+<div class="cap">Z1 — first run (new account, never had a project) · 1440×900</div>
+<div class="frame" id="z1">
+  <div class="side">
+    <div class="ws"><span class="wsdot">A</span>Acme</div>
+    <div class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></div>
+  </div>
+  <div class="main">
+    <div class="hd"><div class="h1">Projects</div><div class="search">Search projects</div><div class="sp"></div><div class="btn" id="z1-hdbtn">New project</div></div>
+    <div class="canvas"><div class="wrap">
+      <div class="grid">
+        <div class="mk span2" id="z1-focal">
+          <div class="kick">Your first project</div>
+          <div class="mkh">What are you working on?</div>
+          <div class="sub">A project holds the tasks, files and notes for one piece of work. Most people start with whatever is on their desk today — you can rename it later.</div>
+          <div class="rowin">
+            <div class="field"><span class="caret"></span><span class="ph">e.g. Q3 website redesign</span></div>
+            <div class="btn primary go" id="z1-cta">Create project</div>
+          </div>
+          <div class="orrow">Not sure where to start? Three ready-made setups are below.</div>
+        </div>
+        <div class="ghost">
+          <div class="gt">Website redesign <span class="tag">Sample</span></div>
+          <div class="gm">12 tasks · 3 files · 2 people<br>Read-only. Disappears the moment you make your own.</div>
+          <div class="gl"><span>Look around</span><span>Remove</span></div>
+        </div>
+      </div>
+      <div class="grid" style="margin-top:20px">
+        <div class="tpl"><div class="tt">Content calendar</div><div class="ts">Weekly slots, draft → review → live, one owner per post</div><div class="tl">Use this template</div></div>
+        <div class="tpl"><div class="tt">Product launch</div><div class="ts">Launch date, 6 workstreams, go / no-go checklist</div><div class="tl">Use this template</div></div>
+        <div class="tpl"><div class="tt">Client retainer</div><div class="ts">Monthly cycle, hours budget, deliverables log</div><div class="tl">Use this template</div></div>
+      </div>
+      <div class="foot">Projects you create are private to you until you invite someone.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ Z2 MEMBER, NOTHING SHARED ============ -->
+<div class="cap">Z2 — member of a workspace that HAS projects, none shared with them</div>
+<div class="frame" id="z2">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <div class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></div></div>
+  <div class="main">
+    <div class="hd"><div class="h1">Projects</div><div class="search">Search projects</div><div class="sp"></div><div class="btn">New project</div></div>
+    <div class="canvas split"><div class="wrap">
+      <div class="msg">
+        <div class="mh">Nothing has been shared with you yet</div>
+        <div class="mb">Acme has 23 projects, but you are not on any of them yet. Dana Levy (workspace owner) can add you — or start your own.</div>
+        <div class="acts"><div class="btn primary">Ask Dana for access</div><div class="btn">Create my own project</div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ Z3 FILTERED EMPTY ============ -->
+<div class="cap">Z3 — filter/search matched nothing (user HAS 14 projects)</div>
+<div class="frame" id="z3">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <div class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></div></div>
+  <div class="main">
+    <div class="hd"><div class="h1">Projects</div><div class="search">“redesign”</div><div class="sp"></div><div class="btn">New project</div></div>
+    <div class="canvas split"><div class="wrap">
+      <div class="filters">Filters:
+        <span class="fchip">Search: “redesign” <span class="x">×</span></span>
+        <span class="fchip">Owner: me <span class="x">×</span></span>
+        <span class="fchip">Status: active <span class="x">×</span></span>
+      </div>
+      <div class="msg">
+        <div class="mh">No projects match these filters</div>
+        <div class="mb">You have 14 projects — none of them match all three filters at once. Dropping “Owner: me” would show 3.</div>
+        <div class="acts"><div class="btn primary">Clear filters</div><div class="btn">Show all 14 projects</div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ Z4 ALL ARCHIVED ============ -->
+<div class="cap">Z4 — returning user, everything archived (no onboarding copy)</div>
+<div class="frame" id="z4">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <div class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></div></div>
+  <div class="main">
+    <div class="hd"><div class="h1">Projects</div><div class="search">Search projects</div><div class="sp"></div><div class="btn primary">New project</div></div>
+    <div class="canvas split"><div class="wrap">
+      <div class="msg">
+        <div class="mh">Nothing active right now</div>
+        <div class="mb">All 7 of your projects are archived. The most recent was “Spring campaign”, archived 4 days ago.</div>
+        <div class="acts"><div class="btn primary">View archived (7)</div><div class="btn">Restore “Spring campaign”</div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ Z5 LOAD FAILED ============ -->
+<div class="cap">Z5 — the list failed to load (must NOT render as “no projects”)</div>
+<div class="frame" id="z5">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <div class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></div></div>
+  <div class="main">
+    <div class="hd"><div class="h1">Projects</div><div class="search">Search projects</div><div class="sp"></div><div class="btn">New project</div></div>
+    <div class="canvas split"><div class="wrap">
+      <div class="msg warnb" id="z5-msg">
+        <div class="mh">We couldn’t load your projects</div>
+        <div class="mb">Your projects are safe — this is a connection problem on our side, not missing data. Last loaded 2 minutes ago.</div>
+        <div class="acts"><div class="btn primary">Try again</div><div class="btn">Show last loaded list</div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ Z0 LOADING ============ -->
+<div class="cap">Z0 — loading (skeletons in the real grid shape; the empty state must never flash here)</div>
+<div class="frame" id="z0">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <div class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></div></div>
+  <div class="main">
+    <div class="hd"><div class="h1">Projects</div><div class="search">Search projects</div><div class="sp"></div><div class="btn">New project</div></div>
+    <div class="canvas split"><div class="wrap"><div class="grid"><div class="sk"><div class="skl" style="width:58%"></div><div class="skl" style="width:38%"></div><div class="skl" style="width:80%;margin-top:22px"></div></div><div class="sk"><div class="skl" style="width:46%"></div><div class="skl" style="width:52%"></div><div class="skl" style="width:70%;margin-top:22px"></div></div><div class="sk"><div class="skl" style="width:64%"></div><div class="skl" style="width:30%"></div><div class="skl" style="width:76%;margin-top:22px"></div></div><div class="sk"><div class="skl" style="width:52%"></div><div class="skl" style="width:44%"></div><div class="skl" style="width:68%;margin-top:22px"></div></div><div class="sk"><div class="skl" style="width:60%"></div><div class="skl" style="width:36%"></div><div class="skl" style="width:74%;margin-top:22px"></div></div><div class="sk"><div class="skl" style="width:44%"></div><div class="skl" style="width:50%"></div><div class="skl" style="width:82%;margin-top:22px"></div></div></div></div></div>
+  </div>
+</div>
+
+</body></html>

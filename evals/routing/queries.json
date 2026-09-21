@@ -1,0 +1,8 @@
+[
+ {"id":1,"target":"design-critique","q":"here's the onboarding flow for the app — three screens, email signup then a preferences step then the dashboard. something about it feels heavy but i can't say what. take a look"},
+ {"id":2,"target":"ux-copy","q":"empty state for the projects page. right now it just says 'No projects'. users land here on day one and bounce"},
+ {"id":3,"target":"accessibility-review","q":"is this accessible enough to ship? dark theme, lots of grey-on-grey, and the primary button is a mid-blue on near-black"},
+ {"id":4,"target":"user-research","q":"we've got 5 customers who churned last month and they've all agreed to a 30 min call. what should i actually ask them so i don't just get polite non-answers"},
+ {"id":5,"target":"design-critique","q":"the settings page redesign — two column layout with the nav on the left and a save bar pinned at the bottom. does that hold up or am i overcomplicating it"},
+ {"id":6,"target":"NONE-near-miss","q":"our postgres connection pool keeps exhausting under load in the nightly batch job, need to figure out the right pool size and timeout settings"}
+]

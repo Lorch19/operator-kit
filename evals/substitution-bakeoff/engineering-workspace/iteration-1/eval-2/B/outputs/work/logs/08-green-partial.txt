@@ -1,0 +1,78 @@
+
+> fetcher-retry-tdd@0.1.0 test
+> node --test test/fetcher.test.ts
+
+✔ returns the parsed body when the first attempt succeeds (11.56725ms)
+✔ throws HttpError carrying the status when the server keeps failing (195.666666ms)
+✔ retries after a 503 and returns the body from the retry (27.962625ms)
+✔ stops after the default attempt budget and surfaces the last failure (164.629125ms)
+✔ does not retry a 400 — the request is wrong, not the server (2.197584ms)
+✔ retries a 429 because the server is asking us to slow down (39.392958ms)
+✔ honours a configured attempt budget (368.472709ms)
+✖ spaces retries out with exponentially growing waits (5.566209ms)
+✖ caps how long it will wait between attempts (1.110667ms)
+✔ jitters each wait so retrying clients do not sync up (0.693583ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 8
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 896.932042
+
+✖ failing tests:
+
+test at test/fetcher.test.ts:106:1
+✖ spaces retries out with exponentially growing waits (5.566209ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      0,
+  +   94.84193780474125,
+  +   173.57106560827705,
+  +   547.6001047216405
+  -   100,
+  -   300,
+  -   700
+    ]
+  
+      at TestContext.<anonymous> (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/test/fetcher.test.ts:118:10)
+      at async Test.run (node:internal/test_runner/test:1110:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 0, 94.84193780474125, 173.57106560827705, 547.6001047216405 ],
+    expected: [ 0, 100, 300, 700 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/fetcher.test.ts:125:1
+✖ caps how long it will wait between attempts (1.110667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      0,
+  +   32.4094039072472,
+  +   111.23320517249454,
+  +   282.81920013749084,
+  +   498.4162065815283
+  -   100,
+  -   300,
+  -   550,
+  -   800
+    ]
+  
+      at TestContext.<anonymous> (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/test/fetcher.test.ts:137:10)
+      at async Test.run (node:internal/test_runner/test:1110:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 0, 32.4094039072472, 111.23320517249454, 282.81920013749084, 498.4162065815283 ],
+    expected: [ 0, 100, 300, 550, 800 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

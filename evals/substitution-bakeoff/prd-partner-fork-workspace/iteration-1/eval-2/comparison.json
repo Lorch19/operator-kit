@@ -1,0 +1,111 @@
+{
+  "winner": "A",
+  "reasoning": "Both outputs are strong Dev-Team PRDs that skip discovery, reject open rate as a metric, mandate a holdout, and group open questions by owner. A wins on engineering-readiness and technical precision. A's decisive edge is its Section 0 Assumptions & Decisions Log: eight decisions (D1-D8) each with rationale AND cost-to-reverse, which resolves the tension between 'don't silently invent' and 'engineering needs it Monday' better than B's approach of leaving items open. A neither invents silently (every call is logged and overturnable in one line) nor leaves the build blocked. B, by contrast, defers several P0-shaped questions that engineering needs on day one: item/project caps (R-A4 [NEEDS INPUT]), ramp schedule (R-C7 [NEEDS INPUT]), default on/off (R-E3 [NEEDS INPUT]), dormancy threshold (R-B4), and most consequentially the timezone/batch architecture (OQ-3, which B itself calls 'highest-cost' and says 'blocks the batch architecture'). A decides all of these and marks them reversible. A also carries substantially more buildable specification: an explicit event taxonomy table with in-v1 flags and per-event collapse rules (B has no equivalent at all — R-A1 just says 'source from the activity stream'), a half-open window interval [start, cutoff) to prevent boundary double-count/drop, a timezone-offset snapshot at scheduling time, an idempotency key (user_id, digest_period_id), a concrete rollout ramp (internal/1/10/50/100 with spam-rate gates at each), a permission regression test as a named release gate, and 16 edge cases vs B's 10. On accuracy, A's regulatory detail is tighter: it states the Gmail 0.3% consequence precisely (loss of mitigation eligibility until under for 7 consecutive days) and cites CASL's 10-business-day bar, whereas B overstates enforcement ('Google, Yahoo, Microsoft and Apple now enforce... with hard rejection rather than spam-foldering' conflates auth failure with spam-rate breach, and overstates Apple's role as a bulk-sender enforcer). B has two genuine advantages worth naming: (1) requirement IDs (R-A1, R-B3, R-C2...) that make the doc directly ticketable and let open questions cite the exact requirement they block, which is a real Dev-Team usability win A lacks; and (2) the RFC 8058 DKIM-signing-order gotcha (headers added after signing are not covered, so providers ignore them) — a sharp implementation catch A misses. B is also marginally cleaner on not re-litigating: A opens with three lines of 'weekly digest email is a solution, not a problem' pushback, though it immediately accepts the call and proceeds, so the expectation still passes. B's stress test lands one point A misses (variable send volume from empty-digest suppression means the primary metric needs exposure-adjustment, not a naive arm comparison). Net: B is better organized for ticketing; A is better specified, more accurate, and more decision-ready for a Monday handoff. Completeness and correctness outweigh traceability here, so A takes it — clearly, though not overwhelmingly.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 5,
+        "completeness": 5,
+        "accuracy": 5
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 5.0,
+      "structure_score": 4.7,
+      "overall_score": 9.7
+    },
+    "B": {
+      "content": {
+        "correctness": 4,
+        "completeness": 4,
+        "accuracy": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 5
+      },
+      "content_score": 4.0,
+      "structure_score": 5.0,
+      "overall_score": 9.0
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9.7,
+      "strengths": [
+        "Section 0 Assumptions & Decisions Log with per-decision rationale and cost-to-reverse — lets the reader overturn any call in one line while leaving nothing blocked",
+        "Explicit event taxonomy table (in-v1 flag + collapse rule per event type); B has no equivalent",
+        "Two governing rules stated as rules: render net state not the event stream, and authorize at render time against current ACLs",
+        "Precise window semantics: half-open interval plus timezone offset snapshotted at scheduling time, so boundary weeks neither double-count nor drop",
+        "Idempotency key (user_id, digest_period_id) plus failure isolation, retry abandonment after cutoff+24h, and a kill switch tested in staging before first send",
+        "Concrete rollout ramp with a spam-rate gate at every step, rather than deferring the ramp",
+        "Permission regression test named as a release gate, with the exact fixture case (user removed mid-window yields zero rows)",
+        "Metrics table is the more measurable of the two: every metric has an instrumentable definition, guardrails carry proposed numeric thresholds with stop conditions, and open rate is called out as explicitly NOT a metric with the MPP reason",
+        "14 open questions grouped by owner (Product/Legal/Engineering/Design/Data), each naming what it changes",
+        "Regulatory detail is accurate and specific: CAN-SPAM primary-purpose test turned into a hard template constraint, CASL 10-business-day bar, Gmail 0.1%/0.3% with the correct consequence",
+        "16 edge cases including several B misses (item created and deleted in-window, org disables between generation and send, untranslated locale, missed window entirely)",
+        "Stress test names the highest-leverage reframe ('what needs her' vs 'what changed'), critiques its own holdout design, and ends with the cheapest next action"
+      ],
+      "weaknesses": [
+        "Requirements are bullets under lettered subsections with no per-requirement IDs, so engineering cannot cite 'R-B3' in a ticket the way B allows",
+        "Opens with three lines of pushback on the problem framing before the doc; it accepts the decision immediately, but it is still a small detour the prompt asked to skip",
+        "Longest document of the two (~364 lines); density is earned but the Monday reader has more to get through",
+        "Misses the RFC 8058 DKIM-signing-order implementation bug that B catches",
+        "Does not address that suppressing empty digests makes exposure counts unequal across arms, which complicates the primary-metric comparison (B catches this)"
+      ]
+    },
+    "B": {
+      "score": 9.0,
+      "strengths": [
+        "Per-requirement IDs (R-A1 ... R-F4) make the doc directly ticketable and let dependencies, risks, and open questions cite exact requirements — the strongest structural feature in either document",
+        "Open questions are ordered by what they block, each stating whether it gates the build or only the first send, so Monday's work can start against the unblocked majority",
+        "Catches the RFC 8058 DKIM-signing-order bug: List-Unsubscribe headers added after signing are not covered by the signature and are ignored by providers",
+        "Send-time authorization (R-B1) correctly promoted out of edge cases and named as a security defect class, not a bug",
+        "Sharp statistical decision rule: pre-register a minimum detectable lift, p<0.05 sustained over 6 consecutive sends, with the reasoning for 6",
+        "Suppression rate used as a diagnostic — near 0% means the relevance filter is too loose — which is a genuinely good inverted metric",
+        "Counter-metric (all-email opt-out, not just digest opt-out) clearly explains why it is the metric that catches the real damage",
+        "R-A4 justifies the cap requirement with Gmail's ~102KB clipping threshold, so the cap is argued even where the number is open",
+        "Explicitly declines to draw a legal conclusion and routes it to OQ-1 while building to the stricter standard regardless — a clean separation of platform fact from legal judgment",
+        "Cleanest handling of the prompt's framing: names the audience cue and the closed build decision in the first two sentences and parks the residual risk in the stress test"
+      ],
+      "weaknesses": [
+        "Leaves five build-relevant parameters as [NEEDS INPUT] that A decides-and-flags: item/project caps, ramp schedule, default on/off, dormancy threshold, and subject-line copy",
+        "OQ-3 (local timezone vs single global batch) is left open despite B's own admission it 'blocks the batch architecture' — the single largest architectural unknown handed to engineering unresolved for a Monday start",
+        "No event taxonomy: R-A1 points at 'the persisted project activity stream' without specifying which event types are in v1 or how each collapses, leaving the highest-volume design question to implementation",
+        "No window-boundary semantics (open vs half-open interval), so consecutive weeks can double-count or drop events at the cutoff",
+        "Overstates bulk-sender enforcement: 'Google, Yahoo, Microsoft and Apple now enforce bulk-sender rules with hard rejection rather than spam-foldering' conflates authentication failure with spam-rate breach, and Apple is not a bulk-sender enforcer in that sense",
+        "Two guardrail thresholds (unsubscribe rate, hard bounce rate) and the holdout percentage are unset, weakening the measurability of the guardrail set",
+        "Thinner edge-case coverage (10 vs 16); misses create-and-delete-in-window, org-level disable between generation and send, untranslated locale, and missed send window",
+        "Stress test is shorter and does not surface an alternative framing of the product itself"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Switches to producing the document without re-litigating whether to build", "passed": true, "note": "Opens with three lines flagging that 'weekly digest email' is a solution not a problem, but explicitly states 'I've accepted the call and written the PRD' and proceeds straight to the document. The flag is registered as a risk, not reopened as a decision."},
+        {"text": "Picks the Dev-Team output mode from the audience cue ('engineering needs it')", "passed": true, "note": "First line: 'PRD Mode, Dev-Team output.' Content matches the mode — P0/P1 priorities, headers, idempotency keys, read-replica guidance, release-gate tests."},
+        {"text": "Includes success criteria that are measurable, not aspirational", "passed": true, "note": "Every metric has an instrumentable definition (e.g. '% of recipients with >=1 authenticated session within 7 days of send, minus the same % in the holdout'). Guardrails carry numbers with stop conditions (<0.5% unsubscribe by week 4, stop above 1%; spam <0.1%, hard stop 0.3%). Open rate is listed as an explicit non-metric with the MPP reason. Targets that require a baseline are marked [NEEDS INPUT] rather than invented."},
+        {"text": "Names open questions explicitly rather than silently inventing answers", "passed": true, "note": "Strongest of the two on this. Section 0 logs all eight assumed decisions with rationale and cost-to-reverse, inline [NEEDS INPUT] markers throughout, and Section 9 collects 14 questions grouped by owner with the blocking ones called out ('Legal — start Monday, blocks first send'; Q-E1 'largest single unknown in this document')."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Switches to producing the document without re-litigating whether to build", "passed": true, "note": "Cleanest handling: \"'assume we've decided to build it' closes the build/don't-build question, so no discovery detour... noted the one residual risk at the end rather than re-opening it here.\" Marginally better than A on this expectation."},
+        {"text": "Picks the Dev-Team output mode from the audience cue ('engineering needs it')", "passed": true, "note": "First line names Dev-Team and cites the audience cue directly. Content matches — R-IDs, P0/P1, DKIM signing order, send ledger with uniqueness constraint, webhook wiring."},
+        {"text": "Includes success criteria that are measurable, not aspirational", "passed": true, "note": "Primary metric is defined as an arm-minus-holdout difference with a pre-registered MDL and a p<0.05-over-6-sends decision rule; spam guardrail is 0.10% operating margin against the 0.30% platform limit; open rate explicitly rejected. Weaker than A only in that unsubscribe, hard-bounce and holdout-percentage thresholds are left [NEEDS INPUT]."},
+        {"text": "Names open questions explicitly rather than silently inventing answers", "passed": true, "note": "Five assumptions stated up front (with the riskiest identified), [NEEDS INPUT] markers inline on every unset value, and Section 8 lists OQ-1 through OQ-6 by owner, ordered by what they block, each stating whether it gates the build or only the first send. OQ-3 even states the fallback assumption if no answer arrives."}
+      ]
+    }
+  }
+}

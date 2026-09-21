@@ -1,0 +1,190 @@
+{
+  "winner": "A",
+  "reasoning": "Both outputs are strong, both commit to a point of view, and both independently land the same best insight (the defensible layer for a non-designer tool is judgment/sign-off, which Figma is structurally disinclined to build because saying 'is this safe to ship?' to a professional designer is an insult). A wins on two dimensions that the eval prompt explicitly asks for. First, separating what actually changed from what was merely announced: A knows the agent is in beta as of 20 May 2026, rolling out in waves, free now and metered by AI credits at general availability, and — critically — that Full seats on Professional/Organization/Enterprise get it in all design files while Dev and Collab seats get it only in draft files. I verified that seat gating almost verbatim against Figma's own launch blog, and the credit language verbatim ('During beta, the agent won't consume credits. AI credits will apply at general availability'). A builds its central argument on that gate ('Figma has shipped a capability the non-designer structurally cannot reach in a real file, and is about to meter it'), then correctly names it as revocable and sizes the window at 12-18 months. B never registers that the agent is in beta, wave-gated, seat-gated, or not yet metered, and so treats an announcement as a fully-available capability — for a document whose job is sizing a competitive threat to this exact segment, that is the most decision-relevant fact in the launch and it is missing. Second, strategic range: A works through roughly eight distinct lenses (launch mechanics, business model and why-now, threat reframing, winners/losers including non-obvious ones, first/second/third-order consequences, two bear cases, a paired historical analogy that points both ways, and scored plays). B is essentially one thesis (the missing constraint layer) developed rigorously, plus one good lateral move (the real attacker is prompt-to-app from below, not Figma) — deeper, but narrower.\n\nOn factual accuracy, which the caller flagged as decisive: I web-verified thirteen checkable claims in A and five in B. A's load-bearing claims all hold. Q1 FY2026 revenue of $333.4M, up 46% YoY, with net dollar retention at 139% described as the highest in over two years — confirmed exactly against Figma's SEC 8-K and earnings materials. A's inference that credits convert a seat business into seats-plus-usage is corroborated beyond what A claimed: the same earnings call attributes growth to 'early traction from AI credit monetization, which started on March 18th' and raised full-year guidance by $55M on AI monetization. A's bear case that metered credits are hostile to iteration is corroborated by real Figma forum complaints about Make burning credits on exactly the iterative fixing that constitutes the work. Figma Sites publishing requiring a Full seat — confirmed on Figma's pricing page. The 91% designer-sentiment stat is real (Figma's State of the Designer 2026, n=906), though it is precisely 91% of designers who increased AI usage rather than all surveyed; A slightly overstates the denominator but uses the stat only to discount it, explicitly flagging it as an incumbent self-report of its own users.\n\nA does carry two real errors. Its claim that 'shared libraries live on Organization and Enterprise' is false — team-wide design libraries are available on Professional and above per Figma's pricing page. This weakens A's tier-differentiation mechanism in the 'why now' section, but it is a secondary argument, not the foundation of the recommendation. And 'Canva shipped AI 2.0 in March 2026' is off by a month — Canva AI 2.0 launched at Canva Create on 16 April 2026, though the proprietary Canva Design Model underneath it is real and A's substantive point (Canva, not Figma, is the compression threat from below) is sound; March is plausibly a conflation with Magic Layers' public beta. A also omits a fact that cuts against its own thesis: Figma now offers an $8/month Content seat giving non-designers access to the Sites CMS, which softens the 'structurally cannot reach it' framing.\n\nB, by contrast, has no detected factual errors — but over a much smaller and less load-bearing set of claims. Figma Sites publishing live responsive sites with a CMS, Figma Make going prompt-to-interactive-web-app, and the agent generating real artboards from canvas are all confirmed. B's claim that 'independent testing reports it is strongest at flows built on a real, component-based design system' accurately represents its cited source, which does report the sweet spot as mobile flows on a component-based design system with everything outside that being where the agent struggles. Calling one personal blog 'independent testing' is slightly generous framing, but B honestly separates it from 'Figma's own positioning,' and B selectively omits that the same source found the agent's default output to be generic slop with inconsistent token binding — an omission that would actually have helped B's argument.\n\nSource labeling: A is the better of the two here, and explicitly so. It closes with tiered corroboration guidance — treat launch mechanics and seat tiers as well-corroborated, revenue figures as single-source, the designer survey as an incumbent self-report — which is exactly the right hygiene, and conservative, since the revenue figures are in fact an SEC filing. B opens with an honest 'what I checked, and what I'm taking on faith' section and executes the single best epistemic move in either document: it verifies Figma Sites and Make, discovers this kills the argument it was about to make ('their output is a design file, ours is a live thing, we're safe. That's false'), and tells the reader not to make that argument in a strategy meeting.\n\nWhere B is genuinely better: it is more executable. Section 4's decomposition into Deriver / Composer / Ship-check with independent testability, the two-week throwaway derivation test against 30 real customer URLs graded blind, and kill criteria stated in advance 'so we can't rationalize later' are a sharper falsification plan than anything in A. B's stress test correctly identifies that derived constraints may not beat good defaults. If the question were 'what do we do Monday,' B answers it better. The prompt was 'riff on this with me,' which is the other question — and B explicitly declares it is not doing a riff and is running the heavy version instead, an honest override but an override nonetheless. A stays closer to the requested register while still resolving into a scored 90-day recommendation, names the tempting dud move ('building a better prompt-to-screen generator... name it dead in the room'), and closes with three data questions carrying explicit decision thresholds.\n\nBoth stress tests are honest. A's is the better-calibrated of the two: it names that its entire argument rests on a competitor pricing decision revocable in a single release note, and lets a hypothetical Canva strategist land the hardest blow on the document itself. Net: A on strategic range, on separating shipped from announced, and on a far larger verified factual base with explicit source tiering; B is the safer, more executable, error-free document that misses the launch mechanics that matter most to its own segment.",
+  "rubric": {
+    "A": {
+      "content": {
+        "strategic_range": 5,
+        "segment_specificity": 5,
+        "factual_accuracy": 4,
+        "signal_vs_announcement": 5,
+        "conviction": 5
+      },
+      "structure": {
+        "organization": 4,
+        "usability": 4,
+        "source_transparency": 5
+      },
+      "content_score": 4.8,
+      "structure_score": 4.33,
+      "overall_score": 9.1
+    },
+    "B": {
+      "content": {
+        "strategic_range": 4,
+        "segment_specificity": 5,
+        "factual_accuracy": 5,
+        "signal_vs_announcement": 3,
+        "conviction": 4
+      },
+      "structure": {
+        "organization": 5,
+        "usability": 4,
+        "source_transparency": 4
+      },
+      "content_score": 4.2,
+      "structure_score": 4.33,
+      "overall_score": 8.5
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9,
+      "strengths": [
+        "Seat gating verified almost verbatim against Figma's launch blog (Full seats on Professional/Organization/Enterprise in all files; Dev and Collab seats in drafts only; Starter, Education, Government excluded) and made the load-bearing fact of the whole argument",
+        "Beta/metering status correct and central: free during beta, AI credits at general availability, rolling out in waves since 20 May 2026 — the cleanest separation of what shipped from what was announced",
+        "Q1 FY2026 financials confirmed exactly against SEC filing: $333.4M revenue, +46% YoY, NDR 139% described as highest in over two years",
+        "The credits-as-consumption-layer read is corroborated beyond what A claimed — Figma's own earnings call cites AI credit monetization starting 18 March and raised FY guidance by $55M on it",
+        "Bear case that metered credits punish iteration is grounded in real user complaints about Figma Make burning credits on iterative fixing",
+        "Roughly eight genuinely distinct strategic lenses, distinct in kind rather than just in heading",
+        "Non-obvious segment-specific insight: agent-generated real layers plus non-experts equals design-system contamination, so design leads lock non-designers out harder — 'the gate creates your market'",
+        "Explicit source tiering at the close (well-corroborated / single-source / incumbent self-report), and conservative in the safe direction",
+        "Paired historical analogies chosen to point in opposite directions, with a stated read on which applies and why",
+        "Stress test names the actual weakest link — the whole argument rests on a competitor pricing decision revocable in one release note",
+        "Names the tempting wrong move explicitly and tells the reader to kill it in the room",
+        "Three open data questions with decision thresholds attached ('under 15% this is noise, over 40% it's live now')"
+      ],
+      "weaknesses": [
+        "FALSE CLAIM: 'Shared libraries live on Organization and Enterprise' — Figma's pricing page lists team-wide design libraries on Professional and above. Weakens the tier-differentiation mechanism in the why-now section, though not the central recommendation",
+        "DATE ERROR: Canva AI 2.0 launched 16 April 2026 at Canva Create, not March 2026 (March was Magic Layers' public beta). The proprietary Canva Design Model and the substantive point are correct",
+        "Slightly overstates the 91% survey denominator — it is 91% of designers who increased AI usage, not of all surveyed — though A uses the figure only to discount it",
+        "Omits a fact that cuts against its own thesis: Figma's $8/month Content seat gives non-designers access to the Sites CMS, softening the 'structurally cannot reach it' argument",
+        "Says Figma Make sits behind the same Full-seat gate; publishing a Make file does require a Full seat, but Figma has announced Make coming to Starter and all seats on paid plans",
+        "Long and dense for a request framed as a riff; thinner than B on how any of the recommended plays would actually be built and tested"
+      ]
+    },
+    "B": {
+      "score": 8,
+      "strengths": [
+        "No detected factual errors across every claim I could check (Figma Sites with CMS, Figma Make prompt-to-app, agent generating real artboards, the design-system dependency)",
+        "Best single epistemic move in either document: verifies Sites and Make, discovers this kills the argument it was about to make, and warns the reader not to use it in a strategy meeting",
+        "Opens with an explicit 'what I checked, and what I'm taking on faith' section separating vendor positioning from independent testing",
+        "The central reframe is sharp and segment-specific: the constraint layer that makes generation good is exactly what this segment lacks, so 'we are not a design tool with an AI feature, we are a brief-and-constraint engine with a rendering backend'",
+        "Strong lateral move that A also reaches but B argues harder — Figma is the signal, not the attacker; prompt-to-app tools from underneath are the faster threat",
+        "Most executable of the two: Deriver / Composer / Ship-check decomposed with independent testability, and the explicit boundary check ('if the Composer needs to know how derivation works, the boundary is wrong')",
+        "Two-week throwaway derivation test against 30 real customer URLs, blind-graded — the cheapest available disconfirmation, scheduled before any product work",
+        "Kill criteria stated in advance 'so we can't rationalize later', including the specific competitor move that would end the wedge",
+        "Explicitly refuses the obvious me-too response and says why",
+        "Failure-mode design is thoughtful: the ship-check must under-claim, and a false clean bill of health is named as the one failure that destroys the value proposition"
+      ],
+      "weaknesses": [
+        "Never registers that the agent is in beta, rolling out in waves, gated to Full seats on paid plans (drafts only for Collab/Dev), or not yet consuming credits — the most decision-relevant facts for sizing this specific threat to this specific segment, and the clearest miss against the 'what changed vs what was announced' expectation",
+        "Gestures at 'seat-based pricing built for design teams' as a slowing factor but never learns or uses the actual gate, so its threat timing is assertion rather than evidence",
+        "Narrower strategic range — no treatment of Figma's business model or why-now, no historical precedent, no second/third-order dynamics, no adjacent actors, no winners/losers",
+        "Calls a single personal blog post 'independent testing', which slightly dresses up the source (though it is accurately represented and honestly separated from Figma's own positioning)",
+        "Uses only the half of that source that supports its thesis, omitting the same reviewer's finding that default output was generic with inconsistent token binding",
+        "Declares up front that it is not doing the riff the user asked for and is running the heavy version instead — honest, but an override of the requested register",
+        "Conviction is diluted by heavy scaffolding: seven 'if wrong' branches, four 'does this hold?' checkpoints, and 'nothing gets built off this'",
+        "Asserts a strong conditional ('I'd tell you to sell the company') on an unverified branch"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Reads the launch from several distinct strategic angles rather than one",
+          "passed": true,
+          "note": "Roughly eight lenses distinct in kind: launch mechanics, business model and why-now via NDR, threat reframing, winners/losers including non-obvious ones, first/second/third-order consequences, two bear cases (against Figma and against the reader), paired historical analogies pointing opposite ways, and scored plays."
+        },
+        {
+          "text": "Says what it means specifically for a non-designer-focused tool, not in general",
+          "passed": true,
+          "note": "Ties everything to the seat gate (the target user is on a Collab seat and structurally cannot reach the agent in a real file), and reaches the non-obvious contamination conclusion: the agent makes non-designers more dangerous inside Figma, design leads lock them out harder, and the gate creates the market."
+        },
+        {
+          "text": "Distinguishes what actually changed from what is merely announced",
+          "passed": true,
+          "note": "Strongest dimension. Explicit 'stripped of the launch narrative' section; beta since 20 May 2026, wave rollout, free now and metered at GA, all verified. Argues generation itself is not what changed ('prompt-to-screen has existed for years'), and sizes how long the current state lasts."
+        },
+        {
+          "text": "Produces a point of view, not a balanced survey that commits to nothing",
+          "passed": true,
+          "note": "Stance in the opening paragraph offered for argument, a named dud move to kill in the room, a specific 90-day pick (B and E together, then A), and one play explicitly held behind a flag with the reason given."
+        }
+      ]
+    },
+    "B": {
+      "passed": 3,
+      "total": 4,
+      "pass_rate": 0.75,
+      "details": [
+        {
+          "text": "Reads the launch from several distinct strategic angles rather than one",
+          "passed": true,
+          "note": "Passes but more narrowly than A: one central thesis (the missing constraint layer) developed through several sub-arguments, plus the lateral move that prompt-to-app tools are the faster threat, plus the monetization consequence. Three to four angles rather than A's eight."
+        },
+        {
+          "text": "Says what it means specifically for a non-designer-focused tool, not in general",
+          "passed": true,
+          "note": "Strong. The design-system dependency that makes Figma's agent good is precisely what this segment lacks and never will have, and 'selling the reviewer is a product Figma's own customer would resent' is genuinely segment-specific."
+        },
+        {
+          "text": "Distinguishes what actually changed from what is merely announced",
+          "passed": false,
+          "note": "Partial at best. B does verify three things and honourably kills its own comfortable argument about output format. But it never establishes that the agent is in beta, rolling out in waves, restricted to Full seats in real design files, or not yet metered — so it reads the announcement as the current state of the world for exactly the users it is advising about."
+        },
+        {
+          "text": "Produces a point of view, not a balanced survey that commits to nothing",
+          "passed": true,
+          "note": "Commits to C as the engine with A as the surface and B as the ritual, refuses the me-too prompt-to-screen response, and states kill criteria in advance — a sharper form of commitment than A on the falsification side, though diluted by extensive conditional scaffolding."
+        }
+      ]
+    }
+  },
+  "verification_log": {
+    "method": "Web search and direct fetch of Figma's launch blog, help centre, pricing page, SEC 8-K earnings release, Figma community forum, and Canva launch coverage.",
+    "A_claims_verified_true": [
+      "Agent in beta, rolling out in waves, announced 20 May 2026 (Figma blog)",
+      "Free during beta, AI credits apply at general availability (Figma blog, verbatim)",
+      "Agent edits in place using the file's components, tokens, styles and variables; output is real layers (Figma blog and help centre)",
+      "Full seats on Professional/Organization/Enterprise get it in all files; Collab and Dev seats in drafts only; Starter, Education and Government excluded (Figma blog)",
+      "Figma Sites publishing requires a Full seat (Figma pricing page: 'Figma Sites beta is available on Full seats')",
+      "Q1 FY2026 revenue $333.4M, up 46% YoY (SEC 8-K / Figma investor release)",
+      "Net dollar retention 139%, highest in over two years, up three points from prior quarter (Figma Q1 2026 prepared remarks)",
+      "Credits add a consumption layer on top of seats — corroborated further by the earnings call citing AI credit monetization from 18 March and a $55M full-year guidance raise on it",
+      "Complaints about Figma Make credit limits are real and specifically about iteration (multiple Figma forum threads)",
+      "Figma Make is a prompt-to-app tool for building interactive web apps",
+      "91% figure exists (Figma State of the Designer 2026, n=906) — precisely 91% of designers who increased AI usage say it improves output quality",
+      "Adobe Generative Fill, 2023"
+    ],
+    "A_claims_verified_false": [
+      "'Shared libraries live on Organization and Enterprise' — Figma's pricing page lists team-wide design libraries as a feature of Professional, Organization and Enterprise",
+      "'Canva shipped AI 2.0 in March 2026' — Canva AI 2.0 launched 16 April 2026 at Canva Create; the proprietary Canva Design Model is real, and Magic Layers (built on it) hit public beta in March"
+    ],
+    "A_claims_imprecise": [
+      "91% denominator is designers who increased AI usage, not all surveyed — but A uses the stat only to discount it and labels it an incumbent self-report",
+      "Figma Make behind the same Full-seat gate: publishing a Make file requires a Full seat, but Figma has announced Make coming to Starter and all seats on paid plans",
+      "A's own source tiering calls the revenue figures 'single-source' when they are an SEC filing — an error in the conservative direction",
+      "Figma's own documentation conflicts on Starter: the launch blog excludes it, a help-centre FAQ lists Starter as currently having access. A follows the primary announcement."
+    ],
+    "A_omission_cutting_against_its_thesis": "Figma now offers a Content seat from $8/month giving non-designers access to the Sites CMS, which softens A's 'the non-designer structurally cannot reach it' framing.",
+    "B_claims_verified_true": [
+      "Agent is native to the canvas and generates real artboards from a prompt, not images",
+      "Figma's positioning is that the agent knows your components, colors, tokens and variables",
+      "The cited independent review does report the sweet spot as flows built on a real component-based design system, with everything outside that being where it struggles",
+      "Figma Sites publishes live responsive sites with a CMS",
+      "Figma Make goes prompt to interactive web app"
+    ],
+    "B_claims_verified_false": [],
+    "B_claims_unverifiable_or_imprecise": [
+      "'Independent testing' is a single personal blog post; accurately represented and honestly separated from vendor positioning, but the phrase slightly overstates the evidentiary weight",
+      "B omits that the same cited reviewer found the agent's default output to be generic with inconsistent token binding — a selective read, though one that would have helped B's own argument",
+      "'Figma moving down-market is slowed by seat-based pricing built for design teams' is directionally correct but unquantified; B never learns the specific gate"
+    ],
+    "source_labeling_comparison": "A labels explicitly and conservatively, tiering its sources into well-corroborated launch mechanics, single-source revenue figures, and an incumbent self-report survey. B labels reasonably, separating Figma's own positioning from independent testing and opening with what it verified versus assumed, but overstates one personal blog as 'independent testing' and cites fewer sources overall."
+  }
+}

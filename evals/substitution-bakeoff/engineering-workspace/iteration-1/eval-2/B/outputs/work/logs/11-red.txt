@@ -1,0 +1,50 @@
+
+> fetcher-retry-tdd@0.1.0 test
+> node --test test/fetcher.test.ts
+
+✔ returns the parsed body when the first attempt succeeds (12.497709ms)
+✔ throws HttpError carrying the status when the server keeps failing (0.468667ms)
+✔ retries after a 503 and returns the body from the retry (0.214542ms)
+✔ stops after the default attempt budget and surfaces the last failure (0.217167ms)
+✔ does not retry a 400 — the request is wrong, not the server (0.155083ms)
+✔ retries a 429 because the server is asking us to slow down (0.169625ms)
+✔ honours a configured attempt budget (0.207833ms)
+✔ spaces retries out with exponentially growing waits (0.8135ms)
+✔ caps how long it will wait between attempts (0.301083ms)
+✔ jitters each wait so retrying clients do not sync up (0.23575ms)
+✔ retries when the connection itself fails (0.177166ms)
+✔ waits as long as a Retry-After header asks, instead of guessing (0.133167ms)
+✖ stops retrying as soon as the caller aborts (0.519834ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.156209
+
+✖ failing tests:
+
+test at test/fetcher.test.ts:202:1
+✖ stops retrying as soon as the caller aborts (0.519834ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  HttpError: HTTP 503 for https://api.test/thing
+      at async TestContext.<anonymous> (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/test/fetcher.test.ts:218:3)
+      at async Test.run (node:internal/test_runner/test:1110:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: HttpError: HTTP 503 for https://api.test/thing
+        at Object.fetchJson (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/src/fetcher.ts:79:23)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/test/fetcher.test.ts:218:3)
+        at async Test.run (node:internal/test_runner/test:1110:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:785:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }

@@ -1,0 +1,2 @@
+superpowers:brainstorming
+(/Users/omrilorch/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/skills/brainstorming/SKILL.md)

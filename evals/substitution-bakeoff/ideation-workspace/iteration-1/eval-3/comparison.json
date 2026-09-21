@@ -1,0 +1,137 @@
+{
+  "winner": "A",
+  "reasoning": "The prompt is a single context-free sentence. The task is therefore not 'produce the best mobile strategy document' but 'respond correctly when you have been told almost nothing.' A does that; B does not.\n\nA declines to propose, decomposes the sentence into three claims (a problem worth solving, software as the response, a phone app as the surface) and points out only the third was stated and it is the least important. It then asks seven questions, each with an explicit 'why it forks the work' and 'if I'm wrong' clause, supplies a capability test that decides the word 'mobile' on its merits, and offers three paths with a recommendation and a one-week plan. It engages without conceding the premise.\n\nB opens equally well - 'that sentence is an answer, not a question' - and its section 2 (the credibility / latency / context taxonomy, with 'only (c) requires a native app') is the single sharpest passage in either document. But B then does the thing expectation 1 forbids: section 3 is titled 'Generation pass - 20 candidate moves' and is followed by an 8-candidate grid, a Valuable/Usable/Feasible/Viable evaluation, and a 14-week plan. All of it rests on an invented company: a working desk-bound web product, an approval-latency problem, RFP checkboxes, CRM lost-deal notes, zero mobile engineers. None of that was supplied. Roughly 60% of B is only valid inside that fiction.\n\nThe most damaging instance is B's section 5 thresholds - 'mobile-browser sessions < 8% of weekly sessions -> native is a Dud', '8-20% and median approval latency > 24h -> do A + B + F'. These read as operational decision rules a reader could act on, and every input to them is fabricated. B labels the assumptions honestly in section 1 and concedes in its stress test that the analysis is 'defensible reasoning over invented inputs' - that self-awareness is real and keeps this from being a severe failure - but the document does not behave as if it believes its own caveat.\n\nOn the repo-grounding question specifically: A's exploration produced a null result, and A reported the null as a null. It found no client code, no mobile item in the backlog, a 405-markdown/92-python file census, and concluded 'this repo gives no candidate for what the app is. So the app is either for a different product entirely, or it doesn't exist yet even as a concept. Either way, the missing information isn't technical.' That is the correct inference from an empty search, and A then names in its own stress test that the repo evidence 'may be beside the point' because nothing in the prompt says the app belongs to this codebase. So the grounding is not confident-sounding irrelevance - it is a cheap check, honestly reported, with its own limits flagged. A's one genuine over-reach is 'no existing flow to extend, which confirms this is greenfield' - 'confirms' is too strong for a search of the wrong repository, and it does anchor Q4's working assumption. A retracts this itself. Net, the grounding is a modest positive for A but is not the reason it wins.\n\nThe reason it wins is calibration. Faced with one sentence, A produced a proportionate response that invents little and marks what it invents; B produced an impressive, well-crafted strategy document for a company that may not exist. B is the better artifact if its guess about the situation happens to be right, and close to worthless if it is wrong. A is useful either way.",
+  "rubric": {
+    "A": {
+      "content": {
+        "problem_first_discipline": 5,
+        "calibration_to_unknowns": 4,
+        "decision_usefulness": 4,
+        "intellectual_honesty": 5
+      },
+      "structure": {
+        "organization": 4,
+        "proportionality_to_prompt": 5,
+        "usability": 4
+      },
+      "content_score": 4.5,
+      "structure_score": 4.3,
+      "overall_score": 8.8
+    },
+    "B": {
+      "content": {
+        "problem_first_discipline": 3,
+        "calibration_to_unknowns": 2,
+        "decision_usefulness": 4,
+        "intellectual_honesty": 4
+      },
+      "structure": {
+        "organization": 5,
+        "proportionality_to_prompt": 2,
+        "usability": 4
+      },
+      "content_score": 3.25,
+      "structure_score": 3.7,
+      "overall_score": 6.9
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9,
+      "strengths": [
+        "Refuses to generate app ideas and says why: 'That would be filling in claims 1 and 2 with my guesses and calling it your strategy'",
+        "Decomposes the sentence into three claims and shows the stated one is the least important and least reversible",
+        "Seven questions each carry an explicit 'Why it forks the work' plus an 'If I'm wrong' branch, so the reader can see what changes",
+        "Notes it would ask them one at a time and stop after Q1, and flags Q7 (non-negotiable constraint) as the one most likely to void everything above",
+        "The capability test table with a scoring rule (zero load-bearing -> mobile web; two or more -> a real app is justified) turns 'should it be an app' into a decidable question without needing any invented facts",
+        "'Only the second item is your product. The other seven are the toll you pay to ship it' - names the hidden scope of shipping to app stores",
+        "Repo search returned nothing and A reported nothing, rather than manufacturing context to fill the gap",
+        "Stress test leads with the correct self-criticism: the repo evidence may be beside the point, and interrogating a premise already decided would read as obstruction",
+        "Concedes the strongest counter-argument (three weeks of shipping beats five interviews) and states the condition under which it would drop its own recommendation"
+      ],
+      "weaknesses": [
+        "'no existing flow to extend, which confirms this is greenfield' over-reads a null search in what is very likely the wrong repository; 'confirms' should be 'is consistent with'",
+        "The repo census section is a detour on a prompt that gave no reason to think the app belongs to this codebase - defensible as a cheap check, but it occupies real estate",
+        "Thinner on concrete alternatives than B: three paths where B offers eight, and no equivalent of B's credibility/latency/context decomposition",
+        "The seven-question list is delivered all at once with pre-filled answers, which partly undercuts its own stated 'ask one at a time' discipline"
+      ]
+    },
+    "B": {
+      "score": 7,
+      "strengths": [
+        "Best single passage in either document: the credibility / latency / context taxonomy, with 'Only (c) requires a native app' - and it is separable by data the org would already have",
+        "'If you take one thing from this document: find out which of a/b/c is true before scoping anything'",
+        "Costs the permanent tax that usually goes unpriced: two more release trains, store review latency on every hotfix, crash/ANR triage, '15-25% of one engineer forever, per platform, starting the day you ship - not the day you start'",
+        "Candidate F ('kill the job' via rules-based auto-approval) is a genuinely non-obvious move that removes the need for any app",
+        "The notification-spine-first sequencing is well argued: useful under every branch, produces the telemetry for the next decision, and 'we'll have already built the half of the app that isn't the app'",
+        "Stress test is rich and self-aware: concedes the analysis rests on invented numbers, that 'no mobile engineers' is a hiring decision rather than physics, and that PWA install rate systematically under-predicts native",
+        "Closes on the right note - 'ask them what they saw. If the answer is specific, it beats the entire analysis above'"
+      ],
+      "weaknesses": [
+        "Directly violates the core discipline the prompt tests: section 3 is a 20-item 'Generation pass' of candidate moves, produced against a problem that was never established",
+        "Invents an entire company - desk-bound web product, approval workflows, RFP checkboxes, CRM lost-deal notes, zero mobile engineers - none of which was supplied",
+        "Section 5's thresholds ('< 8% of weekly sessions -> native is a Dud'; '8-20% and median approval latency > 24h -> do A + B + F') present fabricated inputs as operational decision rules a reader could act on",
+        "Roughly 60% of the document (sections 3-6) is valid only inside the invented context; if the user is pre-product, consumer, or two people, most of it is wasted or misleading",
+        "Section 2 asserts the three candidate problems rather than establishing which is true, then proceeds to scope against all of them anyway - the caveat is stated but not obeyed",
+        "A 14-week staged plan off one context-free sentence is disproportionate; the elaborateness reads as confidence the evidence does not support",
+        "Never checks anything - no attempt to find out what product is being discussed before assuming one"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Does not start generating mobile app ideas on this prompt",
+          "passed": true,
+          "note": "Explicit: 'So I'm not going to generate app ideas yet.' Offers three process paths and a capability test, not feature concepts, and closes with 'Nothing gets scaffolded, no stack gets chosen, and no repository gets created before that document exists and you've said yes to it.'"
+        },
+        {
+          "text": "Establishes what problem the app is meant to solve before proposing anything",
+          "passed": true,
+          "note": "Makes the missing problem the subject: claims 1 and 2 are unstated and decide whether any of it pays off. Its recommended path A is a one-week problem probe with a written pass condition - three of five describing the problem unprompted and showing a self-built workaround."
+        },
+        {
+          "text": "Names what it would need to know and why each answer changes the work",
+          "passed": true,
+          "note": "Seven questions, each with 'Why it forks the work' plus 'If I'm wrong'. E.g. Q4: a surface on an existing product inherits users, auth, data and a backend and 'the scope drops by more than half'; Q1: a named user with a painful workaround means 'skip most of what follows'."
+        },
+        {
+          "text": "Pushes back on the framing without simply refusing to engage",
+          "passed": true,
+          "note": "Pushes back hard ('a solution wearing a project's clothes') while still delivering a capability test, a scope inventory, three costed paths, a recommendation and a day-by-day week. Also offers to switch posture: 'Tell me it's decided and I'll switch to arguing about what to cut.'"
+        }
+      ]
+    },
+    "B": {
+      "passed": 3,
+      "total": 4,
+      "pass_rate": 0.75,
+      "details": [
+        {
+          "text": "Does not start generating mobile app ideas on this prompt",
+          "passed": false,
+          "note": "Section 3 is literally 'Generation pass - 20 candidate moves', followed by an 8-candidate grid and a full VUFV evaluation. Several items are concrete feature ideas for an unspecified product (pre-meeting briefs, share-sheet artifacts, calendar-fused home screen). Mitigating: the generation is framed against a reconstructed problem and several candidates involve no app at all - but the prohibited behaviour still occurs."
+        },
+        {
+          "text": "Establishes what problem the app is meant to solve before proposing anything",
+          "passed": true,
+          "note": "Section 2 precedes all proposals and decomposes the sentence into credibility / latency / context, naming the data that separates them. Weaker than it looks - the three problems are asserted from an assumed B2B SaaS context rather than established - but the sequencing and the instruction to resolve a/b/c before scoping satisfy the expectation."
+        },
+        {
+          "text": "Names what it would need to know and why each answer changes the work",
+          "passed": true,
+          "note": "Section 1 table: seven questions, each with the assumption carried and the consequence if wrong, mapped to specific candidates. E.g. 'If this is a net-new product with no web presence, most of this inverts'; 'If the primary persona is genuinely non-desk, candidate D moves from interesting to the actual product.'"
+        },
+        {
+          "text": "Pushes back on the framing without simply refusing to engage",
+          "passed": true,
+          "note": "Opens by rejecting the framing - 'Mobile app is a delivery vehicle. Nobody wants one' - and keeps the full-parity app in the lineup only as the baseline to beat, classifying it a Dud. Engages extensively, arguably too much."
+        }
+      ]
+    }
+  }
+}

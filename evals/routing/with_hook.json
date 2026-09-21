@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "fired": "ux-reviewer",
+    "runners_up": ["design-critique", "behavioral-design"],
+    "reason": "The standing ux-reviewer directive plus the skill's own trigger list ('review this flow', 'a flow with more clicks than the job needs') pulled this ahead of design-critique, which the generic 'take a look at this screen' phrasing would otherwise have matched.",
+    "directive_drove_choice": true
+  },
+  {
+    "id": 2,
+    "fired": "ux-copy",
+    "runners_up": ["ux-reviewer", "behavioral-design"],
+    "reason": "ux-copy names 'empty states' verbatim in its trigger list, and both the directive and ux-reviewer explicitly carve out copy-only changes, so the reviewer stayed silent.",
+    "directive_drove_choice": false
+  },
+  {
+    "id": 3,
+    "fired": "accessibility-review",
+    "runners_up": ["ux-reviewer", "design-critique"],
+    "reason": "Contrast of grey-on-grey and mid-blue on near-black is a literal WCAG color-contrast question, which accessibility-review claims by name; the directive's 'before shipping any user-facing surface' clause pulled toward ux-reviewer but lost to the exact-match skill.",
+    "directive_drove_choice": false
+  },
+  {
+    "id": 4,
+    "fired": "user-research",
+    "runners_up": ["discovery-interview-prep", "jobs-to-be-done"],
+    "reason": "The ask is an interview guide and research questions for churn calls, which is user-research's stated trigger; no user-facing surface is being designed so the directive is inert here.",
+    "directive_drove_choice": false
+  },
+  {
+    "id": 5,
+    "fired": "ux-reviewer",
+    "runners_up": ["design-critique", "ux-creator"],
+    "reason": "The directive fires on planning a user-facing screen before it is built, and 'does that hold up or am i overcomplicating it' is exactly ux-reviewer's adversarial leanness check, so it beat design-critique.",
+    "directive_drove_choice": true
+  },
+  {
+    "id": 6,
+    "fired": "diagnosing-bugs",
+    "runners_up": ["systematic-debugging", "system-design"],
+    "reason": "A connection pool that keeps exhausting under load reads as a reported failure/perf regression, which diagnosing-bugs claims directly; the ux-reviewer directive did not fire because its backend/infra carve-out applies cleanly.",
+    "directive_drove_choice": false
+  }
+]

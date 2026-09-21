@@ -1,0 +1,28 @@
+
+> fetcher-retry-tdd@0.1.0 test
+> node --test test/fetcher.test.ts
+
+✔ returns the parsed body when the first attempt succeeds (12.401417ms)
+✔ throws HttpError carrying the status when the server keeps failing (0.31325ms)
+✖ retries after a 503 and returns the body from the retry (0.149583ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 81.972417
+
+✖ failing tests:
+
+test at test/fetcher.test.ts:32:1
+✖ retries after a 503 and returns the body from the retry (0.149583ms)
+  Error [HttpError]: HTTP 503 for https://api.test/thing
+      at Object.fetchJson (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/src/fetcher.ts:30:31)
+      at async TestContext.<anonymous> (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/test/fetcher.test.ts:40:16)
+      at async Test.run (node:internal/test_runner/test:1110:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7) {
+    status: 503,
+    url: 'https://api.test/thing'
+  }

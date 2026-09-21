@@ -1,0 +1,1 @@
+engineering-tools/tdd — ran the red -> green loop for 11 vertical slices against the fetcher's public seam (diagnosing-bugs was not applicable: nothing was broken).

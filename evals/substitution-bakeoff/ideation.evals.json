@@ -1,0 +1,45 @@
+{
+  "contest": "pm-agents/product-riff + solution-creativity vs superpowers/brainstorming",
+  "skill_name": "pm-agents-ideation",
+  "contenders": {
+    "kit": ["pm-agents/product-riff (146 lines)", "pm-agents/solution-creativity (97 lines)"],
+    "substitute": ["superpowers/brainstorming (250 lines)"]
+  },
+  "why": "3 invocations for brainstorming across 3 repos, 0 for both kit skills. Note: BOTH kit skills are already model-invoked, so unlike the design contest this is not an invocation-mode loss — both sides were reachable and the kit's were simply not chosen. That makes this a cleaner test of description routing and output quality together.",
+  "note": "The kit's two skills are body-identical to the compound-pm copies installed in ~/.claude/skills; only their descriptions differ. Output quality therefore transfers to both copies.",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Figma just shipped an AI agent that designs whole screens from a prompt. we're a design tool aimed at people who aren't designers. riff on this with me",
+      "expected_output": "A multi-angle strategic read of the launch — what it signals, who it threatens, what it opens — not a feature comparison or a generic SWOT.",
+      "expectations": [
+        "Reads the launch from several distinct strategic angles rather than one",
+        "Says what it means specifically for a non-designer-focused tool, not in general",
+        "Distinguishes what actually changed from what is merely announced",
+        "Produces a point of view, not a balanced survey that commits to nothing"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "users can't find their old projects — it's our top support complaint. I keep landing on 'add search' and it feels lazy but I can't get past it. need better options",
+      "expected_output": "Generates genuinely distinct solution candidates using systematic technique, breaking the fixation rather than producing variations on search.",
+      "expectations": [
+        "Breaks the stated fixation instead of producing search variants",
+        "Candidates are structurally different from each other, not one idea rephrased",
+        "Uses some systematic generative method rather than free association",
+        "Addresses why the user got stuck on search, not just what else to build"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "we should build a mobile app",
+      "expected_output": "Interrogates the premise before generating anything — this is a solution with no stated problem, and ideating on it directly would be premature.",
+      "expectations": [
+        "Does not start generating mobile app ideas on this prompt",
+        "Establishes what problem the app is meant to solve before proposing anything",
+        "Names what it would need to know and why each answer changes the work",
+        "Pushes back on the framing without simply refusing to engage"
+      ]
+    }
+  ]
+}

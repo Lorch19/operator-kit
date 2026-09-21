@@ -1,0 +1,6 @@
+superpowers:writing-skills
+(/Users/omrilorch/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/skills/writing-skills/SKILL.md)
+
+Reference files also read and applied:
+- testing-skills-with-subagents.md (same directory)
+- anthropic-best-practices.md (same directory, description-writing + iteration sections)

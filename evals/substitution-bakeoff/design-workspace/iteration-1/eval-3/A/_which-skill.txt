@@ -1,0 +1,36 @@
+Skills used from the assigned pack:
+
+PRIMARY
+- design-tools/design-handoff
+  The task ("shipping the settings redesign to engineering on Thursday — what do
+  they need from me?") is the literal trigger condition in this skill's
+  description: a design ready for engineering that needs specs. Its output
+  template supplied the spine of the deliverable (design tokens, components,
+  states and interactions, responsive behavior, edge cases, animation,
+  accessibility notes) and its four principles were applied throughout
+  (don't assume / use tokens not values / show all states / describe the why).
+
+SUPPORTING (invoked because design-handoff explicitly requires these two
+sections and does not itself say how to produce them)
+- design-tools/accessibility-review
+  Supplied Section 3.10. Used the skill's WCAG 2.1 AA quick reference to produce
+  the 14-item findings table with WCAG success-criterion numbers, the contrast
+  table, and the keyboard-navigation table in the skill's prescribed format.
+  Deliberately did NOT fabricate measured contrast ratios (no screenshots or
+  code available) — instead specified the five measurements most likely to fail
+  in a settings redesign, with the required ratio for each.
+- design-tools/ux-copy
+  Supplied Section 4. Used the skill's copy patterns for CTAs (verb + specific),
+  error messages (what happened + why + how to fix), empty states (what this is +
+  why empty + how to start), and confirmation dialogs (action-labeled buttons),
+  plus its localization-notes output section.
+
+NOT USED
+- design-tools/design-critique
+  Deliberately skipped. The user is past critique and into handoff; running a
+  critique framework would have answered a question they did not ask. The one
+  critique-adjacent point worth making (test the information architecture before
+  the build starts) is raised in the Stress Test instead.
+
+Per the project CLAUDE.md skill rules, the deliverable names the skills at the
+top and closes with a Stress Test section.

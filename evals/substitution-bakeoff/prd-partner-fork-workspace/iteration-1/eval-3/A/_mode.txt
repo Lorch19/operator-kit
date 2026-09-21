@@ -1,0 +1,1 @@
+PRD Mode / Stakeholder output — mode conversion (Dev-Team to Stakeholder). Idea is already clear and the spec exists, so Discovery Mode does not apply; the prompt named the audience (exec review) which fixes the output mode, and the skill's conversion table drove what was added (exec summary, business impact, resource ask) and removed (requirements list, data model).

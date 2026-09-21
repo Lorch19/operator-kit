@@ -1,0 +1,1 @@
+superpowers:systematic-debugging (primary) + superpowers:test-driven-development — refused the "just make it pass" shortcut, ran the four-phase root-cause process, and gated the fix behind a deterministic RED.

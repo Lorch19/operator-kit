@@ -1,0 +1,45 @@
+SKILLS USED
+===========
+
+PRIMARY: design-tools/accessibility-review
+  The task ("Is this accessible enough to ship?") matches this skill's TRIGGER
+  list verbatim, and names color contrast specifically. Followed its output
+  format: Summary (issue counts by severity), Findings table with WCAG refs,
+  Color Contrast table, Keyboard Navigation table, Priority Fixes.
+  Applied its "Tips": started with contrast and keyboard (most common and
+  impactful), prioritized by impact via an explicit ship gate.
+
+SECONDARY: design-tools/design-handoff
+  Used for the "Remediation Spec" section only. The audit identified failures;
+  handoff format supplies the fix as something engineering can act on --
+  Design Tokens table, Components table, States and Interactions, Edge Cases,
+  Accessibility Notes. Its principle "use tokens, not values" shaped the fix as
+  a token-architecture change (text tokens indexed by surface tier) rather than
+  a list of hex swaps.
+
+CONSIDERED AND NOT USED
+=======================
+
+design-tools/design-critique
+  Its framework covers first impression, usability, hierarchy, consistency,
+  with accessibility as only section 5 of 5. The user asked a compliance
+  question, not for feedback on the design overall. Running it would have
+  diluted the audit with four sections the user did not ask for, and its
+  accessibility section is thinner than the dedicated skill's. No screenshot
+  was available to critique hierarchy or first impression anyway.
+
+design-tools/ux-copy
+  No copy question was asked. Two copy-adjacent items surfaced inside the audit
+  (placeholder-as-label under 3.3.2, error states needing text not just color
+  under 1.4.1/3.3.1) and were handled as accessibility findings where they
+  belong, rather than invoking the skill to pad coverage.
+
+METHOD NOTE
+===========
+All contrast ratios were computed, not estimated -- WCAG 2.1 relative-luminance
+formula implemented in Python and run over the candidate palettes. This produced
+the two load-bearing findings: (1) the surface-tier trap, where a grey passing
+on the page background fails on an elevated surface, and (2) the luminance
+window for the blue fill (0.1091-0.1833 on #0A0A0A), where the fill must be
+light enough for 1.4.11 against the page but dark enough for a white label at
+4.5:1. Neither is visible without running the numbers.

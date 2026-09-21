@@ -1,0 +1,22 @@
+solution-creativity (pm-agents/skills/solution-creativity/SKILL.md)
+
+Ran in Deep Mode: all 20 creativity techniques, one forced idea each, then
+clustered into 7 candidates, evaluated on Valuable/Usable/Feasible/Viable,
+classified (Differentiator/MMR/Neutralizer/Quick Win), and plotted on the
+Risk vs Impact 2x2.
+
+The skill states "DO NOT use before problem framing is complete." Framing was
+NOT complete here — "can't find old projects" is a symptom, not a framed
+problem — so I completed framing first (five distinct root causes C1-C5, plus
+a table of the 10 questions I could not ask with the assumption used for each
+and what flips if it's wrong), then ran the techniques against the framed
+problem.
+
+product-riff (pm-agents/skills/product-riff/SKILL.md) was read and NOT used.
+It is scoped to analyzing product news, launches, and competitive moves from
+eight strategic angles. There is no announcement or external move here — this
+is internal solution generation against a support-signal problem, which is
+squarely solution-creativity's job. Two of its angles (Contrarian Take,
+Steal This) partly overlap with the required Stress Test section, but running
+the riff frame on this input would have produced strategic commentary instead
+of the solution candidates the task asked for.

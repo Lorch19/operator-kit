@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "onboarding-flow-critique",
+  "prompt": "Here's the onboarding flow for the app \u2014 three screens, email signup then a preferences step then the dashboard. Something about it feels heavy but I can't say what. Take a look.",
+  "expected_output": "A structured critique naming specific problems (hierarchy, step count, cognitive load) with concrete fixes, not a list of generic heuristics.",
+  "assertions": [
+    "Names specific, actionable problems rather than restating usability principles",
+    "Prioritises findings instead of presenting a flat list",
+    "Asks for or reasons about the actual screens rather than answering generically",
+    "Proposes fixes a developer could implement without further interpretation"
+  ]
+}

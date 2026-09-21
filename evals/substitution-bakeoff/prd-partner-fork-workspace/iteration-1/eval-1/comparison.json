@@ -1,0 +1,140 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs refuse to write a PRD, interrogate the solution-shaped request, and end at 3/10 PRD readiness with an explicit blocker list — so on the headline behaviour they are equivalent. B wins on three margins. (1) It answers the actual question structurally: section 3, 'What would have to be true for this to be worth building', is a five-row falsifiable table with a 'cheapest check' and a 'Unknown — blocking' status per row, three of which are one query away. A covers the same ground but scatters it across a break-even formula, a risk list and a closing blocking-questions list, so the reader has to assemble it. (2) B's factual claims are tighter and better sourced: it cites Google's own sender-guidelines page for the 0.3%/0.1% thresholds and dates Microsoft's rejection policy precisely (5 May 2025, dmarcian), and it appends an explicit caveat that vendor benchmark figures are not comparable to the user's baseline. A sources the same territory to SEO-style blogs (PowerDMARC, MailOver, reactemailspro) and asserts a broad 'since November 2025 non-compliant mail is rejected outright' claim that generalises one provider's policy across all of them — A itself walks back the deliverability framing in its Stress Test as scale-dependent. (3) B is cheaper to act on: it offers a two-hour fake-door checkbox pre-probe below the three-week concierge probe, a concrete subdomain-isolation mitigation, a branch table for 'what happens next', and closes on a precise ask — three numbers. A's counter-strengths are real and nearly close the gap: the J1/J2/J3 split ('three features wearing one name') is the single sharpest analytical move in either document, and its Option B reframe — batch the per-event emails you already send, so the feature *reduces* email volume instead of adding to it — is a genuinely valuable idea B never reaches. But A pays for that breadth: it commits to a headline recommendation (build J3) that its own Stress Test concedes is the least-evidenced claim in the document, and it carries material the user did not ask for (a tentative phased roadmap, a table of 'my unverified prior' on competitors, and a five-item appendix about improving the skill itself). For a user whose entire question is 'is this worth building', B's tighter signal-to-noise and its explicit what-must-be-true ledger serve the decision better.",
+  "rubric": {
+    "A": {
+      "content": {
+        "problem_interrogation": 5,
+        "decision_usefulness": 4,
+        "accuracy_and_sourcing": 3,
+        "honesty_about_unknowns": 5
+      },
+      "structure": {
+        "organization": 4,
+        "signal_to_noise": 3,
+        "actionability": 4
+      },
+      "content_score": 4.3,
+      "structure_score": 3.7,
+      "overall_score": 7.6
+    },
+    "B": {
+      "content": {
+        "problem_interrogation": 5,
+        "decision_usefulness": 5,
+        "accuracy_and_sourcing": 5,
+        "honesty_about_unknowns": 5
+      },
+      "structure": {
+        "organization": 5,
+        "signal_to_noise": 4,
+        "actionability": 5
+      },
+      "content_score": 5.0,
+      "structure_score": 4.7,
+      "overall_score": 8.8
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 7.6,
+      "strengths": [
+        "The J1/J2/J3 split is the sharpest single move in either document: it shows 'weekly digest' is three incompatible features with different recipients, content models, metrics and revenue lines, and forces a pick before scoping",
+        "Architecture alternatives table (in-app panel / batch existing notifications / digest service / event-sourced pipeline) with fatal flaw per option",
+        "Option B reframe — if per-event notification emails already exist, batching them *reduces* volume and complaint risk instead of adding a new send — is a high-value idea absent from B",
+        "Q7 riskiest-assumption framing ('a digest is a compression function; it cannot add signal that isn't there') plus a one-day signal-density query to test it before anything else",
+        "Break-even formula with explicit [NEEDS INPUT] placeholders and a refusal to invent ARPA/seat price; explicitly skips TAM/SAM/SOM as the wrong lens",
+        "Pre-registered build/pivot/kill criteria on the concierge probe, with the three-week minimum justified by novelty decay",
+        "Self-audit in section 7 counting the 9 items it introduced beyond the user's one-line framing",
+        "Stress Test is genuinely self-critical — concedes the deliverability argument is scale-dependent and that the J3 recommendation is its least-evidenced claim"
+      ],
+      "weaknesses": [
+        "Sources are SEO-style aggregator blogs rather than primary provider documentation, and the 'since November 2025 non-compliant mail is rejected outright' claim generalises one provider's enforcement across Google/Yahoo/Microsoft/Apple",
+        "Leads with a headline recommendation (build J3) that rests on an invented product context and is self-described as low confidence — over-reach on a go/no-go question",
+        "The 'what would have to be true' content exists but is never consolidated; it is distributed across Q2, Q4's break-even, the risk list and section 9",
+        "Tentative phased roadmap through v2 is forward-looking polish on a question that is explicitly unresolved",
+        "Section 1 Q10 presents a table of admittedly unverified priors about competitors — low information density",
+        "A five-item appendix about improving the skill itself is noise relative to the user's question",
+        "Longest of the two by a clear margin without proportionally more decision-relevant content"
+      ]
+    },
+    "B": {
+      "score": 8.8,
+      "strengths": [
+        "Section 3 is a dedicated, falsifiable 'what would have to be true' ledger: five rows, each with why it matters, the cheapest check, and a blocking/resolvable status — three blockers answerable from data already held, no build required",
+        "The solo-vs-multiplayer fork is a single decisive question, with an explicit 'if solo, don't build it — build here's-where-you-left-off' branch that names a cheaper alternative feature",
+        "Attacks two unexamined words in the request itself: 'weekly' (cadence is an output of change frequency, not an input) and 'email' (buys reach at the price of engagement happening in Gmail)",
+        "Labelling system [ASSUMPTION] / [YOU HAVE THIS] / [NEEDS INPUT] tells the reader exactly which gaps they can close themselves",
+        "Costs the substrate rather than the email: three build shapes with realistic effort, and the warning that if the event log doesn't exist 'the email is the last 20%'",
+        "Primary sourcing — Google's own sender guidelines for the 0.3%/0.1% thresholds, dmarcian with a specific date for Microsoft's rejection policy — plus a closing caveat that vendor benchmarks are directional only",
+        "Concrete mitigation (send from a separate subdomain so digest reputation cannot contaminate password resets) rather than only naming the risk",
+        "Two-hour fake-door checkbox pre-probe below the three-week concierge probe, with an honest instruction to label it 'coming soon'",
+        "Section 9 branch table plus a precise closing ask: three numbers",
+        "Stress Test questions its own organising frame (the multiplayer axis may be the wrong axis entirely) and softens its own claim to the defensible version"
+      ],
+      "weaknesses": [
+        "Misses A's insight that a digest may be a *reduction* in email volume if per-event notifications already exist — the easiest internal yes available",
+        "Treats the digest as essentially one job; never surfaces the stakeholder/reporting variant, which has a different recipient and a direct revenue line",
+        "Names Asana, Linear, Notion and GitHub as shipping digests without verification, where A explicitly flagged that class of claim as the kind that ages badly",
+        "Asserts 'roughly 10-15%' open-rate inflation from a benchmark aggregator, then partly retracts it in the Stress Test",
+        "No explicit self-count of the scope it introduced, where A audits its own additions"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Recognises 'not sure if it's worth building' as a discovery signal and does not jump straight to a PRD",
+          "passed": true,
+          "note": "Header declares Discovery Mode and states output mode is deliberately unchosen; section 9 lists what must be answered to unlock a PRD."
+        },
+        {
+          "text": "Interrogates the underlying problem rather than accepting the proposed solution",
+          "passed": true,
+          "note": "Section 0 opens with 'this is a solution, not a problem' and decomposes the request into three incompatible jobs with different recipients and metrics."
+        },
+        {
+          "text": "Surfaces what would have to be true for this to be worth building",
+          "passed": true,
+          "note": "Present but distributed rather than consolidated: break-even formula, the signal-density test, the 'name a delta retention you'd defend' challenge, and seven blocking questions."
+        },
+        {
+          "text": "Does not produce a polished document that hides the unresolved question",
+          "passed": true,
+          "note": "PRD readiness 3/10, [BLOCKING] tags throughout, three risks explicitly marked as blocking the PRD. The tentative v0-v2 roadmap is the one element that leans toward premature polish."
+        }
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Recognises 'not sure if it's worth building' as a discovery signal and does not jump straight to a PRD",
+          "passed": true,
+          "note": "Title says 'not a PRD'; states that writing one now would convert an open question into a settled-looking document, 'because a polished spec gets staffed'."
+        },
+        {
+          "text": "Interrogates the underlying problem rather than accepting the proposed solution",
+          "passed": true,
+          "note": "Section 0 names the request as 'a solution wearing a problem's clothes' and unpacks 'weekly' and 'email' as two unmade decisions; section 1 reframes the whole question around solo vs multiplayer."
+        },
+        {
+          "text": "Surfaces what would have to be true for this to be worth building",
+          "passed": true,
+          "note": "Section 3 is a dedicated table of five falsifiable conditions, each with the cheapest check and a blocking/resolvable status."
+        },
+        {
+          "text": "Does not produce a polished document that hides the unresolved question",
+          "passed": true,
+          "note": "PRD readiness 3/10, three blockers marked 'Unknown', section 9 routes by branch including an explicit 'don't build this' path, and closes by asking for three numbers rather than presenting a conclusion."
+        }
+      ]
+    }
+  }
+}

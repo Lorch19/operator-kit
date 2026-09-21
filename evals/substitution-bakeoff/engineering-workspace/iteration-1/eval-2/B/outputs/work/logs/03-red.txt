@@ -1,0 +1,36 @@
+
+> fetcher-retry-tdd@0.1.0 test
+> node --test test/fetcher.test.ts
+
+✔ returns the parsed body when the first attempt succeeds (11.818792ms)
+✔ throws HttpError carrying the status when the server keeps failing (0.551125ms)
+✔ retries after a 503 and returns the body from the retry (0.266125ms)
+✔ stops after the default attempt budget and surfaces the last failure (0.239041ms)
+✖ does not retry a 400 — the request is wrong, not the server (0.630959ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82.18475
+
+✖ failing tests:
+
+test at test/fetcher.test.ts:62:1
+✖ does not retry a 400 — the request is wrong, not the server (0.630959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  3 !== 1
+  
+      at TestContext.<anonymous> (file:///Users/omrilorch/operator-kit/.claude/worktrees/practical-noyce-5836aa/evals/substitution-bakeoff/engineering-workspace/iteration-1/eval-2/B/outputs/work/test/fetcher.test.ts:71:10)
+      at async Test.run (node:internal/test_runner/test:1110:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

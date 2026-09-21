@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "dev-team-prd-mode",
+  "prompt": "Write me the PRD for the digest email. Engineering needs it Monday. Assume we've decided to build it.",
+  "expected_output": "PRD Mode, Dev-Team output \u2014 a complete engineering-ready spec, no discovery detour.",
+  "assertions": [
+    "Switches to producing the document without re-litigating whether to build",
+    "Picks the Dev-Team output mode from the audience cue ('engineering needs it')",
+    "Includes success criteria that are measurable, not aspirational",
+    "Names open questions explicitly rather than silently inventing answers"
+  ]
+}

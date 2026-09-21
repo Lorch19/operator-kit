@@ -1,0 +1,30 @@
+superpowers:writing-skills
+
+Path: /Users/omrilorch/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/skills/writing-skills/SKILL.md
+
+Reference files also read and applied:
+  - testing-skills-with-subagents.md
+  - persuasion-principles.md
+  - examples/CLAUDE_MD_TESTING.md
+  - anthropic-best-practices.md (sections: degrees of freedom, build evaluations first)
+
+How the skill shaped the output:
+  - "Match the Form to the Failure" table -> core diagnosis. The user's failure is
+    "omits a required element from something they already produce", whose right form
+    is a structural required slot and whose wrong form is prose reminders near the
+    template. That is the central claim of the deliverable.
+  - "No nuance clauses" / "Exemption clauses don't scope" -> the irreversible case is
+    designed as a second required slot, never an "unless" clause.
+  - Iron Law (no skill without a failing test first) -> Step 1, reproduce/measure
+    baseline before writing the rule.
+  - "Micro-Test Wording Before Full Scenarios" (5+ reps, always a no-guidance control,
+    read every flagged match manually, variance is a metric) -> Step 3 verification
+    protocol.
+  - "Don't create for: project-specific conventions / mechanical constraints
+    (automate it, save documentation for judgment calls)" -> the three-tier ordering
+    (template + instructions file first, hook/CI gate for the mechanical half, skill
+    only if it spans repos).
+  - SDO section, description-summarizes-workflow trap -> the Tier 3 frontmatter
+    warning.
+  - REFACTOR / rationalization-capture -> the "If it still leaks" table keyed to
+    specific observed excuses.

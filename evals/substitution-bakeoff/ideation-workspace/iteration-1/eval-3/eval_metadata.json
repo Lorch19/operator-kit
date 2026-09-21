@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "ideation-3",
+  "prompt": "we should build a mobile app",
+  "expected_output": "Interrogates the premise before generating anything \u2014 this is a solution with no stated problem, and ideating on it directly would be premature.",
+  "assertions": [
+    "Does not start generating mobile app ideas on this prompt",
+    "Establishes what problem the app is meant to solve before proposing anything",
+    "Names what it would need to know and why each answer changes the work",
+    "Pushes back on the framing without simply refusing to engage"
+  ]
+}

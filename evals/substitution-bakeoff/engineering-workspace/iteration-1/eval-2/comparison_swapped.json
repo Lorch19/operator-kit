@@ -1,0 +1,140 @@
+{
+  "winner": "A",
+  "reasoning": "Both outputs deliver a working, genuinely test-first retry-with-backoff implementation with a mutation check, honest stated assumptions, and a real stress test. They separate on expectation 2 -- the one expectation the harness notes is actually discriminating -- and on the evidence for expectation 1.\n\nEXPECTATION 2 (observable behaviour vs. timer mocks). A explicitly names and rejects the anti-pattern B walks into: 'The obvious way to test backoff is to inject a sleep spy and assert sleep was called with 100, 200, 400. That is the implementation-coupled anti-pattern.' Instead A injects a virtual clock (sleep advances a counter, returns immediately) and has the fake transport stamp each request with clock.now(), so every schedule assertion is about WHEN REQUESTS REACHED THE TRANSPORT -- assert.deepEqual(offsets(net.requests), [0, 100, 300, 700]). B does exactly the rejected thing in 4 of its 10 retry tests: retry: { sleep: async (ms) => { waits.push(ms); } } followed by assert.deepEqual(waits, [100, 200, 400]). That is a timer mock's call log, not behaviour.\n\nI reproduced the harness's refactor result rather than taking it on trust. I copied both work/ directories and applied the same behaviour-preserving change to each -- split every single wait into two half-waits (t/2 then t - t/2: identical total delay, identical request schedule, no observable difference). B's suite went 12 tests -> 8 pass / 4 FAIL ('waits with exponential backoff', 'does not wait after the final attempt', 'caps the backoff delay at maxDelayMs', 'spreads retries with jitter by default'). A's suite went 13/13 -> all green. The 4 tests that broke are precisely the 4 that assert on injected-sleep bookkeeping. B's suite fails a no-op refactor; A's does not. B's own final bullet claims 'the tests as written would survive that refactor unchanged' -- for the withRetry extraction it names, that happens to hold, but the claim does not generalise, and this refactor disproves the broader version of it.\n\nEXPECTATION 1 (failing test first, failing for the right reason). Both claim the discipline and both narrate red output. Only A proves it: its work/ carries 25 raw red/green log files and 13 implementation snapshots in history/. I spot-checked logs/06-red.txt (actual [0,0,0,0] vs expected [0,100,300,700] -- red for the absence of any spacing, the right reason) and logs/08-red.txt (jitter red). I diffed history/01-after.ts against 02-after.ts and confirmed cycle 1's green really was the crude 'if (status === 503) retry once' before cycle 2 replaced it with a bounded loop -- real minimal steps, not a reconstruction. B's work/ contains only package.json, src/, test/ and test-support/: its red output exists solely as prose in the markdown table and cannot be checked.\n\nEXPECTATION 3 (seam identification). Both avoid mocking frameworks and reason about dependency injection; both pass. A goes further with a six-row seam table that explicitly settles WHICH seam to test at ('fetchJson, not a standalone retry() helper -- testing a retry() helper would test the shape of the mechanism and leave the wiring untested') and names the three faked boundaries (transport, clock, randomness) as the only three. B's three questions are good and its closure-based transport is a real fake, but it never interrogates the sleep seam it then over-asserts on.\n\nEXPECTATION 4: both suites kill the maxAttempts=1 mutation (9 failures each, per the harness). Non-discriminating, as stated.\n\nWHERE B IS BETTER, and it is not trivial. B is far tighter (274 lines vs 664) and more readable. Its debugging section is the strongest single passage in either document: cycle 4's naive implementation slept unconditionally in the catch, so the final failed attempt paid a pointless wait; B wrote the named regression test while the bug was live, watched it fail, and fixed it with one line. It also correctly observes that a test written after the implementation would have enshrined the buggy schedule. B's test-hygiene call is better too -- it puts its helper in test-support/ rather than test/ because Node's runner treats everything under test/ as a test file. A did not, which is why A's suite actually reports 14 tests (fakes.ts counted as a trivially-passing file) against its claim of 13: a small self-reporting slip and exactly the pollution B avoided.\n\nWHERE A IS SUBSTANTIVELY AHEAD BEYOND THE SEAM. Two characterization tests written against the pre-retry fetcher and pinned before any retry work, proving the public contract was unchanged. Three behaviours B deliberately skipped (Retry-After, AbortSignal, connection-failure retry) are built and tested. Seven mutations, seven killed, against B's six. A's stress test is materially sharper: it flags that a malformed JSON body on a 200 is currently retried pointlessly (found by reading the final code, and labelled as a gap in its own slicing rather than a caught bug), that random: () => 1 pins a value Math.random can never return, that a POST replay can duplicate a charge, and that tsc --noEmit was NOT run so the types are unverified. A also reports a cost honestly that B has no equivalent of: enabling jitter in cycle 8 broke two earlier tests, and the same run exposed three tests that had fallen through to real setTimeout and pushed the suite to 897ms before the virtual clock brought it to 84ms.\n\nBoth suites run green as delivered (I ran both: 12/12 and 13/13, with A's runner counting a 14th file). The deciding fact is that the brief was 'write it test-first', and the quality of a test-first result is measured by whether the tests pin behaviour or pin the implementation. A's pin behaviour and survive a restructuring; B's pin the sleep call log and do not.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 5,
+        "completeness": 5,
+        "accuracy": 5
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 4,
+        "usability": 5
+      },
+      "content_score": 5.0,
+      "structure_score": 4.67,
+      "overall_score": 9.7
+    },
+    "B": {
+      "content": {
+        "correctness": 3,
+        "completeness": 4,
+        "accuracy": 3
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 3
+      },
+      "content_score": 3.33,
+      "structure_score": 4.33,
+      "overall_score": 7.7
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 9.7,
+      "strengths": [
+        "Virtual-clock design: every backoff assertion is on when requests reached the transport (offsets [0,100,300,700]), not on sleep's call log",
+        "Survives a behaviour-preserving refactor -- I split each wait into two half-waits and all 13 tests stayed green",
+        "Explicitly names and rejects the sleep-spy anti-pattern that the other output adopts",
+        "25 raw red/green logs and 13 implementation snapshots on disk make every TDD claim independently checkable",
+        "history/01-after.ts vs 02-after.ts confirms a genuinely crude minimal green (single 503 if) before the bounded loop",
+        "Six-row seam table settles which seam to test at, not just what to fake",
+        "Two characterization tests pin the pre-retry contract before any retry work",
+        "Covers Retry-After, AbortSignal and connection-level failure, each with its own red cycle",
+        "7 mutations, 7 killed, mapped to the exact test that notices",
+        "Reports its own costs honestly: jitter broke two earlier tests; three tests were really sleeping and had pushed the suite to 897ms",
+        "Stress test surfaces real unfound gaps (malformed JSON retried, POST replay duplicating a charge, tsc never run)"
+      ],
+      "weaknesses": [
+        "664 lines -- roughly 2.4x the other output for the same brief; some cycle narration repeats the table above it",
+        "test/support/fakes.ts sits under test/, so Node's runner counts it as a 14th test file; the document claims 13 tests",
+        "random: () => 1 pins a value Math.random can never return (it self-flags this)",
+        "systemClock is exercised by no test at all (self-flagged)"
+      ]
+    },
+    "B": {
+      "score": 7.7,
+      "strengths": [
+        "Tight and highly readable at 274 lines; the plain-English section is excellent",
+        "The 'does not wait after the final attempt' bug is a real find, and writing the named regression test while the bug was still live is textbook",
+        "Correctly argues that a test written after the implementation would have enshrined the buggy schedule",
+        "Puts the fake transport in test-support/ rather than test/ so the runner output stays pristine -- better hygiene than the other output",
+        "Notices that a characterization test slowing from 0.4ms to 304ms is direct evidence of the latency behaviour change it flagged in question 1",
+        "Honest about dropping two candidate tests that passed on first write rather than dressing them up as TDD cycles",
+        "Closure-based transport rather than a mocking framework; attempt-count assertions (transport.calls) are properly behavioural",
+        "6 mutations, all caught, each mapped to a named test",
+        "Stress test is candid about the riskiest choice being default-on retry, and about maxDelayMs=30s being dead code at maxAttempts=3"
+      ],
+      "weaknesses": [
+        "4 of 10 retry tests assert on an injected sleep's call log (waits.push(ms)) -- a timer mock asserting the implementation, the exact failure expectation 2 targets",
+        "Those 4 tests break on a no-op refactor: splitting each wait into two half-waits takes the suite from 12/12 to 8 pass / 4 fail with zero observable behaviour change",
+        "Claims 'the tests as written would survive that refactor unchanged'; the half-wait refactor disproves the general form of that claim",
+        "No logs/ or history/ on disk -- every red-for-the-right-reason claim is prose-only and unverifiable",
+        "No characterization of when-requests-actually-happened; the schedule is only ever observed through the fake sleep",
+        "isRetryable returns true for status < 400, so a 3xx (Response.ok is false) would be retried",
+        "maxDelayMs default of 30s is unreachable at the shipped maxAttempts of 3 (self-flagged)",
+        "realSleep is exercised by nothing (self-flagged)"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {
+          "text": "Writes a failing test first and shows it failing for the right reason",
+          "passed": true,
+          "note": "25 raw log files on disk. logs/06-red.txt shows actual [0,0,0,0] vs expected [0,100,300,700] -- red because no spacing existed yet, the right reason. history/ snapshots confirm each green was minimal (cycle 1 is a literal single-503 if)."
+        },
+        {
+          "text": "Tests observable behaviour rather than internal calls or timer mocks that assert the implementation",
+          "passed": true,
+          "note": "All schedule assertions go through clock.now() stamped at the fake transport. Confirmed by applying a half-wait refactor: 13/13 still green."
+        },
+        {
+          "text": "Identifies the seam to test at rather than reaching for heavy mocking",
+          "passed": true,
+          "note": "Six-row seam table; explicitly chooses fetchJson over a standalone retry() helper and names transport/clock/random as the only three fakes."
+        },
+        {
+          "text": "Avoids tests that would still pass if the retry logic were deleted",
+          "passed": true,
+          "note": "9 failures under the maxAttempts=1 mutation per the harness; its own 7-mutant table also kills every policy guarantee."
+        }
+      ]
+    },
+    "B": {
+      "passed": 3,
+      "total": 4,
+      "pass_rate": 0.75,
+      "details": [
+        {
+          "text": "Writes a failing test first and shows it failing for the right reason",
+          "passed": true,
+          "note": "Passes on substance -- the table gives a specific observed failure per cycle ('2 !== 3', 'ECONNRESET escaped', ran away to 800/1600) and the debugging section quotes a real assertion diff. But no logs or history exist in work/, so none of it is independently checkable."
+        },
+        {
+          "text": "Tests observable behaviour rather than internal calls or timer mocks that assert the implementation",
+          "passed": false,
+          "note": "4 of 10 retry tests inject sleep: async (ms) => { waits.push(ms); } and assert on the resulting array. Splitting each wait into two half-waits -- same total delay, same request schedule -- fails all 4 while changing nothing observable."
+        },
+        {
+          "text": "Identifies the seam to test at rather than reaching for heavy mocking",
+          "passed": true,
+          "note": "Real closure-based fake transport, no mocking framework, explicit DI reasoning. But it never questions the sleep seam it then over-asserts on."
+        },
+        {
+          "text": "Avoids tests that would still pass if the retry logic were deleted",
+          "passed": true,
+          "note": "9 failures under the maxAttempts=1 mutation per the harness; its own 6-mutant table has no survivors."
+        }
+      ]
+    }
+  }
+}

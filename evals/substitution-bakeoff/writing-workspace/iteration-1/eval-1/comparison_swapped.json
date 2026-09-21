@@ -1,0 +1,114 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs diagnose the description correctly and both hit all four expectations, so the decision turned on the two verification mandates. On executable correctness B wins decisively: every one of B's four commands runs and returns the right population, while two of A's five fail silently. A's neighbour-scan (`grep -rh \"^description:\" ~/.claude/skills/*/SKILL.md ~/.claude/plugins/*/skills/*/SKILL.md 2>/dev/null`) is the single evidence-gathering step behind A's own near-miss-competition section, and it returns ZERO lines against 400 real descriptions on disk, because `~/.claude/plugins/*/skills/` matches nothing on this machine (real layout is `~/.claude/plugins/{marketplaces,cache}/<marketplace>/<pack>[/<version>]/<skill>/SKILL.md`). In the user's actual shell (zsh) the failed glob aborts the command before any part runs, and `2>/dev/null` swallows the error, so the user sees nothing and concludes 'no neighbours compete' when the truth is 400 descriptions and four separate skill-creator copies. A's discovery check (`ls ~/.claude/skills/ ~/.claude/plugins/*/skills/`) fails identically, producing a false 'skill is not installed'. This is exactly the silent-wrong-population defect class. B's one command defect errs the safe direction: its collision grep reports 194 duplicates because `~/.claude/plugins` holds both a `marketplaces/` (195 SKILL.md) and a `cache/` (107 SKILL.md) copy of every install, so B's claim 'Any output is a collision' is wrong -- but it over-reports, and the user investigates rather than falsely standing down. B's jq harvest was the standout: `has(\"promptSource\")` isolates 1532 genuinely-typed prompts out of 16840 user-type lines, and the 117 it excludes are almost entirely `[Request interrupted by user]` artifacts, so the filter is precise rather than lucky. A's counterweight is real and I weighed it: A fully nails the dispositive `disable-model-invocation: true` check, naming the exact frontmatter key, opening with it as section 0, stating plainly that no rewrite can help if it is set, and explaining why it is a live hypothesis here (the string reads exactly like a human-facing summary). B covers this only partially -- its assumptions table states the dispositive fact ('If it's user-invoked-only, no description on earth will fire it and the fix is a config change, not a wording change') but never names the field, gives no check for it, and omits it from the Step 0 checklist where its other disqualifiers live. That is a genuine gap, not a miss. It does not outweigh two dead commands, because B's version still puts the possibility in front of the user, whereas A's broken commands would actively produce a wrong conclusion. B also outperforms on the third expectation: it treats near-miss competition as a bidirectional fix (edit BOTH descriptions so each names the other's territory), bakes a 'Not for...' boundary clause into the actual rewritten description, and carries it into the checklist -- where A quotes real sibling skills nicely but leaves no boundary clause in its own proposed description. B's measurement discipline is stricter too: write the failing test first, baseline must actually fail, 10-15 positives plus 5+ negatives, 5+ repetitions with variance read as signal, every result read by hand, prompt set committed beside the skill. A's best material -- section 5's argument that an unlistable trigger set means the skill is vague, not the description, and the observation that a maximally generic description matches specific prompts worst, so it fails hardest exactly when you need it -- is the sharpest insight in either document, and it is why this is a clear win rather than a rout.",
+  "verification_findings": {
+    "install_layout_on_this_machine": {
+      "user_skills": "~/.claude/skills/<name>/SKILL.md (9 entries)",
+      "plugin_skills": "~/.claude/plugins/marketplaces/<marketplace>/<pack>/<skill>/SKILL.md (195) and ~/.claude/plugins/cache/<marketplace>/<pack>/<version>/<skill>/SKILL.md (107)",
+      "total_SKILL_md": 400,
+      "transcripts": "~/.claude/projects/<slugified-path>/<session>.jsonl (43 dirs, 181 files). Directory names begin with '-', so any glob must be prefixed ('./*/*.jsonl' or an absolute path) or `ls` parses the leading dash as an option. Both A and B avoid this correctly."
+    },
+    "A_commands": [
+      {"cmd": "sed -n '1,10p' path/to/your-skill/SKILL.md", "status": "WORKS", "note": "Trivial, correct."},
+      {"cmd": "ls ~/.claude/skills/ ~/.claude/plugins/*/skills/ 2>/dev/null | grep -i <skill-name>", "status": "BROKEN - SILENT", "note": "Glob ~/.claude/plugins/*/skills/ matches nothing. zsh: 'no matches found', whole command aborts, exit 1, error suppressed by 2>/dev/null; the ~/.claude/skills/ half never runs either. User sees empty output and wrongly concludes the skill is not on disk."},
+      {"cmd": "find ~/.claude -name SKILL.md -exec grep -l \"^name: <skill-name>\" {} \\;", "status": "WORKS", "note": "Correctly returned 4 separate skill-creator SKILL.md copies (2 marketplaces, 1 cache, 1 nested plugin)."},
+      {"cmd": "cd ~/.claude/projects && grep -rh '\"type\":\"user\"' ./*/*.jsonl | python3 -c '...'", "status": "WORKS", "note": "Literal '\"type\":\"user\"' matched 16841 times vs jq's 16840 user records - near-exact. Returned 10 clean typed prompts. Measured sidechain (subagent-authored) contamination passing its filters: 0. Relies on heuristics (startswith '<', '[Request', len>200) rather than a real field, and the len>200 cap silently drops long prompts, but on this corpus the population is correct."},
+      {"cmd": "grep -rh \"^description:\" ~/.claude/skills/*/SKILL.md ~/.claude/plugins/*/skills/*/SKILL.md 2>/dev/null", "status": "BROKEN - SILENT, LOAD-BEARING", "note": "Returns 0 lines; 400 descriptions exist on disk. zsh aborts on the failed glob with the error suppressed. In bash it degrades differently and returns 7 of 400. This is the sole evidence step behind A's own section 6 on near-miss competition, so the failure mode is the user concluding 'no neighbours compete' -- the exact wrong-population-while-exiting-quietly defect."}
+    ],
+    "B_commands": [
+      {"cmd": "claude plugin list", "status": "WORKS", "note": "Real command; printed installed plugins with version, scope and enabled status."},
+      {"cmd": "python3 -c \"import yaml,sys; print(yaml.safe_load(open(sys.argv[1]).read().split('---')[1]))\" path/to/SKILL.md", "status": "WORKS", "note": "Ran against a real SKILL.md and printed the dict with name and description as B predicts."},
+      {"cmd": "grep -rh '^name:' ~/.claude/skills ~/.claude/plugins 2>/dev/null | sort | uniq -d", "status": "RUNS, OVER-REPORTS", "note": "Reports 194 'collisions'. Directory args with -r do cover the real layout (unlike A's globs), but ~/.claude/plugins contains both a marketplaces/ and a cache/ copy of nearly every install, so almost every skill self-duplicates. B's assertion 'Any output is a collision' is wrong here. Defect errs toward false alarm, not false all-clear."},
+      {"cmd": "jq -r 'select(.type==\"user\" and has(\"promptSource\")) | ...' ~/.claude/projects/*/*.jsonl | grep -v '^<' | grep -iE '...' | sort -u", "status": "WORKS - MOST PRECISE POPULATION OF EITHER SIDE", "note": "promptSource is a real top-level key that isolates genuinely-typed prompts: 1532 of 16840 user-type records. Verified the exclusions: the 117 non-promptSource records that are not tool results, meta, or sidechain are almost entirely '[Request interrupted by user]' artifacts, i.e. not real prompts. Returned 17 deduplicated hits. Sole weakness: no length cap, so output was 131KB for 17 lines including one multi-thousand-character paste, which hurts the 'pull five actual phrasings' instruction."}
+    ],
+    "disable_model_invocation_check": {
+      "A": "FULL HIT. Section 0 is devoted to it, names the exact key `disable-model-invocation: true`, gives the sed check, states 'stop - no description can fix this', explains the mechanism (the description is removed from the agent's reach and becomes a human-facing note), argues it is a live hypothesis given how the current string reads, and revisits it in the section 8 failure-shape table and the assumptions list.",
+      "B": "PARTIAL. The assumptions table names the possibility and its dispositive consequence ('If it's user-invoked-only, no description on earth will fire it and the fix is a config change, not a wording change'), but never names the frontmatter field, supplies no check for it, and omits it from the Step 0 list of four disqualifiers - so a user working B's checklist would not test for it."
+    }
+  },
+  "rubric": {
+    "A": {
+      "content": {"correctness": 3, "completeness": 5, "accuracy": 3},
+      "structure": {"organization": 4, "formatting": 5, "usability": 3},
+      "content_score": 3.7,
+      "structure_score": 4.0,
+      "overall_score": 7.7
+    },
+    "B": {
+      "content": {"correctness": 5, "completeness": 4, "accuracy": 4},
+      "structure": {"organization": 5, "formatting": 5, "usability": 5},
+      "content_score": 4.3,
+      "structure_score": 5.0,
+      "overall_score": 9.3
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 7.7,
+      "strengths": [
+        "Only output to name `disable-model-invocation: true` explicitly, lead with it, and supply a check - the dispositive gate, correctly placed before everything else",
+        "Section 5 is the strongest single argument in either document: if you cannot list four distinct triggers, the skill's scope is the problem and a rewrite only relocates the vagueness; includes a falsifiable test ('Without this skill, the agent would get X wrong')",
+        "Explains why failures concentrate on hard cases - specific prompts are what a maximally generic description matches worst, so it fails hardest exactly when you need it",
+        "Grounds the target shape in three real sibling skills from the user's own kit (ab-test-analysis, cohort-analysis, sql-queries) with their actual descriptions quoted",
+        "Section 8 failure-shape table maps each observed symptom to a distinct next lever",
+        "Harvest command's population is clean: verified 0 sidechain contamination",
+        "Honest Stress Test, including the counter-argument that user-invocation plus typing the name may be the correct fix"
+      ],
+      "weaknesses": [
+        "Two of five commands fail silently against this machine's real layout, both from the same wrong glob `~/.claude/plugins/*/skills/`; in zsh they abort with the error suppressed",
+        "The broken section 6 command is load-bearing - it is the only evidence step for near-miss competition, and it returns 0 of 400 descriptions, producing a false 'no competition' conclusion",
+        "Proposed replacement description contains no negative boundary clause despite section 6 arguing neighbour competition is decisive",
+        "Treats neighbour conflicts as one-sided ('carve the boundary or merge') without saying the sibling's description must be edited too",
+        "Measurement protocol is thinner: 5+4 probes at one run each, with the variance caveat deferred to the Stress Test rather than built into the procedure",
+        "No regression artifact - the probe set is not kept anywhere for the next edit",
+        "Longest-form prose of the two; the actionable procedure is diffused across nine sections"
+      ]
+    },
+    "B": {
+      "score": 9.3,
+      "strengths": [
+        "Every command executes correctly; the jq harvest uses `has(\"promptSource\")`, verified as a real field that precisely isolates 1532 typed prompts from 16840 user-type records",
+        "Step 0 rules out non-description causes before any rewriting, correctly separating 'never fired' from 'a sibling fired instead' as two different bugs with different fixes",
+        "Test-first discipline: build the probe set and confirm the baseline actually fails before touching the description - and says explicitly that if the baseline already passes, the description is not the problem",
+        "Strongest near-miss handling: a 'Not for...' clause inside the actual rewritten description, plus the requirement to add the mirror-image clause to the neighbour's description, repeated in Step 5 and the checklist",
+        "Step 4 catches a real second-order failure neither obvious nor covered by A: a description that summarizes the workflow gives the agent a usable shortcut, so the skill fires but is followed shallowly, and correct-looking routing hides thin output for a long time",
+        "Concrete rewrite with a character count (476) against the stated 1024 frontmatter cap, plus a rename recommendation since the name is also router-visible metadata",
+        "Correctly rules out the non-fix of adding IMPORTANT/ALWAYS: this is an agent that never read anything, so the repair is discovery surface, not emphasis",
+        "Rigorous measurement: 5+ repetitions per prompt, variance treated as evidence of an unbound description, every result read by hand because a hit for the wrong stated reason is a coincidence",
+        "Ships a usable checklist and tells the user to commit the prompt set beside the skill as a regression test",
+        "Stress Test names an unresolved tension between two defensible schools on this field and flags its own resolution as a reading rather than settled fact"
+      ],
+      "weaknesses": [
+        "Does not name `disable-model-invocation: true` or give a check for it; states the dispositive consequence only in the assumptions table and omits it from the Step 0 checklist - the clearest gap in the output",
+        "The collision grep reports 194 false positives because ~/.claude/plugins holds both marketplaces/ and cache/ copies of every install, so 'Any output is a collision' is incorrect on a real machine",
+        "The harvest has no length cap, so output ran to 131KB for 17 lines including a multi-thousand-character paste, undermining the 'pull five actual phrasings' instruction",
+        "`claude plugin list` shows plugin-level entries, not per-skill descriptions, so it only partially satisfies its own check 'confirm the skill appears with the description you expect'",
+        "Less reflective than A about the possibility that the skill's scope, not its wording, is the root cause - raised in the Stress Test but not developed into a decision point"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Identifies the description field as the thing that decides invocation, not the body", "passed": true, "evidence": "Section 2 frames the description as a pointer evaluated every turn; section 3 Move 4 notes the body is loaded only once the skill fires, so it is free while the description pays rent continuously."},
+        {"text": "Rewrites the actual description rather than describing how to rewrite it", "passed": true, "evidence": "Section 4 gives before/shape/after, with a concrete filled YAML description containing four distinct trigger moments."},
+        {"text": "Addresses near-miss competition", "passed": true, "evidence": "Section 6 names and quotes three real sibling skills and states the agent picks the most precise pointer; section 8 has a 'different skill fires instead' row. Weakened by the fact that its verification command returns nothing, and by omitting a boundary clause from its own proposed description."},
+        {"text": "Explains why the original fails, not just that it does", "passed": true, "evidence": "Section 1 gives three independently fatal mechanisms (topic not moment, dead leading words, no delta over default behaviour) plus a fourth explaining why misses cluster on the hardest prompts."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Identifies the description field as the thing that decides invocation, not the body", "passed": true, "evidence": "'The router never sees your task - it sees your description and decides whether to open the skill at all', and Step 4: 'The description is injected into the agent's context; the skill body is not, until the skill opens.'"},
+        {"text": "Rewrites the actual description rather than describing how to rewrite it", "passed": true, "evidence": "Step 3 supplies a complete frontmatter block with a rewritten name and a 476-character description, plus the formula and four re-derivation questions for the user's real scope."},
+        {"text": "Addresses near-miss competition", "passed": true, "evidence": "Step 0 check 4 separates 'ignored' from 'lost to a neighbour'; Step 1 flags the missing negative boundary; the rewritten description carries a 'Not for...' clause; Step 3 Q4 and Step 5 both require editing the neighbour's description with the mirror clause; the checklist enforces it."},
+        {"text": "Explains why the original fails, not just that it does", "passed": true, "evidence": "Step 1's five-defect table pairs each defect with why it kills the match, and the closing note establishes this is an agent that never read anything rather than one ignoring a rule - which is why IMPORTANT/ALWAYS cannot help."}
+      ]
+    }
+  }
+}

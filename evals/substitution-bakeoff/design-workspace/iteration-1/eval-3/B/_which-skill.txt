@@ -1,0 +1,12 @@
+Primary: ux-reviewer (/Users/omrilorch/UX-Agent/skills/ux-reviewer/SKILL.md)
+  - Trigger matched: 'before shipping any user-facing surface, even when nobody asks' + 'where should X live'.
+  - Ran the five-pass method from references/review-passes.md (read in full, not from memory), plus LESSONS.md.
+  - Pass 0 could not be completed: no artifact, no codebase, no build to render. Stated as a confidence limit in the output rather than silently downgraded.
+  - Applied: falsifiability rule (every finding names a countable artifact + cheaper alternative), ~12-Catches cap on Blocker/Major, compressed Minor list, mandatory truncation line, 'What must not change' and 'Unverifiable from this artifact' sections.
+
+Secondary: ux-creator (/Users/omrilorch/UX-Agent/skills/ux-creator/SKILL.md), Phase 2 only
+  - Used to draft the PROVISIONAL docs/design/DESIGN-TARGETS.md in Part 3, per references/design-targets-template.md.
+  - The reviewer's Inputs section explicitly authorizes this: 'If it doesn't exist, don't refuse and don't invent silently: draft a provisional one... then review against it.'
+  - Did NOT run ux-creator as primary: a redesign already exists, so this is not design-from-scratch work.
+
+Not used: Phases 1, 2.5, 3, 4, 5 of ux-creator (domain immersion, visual directions, screen design) - out of scope for a handoff-readiness question.

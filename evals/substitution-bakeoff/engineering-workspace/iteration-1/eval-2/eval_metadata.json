@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "retry-backoff-test-first",
+  "prompt": "Add retry-with-backoff to the fetcher. Write it test-first.",
+  "expected_output": "A red-green loop with tests written against behaviour at a real seam, not against implementation detail.",
+  "assertions": [
+    "Writes a failing test first and shows it failing for the right reason",
+    "Tests observable behaviour rather than internal calls or timer mocks that assert the implementation",
+    "Identifies the seam to test at rather than reaching for heavy mocking",
+    "Avoids tests that would still pass if the retry logic were deleted"
+  ]
+}

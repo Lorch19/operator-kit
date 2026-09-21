@@ -1,0 +1,1 @@
+superpowers:systematic-debugging (Phases 1-4, primary) + superpowers:test-driven-development (Phase 4 failing test)

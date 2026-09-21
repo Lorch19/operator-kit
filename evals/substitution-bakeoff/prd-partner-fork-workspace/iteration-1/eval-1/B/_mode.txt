@@ -1,0 +1,1 @@
+Discovery Mode (no output mode selected) — "Not sure yet if it's worth building" is the skill's explicit fuzzy-idea signal, so the deliverable is the sharpening conversation ending at the Synthesis Checkpoint and risk assessment, which the skill forbids passing until reviewed; producing a PRD would have made an undecided question look decided.

@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "ideation-1",
+  "prompt": "Figma just shipped an AI agent that designs whole screens from a prompt. we're a design tool aimed at people who aren't designers. riff on this with me",
+  "expected_output": "A multi-angle strategic read of the launch \u2014 what it signals, who it threatens, what it opens \u2014 not a feature comparison or a generic SWOT.",
+  "assertions": [
+    "Reads the launch from several distinct strategic angles rather than one",
+    "Says what it means specifically for a non-designer-focused tool, not in general",
+    "Distinguishes what actually changed from what is merely announced",
+    "Produces a point of view, not a balanced survey that commits to nothing"
+  ]
+}

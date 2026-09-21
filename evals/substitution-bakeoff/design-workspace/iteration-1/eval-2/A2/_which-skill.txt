@@ -1,0 +1,36 @@
+Skills used (all four from the assigned pack, chained in this order):
+
+1. design-tools/design-critique  — PRIMARY. Applied to the current "No projects" state.
+   Used its full framework: First Impression, Usability (findings table with
+   severity + recommendation), Visual Hierarchy (eye-draw + reading flow),
+   Consistency Issues table, What Works Well, Priority Recommendations.
+
+2. design-tools/ux-copy  — PRIMARY. Applied the skill's Empty States pattern
+   ("What this is + Why it's empty + How to start") plus the CTA pattern
+   (verb-first, specific). Used its output shape: Recommended Copy,
+   Alternatives table (option/copy/tone/best-for), Rationale, Localization Notes.
+   Produced four state variants: first-run, filtered, archived-only, no-permission.
+
+3. design-tools/accessibility-review  — SUPPORTING. Run pre-emptively on the
+   PROPOSED design rather than the existing one (the existing one is a single
+   string; there is nothing to audit). Used its WCAG 2.1 AA quick reference,
+   Findings table, Color Contrast table (ratios computed, not estimated),
+   Keyboard Navigation table, Priority Fixes.
+
+4. design-tools/design-handoff  — SUPPORTING. Turned the above into a build spec:
+   Design Tokens, Components, States and Interactions, Responsive Behavior,
+   Edge Cases, Animation, Accessibility Notes. Added an instrumentation section
+   (not in the skill template) because the user framed the problem as a bounce
+   metric, so the deliverable needs a way to tell whether it worked.
+
+Why all four rather than one: the user named a copy symptom ("it just says
+'No projects'") attached to a behavioural problem ("users bounce"). ux-copy alone
+answers the symptom; design-critique establishes why the current state fails;
+design-handoff makes it buildable without a follow-up round; accessibility-review
+catches the two defects (aria-live announcement, decorative ghost layer) that this
+specific pattern reliably ships broken.
+
+Constraint handling: the pack's skills all open with a "What I Need" section that
+asks for context. Since this ran unattended, those questions are written explicitly
+into the deliverable's opening table with the assumption taken for each, three
+starred as assumption-critical, and the full work delivered regardless.

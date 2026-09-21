@@ -1,0 +1,252 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Projects page — zero states (1440×900) — post-review</title>
+<style>
+:root{
+  --ground:#F5F5F3; --surface:#FFFFFF; --ink1:#15161A; --ink2:#5B6473; --ink3:#5B6473;
+  --accent:#2F55E0; --accent-ink:#FFFFFF; --line:#E4E4DF; --ghost:#82888F;
+  --warnbg:#FBEEDD; --warnline:#D9B98A; --warnink:#7A4409;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#2b2b2f;font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;color:var(--ink1);padding:20px}
+.cap{color:#fff;font-size:12px;letter-spacing:.09em;text-transform:uppercase;margin:22px 0 8px;opacity:.8}
+.frame{width:1440px;height:900px;background:var(--ground);display:flex;overflow:hidden;border-radius:10px}
+.side{width:240px;background:#FBFBF9;border-right:1px solid var(--line);padding:16px 12px;flex:0 0 auto}
+.ws{display:flex;align-items:center;gap:9px;font-weight:650;font-size:15px;padding:6px 8px;margin-bottom:16px}
+.wsdot{width:24px;height:24px;border-radius:7px;background:#1D2433;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+.nav a{display:flex;align-items:center;gap:10px;height:34px;padding:0 9px;border-radius:7px;color:var(--ink2);text-decoration:none;font-size:14px}
+.nav a.on{background:#ECEEF2;color:var(--ink1);font-weight:650}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.hd{height:64px;display:flex;align-items:center;gap:14px;padding:0 32px;border-bottom:1px solid var(--line);background:var(--surface)}
+.h1{font-size:21px;font-weight:700;letter-spacing:-.01em}
+.search{margin-left:8px;height:34px;width:250px;border:1px solid var(--line);border-radius:8px;padding:0 10px;color:var(--ink1);font-size:13.5px;background:#FAFAF8;font-family:inherit}
+.search::placeholder{color:#5B6473;opacity:1}
+.sp{flex:1}
+button{font-family:inherit}
+.btn{height:36px;padding:0 14px;border-radius:8px;border:1px solid var(--line);background:var(--surface);font-size:14px;font-weight:600;color:var(--ink1);display:inline-flex;align-items:center;gap:7px;white-space:nowrap;cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* M1: canvas is ALWAYS top-aligned — the skeleton must sit where the content will land */
+.canvas{flex:1;padding:28px 32px;overflow:hidden}
+.wrap{max-width:1120px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.span2{grid-column:span 2}
+.foot{margin-top:18px;font-size:13px;color:var(--ink3)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* focal card — one shape for every state (B3) */
+.mk{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(20,22,28,.06);display:flex;flex-direction:column}
+.mk.warnb{background:var(--warnbg);border-color:var(--warnline)}
+.kick{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:9px;display:flex;align-items:center;gap:7px}
+.kick.warn{color:var(--warnink)}
+.mkh{font-size:22px;font-weight:700;letter-spacing:-.012em;margin-bottom:6px}
+.sub{font-size:14px;color:var(--ink2);margin-bottom:16px;max-width:54ch}
+.rowin{display:flex;gap:10px}
+.field{flex:1;height:44px;border:1.5px solid var(--accent);border-radius:9px;padding:0 12px;font-size:15px;background:var(--surface);color:var(--ink1);font-family:inherit}
+.field::placeholder{color:#5B6473;opacity:1}
+.btn.go{height:44px;padding:0 20px;font-size:15px}
+.acts{display:flex;gap:10px;margin-top:auto;padding-top:4px}
+.acts .btn{height:44px;padding:0 18px;font-size:14.5px}
+.orrow{margin-top:16px;font-size:13px;color:var(--ink2)}
+/* companion card — slot 3 carries what the state already knows (B3) */
+.aside{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column}
+.ah{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);margin-bottom:12px}
+.arow{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:9px 0;border-bottom:1px solid var(--line)}
+.arow:last-of-type{border-bottom:0}
+.arow b{font-weight:650}
+.arow span{color:var(--ink2)}
+.alink{margin-top:auto;padding-top:12px;font-size:13.5px;font-weight:600;color:var(--accent);background:none;border:0;text-align:left;cursor:pointer;min-height:44px}
+/* sample ghost — filled surface, 3:1 boundary, destructive action moved away (M7) */
+.ghost{background:var(--surface);border:1.5px dashed var(--ghost);border-radius:14px;padding:18px;display:flex;flex-direction:column;position:relative}
+.gt{font-size:15px;font-weight:650;color:var(--ink1);display:flex;align-items:center;gap:8px}
+.tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#E7E8EC;color:#474E5C;border-radius:5px;padding:2px 6px}
+.gm{font-size:13px;color:var(--ink2);margin-top:6px}
+.gx{position:absolute;top:8px;right:8px;width:44px;height:44px;border:0;background:none;color:var(--ink2);font-size:17px;cursor:pointer;border-radius:8px}
+.gl{margin-top:auto;padding-top:14px}
+.gl .btn{height:44px}
+.tpl{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column}
+.tt{font-size:15px;font-weight:650;margin-bottom:5px}
+.ts{font-size:13px;color:var(--ink2)}
+.tl{margin-top:auto;padding-top:14px;font-size:13.5px;font-weight:600;color:var(--accent);background:none;border:0;text-align:left;cursor:pointer;min-height:44px}
+.filters{display:flex;gap:8px;align-items:center;margin-bottom:16px;font-size:13px;color:var(--ink2);flex-wrap:wrap}
+.fchip{height:36px;padding:0 6px 0 12px;border-radius:18px;background:#E9EBF0;display:inline-flex;align-items:center;gap:4px;font-size:13px;color:var(--ink1)}
+.fchip button{width:36px;height:36px;border:0;background:none;color:#454C59;font-weight:700;cursor:pointer;border-radius:18px;font-size:14px}
+.sk{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;height:150px}
+.skl{height:12px;border-radius:6px;background:#ECEDF0;margin-bottom:10px}
+.dim{opacity:.62}
+</style></head><body>
+
+<!-- ================= Z1 FIRST RUN ================= -->
+<div class="cap">Z1 — first run · 1440×900 · header “New project” removed (M3)</div>
+<div class="frame" id="z1">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <nav class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></nav></div>
+  <div class="main">
+    <div class="hd"><h1 class="h1">Projects</h1><input class="search" placeholder="Search projects"><div class="sp"></div></div>
+    <div class="canvas"><div class="wrap">
+      <p class="sr" aria-live="polite">No projects yet. Create your first project.</p>
+      <div class="grid">
+        <section class="mk span2" id="z1-focal">
+          <div class="kick">Your first project</div>
+          <h2 class="mkh">What are you working on?</h2>
+          <p class="sub">A project holds the tasks, files and notes for one piece of work. Most people start with whatever is on their desk today — you can rename it later.</p>
+          <div class="rowin">
+            <input class="field" id="z1-input" autofocus placeholder="e.g. Q3 website redesign" aria-label="Project name">
+            <button class="btn primary go" id="z1-cta">Create project</button>
+          </div>
+          <p class="orrow">Not sure where to start? Three templates are below.</p>
+        </section>
+        <section class="ghost">
+          <button class="gx" aria-label="Remove sample project">×</button>
+          <div class="gt">Website redesign <span class="tag">Sample</span></div>
+          <p class="gm">12 tasks · 3 files · 2 people<br>Read-only. Disappears the moment you make your own.</p>
+          <div class="gl"><button class="btn">Look around</button></div>
+        </section>
+      </div>
+      <div class="grid" style="margin-top:20px">
+        <section class="tpl"><h3 class="tt">Content calendar</h3><p class="ts">Weekly slots, draft → review → live, one owner per post</p><button class="tl">Use this template</button></section>
+        <section class="tpl"><h3 class="tt">Product launch</h3><p class="ts">Launch date, 6 workstreams, go / no-go checklist</p><button class="tl">Use this template</button></section>
+        <section class="tpl"><h3 class="tt">Client retainer</h3><p class="ts">Monthly cycle, hours budget, deliverables log</p><button class="tl">Use this template</button></section>
+      </div>
+      <p class="foot">Projects you create are private to you until you invite someone.</p>
+    </div></div>
+  </div>
+</div>
+
+<!-- ================= Z2 ================= -->
+<div class="cap">Z2 — member, nothing shared · Z1’s geometry, create-my-own promoted (B3, M2)</div>
+<div class="frame" id="z2">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <nav class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></nav></div>
+  <div class="main">
+    <div class="hd"><h1 class="h1">Projects</h1><input class="search" placeholder="Search projects"><div class="sp"></div><button class="btn">New project</button></div>
+    <div class="canvas"><div class="wrap">
+      <p class="sr" aria-live="polite">No projects shared with you yet.</p>
+      <div class="grid">
+        <section class="mk span2" id="z2-focal">
+          <div class="kick">Nothing shared yet</div>
+          <h2 class="mkh">You’re not on any of Acme’s projects yet</h2>
+          <p class="sub">Acme has 23 projects, but none of them include you. You don’t have to wait — anything you create is yours, and you can invite people into it later.</p>
+          <div class="acts"><button class="btn primary">Create my own project</button><button class="btn">Ask Dana for access</button></div>
+        </section>
+        <aside class="aside">
+          <div class="ah">Who can add you</div>
+          <div class="arow"><b>Dana Levy</b><span>Owner</span></div>
+          <div class="arow"><b>Ron Cohen</b><span>Admin</span></div>
+          <div class="arow"><b>Maya Barak</b><span>Admin</span></div>
+          <button class="alink">See everyone in Acme</button>
+        </aside>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ================= Z3 ================= -->
+<div class="cap">Z3 — filtered to nothing · one control per outcome, near-miss now clickable (B4)</div>
+<div class="frame" id="z3">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <nav class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></nav></div>
+  <div class="main">
+    <div class="hd"><h1 class="h1">Projects</h1><input class="search" value="redesign"><div class="sp"></div><button class="btn">New project</button></div>
+    <div class="canvas"><div class="wrap">
+      <p class="sr" aria-live="polite">No projects match these filters. You have 14 projects.</p>
+      <div class="filters">Filters:
+        <span class="fchip">Search: “redesign” <button aria-label="Remove search filter">×</button></span>
+        <span class="fchip">Owner: me <button aria-label="Remove owner filter">×</button></span>
+        <span class="fchip">Status: active <button aria-label="Remove status filter">×</button></span>
+      </div>
+      <div class="grid">
+        <section class="mk span2" id="z3-focal">
+          <div class="kick">14 projects · 0 shown</div>
+          <h2 class="mkh">Nothing matches all three filters at once</h2>
+          <p class="sub">Your projects are all still here — this is a filter result, not an empty account. Loosening any one of the three brings some of them back.</p>
+          <div class="acts"><button class="btn primary">Show all 14 projects</button><button class="btn">Drop “Owner: me” — 3 match</button></div>
+        </section>
+        <aside class="aside">
+          <div class="ah">Loosen one filter</div>
+          <div class="arow"><b>Drop “Owner: me”</b><span>3 match</span></div>
+          <div class="arow"><b>Drop “Status: active”</b><span>5 match</span></div>
+          <div class="arow"><b>Drop “redesign”</b><span>9 match</span></div>
+        </aside>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ================= Z4 ================= -->
+<div class="cap">Z4 — all archived · no teaching copy, one primary per screen</div>
+<div class="frame" id="z4">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <nav class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></nav></div>
+  <div class="main">
+    <div class="hd"><h1 class="h1">Projects</h1><input class="search" placeholder="Search projects"><div class="sp"></div><button class="btn">New project</button></div>
+    <div class="canvas"><div class="wrap">
+      <p class="sr" aria-live="polite">No active projects. 7 archived.</p>
+      <div class="grid">
+        <section class="mk span2" id="z4-focal">
+          <div class="kick">7 archived · 0 active</div>
+          <h2 class="mkh">Nothing active right now</h2>
+          <p class="sub">All 7 of your projects are archived. The most recent was “Spring campaign”, archived 4 days ago.</p>
+          <div class="acts"><button class="btn primary">View archived (7)</button><button class="btn">Restore “Spring campaign”</button></div>
+        </section>
+        <aside class="aside">
+          <div class="ah">Recently archived</div>
+          <div class="arow"><b>Spring campaign</b><span>4 days ago</span></div>
+          <div class="arow"><b>Q1 site refresh</b><span>3 weeks ago</span></div>
+          <div class="arow"><b>Partner portal</b><span>2 months ago</span></div>
+          <button class="alink">View all 7 archived</button>
+        </aside>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ================= Z5 ================= -->
+<div class="cap">Z5 — load failed · icon shipped, tint past 1.005:1 (M4), cached list dimmed beside it</div>
+<div class="frame" id="z5">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <nav class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></nav></div>
+  <div class="main">
+    <div class="hd"><h1 class="h1">Projects</h1><input class="search" placeholder="Search projects"><div class="sp"></div><button class="btn">New project</button></div>
+    <div class="canvas"><div class="wrap">
+      <p class="sr" role="alert">We couldn’t load your projects. Your projects are safe.</p>
+      <div class="grid">
+        <section class="mk warnb span2" id="z5-focal">
+          <div class="kick warn"><span id="z5-icon" aria-hidden="true">⚠</span> Connection problem</div>
+          <h2 class="mkh">We couldn’t load your projects</h2>
+          <p class="sub">Your projects are safe — this is a connection problem on our side, not missing data. Last loaded 2 minutes ago.</p>
+          <div class="acts"><button class="btn primary">Try again</button><button class="btn">Show last loaded list</button></div>
+        </section>
+        <aside class="aside dim">
+          <div class="ah">Last loaded · 2 min ago</div>
+          <div class="arow"><b>Website redesign</b><span>7/12</span></div>
+          <div class="arow"><b>Spring campaign</b><span>3/9</span></div>
+          <div class="arow"><b>Partner portal</b><span>1/4</span></div>
+        </aside>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ================= Z0 ================= -->
+<div class="cap">Z0 — loading · top-aligned so skeletons sit where content lands (M1)</div>
+<div class="frame" id="z0">
+  <div class="side"><div class="ws"><span class="wsdot">A</span>Acme</div>
+    <nav class="nav"><a class="on" href="#">▤ Projects</a><a href="#">✓ My tasks</a><a href="#">☺ People</a><a href="#">⚙ Settings</a></nav></div>
+  <div class="main">
+    <div class="hd"><h1 class="h1">Projects</h1><input class="search" placeholder="Search projects"><div class="sp"></div><button class="btn">New project</button></div>
+    <div class="canvas"><div class="wrap">
+      <p class="sr" aria-live="polite" aria-busy="true">Loading projects…</p>
+      <div class="grid">
+        <div class="sk"><div class="skl" style="width:58%"></div><div class="skl" style="width:38%"></div><div class="skl" style="width:80%;margin-top:22px"></div></div>
+        <div class="sk"><div class="skl" style="width:46%"></div><div class="skl" style="width:52%"></div><div class="skl" style="width:70%;margin-top:22px"></div></div>
+        <div class="sk"><div class="skl" style="width:64%"></div><div class="skl" style="width:30%"></div><div class="skl" style="width:76%;margin-top:22px"></div></div>
+      </div>
+      <div class="grid" style="margin-top:20px">
+        <div class="sk"><div class="skl" style="width:52%"></div><div class="skl" style="width:44%"></div><div class="skl" style="width:68%;margin-top:22px"></div></div>
+        <div class="sk"><div class="skl" style="width:60%"></div><div class="skl" style="width:36%"></div><div class="skl" style="width:74%;margin-top:22px"></div></div>
+        <div class="sk"><div class="skl" style="width:44%"></div><div class="skl" style="width:50%"></div><div class="skl" style="width:82%;margin-top:22px"></div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+</body></html>

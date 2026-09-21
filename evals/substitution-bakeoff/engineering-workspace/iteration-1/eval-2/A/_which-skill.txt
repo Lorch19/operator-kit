@@ -1,0 +1,1 @@
+superpowers:test-driven-development (primary), with superpowers:systematic-debugging applied to the one real bug the red-green loop surfaced.

@@ -1,0 +1,108 @@
+{
+  "winner": "B",
+  "reasoning": "Both are strong, opinionated strategy memos with real self-criticism, and neither builds its central recommendation on a false premise. B wins on verification depth and source honesty. I checked the load-bearing claims against primary sources. B's decisive facts are exact: Figma's own FAQ says 'If you have a Full seat on the Professional, Organization, or Enterprise plans, you can use the agent in all your files. Users with a View, Collab, or Dev seat can try it in Draft files'; the agent is 'free to use during the beta. AI credits are not consumed', with credits applying at GA; beta rollout began 20 May 2026 in waves; the agent generates from connected libraries' components, styles and variables as real editable layers; Figma Sites publishing requires a paid plan and a Full seat; and Q1 2026 revenue of $333.4M, +46% YoY, with NDR of 139% (highest in over two years) matches Figma's own Q1 2026 earnings release filed with the SEC. B's whole recommendation rests on that seat gate and the coming meter, and both are verified. B also grades its own sources ('treat the launch mechanics and seat tiers as well-corroborated, the revenue figures as single-source, and the designer-sentiment survey as an incumbent self-report') and discounts the 91% figure in-text as 'a vibe reading, not evidence' - that stat is real (Figma's State of the Designer 2026, n=906) and is indeed the incumbent surveying its own users, so B's labeling is accurate and appropriately conservative. B has three real errors, all peripheral and all tilting toward its own thesis: it says the Starter plan is 'excluded outright' when Figma's FAQ states the agent IS available on Starter; it dates Canva AI 2.0 to March 2026 when it launched at Canva Create on 15-16 April 2026 (the substance - a proprietary design-specific foundation model, Canva owning the non-designer relationship - is verified); and 'shared libraries live on Organization and Enterprise' is imprecise, since component library publishing is available on Professional and above. None of these unseats the core argument, because the paying-company motion B is reasoning about sits on Professional/Org/Enterprise, where the gate is exactly as described. A is accurate on everything it asserts - agent native to canvas producing real artboards, agent quality dependent on an existing design system, Figma Sites publishing responsive sites with a CMS, Figma Make going prompt-to-app all check out - but it asserts far less and never checks access or pricing at all. That omission is load-bearing here. A's most emphatic verified claim is that Figma is 'already at the destination' and therefore the 'our output is live, we're safe' argument 'will get checked and it will fall over'; in fact Figma Sites publishing requires a paid plan and a Full seat, so A is warning its reader off an argument that is partly correct for A's own segment. Likewise A's central framing that prompt-to-screen 'dissolves the interface barrier for everyone at once' is materially weakened by a fact A never looked up: in real design files the agent is Full-seat-gated, and the non-designer is precisely the person on a Collab or View seat. A also presents a personal blog (sanjaytarani.com) as 'independent testing' and stamps it 'Confirmed' without any source-strength labeling, on the claim it calls 'the single most important fact in this document' - the claim happens to be corroborated by Figma's own docs, but the sourcing is weaker than advertised. On breadth, B covers more genuinely distinct angles: launch mechanics stripped of narrative, the business-model read (NDR 139% as an expansion instrument), the threat reframe (consolidation, not capability), winners/losers including a non-obvious party, first/second/third-order effects culminating in 'design system contamination', two historical analogies deliberately pointing in opposite directions, bear cases against both Figma and the reader, and a named adjacent threat (Canva) that A misses entirely. A's structure is cleaner and its Section 5 sequencing with pre-committed kill criteria is the single best passage in either document - more falsifiable than B's 90-day plan. B also carries a visible production defect: an unfilled template placeholder, '[SKILL]', leaks into the text at the risk-versus-impact list. I could not independently verify B's characterisation of 'complaints already visible about Figma Make's credit limits' beyond its being a plausible secondary-source read, and I did not find confirmation that Figma Sites carries a CMS-only Content seat exception relevant to either argument beyond noting it exists. Net: B is the more decision-useful memo because the facts a reader would act on are the ones it got right, while A's caution is purchased by not checking.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 4,
+        "completeness": 3,
+        "accuracy": 4,
+        "angle_breadth": 4,
+        "source_honesty": 3
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 3.6,
+      "structure_score": 4.7,
+      "overall_score": 8.3
+    },
+    "B": {
+      "content": {
+        "correctness": 4,
+        "completeness": 5,
+        "accuracy": 4,
+        "angle_breadth": 5,
+        "source_honesty": 5
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 3,
+        "usability": 5
+      },
+      "content_score": 4.6,
+      "structure_score": 4.3,
+      "overall_score": 8.9
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 8,
+      "strengths": [
+        "Every claim it makes is accurate: real artboards not images, design-system dependency, Figma Sites CMS and Figma Make prompt-to-app all verify",
+        "Single unified thesis - the segment lacks the design system the agent depends on, so manufacture that missing layer - carried consistently from read to design to sequencing",
+        "Section 5 is the best passage in either document: a two-week throwaway derivation test with blind grading, and kill criteria pre-committed 'so we can't rationalize later'",
+        "Explicitly separates what it verified from what it assumed, and names which assumptions flip the recommendation",
+        "Names its own instinct as wrong ('this kills the first argument I was going to make to you') rather than defending it",
+        "Honest stress test that concedes the Deriver may only be 'nice onboarding' and that the wedge is a timing bet, not a moat"
+      ],
+      "weaknesses": [
+        "Never checks who can actually reach the agent - no mention of the Full-seat gate, the Draft-file limitation for Collab/View/Dev seats, or that credits arrive at GA",
+        "Its 'Figma is already at the destination' warning is itself incomplete on checking: Figma Sites publishing requires a paid plan and a Full seat, so the argument A tells the reader to avoid is partly valid for A's own segment",
+        "'Dissolves the interface barrier for everyone at once' is materially weakened by the seat gate it never looked up - the non-designer is exactly the seat class excluded from real files",
+        "Cites a personal blog as 'independent testing' and stamps it 'Confirmed' on the claim it calls the most important fact in the document; source list carries no strength labels at all",
+        "Misses Canva entirely, despite Canva shipping a proprietary design-specific foundation model in April 2026 and owning the non-designer relationship",
+        "Weakest on separating what changed from what was merely announced: no beta-versus-GA distinction, no note that metering is not yet live",
+        "Long runway - a preamble plus seven numbered questions before the first strategic claim"
+      ]
+    },
+    "B": {
+      "score": 9,
+      "strengths": [
+        "Load-bearing facts verified to the digit: seat gate wording, Draft-file limitation, Education/Government exclusion, 20 May 2026 beta, credits-free-in-beta-metered-at-GA, real layers from connected libraries, Figma Sites Full-seat publishing, and $333.4M / +46% / 139% NDR against Figma's own SEC-filed Q1 2026 release",
+        "Grades its own evidence by strength in the source note, and discounts the 91% designer survey in-text as an incumbent self-report - which is exactly what it is (Figma State of the Designer 2026, n=906)",
+        "Turns a verified pricing fact into the strategy: the Full-seat gate as 'your oxygen supply', the coming meter as 'your weapon', unmetered regeneration as counter-positioning Figma cannot copy without hurting Enterprise margin",
+        "Most distinct angles: launch mechanics, business-model read via NDR, threat reframe as consolidation rather than capability, winners/losers, three orders of consequence, two opposed historical analogies, bear cases in both directions",
+        "The third-order 'design system contamination' point and 'the gate creates your market' are genuinely non-obvious and specific to a non-designer tool",
+        "Names the adjacent threat A misses - 'Figma is the headline; Canva is the problem' - and defers it honestly rather than half-covering it",
+        "Stress test names the correct structural weakness: the strategy rests on a competitor's revocable pricing decision",
+        "Closes with three diagnostics that would change the call, ranked by cheapness to answer"
+      ],
+      "weaknesses": [
+        "Says Starter is 'excluded outright'; Figma's FAQ states the agent is available on the Starter, Professional, Organization and Enterprise plans - an error that makes the seat gate look tighter than it is",
+        "Dates Canva AI 2.0 to March 2026; it launched at Canva Create on 15-16 April 2026 (the substantive claims about the proprietary design model are correct)",
+        "'Shared libraries live on Organization and Enterprise' is imprecise - component library publishing is available on Professional and above",
+        "All three errors tilt in the direction that flatters its own thesis, which is a pattern worth flagging even though none is structural",
+        "Unfilled template placeholder '[SKILL]' leaks into the risk-versus-impact list - a visible production defect",
+        "The eight-play catalog with a scoring table drifts toward survey breadth before the 90-day pick recommits",
+        "The 90-day recommendation is less falsifiable than A's: no pre-committed kill criteria, only a flagged C test"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 3,
+      "total": 4,
+      "pass_rate": 0.75,
+      "details": [
+        {"text": "Reads the launch from several distinct strategic angles rather than one", "passed": true, "note": "Five to six angles: the barrier-was-not-the-moat reframe, generation versus judgment, the design-system dependency asymmetry, the sign-off asymmetry, 'Figma is the signal not the attacker', and the repricing consequence. Genuinely distinct, though all downstream of one thesis."},
+        {"text": "Says what it means specifically for a non-designer-focused tool, not in general", "passed": true, "note": "Strongly specific: 'our users do not have that and never will', 'their user IS the specification', and the observation that selling a reviewer is a product Figma's own customer would resent."},
+        {"text": "Distinguishes what actually changed from what is merely announced", "passed": false, "note": "It separates its own verified claims from its assumptions, which is adjacent but not the same move. It never interrogates the announcement's reach - no beta versus GA, no metering timing, and critically no access limits - and so misses that the capability is Full-seat-gated in real files, the single biggest gap between announcement and reality for its segment."},
+        {"text": "Produces a point of view, not a balanced survey that commits to nothing", "passed": true, "note": "Commits hard: 'C is the engine, A is the surface it's sold as, B is the ritual', plus an explicit refusal to ship prompt-to-screen as the headline response, plus pre-committed kill criteria."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Reads the launch from several distinct strategic angles rather than one", "passed": true, "note": "Eight-plus angles that differ in kind, not just in topic: shipped mechanics, business-model motive via NDR 139%, threat reframe, winners and losers, three orders of consequence, two opposed analogies, bear cases against both parties, and a named adjacent competitor."},
+        {"text": "Says what it means specifically for a non-designer-focused tool, not in general", "passed": true, "note": "The most segment-specific reasoning in either document, and it is anchored to verified access facts: the user sits on a Collab seat, the agent makes non-designers more dangerous inside Figma rather than less, and 'your team shouldn't be prompting in your design file' is offered as literal messaging."},
+        {"text": "Distinguishes what actually changed from what is merely announced", "passed": true, "note": "Explicitly: 'Stripped of the launch narrative' - beta since 20 May, free now and metered at GA, seat-gated so the headline capability does not reach the segment, and 'Generation is not what they bought.' Also discounts the incumbent's own survey stat rather than repeating it."},
+        {"text": "Produces a point of view, not a balanced survey that commits to nothing", "passed": true, "note": "Stance declared in the opening paragraph, a specific 90-day pick (B and E together, then A), and the dud named for the room: building a better prompt-to-screen generator. The scoring table broadens but the memo recommits."}
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "discovery-mode-signal",
+  "prompt": "I want to add a weekly digest email that summarises what changed in a user's projects. Not sure yet if it's worth building.",
+  "expected_output": "Discovery Mode behaviour \u2014 sharpening the thinking before producing a document, since the user has signalled genuine uncertainty.",
+  "assertions": [
+    "Recognises 'not sure if it's worth building' as a discovery signal and does not jump straight to a PRD",
+    "Interrogates the underlying problem rather than accepting the proposed solution",
+    "Surfaces what would have to be true for this to be worth building",
+    "Does not produce a polished document that hides the unresolved question"
+  ]
+}

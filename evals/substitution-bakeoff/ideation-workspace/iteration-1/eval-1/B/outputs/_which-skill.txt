@@ -1,0 +1,2 @@
+product-riff (primary) — from pm-agents/skills/product-riff/SKILL.md
+solution-creativity (secondary, for the response-options section) — from pm-agents/skills/solution-creativity/SKILL.md

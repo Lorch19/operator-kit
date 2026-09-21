@@ -1,0 +1,12 @@
+{
+  "eval_id": 4,
+  "eval_name": "llm-feature-domain-risk",
+  "prompt": "Add a feature where we auto-summarise the user's uploaded documents with an LLM and surface the summary in the digest.",
+  "expected_output": "A spec that proactively raises the domain considerations an LLM-over-user-documents feature carries.",
+  "assertions": [
+    "Raises data handling and privacy for user-uploaded content unprompted",
+    "Addresses failure modes specific to generated summaries \u2014 inaccuracy, hallucination, user recourse",
+    "Considers cost and latency as product constraints, not just engineering ones",
+    "Does not treat 'add AI summarisation' as an ordinary CRUD feature"
+  ]
+}

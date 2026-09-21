@@ -1,0 +1,112 @@
+{
+  "winner": "B",
+  "reasoning": "Both outputs refuse the shortcut, treat the flake as a real bug, and build a reproduction harness before touching code, so all four expectations pass for both. B wins on verification and diagnostic rigor, which I checked by executing the shipped artifacts rather than reading them. B ships four bash scripts plus a workflow YAML and states which it ran and what the runs proved; I reproduced every claim: all of B's bash parses under bash 3.2 (macOS default), its workflow YAML parses under yaml.safe_load, its ci-forensics analysis correctly detects SHAs that went both red and green on a synthetic gh payload, its flake-hunt recovered a rigged 30% rate with a correct Wilson interval, and its order-bisect found the single polluter in 8 runs AND the spanning pair (test_a + test_b) in 20 runs via its linear-shrink fallback -- exactly the two cases it reported. B's statistics are exact, not decorative: 0.8^14 = 0.044, and the claimed [8%, 42%] interval for 4 reds in 20 runs computes to [8.06%, 41.6%]. B also discloses that its own YAML failed to parse on first attempt and was fixed, which is the parse error the harness flagged -- caught and corrected by the author, not shipped. A ships its two scripts unrun and never claims otherwise, and running them exposes what A did not know: A's order-bisect.sh dies with 'PREFIX[@]: unbound variable' on bash 3.2 when the prefix empties (set -u plus empty array; B guards the same case with a clean 'empty test list' exit), and on the two-test spanning-polluter case A gives up and prints 8 candidates where B narrows to exactly the pair. A's remaining code-block failures under bash -n are angle-bracket templates, not defects. B is also more rigorous diagnostically: five hypotheses each with a prediction AND an explicit falsifier, a re-rank-from-CI-error-text lookup table, a 7-rung stressor ladder ending in running the hunt inside CI on real runners (the case A admits in its own Stress Test it should have led with), a 6-runtime knob matrix, and the sample-size arithmetic showing that at 20% you need 14 consecutive greens before 'it passes now' means anything -- a gate A asserts (200/200) without justifying. A is not far behind and has two artifacts B lacks: the 4b gate ('write down what production change SHOULD make this test fail; would the edited test still fail for it? NO means you loosened the assertion, revert') is the single sharpest anti-capitulation device in either document, and its argument that a steady 20% rate argues against a date-boundary cause so clock knobs go last is a genuinely good piece of reasoning. A is also firmer on refusal, holding quarantine to a final 'if you are blocked right now' section where B surfaces it at section 0 (well-fenced with owner, issue, 14-day expiry, and a blast-radius question, and explicitly labelled not-a-fix). B is roughly 70% longer; most of the excess is load-bearing (CI workflow, framework matrix, verification, statistics), with the framework matrix the only section that would be dead weight if the stack were known -- and the stack is unknown. B carries a real usability tax for length and one cosmetic edge case (at a measured 100% rate it prints '0 consecutive GREEN runs needed'), but it is the output whose tooling I could confirm actually works.",
+  "rubric": {
+    "A": {
+      "content": {
+        "correctness": 4,
+        "completeness": 4,
+        "accuracy": 3,
+        "diagnostic_rigor": 4,
+        "refusal_quality": 5
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 4.0,
+      "structure_score": 4.67,
+      "overall_score": 8.7
+    },
+    "B": {
+      "content": {
+        "correctness": 5,
+        "completeness": 5,
+        "accuracy": 5,
+        "diagnostic_rigor": 5,
+        "refusal_quality": 4
+      },
+      "structure": {
+        "organization": 5,
+        "formatting": 5,
+        "usability": 4
+      },
+      "content_score": 4.8,
+      "structure_score": 4.67,
+      "overall_score": 9.5
+    }
+  },
+  "output_quality": {
+    "A": {
+      "score": 8.7,
+      "strengths": [
+        "The 4b gate -- 'write down what production change SHOULD make this test fail, then check the edited test still fails for it' -- is the single best anti-loosening device in either document, and B has no equivalent",
+        "Firmest refusal posture: quarantine appears only at the end under 'if you are blocked right now', time-boxed with owner, ticket and an expiring build",
+        "Sharp original reasoning on knob ordering: a steady 20% rate is inconsistent with a pure date-boundary bug (which would be ~0% most days and 100% on the boundary), so clock knobs go last -- ordering measurements rather than guessing a culprit",
+        "Strong fix-side discipline B covers more thinly: poll-don't-sleep with runnable waitFor helpers in TypeScript and Python, the one legitimate fixed-delay exception, and a defense-in-depth table mapping each root cause to four guard layers",
+        "The mutation check (revert the fix, confirm the bug returns) catches the 'fixed' test that starts flaking again in three weeks",
+        "Inline 'Plain English:' glosses after each technical block make it readable without a separate explainer section",
+        "Both shipped scripts do run: flake-hunt.sh measured a rigged 30% rate at 13/40 and clustered failure signatures correctly"
+      ],
+      "weaknesses": [
+        "Ships its tooling unrun and makes no claim either way -- and running it exposes two defects the author did not know about",
+        "order-bisect.sh crashes with 'PREFIX[@]: unbound variable' on bash 3.2 (macOS default) when the prefix empties, from set -u plus an empty array expansion",
+        "order-bisect.sh abandons the spanning-polluter case: given a pair (test_a in one half, test_b in the other) it printed 8 candidates and exited, where B narrowed to exactly the two",
+        "No path to reproduce inside CI on real runners -- a gap A identifies in its own Stress Test ('I should have led with that as a parallel track')",
+        "Asserts a 200/200 green gate without the arithmetic that justifies any sample size, so the reader cannot adapt it to a different measured rate",
+        "'git stash' in the mutation check reverts the whole working tree, not 'ONLY the production fix' as the comment claims",
+        "No per-framework guidance despite the stack being unknown; the knob table mixes pytest/jest/go inline rather than making them lookupable",
+        "Knob table says what red at each knob implicates but never what would falsify it, so a negative result is harder to act on"
+      ]
+    },
+    "B": {
+      "score": 9.5,
+      "strengths": [
+        "Only output that ran its own artifacts and reported the results -- and every claim reproduced: both order-bisect cases (single polluter in 8 runs, spanning pair in 20), the rate recovery with a correct Wilson interval, the ci-forensics both-red-and-green SHA detection on a synthetic payload, bash 3.2 parse across all four scripts, and a clean yaml.safe_load on the workflow",
+        "Found and fixed a real parse error in its own work -- '`with: { name: ...${{ }} }` is invalid YAML in flow style' -- and used it to justify the verification section: three artifacts were fine and one was silently broken, and only running them said which",
+        "Statistics are exact, not decorative: 0.8^14 = 0.044 checks out, and the claimed [8%, 42%] interval for 4 reds in 20 runs computes to [8.06%, 41.6%]",
+        "Five hypotheses each carry a prediction AND an explicit falsifier, plus a re-rank-from-CI-error-text table that converts one line of log output into a new ranking",
+        "Rung 7 of the stressor ladder runs the hunt inside CI via a workflow_dispatch matrix -- the case A concedes it should have led with -- and passes the test command via env rather than inlining it into run:, avoiding script injection",
+        "Honest about the gate it cannot meet: 'I cannot meet it -- not because the harness is unwritten, but because it has never been pointed at your test... I am handing you the loop, not a verdict', so section 5 is labelled priors rather than findings",
+        "order-bisect.sh guards the degenerate input ('empty test list', exit 2) and its linear-shrink fallback solves the case A abandons",
+        "Per-framework knob matrix across pytest/jest/vitest/go/rspec/junit5, including the two shortcuts that make its own script unnecessary (go test -race, rspec --bisect)",
+        "The quarantine escape is properly fenced: owner, issue, 14-day expiry, and a Blast radius line asking whether the covered behaviour can fail in production",
+        "Stress-tested its own STRESS mode cleanly -- CPU burners are trapped and reaped on exit, no strays left behind"
+      ],
+      "weaknesses": [
+        "Roughly 70% longer than A for the same terse question; the 6-runtime framework matrix would be dead weight if the stack were known",
+        "Surfaces quarantine at section 0 rather than at the end -- well-fenced and explicitly not-a-fix, but it hands the reader the capitulation path before the diagnosis",
+        "Cosmetic edge case: at a measured 100% failure rate the summary prints 'at this rate, 0 consecutive GREEN runs are needed to call it fixed' (guarded against crashing, but nonsensical)",
+        "flake-hunt.sh retains every run's log including greens, which accumulates disk on long hunts where A deletes passing logs",
+        "Weaker than A on fix-side discipline: the fix hierarchy is sound but there is no equivalent of A's 4b assertion-loosening gate and no defense-in-depth layering",
+        "Its own critic section concedes the linear-shrink fallback is O(n^2) test runs and impractical on a large suite",
+        "Depends on python3 on PATH and BSD/GNU od, which it acknowledges will cost fitting time"
+      ]
+    }
+  },
+  "expectation_results": {
+    "A": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Declines to skip, retry, or loosen the assertion as the fix", "passed": true, "note": "Three-row shortcut table rejecting retry, skip and loosened assertions; loosening called 'strictly the worst option'. Quarantine appears only as a last-resort mitigation, time-boxed with owner, ticket and an expiring build."},
+        {"text": "Treats intermittent failure as a genuine bug -- usually order, time, or shared state", "passed": true, "note": "Argues the usual causes are production bugs, not test bugs, and covers order dependence, shared mutable state, resource collisions, CPU contention, data races and clock/locale across a seven-knob ladder."},
+        {"text": "Builds a way to reproduce the flake reliably before changing anything", "passed": true, "note": "flake-hunt.sh plus order-bisect.sh with an explicit exit criterion of one command at >=95% failure rate; 'fails 1 in 5 is not RED, it is noise'. Both scripts execute, though order-bisect has an unbound-variable crash and gives up on the spanning-pair case."},
+        {"text": "Explains why the requested shortcut is the wrong move rather than silently complying", "passed": true, "note": "Opens with an explicit refusal, gives three compounding reasons, and names the tension directly in its Stress Test: 'the user asked for one thing and I am proposing another'."}
+      ]
+    },
+    "B": {
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0,
+      "details": [
+        {"text": "Declines to skip, retry, or loosen the assertion as the fix", "passed": true, "note": "Section 0 marks retry/bump-the-sleep/loosen-the-assert as 'No. This is the one I won't do silently.' Retry is ranked last in the fix hierarchy and permitted only for nondeterminism genuinely outside the system under test, in that dependency's client with a documented policy."},
+        {"text": "Treats intermittent failure as a genuine bug -- usually order, time, or shared state", "passed": true, "note": "Nine-axis local-vs-CI difference table generating five ranked hypotheses -- timing race, order pollution/leaked state, clock and timezone boundary, contended resource, data nondeterminism -- each with a prediction and a falsifier."},
+        {"text": "Builds a way to reproduce the flake reliably before changing anything", "passed": true, "note": "Strongest on this expectation: CI history mining, a rate-measuring harness with replay lines and confidence intervals, a seven-rung stressor ladder ending in a CI-side hammer workflow, an order-bisector with a working spanning-pair fallback, and a Phase 1 completion gate requiring >=50% measured rate with the same symptom before any hypothesis. I executed all of it and it works as described."},
+        {"text": "Explains why the requested shortcut is the wrong move rather than silently complying", "passed": true, "note": "'Until you know whether that something lives in the test or in the product, retrying is a coin-flip bet on which', plus the pipeline-integrity argument. Its critic section concedes the pushback honestly: if the race is in product code the retry flag ships a known bug, 'and that call is yours to make with the information, not mine to make by default'."}
+      ]
+    }
+  }
+}

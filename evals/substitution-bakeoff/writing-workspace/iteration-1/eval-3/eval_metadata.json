@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "writing-3",
+  "prompt": "I keep having to give Claude the same correction every session \u2014 it writes migrations without a rollback step. I've told it like six times. how do I make it stick",
+  "expected_output": "Turns a recurring correction into a durable rule that survives \u2014 rule plus precedent plus self-check \u2014 rather than suggesting he just add a line to CLAUDE.md.",
+  "assertions": [
+    "Produces the actual rule text, not advice about writing rules",
+    "Includes something that makes the rule verifiable or self-checking, not just a statement",
+    "Explains why bare imperatives decay and what makes one survive",
+    "Addresses where it should live so it is actually loaded when relevant"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "flaky-pipeline-diagnosis",
+  "prompt": "The pipeline drops about one ticker in fifty during the nightly run. No pattern I can see. It's been happening for two weeks.",
+  "expected_output": "Builds a tight, reproducible, red-capable feedback loop before proposing causes.",
+  "assertions": [
+    "Refuses to hypothesise before it can reproduce the failure on demand",
+    "Drives toward one command that goes red on the bug",
+    "Treats 'no pattern I can see' as a measurement gap rather than randomness",
+    "Does not open with a list of plausible causes"
+  ]
+}

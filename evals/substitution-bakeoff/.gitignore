@@ -1,0 +1,4 @@
+# Generated review viewers — fully regenerable from the workspaces:
+#   python3 ~/.claude/plugins/cache/operator-kit/meta-tools/1.0.0/skill-creator/eval-viewer/generate_review.py \
+#     <contest>-workspace/iteration-1 --skill-name "<contest>" --static viewers/<contest>.html
+viewers/

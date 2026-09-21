@@ -1,0 +1,29 @@
+Skill pack: /Users/omrilorch/UX-Agent/skills/
+
+USED — both, in the order the pack itself prescribes:
+
+1. ux-creator (primary driver)
+   The task was "design a thing that does not exist yet" (an empty state), which is
+   ux-creator's remit, not ux-reviewer's. Ran Phase 1 (immerse -> domain brief),
+   Phase 2 (targets + numbered success criteria + metrics matrix = DESIGN-TARGETS.md),
+   Phase 2.5 (three materially-opposed named directions, each built as a real screen at
+   390x844, each with a stated sacrifice, coverage split written before locking),
+   Phase 3 (concept -> flow -> six screen states -> system), Phase 5 (lessons noted).
+   Read: SKILL.md, references/domain-immersion.md, references/design-targets-template.md,
+   references/inspiration-sources.md, LESSONS.md.
+
+2. ux-reviewer (Phase 4 self-review handoff)
+   Invoked per ux-creator Phase 4 and the pack's independence rule — run in a FRESH
+   context (subagent) that never saw the design being created, against the
+   DESIGN-TARGETS.md produced in Phase 2, with the built HTML rendered and measured.
+   Returned 4 Blockers / 8 Majors / 12 Catches at the cap + the mandatory truncation
+   line. Blockers were fixed and re-measured before delivery; the review and the
+   fix log are included in the deliverable.
+   Read: SKILL.md, references/review-passes.md, CALIBRATION.md location noted.
+
+Not used: nothing else in the pack (it contains only these two skills).
+
+Artifacts built rather than described:
+  outputs/mock/directions.html           three directions, 390x844, measured
+  outputs/mock/zero-states.html          six zero states, 1440x900, post-review
+  outputs/mock/zero-states.prereview.html  the pre-review build, kept as the "before"

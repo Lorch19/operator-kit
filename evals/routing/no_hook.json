@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "fired": "ux-reviewer",
+    "runners_up": ["design-critique", "behavioral-design"],
+    "reason": "ux-reviewer triggers on \"review this design/screen/flow/mock\" and explicitly names the symptom — \"a flow with more clicks than the job needs\" whose leaner alternative it counter-proposes — so its description claims \"onboarding flow ... feels heavy\" more directly than design-critique's generic \"usability, hierarchy, and consistency\" feedback."
+  },
+  {
+    "id": 2,
+    "fired": "ux-copy",
+    "runners_up": ["design-critique", "behavioral-design"],
+    "reason": "ux-copy's description literally lists \"empty states\" twice — \"microcopy, error messages, empty states, CTAs\" and \"filling empty states\" — which is exactly what the query asks for."
+  },
+  {
+    "id": 3,
+    "fired": "accessibility-review",
+    "runners_up": ["design-critique", "ux-reviewer"],
+    "reason": "The description's trigger phrase \"is this accessible?\" is almost verbatim in the query, and it names \"color contrast\" as its review scope, which is precisely the grey-on-grey / blue-on-near-black concern."
+  },
+  {
+    "id": 4,
+    "fired": "user-research",
+    "runners_up": ["discovery-interview-prep", "jobs-to-be-done"],
+    "reason": "user-research explicitly triggers on \"interview guide\" and \"research questions\" and covers research generally, whereas discovery-interview-prep scopes itself to *discovery* interviews and these are churn post-mortems, not discovery."
+  },
+  {
+    "id": 5,
+    "fired": "ux-reviewer",
+    "runners_up": ["design-critique", "frontend-design"],
+    "reason": "\"does that hold up or am i overcomplicating it\" maps onto ux-reviewer's stated trigger \"is this the right design\" plus its core job of catching over-built layouts and counter-proposing the leaner design; design-critique offers feedback but never claims the over-complication verdict."
+  },
+  {
+    "id": 6,
+    "fired": "diagnosing-bugs",
+    "runners_up": ["systematic-debugging", "system-design"],
+    "reason": "Its trigger clause \"reports something broken/throwing/failing/slow\" plus \"performance regressions\" is satisfied literally by a connection pool exhausting under load, so I would fire it even though the user actually wants configuration tuning rather than a diagnosis loop."
+  }
+]

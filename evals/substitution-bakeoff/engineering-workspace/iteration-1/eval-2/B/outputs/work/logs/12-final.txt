@@ -1,0 +1,25 @@
+
+> fetcher-retry-tdd@0.1.0 test
+> node --test test/fetcher.test.ts
+
+✔ returns the parsed body when the first attempt succeeds (11.953833ms)
+✔ throws HttpError carrying the status when the server keeps failing (0.55475ms)
+✔ retries after a 503 and returns the body from the retry (0.236875ms)
+✔ stops after the default attempt budget and surfaces the last failure (0.237041ms)
+✔ does not retry a 400 — the request is wrong, not the server (0.171291ms)
+✔ retries a 429 because the server is asking us to slow down (0.190042ms)
+✔ honours a configured attempt budget (0.200333ms)
+✔ spaces retries out with exponentially growing waits (0.586416ms)
+✔ caps how long it will wait between attempts (0.186417ms)
+✔ jitters each wait so retrying clients do not sync up (0.191875ms)
+✔ retries when the connection itself fails (0.154167ms)
+✔ waits as long as a Retry-After header asks, instead of guessing (0.145334ms)
+✔ stops retrying as soon as the caller aborts (0.140208ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86.027083
