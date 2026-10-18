@@ -19,7 +19,7 @@ All changes are generic (no Linx-specific content). Pushed to origin.
 
 ## What Remains
 
-### Priority 1: Produce the Linx Claude Code Brief
+### Priority 1: Produce the Linx Claude Code Brief — DONE (`LINX-CLAUDE-CODE-BRIEF.md`)
 
 A self-contained prompt file (`LINX-CLAUDE-CODE-BRIEF.md`) that Omri pastes into Claude Code running on his Linx account (where Notion MCP connectors are available). The brief must:
 
