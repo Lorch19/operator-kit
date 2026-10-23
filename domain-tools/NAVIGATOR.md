@@ -1,12 +1,13 @@
 # Alireza Domain Skills — Navigator
 
-6 specialist skills with 11 Python scripts for founder/consultant workflows.
+7 specialist skills with 12 Python scripts for founder/consultant workflows.
 
 ## Which Skill?
 
 | I need to... | Use this | Has scripts? |
 |---|---|---|
 | Deep competitive analysis with scoring | `competitive-teardown` | No |
+| Map a market or problem space as one scored, sourced report | `market-mapping` | Yes (screenshot check + HTML template) |
 | Financial modeling (DCF, ratios, variance, forecasting) | `financial-analyst` | Yes (4 scripts) |
 | Pipeline health, forecast accuracy, GTM efficiency | `revenue-operations` | Yes (3 scripts) |
 | GTM strategy, launch plans, battlecards, sales enablement | `marketing-strategy-pmm` | No |
