@@ -41,7 +41,7 @@ Run searches in parallel. Use standard mode first and extended mode for niche or
 | Pricing | Anchors per unit and per seat, setup fees, revenue share |
 | Switching | What pushes customers to switch, what pulls them, and what stops them (survey data where available) |
 
-If a source is unreachable, say so and use the next best one. Never invent a number.
+If a source is unreachable, say so and use the next best one. Never invent a number. **Look up live exchange rates and prices.** Don't use a remembered rate (a stale ₪3.7/$ once inflated every shekel figure by ~19%).
 
 ## Phase 2 — Score
 

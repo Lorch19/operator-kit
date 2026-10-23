@@ -108,11 +108,11 @@ footer{margin-top:36px;font-size:13px;color:var(--muted)}
   <ul>
     <li>PMS הוא מערכת הליבה של המלון. דרכה עוברים ההזמנות, הקבלה, החשבוניות ומצב החדרים, ואליה מתחברות כל שאר המערכות.</li>
     <li>בעולם המעבר לענן כמעט הושלם. השאלה החדשה היא מי מחזיק גם את התשלומים, התמחור והתפעול.</li>
-    <li>בישראל, ביוון ובקפריסין ההוצאה על PMS קטנה פי 17–27 מההוצאה על ניקיון חדרים.</li>
+    <li>בישראל, ביוון ובקפריסין ההוצאה על PMS קטנה פי 20–27 מההוצאה על ניקיון חדרים.</li>
   </ul>
   <h3>כמה כסף יש בשוק</h3>
   <div class="tw"><table id="size"></table></div>
-  <p class="tiny muted">מחיר שוק: $4–15 לחדר בחודש (<a href="https://www.smartorder.ai/resources/blog/hotel-pms-pricing-comparison-2026/" target="_blank" rel="noopener">Smart Order</a>). החישוב לפי ~$8 / €7 לחדר בחודש ו-₪3.7 לדולר, בהנחה שלכל המלונות יש PMS.</p>
+  <p class="tiny muted">מחיר שוק: $4–15 לחדר בחודש (<a href="https://www.smartorder.ai/resources/blog/hotel-pms-pricing-comparison-2026/" target="_blank" rel="noopener">Smart Order</a>). החישוב לפי ~$8 / €7 לחדר בחודש ו-₪3.11 לדולר (10/2026), בהנחה שלכל המלונות יש PMS.</p>
   <h3>מה משנה את השוק</h3>
   <div class="tw"><table id="trends"></table></div>
 </section>
@@ -159,9 +159,9 @@ footer{margin-top:36px;font-size:13px;color:var(--muted)}
   <div class="tw"><table id="price"></table></div>
   <h3>מה צריך ל-₪1M בשנה ממנויי PMS בישראל</h3>
   <div class="tw"><table><thead><tr><th>מחיר לחדר בחודש</th><th class="c">חדרים</th><th class="c">מלונות של 110 חדרים</th><th class="c">חלק מהחדרים בישראל</th></tr></thead><tbody>
-    <tr><td>$5</td><td class="c num">~4,500</td><td class="c num">~41</td><td class="c num">~9%</td></tr>
-    <tr><td>$8</td><td class="c num">~2,800</td><td class="c num">~26</td><td class="c num">~5%</td></tr>
-    <tr><td>$12</td><td class="c num">~1,900</td><td class="c num">~17</td><td class="c num">~4%</td></tr>
+    <tr><td>$5</td><td class="c num">~5,400</td><td class="c num">~49</td><td class="c num">~10%</td></tr>
+    <tr><td>$8</td><td class="c num">~3,350</td><td class="c num">~30</td><td class="c num">~6%</td></tr>
+    <tr><td>$12</td><td class="c num">~2,250</td><td class="c num">~20</td><td class="c num">~4%</td></tr>
   </tbody></table></div>
   <ul>
     <li><b>הכסף זז לתשלומים.</b> דרך Mews עברו $19.7B בתשלומים ב-2025, ו-Cloudbeds כוללת סליקה בכל חבילה.</li>
@@ -206,7 +206,7 @@ const EST='<span class="est">הערכה</span>';
 
 tbl('size',[["שוק"],["הוצאה על PMS בשנה"],["חישוב"],["מול ניקיון"]],[
  ["עולם","$1.7–3.8B","https://markolukicic.substack.com/p/where-hotel-pms-is-actually-heading","Mordor / Grand View, ~7–9% growth","",0],
- ["ישראל","≈ ₪18M","","52,000 × $8 × 12","קטן פי ~17",1],
+ ["ישראל","≈ ₪15.5M","","52,000 × $8 × 12 × 3.11","קטן פי ~20",1],
  ["יוון","≈ €38M","","450,565 × €7 × 12","קטן פי ~26",1],
  ["קפריסין","≈ €2.7M","","32,245 × €7 × 12","קטן פי ~27",1]
 ].map(r=>`<tr><td><b>${r[0]}</b></td><td class="num"><b>${r[2]?A(r[1],r[2]):r[1]}</b> ${r[5]?EST:''}</td><td><span class="calc">${esc(r[3])}</span></td><td class="tiny">${esc(r[4])}</td></tr>`));
