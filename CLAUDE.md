@@ -24,8 +24,8 @@ them per-account as zip uploads. Installing on one does nothing for the other.
 
 ## How skills are invoked
 
-141 active skills. **54** are model-invoked — Claude fires those on its own. The
-other **87 are user-invoked**: type `/<skill-name>` to run them. Their descriptions are
+142 active skills. **54** are model-invoked — Claude fires those on its own. The
+other **88 are user-invoked**: type `/<skill-name>` to run them. Their descriptions are
 kept out of context entirely, which is why the routing table below must stay complete —
 **it is the only index Claude has for them.** Claude can still *recommend* a user-invoked
 skill by reading this file; it just can't fire one unasked.
@@ -117,10 +117,11 @@ Multi-agent PM system that compounds with each use. See `pm-agents/NAVIGATOR.md`
 - `stakeholder-buyin` — Stakeholder alignment tactics
 
 ### 3. Domain Tools (`domain-tools/`)
-6 specialist skills with 11 Python scripts for founder/consultant workflows. See `domain-tools/NAVIGATOR.md` for script reference.
+7 specialist skills with 12 Python scripts for founder/consultant workflows. See `domain-tools/NAVIGATOR.md` for script reference.
 
 **Key skills:**
 - `competitive-teardown` — Deep competitive analysis with scoring
+- `market-mapping` — One objective report on a market or problem space: size, segments, unmet needs, weighted alternatives, players, risks
 - `financial-analyst` — Financial modeling (DCF, ratios, variance, forecasting) + 4 Python scripts
 - `revenue-operations` — RevOps and pipeline optimization + 3 Python scripts
 - `marketing-strategy-pmm` — GTM, launch plans, battlecards, sales enablement
@@ -314,6 +315,7 @@ Linx Advisor has been moved to its own standalone directory at `/Users/omrilorch
 | Strategy session | `pm-agents` → `/pm:strategy` |
 | End-to-end strategy session (positioning → validated roadmap) | `pm-frameworks/product-strategy-session` |
 | Competitive analysis | `domain-tools/competitive-teardown` |
+| Map a market or problem space (objective, scored, no recommendations) | `domain-tools/market-mapping` |
 | Market sizing | `pm-frameworks/tam-sam-som-calculator` |
 | Positioning | `pm-frameworks/positioning-workshop` |
 | PESTEL analysis | `pm-frameworks/pestel-analysis` |
