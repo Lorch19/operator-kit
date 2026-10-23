@@ -41,7 +41,7 @@ Run searches in parallel. Use standard mode first and extended mode for niche or
 | Pricing | Anchors per unit and per seat, setup fees, revenue share |
 | Switching | What pushes customers to switch, what pulls them, and what stops them (survey data where available) |
 
-If a source is unreachable, say so and use the next best one. Never invent a number. **Look up live exchange rates and prices.** Don't use a remembered rate (a stale ₪3.7/$ once inflated every shekel figure by ~19%).
+**Local sources first**: national statistics office, ministry, industry association and local press in the local language, before global vendor blogs. If a source is unreachable, say so and use the next best one. Never invent a number. **Look up live exchange rates and prices.** Don't use a remembered rate (a stale ₪3.7/$ once inflated every shekel figure by ~19%).
 
 ## Phase 2 — Score
 
@@ -61,14 +61,14 @@ Copy `assets/report-template.html`. Replace the header, the prose and the data a
 
 | # | Section | Main table |
 |---|---|---|
-| 1 | Bottom line | One sentence plus 4 number tiles |
-| 2 | Problem / market | Size by country with formulas; trends with sources |
-| 3 | Customers | Segments sorted by score (calculation folded); unmet-needs heat table |
+| 1 | Assumptions | Every number-driving assumption: value, basis pill (sourced / partial / estimate), impact if wrong, what it rests on, how to validate. IDs (A1…) that later sections cite |
+| 2 | Market size | Finding + 4 tiles; size by country with **two methods** (bottom-up units × cost, top-down headcount × wage) shown side by side as a range; problem bullets; trends |
+| 3 | Opportunities | Segments sorted by score (calculation folded); unmet-needs heat table |
 | 4 | Competition | Alternatives × segments (weights and raw scores folded); players grouped; moves timeline folded |
 | 5 | The domain's key question | For example "does it work without X?" or "what makes them switch?" |
 | 6 | Economics | Price anchors; what a revenue target (e.g. ₪1M/yr) means in units and market share |
 | 7 | Risks | Impact and likelihood pills; no mitigations |
-| 8 | What to check | Interview plan box; confidence table; methods and sources folded |
+| 8 | Questions and checks | Questions for the counterpart, each mapped to the assumption it validates; interview plan box; confidence table; methods and sources folded |
 
 Footer: numbers marked as estimates are the author's calculation, not interview data.
 
@@ -92,4 +92,5 @@ Publish the report as an artifact. Reply in two or three lines: what the report 
 - One chart was repeated per segment instead of one unified table.
 - Unmet needs were buried at the end instead of shown upfront.
 - Methodology paragraphs sat in the body instead of in the folds.
+- Global or US cost benchmarks were applied to a local market (Greek room-cleaning spend overstated ~2× until the local wage agreement was checked).
 - Long, convoluted sentences. The bar is a crisp chat answer: short claims, numbers, sources.
